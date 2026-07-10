@@ -7,102 +7,96 @@ const faqs = [
   {
     question: "How can I book a cab or tour package?",
     answer:
-      "You can call us, send a WhatsApp message, email us, or fill out the contact form. Our team will guide you through the booking process.",
+      "You can call us directly, send us a WhatsApp message, email us, or fill out the contact form. Share your travel details, and our team will guide you through the booking process.",
   },
   {
     question: "How quickly will I receive a quotation?",
     answer:
-      "Most quotations are shared shortly after receiving your travel details. Customized tours may require additional planning.",
+      "Most quotations are shared shortly after we receive your travel details. Customized tours or large group bookings may take a little longer depending on your requirements.",
   },
   {
     question: "Can I book transportation for a large group?",
     answer:
-      "Yes. We provide Tempo Travellers, Mini Buses, and Luxury Coaches for families, corporate teams, weddings, schools, and other group travel.",
+      "Yes. We arrange transportation for families, corporate teams, wedding guests, schools, colleges, and other group travel requirements using Tempo Travellers, Mini Buses, and Luxury Coaches.",
   },
   {
     question: "Do you arrange customized tour packages?",
     answer:
-      "Yes. We prepare personalized itineraries based on your destination, budget, group size, and travel duration.",
+      "Yes. We create personalized travel itineraries based on your destination, travel duration, group size, and budget.",
   },
   {
     question: "Is advance booking recommended?",
     answer:
-      "Yes. Booking early helps ensure better vehicle availability, especially during weekends, holidays, festivals, and wedding season.",
+      "Yes. We recommend booking as early as possible, especially during weekends, long holidays, wedding season, and major festivals, to ensure better vehicle availability.",
   },
   {
     question: "Which areas do you serve?",
     answer:
-      "We provide local taxi services across Lucknow, airport transfers, outstation taxi services, and tour packages throughout North India.",
+      "We provide travel services across Lucknow, including local transportation, airport transfers, outstation taxi services, and tour packages to destinations across North India.",
   },
 ];
 
 export default function ContactFAQ() {
-  const [active, setActive] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-5xl mx-auto px-6">
-
+    <section className="bg-gray-50 py-20">
+      <div className="mx-auto max-w-5xl px-6">
+        {/* Heading */}
         <div className="text-center">
-
-          <span className="text-blue-600 font-semibold uppercase tracking-widest">
+          <span className="text-sm font-semibold uppercase tracking-widest text-blue-600">
             FAQs
           </span>
 
-          <h2 className="mt-3 text-4xl font-bold">
+          <h2 className="mt-3 text-4xl font-bold text-gray-900">
             Frequently Asked Questions
           </h2>
 
-          <p className="mt-5 text-gray-600">
-            Find answers to common questions about our taxi services,
-            tour packages, and booking process.
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-gray-600">
+            Find answers to common questions about our taxi services, tour
+            packages, and booking process.
           </p>
-
         </div>
 
-        <div className="mt-14 space-y-5">
+        {/* FAQ List */}
+        <div className="mt-14 space-y-6">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
 
-          {faqs.map((faq, index) => (
-
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-sm border"
-            >
-
-              <button
-                onClick={() =>
-                  setActive(active === index ? null : index)
-                }
-                className="flex w-full items-center justify-between p-6 text-left"
+            return (
+              <div
+                key={index}
+                className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg"
               >
-                <span className="font-semibold text-lg">
-                  {faq.question}
-                </span>
+                <button
+                  onClick={() =>
+                    setOpenIndex(isOpen ? null : index)
+                  }
+                  className="flex w-full items-center justify-between p-6 text-left"
+                >
+                  <span className="text-lg font-semibold text-gray-900">
+                    {faq.question}
+                  </span>
 
-                <ChevronDown
-                  className={`transition ${
-                    active === index ? "rotate-180" : ""
-                  }`}
-                />
+                  <ChevronDown
+                    size={22}
+                    className={`text-gray-600 transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
 
-              </button>
-
-              {active === index && (
-
-                <div className="px-6 pb-6 text-gray-600 leading-8">
-
-                  {faq.answer}
-
-                </div>
-
-              )}
-
-            </div>
-
-          ))}
-
+                {isOpen && (
+                  <div className="border-t border-gray-200 px-6 py-5">
+                    <p className="leading-8 text-gray-600">
+                      {faq.answer}
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
-
       </div>
     </section>
   );

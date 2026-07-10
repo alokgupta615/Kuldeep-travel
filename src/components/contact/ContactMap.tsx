@@ -45,14 +45,13 @@ export default function ContactMap() {
           <div className="rounded-3xl bg-gray-50 p-10 shadow-lg">
 
             <h3 className="text-3xl font-bold text-gray-900">
-              Office Information
-            </h3>
+  Office Information
+</h3>
 
-            <p className="mt-4 text-gray-600 leading-8">
-              We'd love to help you plan your next journey. Feel free to visit
-              us during business hours or contact us through phone, WhatsApp,
-              or email.
-            </p>
+<p className="mt-4 text-gray-600 leading-8">
+  We'd love to help you plan your next journey. Feel free to visit us during
+  business hours or contact us through phone, WhatsApp, or email.
+</p>
 
             <div className="mt-10 space-y-8">
 
@@ -63,9 +62,9 @@ export default function ContactMap() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-lg">
-                    Office Address
-                  </h4>
+                  <h4 className="text-lg font-bold text-gray-900">
+  Office Address
+</h4>
 
                   <p className="text-gray-600">
                     Kuldeep Travels
@@ -86,9 +85,9 @@ export default function ContactMap() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-lg">
-                    Phone
-                  </h4>
+                  <h4 className="text-lg font-bold text-gray-900">
+  Phone
+</h4>
 
                   <a
                     href="tel:09936408109"
@@ -107,9 +106,9 @@ export default function ContactMap() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-lg">
-                    Email
-                  </h4>
+                  <h4 className="text-lg font-bold text-gray-900">
+  Email
+</h4>
 
                   <a
                     href="mailto:kuldeeptravelslko@gmail.com"
@@ -128,15 +127,15 @@ export default function ContactMap() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-lg">
-                    Business Hours
-                  </h4>
+                  <h4 className="text-lg font-bold text-gray-900">
+  Business Hours
+</h4>
 
-                  <p className="text-gray-600">
+                  <p className="text-gray-700">
                     Monday – Sunday
                   </p>
 
-                  <p className="text-gray-600">
+                  <p className="text-gray-700">
                     Available Every Day
                   </p>
 
