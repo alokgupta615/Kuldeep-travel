@@ -6,6 +6,7 @@ import BeforeContact from "@/components/contact/BeforeContact";
 import ContactMap from "@/components/contact/ContactMap";
 import ContactFAQ from "@/components/contact/ContactFAQ";
 import ContactCTA from "@/components/contact/ContactCTA";
+import ContactForm from "@/components/contact/ContactForn";
 
 export const metadata = {
   title: "Contact Kuldeep Travels | Taxi & Tour Booking in Lucknow",
@@ -20,6 +21,8 @@ export default function ContactPage() {
       <ContactHero />
 
       <ContactInfo />
+      
+      <ContactForm/>
 
       {/* <ContactForm/> */}
 

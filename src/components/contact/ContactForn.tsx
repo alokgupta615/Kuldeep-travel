@@ -11,9 +11,17 @@ import {
   Briefcase,
   MessageSquare,
   Send,
+  ShieldCheck,
+  Clock3,
+  Star,
+  CheckCircle2,
+  MessageCircle,
 } from "lucide-react";
 
 export default function ContactForm() {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -37,13 +45,22 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Replace this with your API / Email service
+    if (!formData.name || !formData.phone || !formData.service) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    setLoading(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     console.log(formData);
 
-    alert("Your inquiry has been submitted!");
+    setLoading(false);
+    setSuccess(true);
 
     setFormData({
       name: "",
@@ -59,64 +76,182 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 py-24">
 
-        <div className="grid lg:grid-cols-2 gap-14 items-start">
+      {/* Decorative Background */}
 
-          {/* Left Content */}
+      <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-blue-200/30 blur-3xl" />
+      <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-yellow-200/30 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
+
+        <div className="grid gap-16 lg:grid-cols-2 items-center">
+
+          {/* LEFT */}
 
           <div>
 
-            <span className="text-blue-600 font-semibold uppercase tracking-widest">
-              Contact Form
+            <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-blue-700">
+              Contact Kuldeep Travels
             </span>
 
-            <h2 className="text-4xl font-bold text-gray-900 mt-3">
-              Send Us Your Travel Requirements
+            <h2 className="mt-6 text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
+              Let's Plan Your
+              <span className="block text-blue-700">
+                Perfect Journey
+              </span>
             </h2>
 
-            <p className="mt-6 text-gray-600 leading-8">
-              Planning a local ride, airport transfer, outstation journey,
-              family vacation, corporate travel, or a customized tour package?
-              Fill out the form and our team will contact you with vehicle
-              availability and a personalized quotation.
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Whether you need a local taxi, airport transfer, outstation cab,
+              Tempo Traveller, luxury bus, or a customized holiday package,
+              our travel experts are ready to assist you with the best vehicle
+              and transparent pricing.
             </p>
 
-            <div className="mt-10 space-y-6">
+            {/* Rating */}
+
+            <div className="mt-8 flex items-center gap-3">
+
+              <div className="flex">
+
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    size={20}
+                    className="fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+
+              </div>
+
+              <span className="font-semibold text-slate-800">
+                Trusted by Thousands of Happy Travellers
+              </span>
+
+            </div>
+
+            {/* Features */}
+
+            <div className="mt-10 space-y-5">
 
               {[
-                "Local Cab Service in Lucknow",
-                "Airport Pickup & Drop",
-                "Outstation Taxi Booking",
-                "One Way & Round Trip",
-                "Tempo Traveller Booking",
-                "Luxury Bus Rental",
-                "Corporate Travel",
-                "Family Tour Packages",
-                "Pilgrimage Tour Packages",
-                "Customized Tour Packages",
+                "Professional & Verified Drivers",
+                "24×7 Customer Support",
+                "Transparent Fixed Pricing",
+                "Sanitized & Well Maintained Vehicles",
+                "Instant Booking Confirmation",
+                "Safe & Comfortable Journey",
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <div className="w-3 h-3 rounded-full bg-yellow-400 mt-2" />
-                  <p className="text-gray-700">{item}</p>
+
+                <div
+                  key={item}
+                  className="flex items-center gap-4"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-700">
+                    <CheckCircle2 size={20} />
+                  </div>
+
+                  <p className="text-slate-700 font-medium">
+                    {item}
+                  </p>
+
                 </div>
+
               ))}
+
+            </div>
+
+            {/* Stats */}
+
+            <div className="mt-12 grid grid-cols-3 gap-4">
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+
+                <ShieldCheck className="mx-auto text-blue-700" />
+
+                <h4 className="mt-3 text-2xl font-bold text-slate-900">
+                  100%
+                </h4>
+
+                <p className="mt-1 text-sm text-slate-500">
+                  Safe Travel
+                </p>
+
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+
+                <Clock3 className="mx-auto text-blue-700" />
+
+                <h4 className="mt-3 text-2xl font-bold text-slate-900">
+                  24×7
+                </h4>
+
+                <p className="mt-1 text-sm text-slate-500">
+                  Support
+                </p>
+
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+
+                <Users className="mx-auto text-blue-700" />
+
+                <h4 className="mt-3 text-2xl font-bold text-slate-900">
+                  10K+
+                </h4>
+
+                <p className="mt-1 text-sm text-slate-500">
+                  Happy Riders
+                </p>
+
+              </div>
 
             </div>
 
           </div>
 
-          {/* Form */}
+          {/* FORM */}
 
-          <div className="bg-gray-50 rounded-3xl shadow-lg p-8">
+          <div className="relative overflow-hidden rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_25px_70px_rgba(15,23,42,0.12)] lg:p-10">
+
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400" />
+
+            <div className="mb-8">
+
+              <span className="inline-flex rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
+                Quick Booking
+              </span>
+
+              <h3 className="mt-5 text-3xl font-bold text-slate-900">
+                Request a Free Quote
+              </h3>
+
+              <p className="mt-3 text-slate-600">
+                Complete the form below and our travel expert will contact you
+                within 15 minutes.
+              </p>
+
+            </div>
+
+            {success && (
+
+              <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 p-4 text-green-700">
+
+                ✅ Thank you! Your inquiry has been submitted successfully.
+                Our team will contact you shortly.
+
+              </div>
+
+            )}
 
             <form
               onSubmit={handleSubmit}
               className="space-y-6"
             >
 
-              <div className="grid md:grid-cols-2 gap-5">
+              <div className="grid gap-5 md:grid-cols-2">
 
                 <InputField
                   icon={<User size={18} />}
@@ -124,6 +259,7 @@ export default function ContactForm() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  required
                 />
 
                 <InputField
@@ -132,6 +268,7 @@ export default function ContactForm() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
+                  required
                 />
 
                 <InputField
@@ -149,8 +286,7 @@ export default function ContactForm() {
                   value={formData.travelDate}
                   onChange={handleChange}
                 />
-
-                <InputField
+                                <InputField
                   icon={<MapPin size={18} />}
                   placeholder="Pickup Location"
                   name="pickup"
@@ -168,7 +304,7 @@ export default function ContactForm() {
 
                 <InputField
                   icon={<Users size={18} />}
-                  placeholder="Passengers"
+                  placeholder="Number of Passengers"
                   name="passengers"
                   value={formData.passengers}
                   onChange={handleChange}
@@ -176,47 +312,45 @@ export default function ContactForm() {
 
                 <div className="relative">
 
-                  <Briefcase
-                    className="absolute left-4 top-4 text-gray-400"
-                    size={18}
-                  />
+                  <div className="absolute left-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-blue-100 text-blue-700">
+                    <Briefcase size={18} />
+                  </div>
 
                   <select
+                    required
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-gray-300 bg-white py-3 pl-11 pr-4 outline-none focus:border-blue-600"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-16 pr-4 text-slate-700 outline-none transition-all duration-300 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-100"
                   >
-                    <option value="">
-                      Select Service
-                    </option>
-
-                    <option>Local Cab</option>
-
-                    <option>Airport Transfer</option>
-
+                    <option value="">Select Service</option>
+                    <option>Airport Pickup & Drop</option>
+                    <option>Local Taxi</option>
+                    <option>One Way Taxi</option>
+                    <option>Round Trip Taxi</option>
                     <option>Outstation Taxi</option>
-
                     <option>Tempo Traveller</option>
-
-                    <option>Luxury Bus</option>
-
-                    <option>Tour Package</option>
-
+                    <option>Luxury Bus Rental</option>
+                    <option>Senior Citizen Travel</option>
                     <option>Corporate Travel</option>
-
+                    <option>Wedding Car Rental</option>
+                    <option>Religious Tour Package</option>
+                    <option>Family Tour Package</option>
+                    <option>Weekend Getaway</option>
+                    <option>Custom Tour Package</option>
                   </select>
 
                 </div>
 
               </div>
 
+              {/* Message */}
+
               <div className="relative">
 
-                <MessageSquare
-                  className="absolute left-4 top-4 text-gray-400"
-                  size={18}
-                />
+                <div className="absolute left-4 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-blue-700">
+                  <MessageSquare size={18} />
+                </div>
 
                 <textarea
                   rows={5}
@@ -224,18 +358,71 @@ export default function ContactForm() {
                   placeholder="Tell us about your travel requirements..."
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-gray-300 bg-white py-3 pl-11 pr-4 outline-none focus:border-blue-600 resize-none"
+                  className="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-16 pr-4 text-slate-700 outline-none transition-all duration-300 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-100"
                 />
 
               </div>
 
+              {/* Trust Note */}
+
+              <div className="rounded-2xl bg-blue-50 p-5">
+
+                <div className="flex items-start gap-3">
+
+                  <ShieldCheck
+                    className="mt-1 text-blue-700"
+                    size={22}
+                  />
+
+                  <div>
+
+                    <h4 className="font-semibold text-slate-900">
+                      Why Book with Kuldeep Travels?
+                    </h4>
+
+                    <p className="mt-2 text-sm leading-7 text-slate-600">
+                      ✔ Transparent Pricing &nbsp; • &nbsp;
+                      ✔ No Hidden Charges &nbsp; • &nbsp;
+                      ✔ Verified Drivers &nbsp; • &nbsp;
+                      ✔ Clean Vehicles &nbsp; • &nbsp;
+                      ✔ 24×7 Customer Support
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              {/* Submit */}
+
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-4 text-lg font-semibold text-white transition hover:bg-blue-800"
+                disabled={loading}
+                className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-900 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-60"
               >
-                <Send size={18} />
-                Send Inquiry
+                <Send
+                  size={20}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+
+                {loading ? "Sending..." : "Get Free Quote"}
+
               </button>
+
+              {/* WhatsApp */}
+
+              <a
+                href="https://wa.me/919999999999"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 rounded-2xl border border-green-200 bg-green-50 py-4 font-semibold text-green-700 transition hover:bg-green-100"
+              >
+                <MessageCircle size={22} />
+
+                Book Instantly on WhatsApp
+
+              </a>
 
             </form>
 
@@ -244,7 +431,9 @@ export default function ContactForm() {
         </div>
 
       </div>
+
     </section>
+
   );
 }
 
@@ -254,6 +443,7 @@ type InputProps = {
   type?: string;
   name: string;
   value: string;
+  required?: boolean;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement>
   ) => void;
@@ -265,22 +455,24 @@ function InputField({
   type = "text",
   name,
   value,
+  required,
   onChange,
 }: InputProps) {
   return (
     <div className="relative">
 
-      <div className="absolute left-4 top-4 text-gray-400">
+      <div className="absolute left-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-blue-100 text-blue-700">
         {icon}
       </div>
 
       <input
+        required={required}
         type={type}
         placeholder={placeholder}
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full rounded-xl border border-gray-300 bg-white py-3 pl-11 pr-4 outline-none focus:border-blue-600"
+        className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-16 pr-4 text-slate-700 outline-none transition-all duration-300 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-100"
       />
 
     </div>
