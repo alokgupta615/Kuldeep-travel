@@ -37,8 +37,8 @@ const services = [
     href: "/services/tempo-traveller",
   },
   {
-    title: "Corporate Travel",
-    href: "/services/corporate-travel",
+    title: "Wedding Car Rental",
+    href: "/services/wedding-car-rental",
   },
   {
     title: "Senior Citizen Travel",

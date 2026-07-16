@@ -1,0 +1,12 @@
+export { default as Hero } from "./Hero";
+export { default as BookingForm } from "./BookingForm";
+export { default as JourneyIntro } from "./JourneyIntro";
+export { default as WhyChooseOutstation } from "./WhyChooseOutstation";
+export { default as PopularDestinations } from "./PopularDestinations";
+export { default as TravelPlans } from "./TravelPlans";
+export { default as VehicleOptions } from "./VehicleOptions";
+export { default as RoadTripBenefits } from "./RoadTripBenefits";
+export { default as TripPlanning } from "./TripPlanning";
+export { default as WhyChooseKuldeep } from "./WhyChooseKuldeep";
+export { default as FAQ } from "./FAQ";
+export { default as CTA } from "./CTA";

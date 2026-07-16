@@ -6,6 +6,7 @@ import {
   Car,
   MapPinned,
   CalendarDays,
+  ArrowRight,
 } from "lucide-react";
 
 const highlights = [
@@ -40,10 +41,12 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-slate-50 py-16 md:py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        {/* Main Grid */}
+
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
 
           {/* Left Image */}
 
@@ -54,16 +57,18 @@ export default function AboutSection() {
               alt="Kuldeep Travels"
               width={650}
               height={650}
-              className="rounded-3xl shadow-2xl object-cover"
+              className="h-[320px] w-full rounded-3xl object-cover shadow-2xl sm:h-[450px] lg:h-[620px]"
             />
 
-            <div className="absolute bottom-6 left-6 bg-white rounded-2xl shadow-xl p-6">
+            {/* Floating Card */}
 
-              <p className="text-blue-700 font-bold text-3xl">
+            <div className="absolute bottom-4 left-4 rounded-2xl bg-white p-4 shadow-xl sm:bottom-6 sm:left-6 sm:p-6">
+
+              <h3 className="text-2xl font-bold text-blue-700 sm:text-3xl">
                 Since 2012
-              </p>
+              </h3>
 
-              <p className="text-gray-600">
+              <p className="mt-1 text-sm text-gray-600 sm:text-base">
                 Trusted Travel Partner
               </p>
 
@@ -75,21 +80,30 @@ export default function AboutSection() {
 
           <div>
 
-            <span className="text-blue-600 uppercase font-semibold tracking-widest">
+            <span className="text-sm font-semibold uppercase tracking-[3px] text-blue-600">
               About Kuldeep Travels
             </span>
 
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 leading-tight">
+            <h2 className="mt-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
 
-              Your Trusted Travel Partner in Lucknow
+              Your Trusted Travel Partner
+              <br />
+
+              <span className="text-blue-700">
+                in Lucknow
+              </span>
 
             </h2>
 
-            <p className="mt-6 text-gray-600 leading-8 text-lg">
+            <p className="mt-6 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
 
               Since 2012, Kuldeep Travels has been providing reliable taxi
               services, airport transfers, outstation cabs, corporate travel,
               and customized tour packages across Lucknow and North India.
+
+            </p>
+
+            <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
 
               Our mission is simple—to provide every customer with a safe,
               comfortable, and hassle-free travel experience backed by
@@ -99,21 +113,21 @@ export default function AboutSection() {
 
             {/* Features */}
 
-            <div className="grid sm:grid-cols-2 gap-5 mt-8">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-5">
 
-              {highlights.map((item, index) => (
+              {highlights.map((item) => (
 
                 <div
-                  key={index}
-                  className="flex items-center gap-3"
+                  key={item}
+                  className="flex items-start gap-3 rounded-xl bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                 >
 
                   <CheckCircle
-                    className="text-green-600"
+                    className="mt-0.5 shrink-0 text-green-600"
                     size={22}
                   />
 
-                  <span className="text-gray-700 font-medium">
+                  <span className="font-medium text-gray-700">
                     {item}
                   </span>
 
@@ -123,11 +137,17 @@ export default function AboutSection() {
 
             </div>
 
+            {/* Button */}
+
             <Link
               href="/about"
-              className="inline-block mt-10 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-semibold transition"
+              className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-800 hover:shadow-lg sm:mt-10 sm:w-auto"
             >
+
               Learn More
+
+              <ArrowRight size={18} />
+
             </Link>
 
           </div>
@@ -136,33 +156,33 @@ export default function AboutSection() {
 
         {/* Stats */}
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
+        <div className="mt-14 grid grid-cols-2 gap-4 sm:mt-16 sm:gap-6 lg:mt-20 lg:grid-cols-4 lg:gap-8">
 
-          {stats.map((stat, index) => {
+          {stats.map((stat) => {
 
             const Icon = stat.icon;
 
             return (
 
               <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-md text-center hover:shadow-xl transition"
+                key={stat.label}
+                className="rounded-2xl bg-white p-5 text-center shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl sm:p-8"
               >
 
-                <div className="w-16 h-16 mx-auto rounded-full bg-blue-100 flex items-center justify-center mb-5">
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 sm:mb-5 sm:h-16 sm:w-16">
 
                   <Icon
                     className="text-blue-700"
-                    size={30}
+                    size={28}
                   />
 
                 </div>
 
-                <h3 className="text-4xl font-bold text-gray-900">
+                <h3 className="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
                   {stat.value}
                 </h3>
 
-                <p className="text-gray-600 mt-2">
+                <p className="mt-2 text-sm text-gray-600 sm:text-base">
                   {stat.label}
                 </p>
 

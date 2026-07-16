@@ -1,50 +1,39 @@
-// import Hero from "@/components/service/one-way-taxi/Hero";
-// import TravelSmarter from "@/components/service/one-way-taxi/TravelSmarter";
-// import WhyChooseOneWay from "@/components/service/one-way-taxi/WhyChooseOneWay";
-// import PopularRoutes from "@/components/service/one-way-taxi/PopularRoutes";
-// import TravelNeeds from "@/components/service/one-way-taxi/TravelNeeds";
-// import VehicleSelection from "@/components/service/one-way-taxi/VehicleSelection";
-// import BookingSteps from "@/components/service/one-way-taxi/BookingSteps";
-// import DistanceTable from "@/components/service/one-way-taxi/DistanceTable";
-// import FAQ from "@/components/service/one-way-taxi/FAQ";
-// import WhyChooseKuldeep from "@/components/service/one-way-taxi/WhyChooseKuldeep";
-// import CTA from "@/components/service/one-way-taxi/CTA";
+import type { Metadata } from "next";
+import Hero from "@/components/service/one-way-taxi/Hero";
+import WhyOneWay from "@/components/service/one-way-taxi/WhyOneWay";
+import Benefits from "@/components/service/one-way-taxi/Benefits";
+import PopularRoutes from "@/components/service/one-way-taxi/PopularRoutes";
+import TravelPurpose from "@/components/service/one-way-taxi/TravelPurpose";
+import VehicleOptions from "@/components/service/one-way-taxi/VehicleOptions";
+import BookingProcess from "@/components/service/one-way-taxi/BookingProcess";
+import DistanceTable from "@/components/service/one-way-taxi/DistanceTable";
+import WhyChooseUs from "@/components/service/one-way-taxi/WhyChooseUs";
+import ReturnTrip from"@/components/service/one-way-taxi/ReturnTrip";
 
-// export default function OneWayTaxiPage() {
-//   return (
-//     <main className="bg-white">
+import FAQ from "@/components/service/one-way-taxi/FAQ";
+import CTA from "@/components/service/one-way-taxi/CTA";
 
-//       <Hero />
+export const metadata: Metadata = {
+  title: "One Way Cab Service in Lucknow | Affordable Intercity Taxi",
+  description:
+    "Book One Way Cab Service in Lucknow with Kuldeep Travels. Comfortable sedans, SUVs & Innova Crysta. Transparent fares, professional drivers, doorstep pickup & drop.",
+};
 
-//       <TravelSmarter />
-
-//       <WhyChooseOneWay />
-
-//       <PopularRoutes />
-
-//       <TravelNeeds />
-
-//       <VehicleSelection />
-
-//       <BookingSteps />
-
-//       <DistanceTable />
-
-//       <FAQ />
-
-//       <WhyChooseKuldeep />
-
-//       <CTA />
-
-//     </main>
-//   );
-// }
-
-
-
-export default function OneWayTaxiPage() {
+export default function OneWayCabPage() {
   return (
-    <h1> hello </h1>
-
-)
+    <>
+      <Hero/>
+      <WhyOneWay />
+      <Benefits />
+      <PopularRoutes />
+      <TravelPurpose />
+      <VehicleOptions />
+      <BookingProcess />
+      <DistanceTable />
+      <WhyChooseUs />
+      <ReturnTrip/>
+      <FAQ />
+      <CTA />
+    </>
+  );
 }

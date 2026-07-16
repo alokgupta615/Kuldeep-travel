@@ -48,6 +48,39 @@ async function getCars() {
   }
 }
 
+// async function getCars() {
+//   try {
+//     const res = await fetch("http://kuldeep-travel.local/graphql", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         query: `
+//             {
+//               cars {
+//                 nodes {
+//                   title
+//                 }
+//               }
+//             }
+//           `,
+//       }),
+//       cache: "no-store",
+//     });
+
+//     if (!res.ok) {
+//       return [];
+//     }
+
+//     const data = await res.json();
+
+//     return data?.data?.cars?.nodes ?? [];
+//   } catch (error) {
+//     console.error("GraphQL Error:", error);
+//     return [];
+//   }
+// }
 export default async function BookingForm() {
   const cars = await getCars();
 

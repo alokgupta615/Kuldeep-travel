@@ -20,7 +20,7 @@ export default function Home() {
       <AboutSection />
       <Fleet />
       <Destinations/>
-      <BookingProcess/>
+      {/* <BookingProcess/> */}
       {/* <Testimonial /> */}
       <FAQ />
       <CTA />
