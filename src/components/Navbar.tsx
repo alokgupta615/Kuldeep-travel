@@ -10,6 +10,7 @@ import {
   ChevronDown,
   CarFront,
 } from "lucide-react";
+import Image from "next/image";
 
 const services = [
   {
@@ -154,12 +155,13 @@ export default function Navbar() {
               href="/"
               className="flex shrink-0 items-center gap-3"
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-400">
-                <CarFront
-                  size={28}
-                  className="text-black"
-                />
-              </div>
+             <Image
+  src="/logo.png"
+  alt="Kuldeep Travels Logo"
+  width={56}
+  height={56}
+  className="h-14 w-14 rounded-xl object-contain"
+/>
 
               <div>
 
@@ -448,7 +450,7 @@ export default function Navbar() {
               </a>
 
               <Link
-                href="/booking"
+                href="/book-now"
                 className="rounded-full bg-yellow-400 px-6 py-3 font-semibold text-black transition hover:bg-yellow-300"
               >
                 Book Now
@@ -668,7 +670,7 @@ export default function Navbar() {
                 {/* Book Button */}
 
                 <Link
-                  href="/booking"
+                  href="/book-now"
                   onClick={() => setMobileOpen(false)}
                   className="mt-4 rounded-xl bg-yellow-400 py-4 text-center font-bold text-black hover:bg-yellow-300 transition"
                 >

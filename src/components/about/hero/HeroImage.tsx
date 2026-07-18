@@ -14,7 +14,17 @@ export default function HeroImage() {
       {/* Main Image */}
       <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
         <Image
-          src="/images/about/about-hero.jpg"
+          src="/images/about/hero.jpeg"
+
+
+
+
+
+
+
+
+
+
           alt="Kuldeep Travels Taxi Service"
           width={600}
           height={700}
