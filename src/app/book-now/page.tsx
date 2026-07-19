@@ -17,7 +17,7 @@ export default function BookNowPage() {
     <main className="min-h-screen bg-slate-50">
 
       {/* Hero Section */}
-      <BookingHero />
+      {/* <BookingHero /> */}
 
       {/* Booking Form */}
       <BookingForm />
