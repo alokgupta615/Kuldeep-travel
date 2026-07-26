@@ -1,10 +1,68 @@
-import Link from "next/link";
-<Link href="/tour-packages/custom-tour-packages">
+import type { Metadata } from "next";
 
-  <button className="mt-8 bg-yellow-400 hover:bg-yellow-300 transition text-black px-7 py-3 rounded-full font-bold">
+import {
+  Hero,
+  BuildYourTrip,
+  TourTypes,
+  Customization,
+  Destinations,
+  WhyChooseUs,
+  Testimonials,
+  FAQ,
+  CTA,
+} from "@/components/custom-tour-packages";
 
-    Customize Your Tour
+export const metadata: Metadata = {
+  title:
+    "Custom Tour Packages from Lucknow | Personalized Holiday Packages | Kuldeep Travels",
 
-  </button>
+  description:
+    "Plan your dream holiday with Kuldeep Travels. We offer fully customized tour packages from Lucknow for families, couples, groups, pilgrimage, adventure, and corporate travel across North India.",
 
-</Link>
+  keywords: [
+    "Custom Tour Packages",
+    "Customized Tour Packages",
+    "Tour Packages from Lucknow",
+    "Personalized Holiday Packages",
+    "Family Tour Packages",
+    "Pilgrimage Tour Packages",
+    "North India Tours",
+    "Holiday Packages",
+    "Kuldeep Travels",
+  ],
+
+  alternates: {
+    canonical: "/custom-tour-packages",
+  },
+
+  openGraph: {
+    title: "Custom Tour Packages | Kuldeep Travels",
+    description:
+      "Travel your way with personalised holiday packages from Lucknow.",
+    images: ["/images/custom-tour/hero.jpg"],
+  },
+};
+
+export default function CustomTourPackagesPage() {
+  return (
+    <main className="overflow-hidden bg-white">
+      <Hero />
+
+      <BuildYourTrip />
+
+      <TourTypes />
+
+      <Customization />
+
+      <Destinations />
+
+      <WhyChooseUs />
+
+      <Testimonials />
+
+      <FAQ />
+
+      <CTA />
+    </main>
+  );
+}

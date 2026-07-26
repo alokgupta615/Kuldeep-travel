@@ -1,5 +1,18 @@
 import Razorpay from "razorpay";
 
+
+console.log(
+  "RAZORPAY KEY ID:",
+  process.env.RAZORPAY_KEY_ID
+);
+
+
+console.log(
+  "RAZORPAY SECRET:",
+  process.env.RAZORPAY_KEY_SECRET?.slice(0,5)
+);
+
+
 if (
   !process.env.RAZORPAY_KEY_ID ||
   !process.env.RAZORPAY_KEY_SECRET
@@ -7,9 +20,14 @@ if (
   throw new Error("Razorpay keys are missing.");
 }
 
+
 const razorpay = new Razorpay({
+
   key_id: process.env.RAZORPAY_KEY_ID,
+
   key_secret: process.env.RAZORPAY_KEY_SECRET,
+
 });
+
 
 export default razorpay;

@@ -12,24 +12,12 @@ const services = [
     href: "/services/airport-taxi",
   },
   {
-    title: "Local Taxi",
-    href: "/services/local-taxi",
-  },
-  {
     title: "Outstation Taxi",
     href: "/services/outstation-taxi",
   },
   {
     title: "One Way Taxi",
     href: "/services/one-way-taxi",
-  },
-  {
-    title: "Round Trip Taxi",
-    href: "/services/round-trip-taxi",
-  },
-  {
-    title: "Tempo Traveller",
-    href: "/services/tempo-traveller",
   },
   {
     title: "Wedding Car Rental",
@@ -43,40 +31,20 @@ const services = [
 
 const tours = [
   {
+    title: "Family Tour",
+    href: "/tour-packages/family-tours",
+  },
+  {
     title: "Pilgrimage Tours",
     href: "/tour-packages/pilgrimage-tours",
   },
   {
-    title: "Ayodhya",
-    href: "/tour-packages/ayodhya",
+    title: "Weekend Gateway",
+    href: "/tour-packages/weekend-gateways",
   },
   {
-    title: "Varanasi",
-    href: "/tour-packages/varanasi",
-  },
-  {
-    title: "Prayagraj",
-    href: "/tour-packages/prayagraj",
-  },
-  {
-    title: "Agra",
-    href: "/tour-packages/agra",
-  },
-  {
-    title: "Delhi",
-    href: "/tour-packages/delhi",
-  },
-  {
-    title: "Mathura",
-    href: "/tour-packages/mathura",
-  },
-  {
-    title: "Vrindavan",
-    href: "/tour-packages/vrindavan",
-  },
-  {
-    title: "Naimisharanya",
-    href: "/tour-packages/naimisharanya",
+    title: "Custom Tour",
+    href: "/tour-packages/custom-tour-packages",
   },
 ];
 

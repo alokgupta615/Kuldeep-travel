@@ -1,0 +1,9 @@
+export { default as Hero } from "./Hero";
+export { default as BuildYourTrip } from "./BuildYourTrip";
+export { default as TourTypes } from "./TourTypes";
+export { default as Customization } from "./Customization";
+export { default as Destinations } from "./Destinations";
+export { default as WhyChooseUs } from "./WhyChooseUs";
+export { default as Testimonials } from "./Testimonials";
+export { default as FAQ } from "./FAQ";
+export { default as CTA } from "./CTA";

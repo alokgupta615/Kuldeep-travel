@@ -58,3 +58,21 @@ body {
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-floating {
+  animation: floating 7s ease-in-out infinite;
+}

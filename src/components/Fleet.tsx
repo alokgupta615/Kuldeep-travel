@@ -57,11 +57,9 @@ export default function Fleet() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-
         {/* Heading */}
 
         <div className="text-center max-w-3xl mx-auto mb-16">
-
           <span className="text-blue-600 uppercase font-semibold tracking-widest">
             Our Fleet
           </span>
@@ -75,33 +73,26 @@ export default function Fleet() {
             for airport transfers, local travel, outstation trips, weddings,
             corporate events, and family vacations.
           </p>
-
         </div>
 
         {/* Fleet Grid */}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
           {fleet.map((vehicle, index) => (
-
             <div
               key={index}
               className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 hover:-translate-y-2 border border-gray-100"
             >
-
               <div className="relative h-60">
-
                 <Image
                   src={vehicle.image}
                   alt={vehicle.name}
                   fill
                   className="object-cover"
                 />
-
               </div>
 
               <div className="p-7">
-
                 <h3 className="text-2xl font-bold text-gray-900">
                   {vehicle.name}
                 </h3>
@@ -111,7 +102,6 @@ export default function Fleet() {
                 </p>
 
                 <div className="space-y-4 mt-6">
-
                   <div className="flex items-center gap-3 text-gray-700">
                     <Users size={20} className="text-blue-600" />
                     {vehicle.passengers}
@@ -126,28 +116,22 @@ export default function Fleet() {
                     <Snowflake size={20} className="text-blue-600" />
                     {vehicle.ac}
                   </div>
-
                 </div>
 
                 <Link
-                  href="/booking"
+                  href="/book-now"
                   className="mt-8 block text-center bg-blue-700 hover:bg-blue-800 text-white py-4 rounded-xl font-semibold transition"
                 >
                   Book This Vehicle
                 </Link>
-
               </div>
-
             </div>
-
           ))}
-
         </div>
 
         {/* Bottom CTA */}
 
         <div className="mt-20 bg-gradient-to-r from-blue-700 to-blue-900 rounded-3xl p-12 text-center text-white">
-
           <h3 className="text-3xl font-bold">
             Need Help Choosing the Right Vehicle?
           </h3>
@@ -158,25 +142,21 @@ export default function Fleet() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">
-
             <a
-              href="tel:+919999999999"
+              href="tel:+918808142859"
               className="bg-white text-blue-700 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition"
             >
               Call Now
             </a>
 
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/918808142859"
               className="bg-amber-400 text-black px-8 py-4 rounded-xl font-semibold hover:bg-amber-300 transition"
             >
               WhatsApp Us
             </a>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

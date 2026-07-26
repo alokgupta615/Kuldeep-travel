@@ -1,0 +1,11 @@
+export { default as HeroSection } from "./HeroSection";
+export { default as Introduction } from "./Introduction";
+export { default as WhyChooseUs } from "./WhyChooseUs";
+export { default as PackageTypes } from "./PackageTypes";
+export { default as PopularDestinations } from "./PopularDestinations";
+export { default as VehicleSection } from "./VehicleSection";
+export { default as IncludedSection } from "./IncludedSection";
+export { default as BestTimeSection } from "./BestTimeSection";
+export { default as BookingProcess } from "./BookingProcess";
+export { default as FAQ } from "./FAQ";
+export { default as CTA } from "./CTA";
