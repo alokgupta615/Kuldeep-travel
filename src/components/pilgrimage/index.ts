@@ -1,0 +1,10 @@
+export { default as Hero } from "./Hero";
+export { default as FaithJourney } from "./FaithJourney";
+export { default as Destinations } from "./Destinations";
+export { default as PackageTypes } from "./PackageTypes";
+export { default as WhyChooseUs } from "./WhyChooseUs";
+export { default as PackageIncludes } from "./PackageIncludes";
+export { default as VehicleSection } from "./VehicleSection";
+export { default as BookingSteps } from "./BookingSteps";
+export { default as FAQ } from "./FAQ";
+export { default as CTA } from "./CTA";

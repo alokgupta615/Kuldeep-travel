@@ -25,1269 +25,1925 @@ import BookingSummary from "./BookingSummary";
 import SuccessModal from "./SuccessModal";
 import LoadingOverlay from "./LoadingOverlay";
 
+import { openRazorpay } from "@/lib/openRazorpay";
+
+
 interface BookingFormData {
+
   customerName: string;
+
   phone: string;
+
   email: string;
 
+
   pickup: string;
+
   drop: string;
+
 
   serviceType: string;
 
+
   vehicle: string;
 
+
   travelDate: string;
+
   travelTime: string;
+
 
   passengers: number;
 
+
   payment: string;
 
+
   specialNote: string;
+
 }
 
+
+
 export default function BookingForm() {
-  const [loading, setLoading] = useState(false);
 
-  const [successOpen, setSuccessOpen] = useState(false);
 
-  const [formData, setFormData] =
+  const [loading,setLoading] = useState(false);
+
+
+  const [successOpen,setSuccessOpen] =
+    useState(false);
+
+
+
+  const [formData,setFormData] =
     useState<BookingFormData>({
-      customerName: "",
-      phone: "",
-      email: "",
 
-      pickup: "",
-      drop: "",
+      customerName:"",
 
-      serviceType: "One Way",
+      phone:"",
 
-      vehicle: "",
+      email:"",
 
-      travelDate: "",
-      travelTime: "",
 
-      passengers: 1,
+      pickup:"",
 
-      payment: "PAY_AFTER_TRIP",
+      drop:"",
 
-      specialNote: "",
+
+      serviceType:"One Way",
+
+
+      vehicle:"",
+
+
+      travelDate:"",
+
+      travelTime:"",
+
+
+      passengers:1,
+
+
+      payment:"PAY_AFTER_TRIP",
+
+
+      specialNote:"",
+
     });
 
+
+
+  // ==============================
+  // Input Handler
+  // ==============================
+
+
   const handleChange = (
-    e: React.ChangeEvent<
+    e:
+    React.ChangeEvent<
       HTMLInputElement |
       HTMLSelectElement |
       HTMLTextAreaElement
     >
-  ) => {
-    setFormData((prev) => ({
+  )=>{
+
+
+    setFormData(prev=>({
+
       ...prev,
+
+
       [e.target.name]:
-        e.target.name === "passengers"
-          ? Number(e.target.value)
-          : e.target.value,
+
+      e.target.name==="passengers"
+
+      ? Number(e.target.value)
+
+      : e.target.value,
+
+
     }));
+
   };
 
-  const handleSubmit = async (
-    e: React.FormEvent
-  ) => {
+
+
+
+
+  // ==============================
+  // Fare Calculation
+  // ==============================
+
+
+  const calculateAmount = ()=>{
+
+
+    if(formData.vehicle==="Sedan")
+      return 1800;
+
+
+
+    if(formData.vehicle==="SUV")
+      return 3200;
+
+
+
+    if(formData.vehicle==="Innova")
+      return 4500;
+
+
+
+    return 999;
+
+
+  };
+
+
+
+
+
+  // ==============================
+  // Reset Form
+  // ==============================
+
+
+  const resetForm = ()=>{
+
+
+    setFormData({
+
+      customerName:"",
+
+      phone:"",
+
+      email:"",
+
+
+      pickup:"",
+
+      drop:"",
+
+
+      serviceType:"One Way",
+
+
+      vehicle:"",
+
+
+      travelDate:"",
+
+      travelTime:"",
+
+
+      passengers:1,
+
+
+      payment:"PAY_AFTER_TRIP",
+
+
+      specialNote:"",
+
+    });
+
+
+  };
+
+
+
+
+
+  // ==============================
+  // Submit Booking
+  // ==============================
+
+
+  const handleSubmit = async(
+    e:React.FormEvent
+  )=>{
+
+
     e.preventDefault();
 
-    try {
+
+
+    try{
+
+
       setLoading(true);
 
-      const response = await fetch(
-        "/api/bookings",
-        {
-          method: "POST",
 
-          headers: {
-            "Content-Type":
-              "application/json",
+
+      const totalFare =
+        calculateAmount();
+
+
+
+
+      // ==========================
+      // PAY NOW
+      // ==========================
+
+
+      if(formData.payment==="PAY_NOW"){
+
+
+
+        await openRazorpay({
+
+          amount:totalFare,
+
+
+          customerName:
+          formData.customerName,
+
+
+          email:
+          formData.email,
+
+
+          phone:
+          formData.phone,
+
+
+
+          onSuccess:async(payment:any)=>{
+
+
+            const response =
+            await fetch(
+              "/api/bookings",
+              {
+
+
+              method:"POST",
+
+
+              headers:{
+
+
+                "Content-Type":
+                "application/json",
+
+
+              },
+
+
+              body:JSON.stringify({
+
+
+                ...formData,
+
+
+                amount:totalFare,
+
+
+                paymentStatus:
+                "SUCCESS",
+
+
+                razorpayPaymentId:
+                payment.razorpay_payment_id,
+
+
+                razorpayOrderId:
+                payment.razorpay_order_id,
+
+
+                razorpaySignature:
+                payment.razorpay_signature,
+
+
+              }),
+
+
+              });
+
+
+
+            const data =
+            await response.json();
+
+
+
+            if(!response.ok){
+
+              throw new Error(
+                data.message
+              );
+
+            }
+
+
+
+            setSuccessOpen(true);
+
+
+            resetForm();
+
+
           },
 
-          body: JSON.stringify(formData),
-        }
-      );
 
-      const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(
-          data.message ||
-            "Booking failed"
-        );
+          onFailure:()=>{
+
+
+            alert(
+              "Payment Failed"
+            );
+
+
+          },
+
+
+        });
+
+
+
+        return;
+
       }
+
+
+
+
+
+
+      // ==========================
+      // PAY AFTER TRIP / ADVANCE
+      // ==========================
+
+
+
+      const response =
+      await fetch(
+        "/api/bookings",
+        {
+
+
+        method:"POST",
+
+
+        headers:{
+
+
+          "Content-Type":
+          "application/json",
+
+
+        },
+
+
+        body:JSON.stringify({
+
+
+          ...formData,
+
+
+          amount:totalFare,
+
+
+          paymentStatus:
+
+          formData.payment==="ADVANCE"
+
+          ?
+
+          "PENDING_ADVANCE"
+
+          :
+
+          "PAY_AFTER_TRIP",
+
+
+
+        }),
+
+
+        });
+
+
+
+      const data =
+      await response.json();
+
+
+
+      if(!response.ok){
+
+        throw new Error(
+          data.message
+        );
+
+      }
+
+
 
       setSuccessOpen(true);
 
-      setFormData({
-        customerName: "",
-        phone: "",
-        email: "",
 
-        pickup: "",
-        drop: "",
+      resetForm();
 
-        serviceType: "One Way",
 
-        vehicle: "",
 
-        travelDate: "",
-        travelTime: "",
+    }
 
-        passengers: 1,
+    catch(error){
 
-        payment: "PAY_AFTER_TRIP",
-
-        specialNote: "",
-      });
-
-    } catch (error) {
 
       console.error(error);
 
-      alert("Booking failed.");
 
-    } finally {
+      alert(
+        "Booking Failed"
+      );
+
+
+    }
+
+    finally{
+
 
       setLoading(false);
 
+
     }
+
+
+
   };
 
-  return (
-    <>
-      <section
-        id="booking-form"
-        className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-yellow-50 py-24"
-      >
-        {/* Background Glow */}
 
-        <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-yellow-300/20 blur-3xl" />
 
-        <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-blue-300/20 blur-3xl" />
+return (
+  <>
+<section
+id="booking-form"
+className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-yellow-50 py-24"
+>
 
-        <div className="container mx-auto max-w-7xl px-6">
 
-          <div className="grid gap-10 lg:grid-cols-3">
+{/* Background Glow */}
 
-            <form
-              onSubmit={handleSubmit}
-              className="overflow-hidden rounded-[36px] border border-white/60 bg-white/80 shadow-[0_25px_70px_rgba(15,23,42,0.12)] backdrop-blur-xl lg:col-span-2"
-            >
-                            {/* =============================================== */}
-              {/* Premium Header */}
-              {/* =============================================== */}
+<div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-yellow-300/20 blur-3xl" />
 
-              <div className="relative overflow-hidden bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 px-10 py-14 text-white">
+<div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-blue-300/20 blur-3xl" />
 
-                {/* Decorative Glow */}
-                <div className="absolute -left-20 top-0 h-60 w-60 rounded-full bg-yellow-400/20 blur-3xl" />
-                <div className="absolute -right-20 bottom-0 h-60 w-60 rounded-full bg-blue-400/20 blur-3xl" />
 
-                <div className="relative z-10">
 
-                  <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-sm font-semibold text-yellow-300">
+<div className="container mx-auto max-w-7xl px-6">
 
-                    <Sparkles className="h-4 w-4" />
 
-                    Premium Taxi Booking
+<div className="grid gap-10 lg:grid-cols-3">
 
-                  </div>
 
-                  <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-tight lg:text-5xl">
 
-                    Reserve Your Ride
-                    <span className="text-yellow-400">
-                      {" "}In Less Than 2 Minutes
-                    </span>
+{/* =====================================
+      MAIN BOOKING FORM
+===================================== */}
 
-                  </h1>
 
-                  <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+<form
+onSubmit={handleSubmit}
+className="overflow-hidden rounded-[36px] border border-white/60 bg-white/80 shadow-[0_25px_70px_rgba(15,23,42,0.12)] backdrop-blur-xl lg:col-span-2"
+>
 
-                    Enjoy comfortable, safe and reliable taxi
-                    services with professional drivers,
-                    transparent pricing and instant booking
-                    confirmation via Phone & WhatsApp.
 
-                  </p>
 
-                  <div className="mt-10 grid gap-5 md:grid-cols-3">
 
-                    {/* Rating */}
+{/* HERO HEADER */}
 
-                    <div className="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl">
 
-                      <Star className="h-8 w-8 fill-yellow-400 text-yellow-400" />
+<div className="relative overflow-hidden bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 px-10 py-14 text-white">
 
-                      <h3 className="mt-4 text-3xl font-bold">
 
-                        4.9★
+<div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-yellow-400/20 blur-3xl" />
 
-                      </h3>
 
-                      <p className="mt-2 text-sm text-slate-300">
+<div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
 
-                        Customer Rating
 
-                      </p>
 
-                    </div>
+<div className="relative z-10">
 
-                    {/* Trips */}
 
-                    <div className="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl">
 
-                      <BadgeCheck className="h-8 w-8 text-green-400" />
+<div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-sm font-semibold text-yellow-300">
 
-                      <h3 className="mt-4 text-3xl font-bold">
 
-                        10K+
+<Sparkles className="h-4 w-4"/>
 
-                      </h3>
 
-                      <p className="mt-2 text-sm text-slate-300">
+Premium Taxi Booking
 
-                        Happy Trips Completed
 
-                      </p>
+</div>
 
-                    </div>
 
-                    {/* Support */}
 
-                    <div className="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-xl">
 
-                      <ShieldCheck className="h-8 w-8 text-yellow-400" />
+<h1 className="mt-6 text-5xl font-extrabold leading-tight">
 
-                      <h3 className="mt-4 text-3xl font-bold">
 
-                        24×7
+Book Your Ride
 
-                      </h3>
 
-                      <p className="mt-2 text-sm text-slate-300">
+<span className="block text-yellow-400">
 
-                        Premium Customer Support
+In Just 2 Minutes
 
-                      </p>
+</span>
 
-                    </div>
 
-                  </div>
+</h1>
 
-                </div>
 
-              </div>
 
-              {/* =============================================== */}
-              {/* Customer Information */}
-              {/* =============================================== */}
 
-              <div className="space-y-12 p-10">
+<p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
 
-                <div>
 
-                  <div className="inline-flex items-center gap-2 rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
+Safe, comfortable and affordable taxi booking with instant confirmation,
+verified drivers and secure online payment.
 
-                    Step 1
 
-                  </div>
+</p>
 
-                  <h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                    Customer Information
 
-                  </h2>
 
-                  <p className="mt-3 text-lg leading-7 text-slate-600">
+<div className="mt-10 grid gap-6 md:grid-cols-3">
 
-                    Please provide your contact details so our
-                    booking team can reach you for ride
-                    confirmation and updates.
 
-                  </p>
 
-                </div>
+<div className="rounded-3xl border border-white/10 bg-white/10 p-6">
 
-                <div className="grid gap-8 md:grid-cols-2">
 
-                  {/* Full Name */}
+<Star className="h-8 w-8 fill-yellow-400 text-yellow-400"/>
 
-                  <div>
 
-                    <label className="mb-3 block font-semibold text-slate-800">
+<h3 className="mt-4 text-3xl font-bold">
 
-                      Full Name
+4.9★
 
-                    </label>
+</h3>
 
-                    <div className="relative">
 
-                      <User className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+<p className="mt-2 text-slate-300">
 
-                      <input
-                        required
-                        type="text"
-                        name="customerName"
-                        value={formData.customerName}
-                        onChange={handleChange}
-                        placeholder="Enter your full name"
-                        className="h-16 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                      />
+Customer Rating
 
-                    </div>
+</p>
 
-                  </div>
 
-                  {/* Mobile */}
+</div>
 
-                  <div>
 
-                    <label className="mb-3 block font-semibold text-slate-800">
 
-                      Mobile Number
 
-                    </label>
+<div className="rounded-3xl border border-white/10 bg-white/10 p-6">
 
-                    <div className="relative">
 
-                      <Phone className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+<BadgeCheck className="h-8 w-8 text-green-400"/>
 
-                      <input
-                        required
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+91 98765 43210"
-                        className="h-16 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                      />
 
-                    </div>
+<h3 className="mt-4 text-3xl font-bold">
 
-                  </div>
+10K+
 
-                  {/* Email */}
+</h3>
 
-                  <div>
 
-                    <label className="mb-3 block font-semibold text-slate-800">
+<p className="mt-2 text-slate-300">
 
-                      Email Address
+Happy Customers
 
-                    </label>
+</p>
 
-                    <div className="relative">
 
-                      <Mail className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+</div>
 
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="example@gmail.com"
-                        className="h-16 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                      />
 
-                    </div>
 
-                  </div>
 
-                  {/* Service */}
 
-                  <div>
+<div className="rounded-3xl border border-white/10 bg-white/10 p-6">
 
-                    <label className="mb-3 block font-semibold text-slate-800">
 
-                      Service Type
+<ShieldCheck className="h-8 w-8 text-yellow-400"/>
 
-                    </label>
 
-                    <select
-                      name="serviceType"
-                      value={formData.serviceType}
-                      onChange={handleChange}
-                      className="h-16 w-full rounded-2xl border border-slate-300 bg-white px-5 text-slate-900 transition-all duration-300 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                    >
-                      <option>One Way</option>
-                      <option>Round Trip</option>
-                      <option>Airport Transfer</option>
-                      <option>Local Rental</option>
-                      <option>Tour Package</option>
-                    </select>
+<h3 className="mt-4 text-3xl font-bold">
 
-                  </div>
+24×7
 
-                </div>
+</h3>
 
-                {/* Next section starts in Part 2 */}
-                                {/* =============================================== */}
-                {/* Pickup & Drop */}
-                {/* =============================================== */}
 
-                <div className="border-t border-slate-200 pt-12">
+<p className="mt-2 text-slate-300">
 
-                  <div className="mb-8">
+Customer Support
 
-                    <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+</p>
 
-                      Step 2
 
-                    </div>
+</div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                      Journey Route
 
-                    </h2>
+</div>
 
-                    <p className="mt-3 text-lg leading-7 text-slate-600">
 
-                      Enter your pickup location and destination.
-                      We'll calculate your estimated fare instantly.
+</div>
 
-                    </p>
 
-                  </div>
+</div>
 
-                  <div className="rounded-[30px] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-8 shadow-sm">
 
-                    <LocationInputs
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
 
-                  </div>
 
-                </div>
 
-                {/* =============================================== */}
-                {/* Vehicle Selection */}
-                {/* =============================================== */}
+{/* FORM BODY */}
 
-                <div className="border-t border-slate-200 pt-12">
 
-                  <div className="mb-8">
+<div className="space-y-12 p-10">
 
-                    <div className="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
 
-                      Step 3
 
-                    </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                      Select Your Vehicle
+{/* =============================
+CUSTOMER INFORMATION
+============================= */}
 
-                    </h2>
 
-                    <p className="mt-3 text-lg leading-7 text-slate-600">
+<div>
 
-                      Choose the vehicle that perfectly matches
-                      your comfort, luggage and passenger
-                      requirements.
 
-                    </p>
+<div className="inline-flex rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
 
-                  </div>
+STEP 1
 
-                  <div className="rounded-[30px] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8">
+</div>
 
-                    {/* VehicleSelector will be redesigned */}
-                    <VehicleSelector
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
 
-                  </div>
 
-                  <div className="mt-8 grid gap-5 md:grid-cols-3">
+<h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                    <div className="rounded-3xl border border-yellow-200 bg-yellow-50 p-6">
+Customer Information
 
-                      <h4 className="text-lg font-bold text-slate-900">
+</h2>
 
-                        Economy
 
-                      </h4>
 
-                      <p className="mt-2 text-slate-600">
+<p className="mt-3 text-slate-600">
 
-                        Swift Dzire, Etios or Similar
+Please enter your contact information.
 
-                      </p>
+</p>
 
-                      <div className="mt-4 space-y-2 text-sm text-slate-500">
 
-                        <p>• 4 Passengers</p>
-                        <p>• Air Conditioned</p>
-                        <p>• 2 Luggage Bags</p>
+</div>
 
-                      </div>
 
-                    </div>
 
-                    <div className="rounded-3xl border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 to-white p-6 shadow-lg">
 
-                      <div className="inline-flex rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-slate-900">
 
-                        MOST POPULAR
+<div className="grid gap-8 md:grid-cols-2">
 
-                      </div>
 
-                      <h4 className="mt-4 text-lg font-bold text-slate-900">
 
-                        Sedan
+{/* NAME */}
 
-                      </h4>
 
-                      <p className="mt-2 text-slate-600">
+<div>
 
-                        Honda City, Ciaz or Similar
 
-                      </p>
+<label className="mb-3 block font-semibold text-slate-800">
 
-                      <div className="mt-4 space-y-2 text-sm text-slate-500">
+Full Name
 
-                        <p>• 4 Passengers</p>
-                        <p>• Premium Comfort</p>
-                        <p>• Spacious Boot</p>
+</label>
 
-                      </div>
 
-                    </div>
 
-                    <div className="rounded-3xl border border-blue-200 bg-blue-50 p-6">
+<div className="relative">
 
-                      <h4 className="text-lg font-bold text-slate-900">
 
-                        SUV
+<User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"/>
 
-                      </h4>
 
-                      <p className="mt-2 text-slate-600">
+<input
 
-                        Ertiga, Innova or Similar
+required
 
-                      </p>
+type="text"
 
-                      <div className="mt-4 space-y-2 text-sm text-slate-500">
+name="customerName"
 
-                        <p>• 6–7 Passengers</p>
-                        <p>• Extra Luggage</p>
-                        <p>• Best for Family Trips</p>
+value={formData.customerName}
 
-                      </div>
+onChange={handleChange}
 
-                    </div>
+placeholder="Your Name"
 
-                  </div>
+className="h-16 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
 
-                </div>
+/>
 
-                {/* =============================================== */}
-                {/* Fare Calculator */}
-                {/* =============================================== */}
 
-                <div className="border-t border-slate-200 pt-12">
+</div>
 
-                  <div className="mb-8">
 
-                    <div className="inline-flex items-center gap-2 rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
+</div>
 
-                      Step 4
 
-                    </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                      Estimated Fare
 
-                    </h2>
+{/* PHONE */}
 
-                    <p className="mt-3 text-lg leading-7 text-slate-600">
 
-                      See an approximate fare before
-                      confirming your booking.
+<div>
 
-                    </p>
 
-                  </div>
+<label className="mb-3 block font-semibold text-slate-800">
 
-                  <div className="rounded-[30px] border border-yellow-200 bg-gradient-to-br from-yellow-50 to-white p-8 shadow-lg">
+Mobile Number
 
-                    <FareCalculator
-                      vehicle={formData.vehicle}
-                      pickup={formData.pickup}
-                      drop={formData.drop}
-                    />
+</label>
 
-                  </div>
 
-                </div>
 
-                {/* Journey Details start in Part 3 */}
+<div className="relative">
 
-                                {/* =============================================== */}
-                {/* Journey Details */}
-                {/* =============================================== */}
 
-                <div className="border-t border-slate-200 pt-12">
+<Phone className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"/>
 
-                  <div className="mb-8">
 
-                    <div className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 text-sm font-semibold text-purple-700">
 
-                      Step 5
+<input
 
-                    </div>
+required
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
+type="tel"
 
-                      Journey Schedule
+name="phone"
 
-                    </h2>
+value={formData.phone}
 
-                    <p className="mt-3 text-lg leading-7 text-slate-600">
+onChange={handleChange}
 
-                      Select your preferred travel date,
-                      pickup time and passenger count.
+placeholder="+91 9876543210"
 
-                    </p>
+className="h-16 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
 
-                  </div>
+/>
 
-                  <div className="grid gap-8 lg:grid-cols-3">
 
-                    {/* Travel Date */}
+</div>
 
-                    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
 
-                      <label className="mb-3 block font-semibold text-slate-800">
+</div>
 
-                        Journey Date
 
-                      </label>
 
-                      <div className="relative">
 
-                        <Calendar className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
 
-                        <input
-                          required
-                          type="date"
-                          name="travelDate"
-                          value={formData.travelDate}
-                          onChange={handleChange}
-                          className="h-14 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 transition duration-300 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                        />
+{/* EMAIL */}
 
-                      </div>
 
-                    </div>
+<div>
 
-                    {/* Travel Time */}
 
-                    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+<label className="mb-3 block font-semibold text-slate-800">
 
-                      <label className="mb-3 block font-semibold text-slate-800">
+Email
 
-                        Pickup Time
+</label>
 
-                      </label>
 
-                      <div className="relative">
 
-                        <Clock className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+<div className="relative">
 
-                        <input
-                          required
-                          type="time"
-                          name="travelTime"
-                          value={formData.travelTime}
-                          onChange={handleChange}
-                          className="h-14 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 transition duration-300 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                        />
 
-                      </div>
+<Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"/>
 
-                    </div>
 
-                    {/* Passengers */}
+<input
 
-                    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+type="email"
 
-                      <label className="mb-3 block font-semibold text-slate-800">
+name="email"
 
-                        Passengers
+value={formData.email}
 
-                      </label>
+onChange={handleChange}
 
-                      <div className="relative">
+placeholder="example@gmail.com"
 
-                        <Users className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+className="h-16 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
 
-                        <input
-                          required
-                          min={1}
-                          max={20}
-                          type="number"
-                          name="passengers"
-                          value={formData.passengers}
-                          onChange={handleChange}
-                          className="h-14 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 transition duration-300 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                        />
+/>
 
-                      </div>
 
-                    </div>
+</div>
 
-                  </div>
 
-                </div>
+</div>
 
-                {/* =============================================== */}
-                {/* Payment */}
-                {/* =============================================== */}
 
-                <div className="border-t border-slate-200 pt-12">
 
-                  <div className="mb-8">
 
-                    <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">
 
-                      Step 6
 
-                    </div>
+{/* SERVICE */}
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                      Payment Method
+<div>
 
-                    </h2>
 
-                    <p className="mt-3 text-lg leading-7 text-slate-600">
+<label className="mb-3 block font-semibold text-slate-800">
 
-                      Choose how you would like
-                      to pay for your booking.
+Service
 
-                    </p>
+</label>
 
-                  </div>
 
-                  <div className="rounded-[30px] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8">
+<select
 
-                    <PaymentOptions
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
+name="serviceType"
 
-                  </div>
+value={formData.serviceType}
 
-                  {/* Premium Payment Features */}
+onChange={handleChange}
 
-                  <div className="mt-8 grid gap-6 md:grid-cols-3">
+className="h-16 w-full rounded-2xl border border-slate-300 bg-white px-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
 
-                    <div className="rounded-3xl border border-green-200 bg-green-50 p-6">
+>
 
-                      <ShieldCheck className="h-8 w-8 text-green-600" />
 
-                      <h4 className="mt-4 text-lg font-bold text-slate-900">
+<option>One Way</option>
 
-                        Secure Payment
+<option>Round Trip</option>
 
-                      </h4>
+<option>Airport Transfer</option>
 
-                      <p className="mt-2 text-sm text-slate-600">
+<option>Local Rental</option>
 
-                        100% safe and encrypted payment.
+<option>Tour Package</option>
 
-                      </p>
 
-                    </div>
+</select>
 
-                    <div className="rounded-3xl border border-blue-200 bg-blue-50 p-6">
 
-                      <BadgeCheck className="h-8 w-8 text-blue-600" />
+</div>
 
-                      <h4 className="mt-4 text-lg font-bold text-slate-900">
 
-                        Flexible Options
+</div>
 
-                      </h4>
+{/* ===============================================
+      JOURNEY ROUTE
+================================================ */}
 
-                      <p className="mt-2 text-sm text-slate-600">
 
-                        Pay now or pay after your trip.
+<div className="border-t border-slate-200 pt-12">
 
-                      </p>
 
-                    </div>
+<div className="mb-8">
 
-                    <div className="rounded-3xl border border-yellow-200 bg-yellow-50 p-6">
 
-                      <Star className="h-8 w-8 text-yellow-500" />
+<div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
 
-                      <h4 className="mt-4 text-lg font-bold text-slate-900">
+STEP 2
 
-                        No Hidden Charges
+</div>
 
-                      </h4>
 
-                      <p className="mt-2 text-sm text-slate-600">
 
-                        Transparent pricing with zero surprises.
+<h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                      </p>
+Journey Route
 
-                    </div>
+</h2>
 
-                  </div>
 
-                </div>
 
-                {/* Special Instructions starts in Part 4 */}
-                                {/* =============================================== */}
-                {/* Special Instructions */}
-                {/* =============================================== */}
+<p className="mt-3 text-lg text-slate-600">
 
-                <div className="border-t border-slate-200 pt-12">
+Enter your pickup and destination details.
 
-                  <div className="mb-8">
+</p>
 
-                    <div className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-700">
 
-                      Step 7
+</div>
 
-                    </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                      Additional Requirements
 
-                    </h2>
+<div className="rounded-[30px] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-8 shadow-sm">
 
-                    <p className="mt-3 text-lg leading-7 text-slate-600">
 
-                      Let us know if you have any special travel
-                      requirements so we can prepare everything
-                      before your journey.
+<LocationInputs
 
-                    </p>
+formData={formData}
 
-                  </div>
+setFormData={setFormData}
 
-                  <div className="relative">
+/>
 
-                    <FileText className="absolute left-5 top-5 h-5 w-5 text-slate-400" />
 
-                    <textarea
-                      rows={6}
-                      name="specialNote"
-                      value={formData.specialNote}
-                      onChange={handleChange}
-                      placeholder="Example: Need child seat, wheelchair assistance, extra luggage space, multiple stops..."
-                      className="w-full rounded-3xl border border-slate-300 bg-white py-5 pl-14 pr-5 text-slate-900 placeholder:text-slate-400 transition-all duration-300 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                    />
+</div>
 
-                  </div>
 
-                </div>
+</div>
 
-                {/* =============================================== */}
-                {/* Why Choose Kuldeep Travels */}
-                {/* =============================================== */}
 
-                <div className="mt-14 overflow-hidden rounded-[36px] bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 p-10 text-white">
 
-                  <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 
-                    <div>
 
-                      <span className="rounded-full bg-yellow-400/20 px-4 py-2 text-sm font-semibold text-yellow-300">
 
-                        Premium Experience
+{/* ===============================================
+      VEHICLE SELECTION
+================================================ */}
 
-                      </span>
 
-                      <h2 className="mt-5 text-4xl font-bold">
 
-                        Why Choose Kuldeep Travels?
+<div className="border-t border-slate-200 pt-12">
 
-                      </h2>
 
-                      <p className="mt-4 max-w-2xl text-slate-300">
 
-                        Thousands of customers trust us for
-                        safe, comfortable and reliable taxi
-                        services across Lucknow and nearby cities.
+<div className="mb-8">
 
-                      </p>
 
-                    </div>
+<div className="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
 
-                  </div>
+STEP 3
 
-                  <div className="mt-12 grid gap-8 md:grid-cols-2">
+</div>
 
-                    {/* Card */}
 
-                    <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-md">
 
-                      <ShieldCheck className="h-10 w-10 text-yellow-400" />
 
-                      <h3 className="mt-5 text-xl font-bold">
+<h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-                        Verified Drivers
+Select Your Vehicle
 
-                      </h3>
+</h2>
 
-                      <p className="mt-3 leading-7 text-slate-300">
 
-                        Every driver is professionally trained,
-                        background verified and experienced.
 
-                      </p>
+<p className="mt-3 text-lg text-slate-600">
 
-                    </div>
+Choose the vehicle that best fits your travel needs.
 
-                    {/* Card */}
+</p>
 
-                    <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-md">
 
-                      <BadgeCheck className="h-10 w-10 text-green-400" />
+</div>
 
-                      <h3 className="mt-5 text-xl font-bold">
 
-                        Transparent Pricing
 
-                      </h3>
 
-                      <p className="mt-3 leading-7 text-slate-300">
 
-                        No hidden charges.
-                        What you see is exactly what you pay.
+<div className="rounded-[30px] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8">
 
-                      </p>
 
-                    </div>
+<VehicleSelector
 
-                    {/* Card */}
+formData={formData}
 
-                    <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-md">
+setFormData={setFormData}
 
-                      <Phone className="h-10 w-10 text-blue-400" />
+/>
 
-                      <h3 className="mt-5 text-xl font-bold">
 
-                        Instant Confirmation
+</div>
 
-                      </h3>
 
-                      <p className="mt-3 leading-7 text-slate-300">
 
-                        Booking confirmation through
-                        Phone, WhatsApp and Email.
 
-                      </p>
 
-                    </div>
 
-                    {/* Card */}
+{/* VEHICLE CATEGORY CARDS */}
 
-                    <div className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-md">
 
-                      <Star className="h-10 w-10 text-yellow-400" />
 
-                      <h3 className="mt-5 text-xl font-bold">
+<div className="mt-8 grid gap-6 md:grid-cols-3">
 
-                        Premium Support
 
-                      </h3>
 
-                      <p className="mt-3 leading-7 text-slate-300">
 
-                        Our travel experts are available
-                        24×7 to help you anytime.
 
-                      </p>
+{/* Economy */}
 
-                    </div>
 
-                  </div>
+<div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
 
-                </div>
 
-                {/* =============================================== */}
-                {/* Submit Button */}
-                {/* =============================================== */}
+<h3 className="text-xl font-bold text-slate-900">
 
-                <div className="mt-14">
+Economy
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="group flex h-16 w-full items-center justify-center rounded-3xl bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 text-xl font-bold text-slate-900 shadow-[0_20px_40px_rgba(234,179,8,.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_rgba(234,179,8,.45)] disabled:cursor-not-allowed disabled:opacity-60"
-                  >
+</h3>
 
-                    {loading ? (
-                      "Booking Your Ride..."
-                    ) : (
-                      <>
-                        Confirm Booking
 
-                        <ChevronRight className="ml-3 h-6 w-6 transition-transform duration-300 group-hover:translate-x-2" />
 
-                      </>
-                    )}
+<p className="mt-3 text-slate-600">
 
-                  </button>
+Swift Dzire, Etios or Similar
 
-                  <p className="mt-5 text-center text-sm text-slate-500">
+</p>
 
-                    By confirming your booking you agree to our
-                    Terms & Conditions and Privacy Policy.
 
-                  </p>
 
-                </div>
 
-              </div>
+<ul className="mt-5 space-y-2 text-sm text-slate-500">
 
-            </form>
 
-            {/* Right Side starts in Part 5 */}
-                        {/* =============================================== */}
-            {/* Booking Summary Sidebar */}
-            {/* =============================================== */}
+<li>✓ 4 Passengers</li>
 
-            <div className="lg:sticky lg:top-24 lg:self-start">
+<li>✓ AC Vehicle</li>
 
-              <div className="space-y-6">
+<li>✓ 2 Bags</li>
 
-                {/* Premium Card */}
 
-                <div className="overflow-hidden rounded-[32px] border border-white/50 bg-white/80 shadow-[0_20px_60px_rgba(15,23,42,.12)] backdrop-blur-xl">
+</ul>
 
-                  {/* Header */}
 
-                  <div className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white">
+</div>
 
-                    <div className="inline-flex items-center gap-2 rounded-full bg-yellow-400/20 px-4 py-2 text-sm font-semibold text-yellow-300">
 
-                      Booking Summary
 
-                    </div>
 
-                    <h2 className="mt-5 text-3xl font-bold">
 
-                      Review Your Booking
+{/* Sedan */}
 
-                    </h2>
 
-                    <p className="mt-3 text-slate-300">
+<div className="rounded-3xl border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 to-white p-6 shadow-lg">
 
-                      Double-check your journey details before
-                      confirming your booking.
 
-                    </p>
+<span className="rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-slate-900">
 
-                  </div>
+MOST POPULAR
 
-                  {/* Existing Component */}
+</span>
 
-                  <div className="p-6">
 
-                    <BookingSummary
-                      formData={formData}
-                    />
 
-                  </div>
 
-                </div>
+<h3 className="mt-4 text-xl font-bold text-slate-900">
 
-                {/* Trust Card */}
+Sedan
 
-                <div className="rounded-[30px] bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 p-8 text-slate-900 shadow-xl">
+</h3>
 
-                  <h3 className="text-2xl font-bold">
 
-                    Need Help?
 
-                  </h3>
+<p className="mt-3 text-slate-600">
 
-                  <p className="mt-3 leading-7">
+Honda City, Ciaz, Verna
 
-                    Our booking specialists are available
-                    24×7 to help you choose the right vehicle
-                    and complete your reservation.
+</p>
 
-                  </p>
 
-                  <div className="mt-6 space-y-4">
 
-                    <div className="flex items-center gap-3 rounded-2xl bg-white/40 p-4">
 
-                      <Phone className="h-6 w-6" />
+<ul className="mt-5 space-y-2 text-sm text-slate-500">
 
-                      <div>
 
-                        <p className="text-sm">
+<li>✓ Premium Comfort</li>
 
-                          Call Us
+<li>✓ 4 Passengers</li>
 
-                        </p>
+<li>✓ Large Boot Space</li>
 
-                        <h4 className="font-bold">
 
-                          +91 XXXXX XXXXX
+</ul>
 
-                        </h4>
 
-                      </div>
 
-                    </div>
+</div>
 
-                    <div className="flex items-center gap-3 rounded-2xl bg-white/40 p-4">
 
-                      <Mail className="h-6 w-6" />
 
-                      <div>
 
-                        <p className="text-sm">
 
-                          Email
 
-                        </p>
 
-                        <h4 className="font-bold">
+{/* SUV */}
 
-                          info@kuldeeptravels.com
 
-                        </h4>
+<div className="rounded-3xl border border-blue-200 bg-blue-50 p-6 shadow-sm">
 
-                      </div>
 
-                    </div>
+<h3 className="text-xl font-bold text-slate-900">
 
-                  </div>
+SUV
 
-                </div>
+</h3>
 
-                {/* Premium Features */}
 
-                <div className="rounded-[30px] border border-slate-200 bg-white p-8 shadow-lg">
 
-                  <h3 className="text-xl font-bold text-slate-900">
 
-                    Every Booking Includes
+<p className="mt-3 text-slate-600">
 
-                  </h3>
+Ertiga, Innova, Crysta
 
-                  <div className="mt-6 space-y-5">
+</p>
 
-                    <div className="flex items-center gap-4">
 
-                      <BadgeCheck className="h-6 w-6 text-green-600" />
 
-                      <span className="text-slate-700">
 
-                        Instant Booking Confirmation
+<ul className="mt-5 space-y-2 text-sm text-slate-500">
 
-                      </span>
 
-                    </div>
+<li>✓ 6–7 Passengers</li>
 
-                    <div className="flex items-center gap-4">
+<li>✓ Extra Luggage</li>
 
-                      <BadgeCheck className="h-6 w-6 text-green-600" />
+<li>✓ Family Trips</li>
 
-                      <span className="text-slate-700">
 
-                        Professional Driver
+</ul>
 
-                      </span>
 
-                    </div>
+</div>
 
-                    <div className="flex items-center gap-4">
 
-                      <BadgeCheck className="h-6 w-6 text-green-600" />
 
-                      <span className="text-slate-700">
+</div>
 
-                        Sanitized & Comfortable Vehicle
 
-                      </span>
+</div>
 
-                    </div>
 
-                    <div className="flex items-center gap-4">
 
-                      <BadgeCheck className="h-6 w-6 text-green-600" />
 
-                      <span className="text-slate-700">
 
-                        Transparent Pricing
 
-                      </span>
 
-                    </div>
 
-                    <div className="flex items-center gap-4">
+{/* ===============================================
+      FARE CALCULATOR
+================================================ */}
 
-                      <BadgeCheck className="h-6 w-6 text-green-600" />
 
-                      <span className="text-slate-700">
 
-                        24×7 Customer Support
+<div className="border-t border-slate-200 pt-12">
 
-                      </span>
 
-                    </div>
 
-                  </div>
+<div className="mb-8">
 
-                </div>
 
-              </div>
+<div className="inline-flex items-center gap-2 rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
 
-            </div>
+STEP 4
 
-          </div>
+</div>
 
-        </div>
 
-      </section>
 
-      {/* =============================================== */}
-      {/* Loading */}
-      {/* =============================================== */}
 
-      <LoadingOverlay
-        open={loading}
-      />
+<h2 className="mt-5 text-3xl font-bold text-slate-900">
 
-      {/* =============================================== */}
-      {/* Success Modal */}
-      {/* =============================================== */}
+Estimated Fare
 
-      <SuccessModal
-        open={successOpen}
-        onClose={() =>
-          setSuccessOpen(false)
-        }
-      />
+</h2>
 
-    </>
 
-  );
+
+
+<p className="mt-3 text-lg text-slate-600">
+
+Calculate your estimated taxi fare instantly.
+
+</p>
+
+
+</div>
+
+
+
+
+<div className="rounded-[30px] border border-yellow-200 bg-gradient-to-br from-yellow-50 to-white p-8 shadow-lg">
+
+
+<FareCalculator
+
+vehicle={formData.vehicle}
+
+pickup={formData.pickup}
+
+drop={formData.drop}
+
+/>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+{/* ===============================================
+      JOURNEY SCHEDULE
+================================================ */}
+
+
+
+<div className="border-t border-slate-200 pt-12">
+
+
+
+<div className="mb-8">
+
+
+<div className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 text-sm font-semibold text-purple-700">
+
+STEP 5
+
+</div>
+
+
+
+
+<h2 className="mt-5 text-3xl font-bold text-slate-900">
+
+Journey Schedule
+
+</h2>
+
+
+
+<p className="mt-3 text-lg text-slate-600">
+
+Select your travel date, pickup time and passenger count.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div className="grid gap-8 md:grid-cols-3">
+
+
+
+{/* DATE */}
+
+
+<div>
+
+
+<label className="mb-3 block font-semibold text-slate-800">
+
+Journey Date
+
+</label>
+
+
+
+
+<div className="relative">
+
+
+<Calendar className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"/>
+
+
+
+
+<input
+
+required
+
+type="date"
+
+name="travelDate"
+
+value={formData.travelDate}
+
+onChange={handleChange}
+
+className="h-16 w-full rounded-2xl border border-slate-300 pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+
+/>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+{/* TIME */}
+
+
+<div>
+
+
+<label className="mb-3 block font-semibold text-slate-800">
+
+Pickup Time
+
+</label>
+
+
+
+
+<div className="relative">
+
+
+<Clock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"/>
+
+
+
+<input
+
+required
+
+type="time"
+
+name="travelTime"
+
+value={formData.travelTime}
+
+onChange={handleChange}
+
+className="h-16 w-full rounded-2xl border border-slate-300 pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+
+/>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+{/* PASSENGERS */}
+
+
+<div>
+
+
+<label className="mb-3 block font-semibold text-slate-800">
+
+Passengers
+
+</label>
+
+
+
+
+<div className="relative">
+
+
+<Users className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"/>
+
+
+
+<input
+
+required
+
+type="number"
+
+min={1}
+
+max={20}
+
+name="passengers"
+
+value={formData.passengers}
+
+onChange={handleChange}
+
+className="h-16 w-full rounded-2xl border border-slate-300 pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+
+/>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+{/* ===============================================
+      PAYMENT METHOD
+================================================ */}
+
+
+<div className="border-t border-slate-200 pt-12">
+
+
+<div className="mb-8">
+
+
+<div className="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
+
+STEP 6
+
+</div>
+
+
+
+<h2 className="mt-5 text-3xl font-bold text-slate-900">
+
+Payment Method
+
+</h2>
+
+
+
+<p className="mt-3 text-lg text-slate-600">
+
+Choose how you want to pay.
+
+</p>
+
+
+</div>
+
+
+
+
+<PaymentOptions
+
+formData={formData}
+
+setFormData={setFormData}
+
+/>
+
+
+</div>
+
+
+
+
+
+
+
+
+{/* ===============================================
+      ADDITIONAL REQUIREMENTS
+================================================ */}
+
+
+
+<div className="border-t border-slate-200 pt-12">
+
+
+<div className="mb-8">
+
+
+<div className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-700">
+
+STEP 7
+
+</div>
+
+
+
+
+<h2 className="mt-5 text-3xl font-bold text-slate-900">
+
+Additional Requirements
+
+</h2>
+
+
+
+
+<p className="mt-3 text-lg text-slate-600">
+
+Tell us anything important about your trip.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div className="relative">
+
+
+<FileText className="absolute left-5 top-5 text-slate-400"/>
+
+
+
+<textarea
+
+rows={6}
+
+name="specialNote"
+
+value={formData.specialNote}
+
+onChange={handleChange}
+
+placeholder="Child seat, wheelchair, multiple stops..."
+
+className="w-full rounded-3xl border border-slate-300 py-5 pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+
+/>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+{/* ===============================================
+      SUBMIT BUTTON
+================================================ */}
+
+
+
+<div className="border-t border-slate-200 pt-12">
+
+
+<button
+
+type="submit"
+
+disabled={loading}
+
+className="group flex h-16 w-full items-center justify-center rounded-3xl bg-gradient-to-r from-yellow-400 to-amber-500 text-xl font-bold text-slate-900 transition hover:scale-[1.02] disabled:opacity-50"
+
+>
+
+
+{
+loading
+
+?
+
+"Processing..."
+
+:
+
+<>
+
+Confirm Booking
+
+
+<ChevronRight
+
+className="ml-3 h-6 w-6 transition group-hover:translate-x-2"
+
+/>
+
+
+</>
+
+}
+
+
+
+</button>
+
+
+
+
+
+<p className="mt-5 text-center text-sm text-slate-500">
+
+By booking you agree to our Terms & Conditions.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</form>
+
+
+
+
+
+
+
+{/* ===============================================
+      RIGHT SIDEBAR
+================================================ */}
+
+
+
+<div className="space-y-8">
+
+
+
+
+
+<BookingSummary
+
+formData={formData}
+
+fare={calculateAmount()}
+
+/>
+
+
+
+
+
+
+
+{/* TRUST CARD */}
+
+
+
+<div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-xl">
+
+
+<div className="flex items-center gap-3">
+
+
+<div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-100">
+
+
+<ShieldCheck
+
+className="h-7 w-7 text-yellow-600"
+
+/>
+
+
+</div>
+
+
+
+
+<div>
+
+
+<h3 className="text-xl font-bold text-slate-900">
+
+Safe & Secure Booking
+
+</h3>
+
+
+<p className="text-sm text-slate-500">
+
+Your information is protected
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div className="mt-8 space-y-5">
+
+
+<div className="flex gap-4">
+
+
+<BadgeCheck className="mt-1 h-5 w-5 text-green-500"/>
+
+
+<p className="text-sm text-slate-600">
+
+Verified professional drivers
+
+</p>
+
+
+</div>
+
+
+
+
+<div className="flex gap-4">
+
+
+<BadgeCheck className="mt-1 h-5 w-5 text-green-500"/>
+
+
+<p className="text-sm text-slate-600">
+
+Clean & sanitized vehicles
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div className="flex gap-4">
+
+
+<BadgeCheck className="mt-1 h-5 w-5 text-green-500"/>
+
+
+<p className="text-sm text-slate-600">
+
+Transparent pricing
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div className="flex gap-4">
+
+
+<BadgeCheck className="mt-1 h-5 w-5 text-green-500"/>
+
+
+<p className="text-sm text-slate-600">
+
+24×7 customer support
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+{/* HELP CARD */}
+
+
+
+<div className="rounded-[32px] bg-gradient-to-br from-blue-950 via-blue-900 to-slate-950 p-8 text-white">
+
+
+<h3 className="text-2xl font-bold">
+
+Need Help?
+
+</h3>
+
+
+
+
+<p className="mt-3 text-slate-300">
+
+Our travel experts are available anytime.
+
+</p>
+
+
+
+
+<a
+
+href="tel:+919876543210"
+
+className="mt-6 flex h-14 items-center justify-center rounded-2xl bg-yellow-400 font-bold text-slate-900 transition hover:bg-yellow-300"
+
+>
+
+Call Now
+
+</a>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+{/* SUCCESS MODAL */}
+
+
+
+<SuccessModal
+
+open={successOpen}
+
+onClose={()=>setSuccessOpen(false)}
+
+/>
+
+
+
+
+
+
+
+{/* LOADING */}
+
+
+
+{
+loading && <LoadingOverlay />
+}
+
+
+
+</>
+
+);
+
 
 }

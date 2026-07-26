@@ -7,6 +7,11 @@ import {
   CalendarDays,
   Clock3,
   BriefcaseBusiness,
+  Plane,
+  Car,
+  Route,
+  CarTaxiFront,
+  HeartHandshake,
 } from "lucide-react";
 
 import { BookingData } from "../BookingForm";
@@ -20,32 +25,38 @@ const services = [
   {
     id: "airport",
     title: "Airport Transfer",
-    description: "Pickup & Drop",
+    desc: "Pickup & Drop",
+    icon: Plane,
   },
   {
     id: "local",
     title: "Local Taxi",
-    description: "Within City",
+    desc: "Within City",
+    icon: Car,
   },
   {
     id: "outstation",
     title: "Outstation",
-    description: "Intercity Travel",
+    desc: "Intercity Travel",
+    icon: Route,
   },
   {
     id: "oneway",
     title: "One Way",
-    description: "Single Trip",
+    desc: "Single Trip",
+    icon: CarTaxiFront,
   },
   {
     id: "wedding",
     title: "Wedding Car",
-    description: "Luxury Ride",
+    desc: "Luxury Ride",
+    icon: HeartHandshake,
   },
   {
     id: "tempo",
     title: "Tempo Traveller",
-    description: "Group Travel",
+    desc: "Group Travel",
+    icon: CarTaxiFront,
   },
 ];
 
@@ -54,9 +65,7 @@ export default function JourneyDetails({
   setFormData,
 }: Props) {
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -65,148 +74,243 @@ export default function JourneyDetails({
   };
 
   return (
-    <div>
+    <section className="space-y-10">
 
       {/* Heading */}
 
-      <div className="mb-10">
+      <div>
 
-        <span className="rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
-          STEP 2 OF 5
+        <span className="inline-flex rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
+          Step 2 of 5
         </span>
 
-        <h2 className="mt-4 text-3xl font-black text-slate-900">
-          Journey Details
+        <h2 className="mt-5 text-4xl font-bold text-slate-900">
+          Journey Route
         </h2>
 
-        <p className="mt-3 text-slate-600">
-          Tell us where you're travelling and choose the service you need.
+        <p className="mt-3 text-lg text-slate-600">
+          Enter your pickup location and destination. We'll calculate your
+          estimated fare instantly.
         </p>
 
       </div>
 
-      {/* Pickup & Drop */}
+      {/* Card */}
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="rounded-[32px] border border-slate-200 bg-white p-10 shadow-xl">
 
-        {/* Pickup */}
+        <h3 className="text-3xl font-bold text-slate-900">
+          Pickup & Destination
+        </h3>
 
-        <div>
+        <p className="mt-2 text-slate-500">
+          Enter your journey locations.
+        </p>
 
-          <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
-            <MapPin size={18} />
-            Pickup Location *
-          </label>
+        {/* Pickup Drop */}
 
-          <input
-            type="text"
-            name="pickup"
-            value={formData.pickup}
-            onChange={handleChange}
-            placeholder="Enter pickup location"
-            className="w-full rounded-2xl border border-slate-200 px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-          />
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+
+          <div>
+
+            <label className="mb-3 block font-semibold text-slate-700">
+              Pickup Location
+            </label>
+
+            <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-5">
+
+              <MapPin className="text-green-600" />
+
+              <input
+                type="text"
+                name="pickup"
+                value={formData.pickup}
+                onChange={handleChange}
+                placeholder="Enter pickup location"
+                className="w-full bg-transparent px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none"
+              />
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <label className="mb-3 block font-semibold text-slate-700">
+              Destination
+            </label>
+
+            <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-5">
+
+              <Navigation className="text-red-600" />
+
+              <input
+                type="text"
+                name="drop"
+                value={formData.drop}
+                onChange={handleChange}
+                placeholder="Enter destination"
+                className="w-full bg-transparent px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none"
+              />
+
+            </div>
+
+          </div>
 
         </div>
 
-        {/* Drop */}
+        {/* Date Time */}
 
-        <div>
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
 
-          <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
-            <Navigation size={18} />
-            Drop Location *
-          </label>
+          <div>
 
-          <input
-            type="text"
-            name="drop"
-            value={formData.drop}
-            onChange={handleChange}
-            placeholder="Enter destination"
-            className="w-full rounded-2xl border border-slate-200 px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-          />
+            <label className="mb-3 block font-semibold text-slate-700">
+              Travel Date
+            </label>
+
+            <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-5">
+
+              <CalendarDays className="text-blue-600" />
+
+              <input
+                type="date"
+                name="travelDate"
+                value={formData.travelDate}
+                onChange={handleChange}
+                className="w-full bg-transparent px-4 py-4 text-slate-900 outline-none"
+              />
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <label className="mb-3 block font-semibold text-slate-700">
+              Pickup Time
+            </label>
+
+            <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-5">
+
+              <Clock3 className="text-orange-600" />
+
+              <input
+                type="time"
+                name="travelTime"
+                value={formData.travelTime}
+                onChange={handleChange}
+                className="w-full bg-transparent px-4 py-4 text-slate-900 outline-none"
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Route Preview */}
+
+        <div className="mt-10 rounded-3xl bg-slate-50 p-8">
+
+          <h4 className="mb-6 text-xl font-bold text-slate-900">
+            Trip Preview
+          </h4>
+
+          <div className="flex items-start gap-4">
+
+            <div className="flex flex-col items-center">
+
+              <div className="h-4 w-4 rounded-full bg-green-500"></div>
+
+              <div className="h-12 border-l-2 border-dashed border-slate-300"></div>
+
+              <div className="h-4 w-4 rounded-full bg-red-500"></div>
+
+            </div>
+
+            <div className="space-y-8">
+
+              <div>
+                <p className="text-sm text-slate-500">
+                  Pickup Location
+                </p>
+
+                <p className="font-semibold text-slate-900">
+                  {formData.pickup || "Not selected"}
+                </p>
+
+              </div>
+
+              <div>
+                <p className="text-sm text-slate-500">
+                  Destination
+                </p>
+
+                <p className="font-semibold text-slate-900">
+                  {formData.drop || "Not selected"}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
 
       </div>
 
-      {/* Date & Time */}
+      {/* Service */}
 
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
+      <div>
 
-        <div>
+        <h3 className="mb-6 flex items-center gap-2 text-2xl font-bold text-slate-900">
 
-          <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
-            <CalendarDays size={18} />
-            Travel Date *
-          </label>
+          <BriefcaseBusiness />
 
-          <input
-            type="date"
-            name="travelDate"
-            value={formData.travelDate}
-            onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-200 px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-          />
+          Choose Service
 
-        </div>
+        </h3>
 
-        <div>
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
-          <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
-            <Clock3 size={18} />
-            Pickup Time *
-          </label>
+          {services.map((service) => {
+            const Icon = service.icon;
 
-          <input
-            type="time"
-            name="travelTime"
-            value={formData.travelTime}
-            onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-200 px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-          />
+            return (
+              <button
+                key={service.id}
+                type="button"
+                onClick={() =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    serviceType: service.id,
+                  }))
+                }
+                className={`rounded-3xl border p-6 text-left transition hover:-translate-y-2 hover:shadow-xl ${
+                  formData.serviceType === service.id
+                    ? "border-yellow-400 bg-yellow-50 ring-2 ring-yellow-300"
+                    : "border-slate-200 bg-white"
+                }`}
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-900">
 
-        </div>
+                  <Icon className="text-yellow-400" />
 
-      </div>
+                </div>
 
-      {/* Service Type */}
+                <h4 className="mt-5 text-xl font-bold text-slate-900">
+                  {service.title}
+                </h4>
 
-      <div className="mt-10">
+                <p className="mt-2 text-slate-600">
+                  {service.desc}
+                </p>
 
-        <label className="mb-5 flex items-center gap-2 text-lg font-bold text-slate-800">
-          <BriefcaseBusiness size={22} />
-          Select Service
-        </label>
-
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-
-          {services.map((service) => (
-            <button
-              key={service.id}
-              type="button"
-              onClick={() =>
-                setFormData((prev) => ({
-                  ...prev,
-                  serviceType: service.id,
-                }))
-              }
-              className={`rounded-2xl border p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-                formData.serviceType === service.id
-                  ? "border-yellow-400 bg-yellow-50 ring-2 ring-yellow-300"
-                  : "border-slate-200 bg-white"
-              }`}
-            >
-              <h3 className="text-lg font-bold text-slate-900">
-                {service.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-slate-600">
-                {service.description}
-              </p>
-            </button>
-          ))}
+              </button>
+            );
+          })}
 
         </div>
 
@@ -214,19 +318,19 @@ export default function JourneyDetails({
 
       {/* Tips */}
 
-      <div className="mt-10 rounded-3xl bg-gradient-to-r from-blue-50 to-yellow-50 p-6 border border-blue-100">
+      <div className="rounded-3xl border border-blue-100 bg-gradient-to-r from-blue-50 to-yellow-50 p-8">
 
-        <h3 className="text-lg font-bold text-slate-900">
+        <h3 className="text-2xl font-bold text-slate-900">
           Booking Tips
         </h3>
 
-        <ul className="mt-4 space-y-3 text-slate-700">
+        <ul className="mt-5 space-y-3 text-slate-700">
 
-          <li>✅ Enter the complete pickup address for quicker driver assignment.</li>
+          <li>✅ Enter the complete pickup address.</li>
 
-          <li>✅ Book airport rides at least 2 hours before departure.</li>
+          <li>✅ Mention nearby landmarks.</li>
 
-          <li>✅ Mention landmarks if your pickup location is difficult to find.</li>
+          <li>✅ Book airport rides at least 2 hours in advance.</li>
 
           <li>✅ Choose the correct service type for accurate pricing.</li>
 
@@ -234,6 +338,6 @@ export default function JourneyDetails({
 
       </div>
 
-    </div>
+    </section>
   );
 }

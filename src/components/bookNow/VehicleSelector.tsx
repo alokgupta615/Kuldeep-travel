@@ -1,7 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import { Users, Briefcase, Snowflake } from "lucide-react";
+import {
+  Users,
+  Briefcase,
+  Snowflake,
+  CarTaxiFront,
+  CheckCircle2,
+} from "lucide-react";
 
 interface Props {
   formData: {
@@ -13,7 +18,6 @@ interface Props {
 const vehicles = [
   {
     id: "Swift Dzire",
-    image: "/images/vehicles/dzire.png",
     seats: 4,
     luggage: 2,
     ac: true,
@@ -21,7 +25,6 @@ const vehicles = [
   },
   {
     id: "Ertiga",
-    image: "/images/vehicles/ertiga.png",
     seats: 6,
     luggage: 3,
     ac: true,
@@ -29,7 +32,6 @@ const vehicles = [
   },
   {
     id: "Innova",
-    image: "/images/vehicles/innova.png",
     seats: 7,
     luggage: 4,
     ac: true,
@@ -37,7 +39,6 @@ const vehicles = [
   },
   {
     id: "Innova Crysta",
-    image: "/images/vehicles/crysta.png",
     seats: 7,
     luggage: 4,
     ac: true,
@@ -45,7 +46,6 @@ const vehicles = [
   },
   {
     id: "Tempo Traveller",
-    image: "/images/vehicles/tempo.png",
     seats: 12,
     luggage: 8,
     ac: true,
@@ -53,11 +53,10 @@ const vehicles = [
   },
   {
     id: "Mini Bus",
-    image: "/images/vehicles/bus.png",
     seats: 20,
     luggage: 12,
     ac: true,
-    price: "Contact",
+    price: "Contact Us",
   },
 ];
 
@@ -66,16 +65,32 @@ export default function VehicleSelector({
   setFormData,
 }: Props) {
   return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-2xl font-bold">Select Vehicle</h3>
+    <section className="space-y-8">
 
-        <p className="mt-2 text-slate-500">
-          Choose the vehicle that best suits your journey.
+      {/* Heading */}
+
+      <div>
+
+        <span className="rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
+          Choose Your Vehicle
+        </span>
+
+        <h3 className="mt-5 text-3xl font-bold text-slate-900">
+          Select Your Preferred Vehicle
+        </h3>
+
+        <p className="mt-3 max-w-2xl text-slate-600">
+          Choose from our comfortable and well-maintained fleet. Every
+          vehicle comes with experienced drivers, clean interiors, air
+          conditioning, and transparent pricing.
         </p>
+
       </div>
 
+      {/* Vehicles */}
+
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
         {vehicles.map((vehicle) => {
           const selected = formData.vehicle === vehicle.id;
 
@@ -88,91 +103,137 @@ export default function VehicleSelector({
                   vehicle: vehicle.id,
                 }))
               }
-              className={`cursor-pointer overflow-hidden rounded-3xl border text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
+              className={`group cursor-pointer overflow-hidden rounded-3xl border bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                 selected
-                  ? "border-yellow-400 ring-2 ring-yellow-400"
-                  : "border-slate-200"
+                  ? "border-yellow-400 ring-2 ring-yellow-400 shadow-xl"
+                  : "border-slate-200 hover:border-blue-300"
               }`}
             >
-              {/* Vehicle Image */}
+              {/* Top */}
 
-              <div className="relative h-44 bg-slate-100">
-                <Image
-                  src={vehicle.image}
-                  alt={vehicle.id}
-                  fill
-                  className="object-contain p-4"
-                />
-              </div>
+              <div className="bg-gradient-to-r from-blue-950 to-blue-800 p-6">
 
-              {/* Details */}
-
-              <div className="space-y-4 p-5">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-lg font-bold">{vehicle.id}</h4>
 
-                  <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-700">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-yellow-400 shadow-lg">
+
+                    <CarTaxiFront
+                      className="text-slate-900"
+                      size={32}
+                    />
+
+                  </div>
+
+                  <span className="rounded-full bg-white px-4 py-2 text-sm font-bold text-blue-900 shadow">
                     {vehicle.price}
                   </span>
+
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 text-sm">
-                  <div className="flex flex-col items-center rounded-xl bg-slate-100 p-3">
-                    <Users size={18} className="mb-2 text-blue-600" />
+                <h4 className="mt-6 text-2xl font-bold text-white">
+                  {vehicle.id}
+                </h4>
 
-                    <span>{vehicle.seats}</span>
+                <p className="mt-2 text-sm text-blue-100">
+                  Comfortable, clean and professionally maintained.
+                </p>
 
-                    <small>Seats</small>
+              </div>
+
+              {/* Features */}
+
+              <div className="space-y-6 p-6">
+
+                <div className="grid grid-cols-3 gap-3">
+
+                  <div className="rounded-2xl bg-slate-50 p-4 text-center">
+
+                    <Users
+                      className="mx-auto mb-2 text-blue-600"
+                      size={22}
+                    />
+
+                    <p className="text-lg font-bold">
+                      {vehicle.seats}
+                    </p>
+
+                    <span className="text-xs text-slate-500">
+                      Seats
+                    </span>
+
                   </div>
 
-                  <div className="flex flex-col items-center rounded-xl bg-slate-100 p-3">
+                  <div className="rounded-2xl bg-slate-50 p-4 text-center">
+
                     <Briefcase
-                      size={18}
-                      className="mb-2 text-orange-600"
+                      className="mx-auto mb-2 text-orange-500"
+                      size={22}
                     />
 
-                    <span>{vehicle.luggage}</span>
+                    <p className="text-lg font-bold">
+                      {vehicle.luggage}
+                    </p>
 
-                    <small>Bags</small>
+                    <span className="text-xs text-slate-500">
+                      Bags
+                    </span>
+
                   </div>
 
-                  <div className="flex flex-col items-center rounded-xl bg-slate-100 p-3">
+                  <div className="rounded-2xl bg-slate-50 p-4 text-center">
+
                     <Snowflake
-                      size={18}
-                      className="mb-2 text-cyan-600"
+                      className="mx-auto mb-2 text-cyan-600"
+                      size={22}
                     />
 
-                    <span>{vehicle.ac ? "AC" : "No"}</span>
+                    <p className="text-lg font-bold">
+                      {vehicle.ac ? "AC" : "No"}
+                    </p>
 
-                    <small>Comfort</small>
+                    <span className="text-xs text-slate-500">
+                      Comfort
+                    </span>
+
                   </div>
+
                 </div>
 
                 {/* Button */}
 
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
+                {selected ? (
+                  <div className="flex items-center justify-center gap-2 rounded-2xl bg-green-50 py-4 text-green-700">
 
-                    setFormData((prev: any) => ({
-                      ...prev,
-                      vehicle: vehicle.id,
-                    }));
-                  }}
-                  className={`w-full rounded-xl py-3 font-semibold transition ${
-                    selected
-                      ? "bg-yellow-400 text-slate-900"
-                      : "bg-slate-900 text-white hover:bg-slate-800"
-                  }`}
-                >
-                  {selected ? "Selected" : "Select Vehicle"}
-                </button>
+                    <CheckCircle2 size={20} />
+
+                    <span className="font-semibold">
+                      Selected Vehicle
+                    </span>
+
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+
+                      setFormData((prev: any) => ({
+                        ...prev,
+                        vehicle: vehicle.id,
+                      }));
+                    }}
+                    className="w-full rounded-2xl bg-slate-900 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-900"
+                  >
+                    Select Vehicle
+                  </button>
+                )}
+
               </div>
             </div>
           );
         })}
+
       </div>
-    </div>
+    </section>
   );
 }

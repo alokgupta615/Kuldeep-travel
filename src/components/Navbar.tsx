@@ -3,13 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Menu,
-  X,
-  Phone,
-  ChevronDown,
-  CarFront,
-} from "lucide-react";
+import { Menu, X, Phone, ChevronDown, CarFront } from "lucide-react";
 import Image from "next/image";
 
 const services = [
@@ -48,6 +42,10 @@ const services = [
 ];
 
 const tours = [
+  {
+    title: "Pilgrimage Tours",
+    href: "/tour-packages/pilgrimage-tours",
+  },
   {
     title: "Ayodhya",
     href: "/tour-packages/ayodhya",
@@ -104,8 +102,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
 
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -117,77 +114,51 @@ export default function Navbar() {
         setServiceOpen(false);
       }
 
-      if (
-        tourRef.current &&
-        !tourRef.current.contains(event.target as Node)
-      ) {
+      if (tourRef.current && !tourRef.current.contains(event.target as Node)) {
         setTourOpen(false);
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside
-    );
+    document.addEventListener("mousedown", handleClickOutside);
 
-    return () =>
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-    return (
+  return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-4 lg:px-6">
       <div className="mx-auto max-w-[1700px]">
-
         <div
           className={`rounded-2xl border border-yellow-500/10 backdrop-blur-xl transition-all duration-300 ${
-            scrolled
-              ? "bg-[#0B0B0F]/95 shadow-2xl"
-              : "bg-[#0B0B0F]/80"
+            scrolled ? "bg-[#0B0B0F]/95 shadow-2xl" : "bg-[#0B0B0F]/80"
           }`}
         >
           <div className="flex items-center justify-between px-5 py-4">
-
             {/* Logo */}
 
-            <Link
-              href="/"
-              className="flex shrink-0 items-center gap-3"
-            >
-             <Image
-  src="/logo.png"
-  alt="Kuldeep Travels Logo"
-  width={56}
-  height={56}
-  className="h-14 w-14 rounded-xl object-contain"
-/>
+            <Link href="/" className="flex shrink-0 items-center gap-3">
+              <Image
+                src="/logo.png"
+                alt="Kuldeep Travels Logo"
+                width={56}
+                height={56}
+                className="h-14 w-14 rounded-xl object-contain"
+              />
 
               <div>
-
                 <p className="text-2xl font-extrabold leading-none lg:text-3xl">
-                  <span className="text-white">
-                    Kuldeep
-                  </span>{" "}
-
-                  <span className="text-yellow-400">
-                    Travels
-                  </span>
+                  <span className="text-white">Kuldeep</span>{" "}
+                  <span className="text-yellow-400">Travels</span>
                 </p>
 
                 <span className="mt-1 block text-[10px] uppercase tracking-[3px] text-gray-400">
                   Lucknow • Since 2012
                 </span>
-
               </div>
             </Link>
 
             {/* Desktop Navigation */}
 
             <nav className="hidden xl:flex flex-1 items-center justify-center">
-
               <ul className="flex items-center gap-7">
-
                 <li>
                   <Link
                     href="/"
@@ -262,49 +233,48 @@ export default function Navbar() {
                 </li> */}
 
                 <li
-  ref={serviceRef}
-  className="relative group"
-  onMouseEnter={() => setServiceOpen(true)}
-  onMouseLeave={() => setServiceOpen(false)}
->
-  <div className="flex items-center gap-1">
-    <Link
-      href="/services"
-      className={`transition ${
-        pathname.startsWith("/services")
-          ? "text-yellow-400"
-          : "text-white hover:text-yellow-400"
-      }`}
-    >
-      Services
-    </Link>
+                  ref={serviceRef}
+                  className="relative group"
+                  onMouseEnter={() => setServiceOpen(true)}
+                  onMouseLeave={() => setServiceOpen(false)}
+                >
+                  <div className="flex items-center gap-1">
+                    <Link
+                      href="/services"
+                      className={`transition ${
+                        pathname.startsWith("/services")
+                          ? "text-yellow-400"
+                          : "text-white hover:text-yellow-400"
+                      }`}
+                    >
+                      Services
+                    </Link>
 
-    <ChevronDown
-      size={16}
-      className={`transition-transform duration-200 ${
-        serviceOpen ? "rotate-180" : ""
-      }`}
-    />
-  </div>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${
+                        serviceOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </div>
 
-  {serviceOpen && (
-    <div className="absolute left-0 top-full pt-2 z-50">
-      <div className="w-72 rounded-2xl bg-white py-3 shadow-2xl border border-gray-100">
-        {services.map((service) => (
-          <Link
-            key={service.href}
-            href={service.href}
-            className="block px-6 py-3 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition"
-          >
-            {service.title}
-          </Link>
-        ))}
-      </div>
-    </div>
-  )}
-</li>
+                  {serviceOpen && (
+                    <div className="absolute left-0 top-full pt-2 z-50">
+                      <div className="w-72 rounded-2xl bg-white py-3 shadow-2xl border border-gray-100">
+                        {services.map((service) => (
+                          <Link
+                            key={service.href}
+                            href={service.href}
+                            className="block px-6 py-3 text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition"
+                          >
+                            {service.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </li>
 
-               
                 {/* Tour Packages */}
 
                 {/* <li
@@ -354,50 +324,49 @@ export default function Navbar() {
                 </li> */}
 
                 <li
-  ref={tourRef}
-  className="relative group"
-  onMouseEnter={() => setTourOpen(true)}
-  onMouseLeave={() => setTourOpen(false)}
->
-  <div className="flex items-center gap-1">
-    <Link
-      href="/tour-packages"
-      className={`transition ${
-        pathname.startsWith("/tour-packages")
-          ? "text-yellow-400"
-          : "text-white hover:text-yellow-400"
-      }`}
-    >
-      Tour Packages
-    </Link>
+                  ref={tourRef}
+                  className="relative group"
+                  onMouseEnter={() => setTourOpen(true)}
+                  onMouseLeave={() => setTourOpen(false)}
+                >
+                  <div className="flex items-center gap-1">
+                    <Link
+                      href="/tour-packages"
+                      className={`transition ${
+                        pathname.startsWith("/tour-packages")
+                          ? "text-yellow-400"
+                          : "text-white hover:text-yellow-400"
+                      }`}
+                    >
+                      Tour Packages
+                    </Link>
 
-    <ChevronDown
-      size={16}
-      className={`transition-transform duration-200 ${
-        tourOpen ? "rotate-180" : ""
-      }`}
-    />
-  </div>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${
+                        tourOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </div>
 
-  {tourOpen && (
-    <div className="absolute left-0 top-full pt-2 z-50">
-      <div className="w-72 rounded-2xl border border-gray-100 bg-white py-3 shadow-2xl">
-        {tours.map((tour) => (
-          <Link
-            key={tour.href}
-            href={tour.href}
-            className="block px-6 py-3 text-gray-700 transition hover:bg-yellow-50 hover:text-yellow-600"
-          >
-            {tour.title}
-          </Link>
-        ))}
-      </div>
-    </div>
-  )}
-</li>
+                  {tourOpen && (
+                    <div className="absolute left-0 top-full pt-2 z-50">
+                      <div className="w-72 rounded-2xl border border-gray-100 bg-white py-3 shadow-2xl">
+                        {tours.map((tour) => (
+                          <Link
+                            key={tour.href}
+                            href={tour.href}
+                            className="block px-6 py-3 text-gray-700 transition hover:bg-yellow-50 hover:text-yellow-600"
+                          >
+                            {tour.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </li>
 
                 <li>
-
                   <Link
                     href="/blog"
                     className={`transition ${
@@ -408,11 +377,9 @@ export default function Navbar() {
                   >
                     Blog
                   </Link>
-
                 </li>
 
                 <li>
-
                   <Link
                     href="/contact"
                     className={`transition ${
@@ -423,30 +390,20 @@ export default function Navbar() {
                   >
                     Contact
                   </Link>
-
                 </li>
-
               </ul>
-
             </nav>
 
             {/* Right Side */}
 
             <div className="hidden xl:flex items-center gap-5">
-
               <a
                 href="tel:+919876543210"
                 className="flex items-center gap-2 whitespace-nowrap text-white hover:text-yellow-400 transition"
               >
-                <Phone
-                  size={18}
-                  className="text-yellow-400"
-                />
+                <Phone size={18} className="text-yellow-400" />
 
-                <span>
-                  +91 98765 43210
-                </span>
-
+                <span>+91 98765 43210</span>
               </a>
 
               <Link
@@ -455,26 +412,18 @@ export default function Navbar() {
               >
                 Book Now
               </Link>
-
             </div>
 
             {/* Mobile Menu Button */}
 
             <button
-              onClick={() =>
-                setMobileOpen(!mobileOpen)
-              }
+              onClick={() => setMobileOpen(!mobileOpen)}
               className="xl:hidden text-white"
             >
-              {mobileOpen ? (
-                <X size={30} />
-              ) : (
-                <Menu size={30} />
-              )}
+              {mobileOpen ? <X size={30} /> : <Menu size={30} />}
             </button>
-
           </div>
-                    {/* ================= MOBILE MENU ================= */}
+          {/* ================= MOBILE MENU ================= */}
 
           <div
             className={`xl:hidden overflow-hidden transition-all duration-500 ${
@@ -482,18 +431,14 @@ export default function Navbar() {
             }`}
           >
             <div className="border-t border-white/10 px-6 py-6">
-
               <nav className="flex flex-col">
-
                 {/* Home */}
 
                 <Link
                   href="/"
                   onClick={() => setMobileOpen(false)}
                   className={`py-3 ${
-                    pathname === "/"
-                      ? "text-yellow-400"
-                      : "text-white"
+                    pathname === "/" ? "text-yellow-400" : "text-white"
                   }`}
                 >
                   Home
@@ -505,9 +450,7 @@ export default function Navbar() {
                   href="/about"
                   onClick={() => setMobileOpen(false)}
                   className={`py-3 ${
-                    pathname === "/about"
-                      ? "text-yellow-400"
-                      : "text-white"
+                    pathname === "/about" ? "text-yellow-400" : "text-white"
                   }`}
                 >
                   About
@@ -516,9 +459,7 @@ export default function Navbar() {
                 {/* Services */}
 
                 <button
-                  onClick={() =>
-                    setServiceOpen(!serviceOpen)
-                  }
+                  onClick={() => setServiceOpen(!serviceOpen)}
                   className="flex items-center justify-between py-3 text-white"
                 >
                   <span>Services</span>
@@ -526,42 +467,30 @@ export default function Navbar() {
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      serviceOpen
-                        ? "rotate-180"
-                        : ""
+                      serviceOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
 
                 {serviceOpen && (
-
                   <div className="ml-4 mb-3 flex flex-col rounded-xl bg-white/5">
-
                     {services.map((service) => (
-
                       <Link
                         key={service.href}
                         href={service.href}
-                        onClick={() =>
-                          setMobileOpen(false)
-                        }
+                        onClick={() => setMobileOpen(false)}
                         className="py-3 text-sm text-gray-300 hover:text-yellow-400"
                       >
                         {service.title}
                       </Link>
-
                     ))}
-
                   </div>
-
                 )}
 
                 {/* Tour Packages */}
 
                 <button
-                  onClick={() =>
-                    setTourOpen(!tourOpen)
-                  }
+                  onClick={() => setTourOpen(!tourOpen)}
                   className="flex items-center justify-between py-3 text-white"
                 >
                   <span>Tour Packages</span>
@@ -569,34 +498,24 @@ export default function Navbar() {
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      tourOpen
-                        ? "rotate-180"
-                        : ""
+                      tourOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
 
                 {tourOpen && (
-
                   <div className="ml-4 mb-3 flex flex-col rounded-xl bg-white/5">
-
                     {tours.map((tour) => (
-
                       <Link
                         key={tour.href}
                         href={tour.href}
-                        onClick={() =>
-                          setMobileOpen(false)
-                        }
+                        onClick={() => setMobileOpen(false)}
                         className="py-3 text-sm text-gray-300 hover:text-yellow-400"
                       >
                         {tour.title}
                       </Link>
-
                     ))}
-
                   </div>
-
                 )}
 
                 {/* Blog */}
@@ -605,9 +524,7 @@ export default function Navbar() {
                   href="/blog"
                   onClick={() => setMobileOpen(false)}
                   className={`py-3 ${
-                    pathname === "/blog"
-                      ? "text-yellow-400"
-                      : "text-white"
+                    pathname === "/blog" ? "text-yellow-400" : "text-white"
                   }`}
                 >
                   Blog
@@ -619,9 +536,7 @@ export default function Navbar() {
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
                   className={`py-3 ${
-                    pathname === "/contact"
-                      ? "text-yellow-400"
-                      : "text-white"
+                    pathname === "/contact" ? "text-yellow-400" : "text-white"
                   }`}
                 >
                   Contact
@@ -637,23 +552,13 @@ export default function Navbar() {
                   href="tel:+919876543210"
                   className="flex items-center gap-3 rounded-xl bg-white/5 p-4 text-white hover:bg-white/10 transition"
                 >
-                  <Phone
-                    size={20}
-                    className="text-yellow-400"
-                  />
+                  <Phone size={20} className="text-yellow-400" />
 
                   <div>
+                    <p className="text-sm text-gray-400">Call Now</p>
 
-                    <p className="text-sm text-gray-400">
-                      Call Now
-                    </p>
-
-                    <p className="font-semibold">
-                      +91 98765 43210
-                    </p>
-
+                    <p className="font-semibold">+91 98765 43210</p>
                   </div>
-
                 </a>
 
                 {/* WhatsApp */}
@@ -676,16 +581,11 @@ export default function Navbar() {
                 >
                   Book Now
                 </Link>
-
               </nav>
-
             </div>
           </div>
-
         </div>
-
       </div>
-
     </header>
   );
 }
