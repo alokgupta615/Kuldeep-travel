@@ -17,28 +17,44 @@ const GET_SINGLE_POST = gql`
   }
 `;
 
+interface PostData {
+  post: {
+    title: string;
+    content: string;
+    date: string;
+    featuredImage?: {
+      node?: {
+        sourceUrl: string;
+      };
+    };
+  };
+}
+
 export default async function SingleBlogPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-
   const { slug } = await params;
 
-  const { data } = await client.query({
+  const result = await client.query<PostData>({
     query: GET_SINGLE_POST,
-    variables: {
-      slug,
-    },
+    variables: { slug },
   });
 
-  const post = data.post;
+  if (!result.data?.post) {
+    return (
+      <section className="min-h-screen flex items-center justify-center text-white">
+        <h1>Post not found</h1>
+      </section>
+    );
+  }
+
+  const post = result.data.post;
 
   return (
     <section className="bg-black text-white min-h-screen pt-40 pb-20 px-6">
-
       <div className="max-w-4xl mx-auto">
-
         <p className="text-yellow-400 mb-4">
           {new Date(post.date).toDateString()}
         </p>
@@ -52,14 +68,12 @@ export default async function SingleBlogPage({
 
         {post.featuredImage?.node?.sourceUrl && (
           <div className="relative w-full h-[450px] rounded-3xl overflow-hidden mb-10">
-
             <Image
               src={post.featuredImage.node.sourceUrl}
               alt={post.title}
               fill
               className="object-cover"
             />
-
           </div>
         )}
 
@@ -69,9 +83,7 @@ export default async function SingleBlogPage({
             __html: post.content,
           }}
         />
-
       </div>
-
     </section>
   );
 }

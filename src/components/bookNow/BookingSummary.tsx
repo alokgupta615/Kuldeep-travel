@@ -8,6 +8,7 @@ import {
   Users,
   CreditCard,
   BadgeCheck,
+  IndianRupee,
 } from "lucide-react";
 
 interface BookingSummaryProps {
@@ -21,10 +22,12 @@ interface BookingSummaryProps {
     passengers: number;
     payment: string;
   };
+  fare: number;
 }
 
 export default function BookingSummary({
   formData,
+  fare,
 }: BookingSummaryProps) {
   const paymentLabel = {
     PAY_NOW: "Pay Now",
@@ -34,27 +37,18 @@ export default function BookingSummary({
 
   return (
     <aside className="sticky top-24">
-
       <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
-
         {/* Header */}
-
         <div className="bg-slate-900 p-6 text-white">
-
-          <h2 className="text-2xl font-bold">
-            Booking Summary
-          </h2>
+          <h2 className="text-2xl font-bold">Booking Summary</h2>
 
           <p className="mt-2 text-sm text-slate-300">
             Review your booking before submitting.
           </p>
-
         </div>
 
         {/* Body */}
-
         <div className="space-y-5 p-6">
-
           <SummaryItem
             icon={<BadgeCheck size={18} />}
             label="Customer"
@@ -101,40 +95,47 @@ export default function BookingSummary({
             icon={<CreditCard size={18} />}
             label="Payment"
             value={
-              paymentLabel[
-                formData.payment as keyof typeof paymentLabel
-              ] || "-"
+              paymentLabel[formData.payment as keyof typeof paymentLabel] || "-"
             }
           />
+        </div>
 
+        {/* Fare */}
+        <div className="border-t border-slate-200 bg-slate-50 p-6">
+          <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 p-5">
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl bg-green-100 p-3">
+                <IndianRupee className="h-5 w-5 text-green-700" />
+              </div>
+
+              <div>
+                <p className="text-sm text-slate-500">Estimated Fare</p>
+
+                <h3 className="text-xl font-bold text-slate-900">
+                  ₹{fare.toLocaleString("en-IN")}
+                </h3>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Footer */}
-
         <div className="border-t bg-slate-50 p-6">
-
           <div className="mb-5 rounded-2xl bg-yellow-50 p-5">
-
             <h3 className="text-lg font-bold text-yellow-700">
               Booking Status
             </h3>
 
             <p className="mt-2 text-sm text-slate-600">
               Your booking will be submitted as
-              <span className="font-semibold text-yellow-600">
-                {" "}Pending
-              </span>.
-              Our team will verify the details and confirm your ride via
-              Email and WhatsApp.
+              <span className="font-semibold text-yellow-600"> Pending</span>.
+              Our team will verify the details and confirm your ride via Email
+              and WhatsApp.
             </p>
-
           </div>
 
           <div className="rounded-2xl bg-green-50 p-5">
-
-            <h4 className="font-semibold text-green-700">
-              Included
-            </h4>
+            <h4 className="font-semibold text-green-700">Included</h4>
 
             <ul className="mt-3 space-y-2 text-sm text-slate-600">
               <li>✔ Professional Driver</li>
@@ -142,13 +143,9 @@ export default function BookingSummary({
               <li>✔ 24×7 Customer Support</li>
               <li>✔ Instant Booking Request</li>
             </ul>
-
           </div>
-
         </div>
-
       </div>
-
     </aside>
   );
 }
@@ -159,30 +156,16 @@ interface SummaryItemProps {
   value: string;
 }
 
-function SummaryItem({
-  icon,
-  label,
-  value,
-}: SummaryItemProps) {
+function SummaryItem({ icon, label, value }: SummaryItemProps) {
   return (
     <div className="flex items-start gap-4">
-
-      <div className="rounded-xl bg-yellow-100 p-3 text-yellow-700">
-        {icon}
-      </div>
+      <div className="rounded-xl bg-yellow-100 p-3 text-yellow-700">{icon}</div>
 
       <div>
+        <p className="text-sm text-slate-500">{label}</p>
 
-        <p className="text-sm text-slate-500">
-          {label}
-        </p>
-
-        <h4 className="font-semibold text-slate-900">
-          {value}
-        </h4>
-
+        <h4 className="font-semibold text-slate-900">{value}</h4>
       </div>
-
     </div>
   );
 }

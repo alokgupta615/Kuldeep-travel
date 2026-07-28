@@ -37,7 +37,7 @@ export default function ContactForm() {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     setFormData({
       ...formData,
@@ -77,44 +77,36 @@ export default function ContactForm() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 py-24">
-
       {/* Decorative Background */}
 
       <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-blue-200/30 blur-3xl" />
       <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-yellow-200/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6">
-
         <div className="grid gap-16 lg:grid-cols-2 items-center">
-
           {/* LEFT */}
 
           <div>
-
             <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-blue-700">
               Contact Kuldeep Travels
             </span>
 
             <h2 className="mt-6 text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
               Let's Plan Your
-              <span className="block text-blue-700">
-                Perfect Journey
-              </span>
+              <span className="block text-blue-700">Perfect Journey</span>
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-slate-600">
               Whether you need a local taxi, airport transfer, outstation cab,
-              Tempo Traveller, luxury bus, or a customized holiday package,
-              our travel experts are ready to assist you with the best vehicle
-              and transparent pricing.
+              Tempo Traveller, luxury bus, or a customized holiday package, our
+              travel experts are ready to assist you with the best vehicle and
+              transparent pricing.
             </p>
 
             {/* Rating */}
 
             <div className="mt-8 flex items-center gap-3">
-
               <div className="flex">
-
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
@@ -122,19 +114,16 @@ export default function ContactForm() {
                     className="fill-yellow-400 text-yellow-400"
                   />
                 ))}
-
               </div>
 
               <span className="font-semibold text-slate-800">
                 Trusted by Thousands of Happy Travellers
               </span>
-
             </div>
 
             {/* Features */}
 
             <div className="mt-10 space-y-5">
-
               {[
                 "Professional & Verified Drivers",
                 "24×7 Customer Support",
@@ -143,83 +132,51 @@ export default function ContactForm() {
                 "Instant Booking Confirmation",
                 "Safe & Comfortable Journey",
               ].map((item) => (
-
-                <div
-                  key={item}
-                  className="flex items-center gap-4"
-                >
+                <div key={item} className="flex items-center gap-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-700">
                     <CheckCircle2 size={20} />
                   </div>
 
-                  <p className="text-slate-700 font-medium">
-                    {item}
-                  </p>
-
+                  <p className="text-slate-700 font-medium">{item}</p>
                 </div>
-
               ))}
-
             </div>
 
             {/* Stats */}
 
             <div className="mt-12 grid grid-cols-3 gap-4">
-
               <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-
                 <ShieldCheck className="mx-auto text-blue-700" />
 
-                <h4 className="mt-3 text-2xl font-bold text-slate-900">
-                  100%
-                </h4>
+                <h4 className="mt-3 text-2xl font-bold text-slate-900">100%</h4>
 
-                <p className="mt-1 text-sm text-slate-500">
-                  Safe Travel
-                </p>
-
+                <p className="mt-1 text-sm text-slate-500">Safe Travel</p>
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-
                 <Clock3 className="mx-auto text-blue-700" />
 
-                <h4 className="mt-3 text-2xl font-bold text-slate-900">
-                  24×7
-                </h4>
+                <h4 className="mt-3 text-2xl font-bold text-slate-900">24×7</h4>
 
-                <p className="mt-1 text-sm text-slate-500">
-                  Support
-                </p>
-
+                <p className="mt-1 text-sm text-slate-500">Support</p>
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-
                 <Users className="mx-auto text-blue-700" />
 
-                <h4 className="mt-3 text-2xl font-bold text-slate-900">
-                  10K+
-                </h4>
+                <h4 className="mt-3 text-2xl font-bold text-slate-900">10K+</h4>
 
-                <p className="mt-1 text-sm text-slate-500">
-                  Happy Riders
-                </p>
-
+                <p className="mt-1 text-sm text-slate-500">Happy Riders</p>
               </div>
-
             </div>
-
           </div>
 
           {/* FORM */}
 
           <div className="relative overflow-hidden rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_25px_70px_rgba(15,23,42,0.12)] lg:p-10">
-
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400" />
 
             <div className="mb-8">
-
               <span className="inline-flex rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
                 Quick Booking
               </span>
@@ -232,27 +189,17 @@ export default function ContactForm() {
                 Complete the form below and our travel expert will contact you
                 within 15 minutes.
               </p>
-
             </div>
 
             {success && (
-
               <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 p-4 text-green-700">
-
-                ✅ Thank you! Your inquiry has been submitted successfully.
-                Our team will contact you shortly.
-
+                ✅ Thank you! Your inquiry has been submitted successfully. Our
+                team will contact you shortly.
               </div>
-
             )}
 
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
-
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid gap-5 md:grid-cols-2">
-
                 <InputField
                   icon={<User size={18} />}
                   placeholder="Full Name"
@@ -286,7 +233,7 @@ export default function ContactForm() {
                   value={formData.travelDate}
                   onChange={handleChange}
                 />
-                                <InputField
+                <InputField
                   icon={<MapPin size={18} />}
                   placeholder="Pickup Location"
                   name="pickup"
@@ -311,7 +258,6 @@ export default function ContactForm() {
                 />
 
                 <div className="relative">
-
                   <div className="absolute left-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-blue-100 text-blue-700">
                     <Briefcase size={18} />
                   </div>
@@ -339,15 +285,12 @@ export default function ContactForm() {
                     <option>Weekend Getaway</option>
                     <option>Custom Tour Package</option>
                   </select>
-
                 </div>
-
               </div>
 
               {/* Message */}
 
               <div className="relative">
-
                 <div className="absolute left-4 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-blue-700">
                   <MessageSquare size={18} />
                 </div>
@@ -360,38 +303,26 @@ export default function ContactForm() {
                   onChange={handleChange}
                   className="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-16 pr-4 text-slate-700 outline-none transition-all duration-300 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-100"
                 />
-
               </div>
 
               {/* Trust Note */}
 
               <div className="rounded-2xl bg-blue-50 p-5">
-
                 <div className="flex items-start gap-3">
-
-                  <ShieldCheck
-                    className="mt-1 text-blue-700"
-                    size={22}
-                  />
+                  <ShieldCheck className="mt-1 text-blue-700" size={22} />
 
                   <div>
-
                     <h4 className="font-semibold text-slate-900">
                       Why Book with Kuldeep Travels?
                     </h4>
 
                     <p className="mt-2 text-sm leading-7 text-slate-600">
-                      ✔ Transparent Pricing &nbsp; • &nbsp;
-                      ✔ No Hidden Charges &nbsp; • &nbsp;
-                      ✔ Verified Drivers &nbsp; • &nbsp;
-                      ✔ Clean Vehicles &nbsp; • &nbsp;
-                      ✔ 24×7 Customer Support
+                      ✔ Transparent Pricing &nbsp; • &nbsp; ✔ No Hidden Charges
+                      &nbsp; • &nbsp; ✔ Verified Drivers &nbsp; • &nbsp; ✔ Clean
+                      Vehicles &nbsp; • &nbsp; ✔ 24×7 Customer Support
                     </p>
-
                   </div>
-
                 </div>
-
               </div>
 
               {/* Submit */}
@@ -407,7 +338,6 @@ export default function ContactForm() {
                 />
 
                 {loading ? "Sending..." : "Get Free Quote"}
-
               </button>
 
               {/* WhatsApp */}
@@ -419,21 +349,13 @@ export default function ContactForm() {
                 className="flex items-center justify-center gap-3 rounded-2xl border border-green-200 bg-green-50 py-4 font-semibold text-green-700 transition hover:bg-green-100"
               >
                 <MessageCircle size={22} />
-
                 Book Instantly on WhatsApp
-
               </a>
-
             </form>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
-
   );
 }
 
@@ -444,9 +366,7 @@ type InputProps = {
   name: string;
   value: string;
   required?: boolean;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 function InputField({
@@ -460,7 +380,6 @@ function InputField({
 }: InputProps) {
   return (
     <div className="relative">
-
       <div className="absolute left-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-blue-100 text-blue-700">
         {icon}
       </div>
@@ -474,7 +393,6 @@ function InputField({
         onChange={onChange}
         className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-16 pr-4 text-slate-700 outline-none transition-all duration-300 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-100"
       />
-
     </div>
   );
 }

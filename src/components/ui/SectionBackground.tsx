@@ -5,7 +5,14 @@ import AnimatedShapes from "./AnimatedShapes";
 interface SectionBackgroundProps {
   variant?: "hero" | "light" | "blue" | "dark";
   animated?: boolean;
+  glow?: boolean;
 }
+
+// export default function SectionBackground({
+//   variant = "light",
+//   animated = false,
+//   glow = false,
+// }: SectionBackgroundProps) {
 
 export default function SectionBackground({
   variant = "light",

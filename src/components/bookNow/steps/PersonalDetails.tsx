@@ -1,13 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
-import {
-  User,
-  Phone,
-  Mail,
-  Users,
-  MessageSquare,
-} from "lucide-react";
+import { User, Phone, Mail, Users, MessageSquare } from "lucide-react";
 
 import { BookingData } from "../BookingForm";
 
@@ -16,12 +10,9 @@ interface Props {
   setFormData: Dispatch<SetStateAction<BookingData>>;
 }
 
-export default function PersonalDetails({
-  formData,
-  setFormData,
-}: Props) {
+export default function PersonalDetails({ formData, setFormData }: Props) {
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -34,11 +25,9 @@ export default function PersonalDetails({
 
   return (
     <div>
-
       {/* Heading */}
 
       <div className="mb-10">
-
         <span className="rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
           STEP 1 OF 5
         </span>
@@ -48,20 +37,17 @@ export default function PersonalDetails({
         </h2>
 
         <p className="mt-3 text-slate-600">
-          Tell us who is travelling so we can contact you regarding
-          your booking.
+          Tell us who is travelling so we can contact you regarding your
+          booking.
         </p>
-
       </div>
 
       {/* Form */}
 
       <div className="grid gap-6 md:grid-cols-2">
-
         {/* Name */}
 
         <div>
-
           <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
             <User size={18} />
             Full Name *
@@ -69,19 +55,17 @@ export default function PersonalDetails({
 
           <input
             type="text"
-            name="name"
+            name="customerName"
             placeholder="Enter your full name"
-            value={formData.name}
+            value={formData.customerName}
             onChange={handleChange}
             className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
           />
-
         </div>
 
         {/* Phone */}
 
         <div>
-
           <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
             <Phone size={18} />
             Mobile Number *
@@ -95,13 +79,11 @@ export default function PersonalDetails({
             onChange={handleChange}
             className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
           />
-
         </div>
 
         {/* Email */}
 
         <div>
-
           <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
             <Mail size={18} />
             Email Address
@@ -115,13 +97,11 @@ export default function PersonalDetails({
             onChange={handleChange}
             className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
           />
-
         </div>
 
         {/* Passengers */}
 
         <div>
-
           <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
             <Users size={18} />
             Number of Passengers
@@ -136,15 +116,12 @@ export default function PersonalDetails({
             onChange={handleChange}
             className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
           />
-
         </div>
-
       </div>
 
-      {/* Special Request */}
+      {/* Special Note */}
 
       <div className="mt-8">
-
         <label className="mb-2 flex items-center gap-2 font-semibold text-slate-700">
           <MessageSquare size={18} />
           Special Request (Optional)
@@ -152,37 +129,28 @@ export default function PersonalDetails({
 
         <textarea
           rows={5}
-          name="specialRequest"
+          name="specialNote"
           placeholder="Example: Need child seat, extra luggage space, elderly passenger assistance..."
-          value={formData.specialRequest}
+          value={formData.specialNote}
           onChange={handleChange}
           className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
         />
-
       </div>
 
       {/* Information Card */}
 
       <div className="mt-10 rounded-3xl border border-blue-100 bg-gradient-to-r from-blue-50 to-yellow-50 p-6">
-
         <h3 className="text-lg font-bold text-slate-900">
           Why do we ask for these details?
         </h3>
 
         <ul className="mt-4 space-y-3 text-slate-700">
-
           <li>✅ Booking confirmation via Phone / Email</li>
-
           <li>✅ Driver coordination before pickup</li>
-
           <li>✅ Faster customer support</li>
-
           <li>✅ Personalized travel assistance</li>
-
         </ul>
-
       </div>
-
     </div>
   );
 }

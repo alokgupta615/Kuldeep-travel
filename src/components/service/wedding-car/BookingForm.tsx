@@ -25,7 +25,7 @@ export default function BookingForm() {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     setFormData({
       ...formData,
@@ -44,13 +44,9 @@ export default function BookingForm() {
 
   return (
     <div className="rounded-[32px] border border-white/15 bg-white/95 p-8 shadow-2xl backdrop-blur-xl lg:p-10">
-
       <div className="mb-8 text-center">
-
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-yellow-400">
-
           <Heart className="text-slate-900" />
-
         </div>
 
         <h2 className="mt-5 text-3xl font-bold text-slate-900">
@@ -58,17 +54,15 @@ export default function BookingForm() {
         </h2>
 
         <p className="mt-2 text-slate-600">
-          Tell us about your celebration and we'll recommend the perfect vehicle.
+          Tell us about your celebration and we'll recommend the perfect
+          vehicle.
         </p>
-
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
-
         {/* Name */}
 
         <div className="relative">
-
           <User
             className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700"
             size={18}
@@ -83,13 +77,11 @@ export default function BookingForm() {
             required
             className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
           />
-
         </div>
 
         {/* Phone */}
 
         <div className="relative">
-
           <Phone
             className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700"
             size={18}
@@ -104,13 +96,11 @@ export default function BookingForm() {
             required
             className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
           />
-
         </div>
 
         {/* Event */}
 
         <div className="relative">
-
           <Heart
             className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700"
             size={18}
@@ -132,13 +122,11 @@ export default function BookingForm() {
             <option>Sangeet</option>
             <option>Destination Wedding</option>
           </select>
-
         </div>
 
         {/* Vehicle */}
 
         <div className="relative">
-
           <Car
             className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700"
             size={18}
@@ -160,13 +148,11 @@ export default function BookingForm() {
             <option>Luxury Coach</option>
             <option>Need Recommendation</option>
           </select>
-
         </div>
 
         {/* Wedding Date */}
 
         <div className="relative">
-
           <CalendarDays
             className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700"
             size={18}
@@ -180,13 +166,11 @@ export default function BookingForm() {
             required
             className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
           />
-
         </div>
 
         {/* Pickup */}
 
         <div className="relative">
-
           <MapPin
             className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-700"
             size={18}
@@ -201,13 +185,11 @@ export default function BookingForm() {
             required
             className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
           />
-
         </div>
 
         {/* Message */}
 
         <div className="relative">
-
           <MessageSquare
             className="absolute left-4 top-5 text-blue-700"
             size={18}
@@ -221,7 +203,6 @@ export default function BookingForm() {
             placeholder="Decoration style, number of vehicles, guest transportation or any special requirements..."
             className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
           />
-
         </div>
 
         {/* Button */}
@@ -232,21 +213,16 @@ export default function BookingForm() {
         >
           Reserve Wedding Car
         </button>
-
       </form>
 
       {/* Footer */}
 
       <div className="mt-8 rounded-2xl bg-blue-50 p-5 text-center">
-
         <p className="text-sm text-slate-600">
-          ✓ Instant Quote &nbsp; • &nbsp;
-          ✓ Transparent Pricing &nbsp; • &nbsp;
+          ✓ Instant Quote &nbsp; • &nbsp; ✓ Transparent Pricing &nbsp; • &nbsp;
           ✓ Professional Chauffeurs
         </p>
-
       </div>
-
     </div>
   );
 }

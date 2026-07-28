@@ -50,21 +50,19 @@ export default function WhyChooseSection() {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-
         <div className="text-center max-w-3xl mx-auto mb-14">
           <h2 className="text-4xl font-bold text-gray-900">
             Why Choose Kuldeep Travels?
           </h2>
 
           <p className="mt-5 text-gray-600 leading-8">
-            Finding a taxi is easy. Finding one that arrives on time,
-            offers clean vehicles and dependable service every time
-            is what makes the difference.
+            Finding a taxi is easy. Finding one that arrives on time, offers
+            clean vehicles and dependable service every time is what makes the
+            difference.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
           {features.map((item, index) => {
             const Icon = item.icon;
 
@@ -77,9 +75,10 @@ export default function WhyChooseSection() {
                   <Icon className="text-blue-700" size={28} />
                 </div>
 
-                <h3 style={{ color: "#111827" }}
-  className="mt-6 text-xl font-bold"
-className="mt-6 text-2xl font-bold !text-gray-900">
+                <h3
+                  style={{ color: "#111827" }}
+                  className="mt-6 text-2xl font-bold !text-gray-900"
+                >
                   {item.title}
                 </h3>
 
@@ -89,7 +88,6 @@ className="mt-6 text-2xl font-bold !text-gray-900">
               </div>
             );
           })}
-
         </div>
       </div>
     </section>

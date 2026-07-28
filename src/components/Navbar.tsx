@@ -59,9 +59,8 @@ export default function Navbar() {
 
   const [scrolled, setScrolled] = useState(false);
 
-  const serviceRef = useRef<HTMLDivElement>(null);
-
-  const tourRef = useRef<HTMLDivElement>(null);
+  const serviceRef = useRef<HTMLLIElement>(null);
+  const tourRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {

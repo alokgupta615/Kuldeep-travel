@@ -25,9 +25,9 @@ import BookingSummary from "./BookingSummary";
 import SuccessModal from "./SuccessModal";
 import LoadingOverlay from "./LoadingOverlay";
 
-// import { openRazorpay } from "@/lib/openRazorpay";
+import { openRazorpay } from "@/lib/openRazorpay";
 
-interface BookingFormData {
+export interface BookingData {
   customerName: string;
 
   phone: string;
@@ -58,7 +58,7 @@ export default function BookingForm() {
 
   const [successOpen, setSuccessOpen] = useState(false);
 
-  const [formData, setFormData] = useState<BookingFormData>({
+  const [formData, setFormData] = useState<BookingData>({
     customerName: "",
 
     phone: "",
@@ -854,7 +854,7 @@ CUSTOMER INFORMATION
 
       {/* LOADING */}
 
-      {loading && <LoadingOverlay />}
+      <LoadingOverlay open={loading} />
     </>
   );
 }

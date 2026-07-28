@@ -11,7 +11,7 @@ interface SectionWrapperProps {
 
   className?: string;
 
-  background?: "light" | "blue" | "dark";
+  background?: "light" | "blue" | "dark" | "hero";
 
   animated?: boolean;
 
@@ -29,22 +29,11 @@ export default function SectionWrapper({
   container = true,
 }: SectionWrapperProps) {
   return (
-    <section
-      className={clsx(
-        "relative overflow-hidden py-24",
-        className
-      )}
-    >
-      <SectionBackground
-        variant={background}
-        animated={animated}
-        glow={glow}
-      />
+    <section className={clsx("relative overflow-hidden py-24", className)}>
+      <SectionBackground variant={background} animated={animated} glow={glow} />
 
       {container ? (
-        <Container className="relative z-10">
-          {children}
-        </Container>
+        <Container className="relative z-10">{children}</Container>
       ) : (
         <div className="relative z-10">{children}</div>
       )}
