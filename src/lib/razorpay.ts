@@ -1,33 +1,23 @@
 import Razorpay from "razorpay";
 
+let razorpay: Razorpay | null = null;
 
-console.log(
-  "RAZORPAY KEY ID:",
-  process.env.RAZORPAY_KEY_ID
-);
+export function getRazorpay() {
+  if (razorpay) {
+    return razorpay;
+  }
 
+  const keyId = process.env.RAZORPAY_KEY_ID;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
-console.log(
-  "RAZORPAY SECRET:",
-  process.env.RAZORPAY_KEY_SECRET?.slice(0,5)
-);
+  if (!keyId || !keySecret) {
+    throw new Error("Razorpay keys are missing.");
+  }
 
+  razorpay = new Razorpay({
+    key_id: keyId,
+    key_secret: keySecret,
+  });
 
-if (
-  !process.env.RAZORPAY_KEY_ID ||
-  !process.env.RAZORPAY_KEY_SECRET
-) {
-  throw new Error("Razorpay keys are missing.");
+  return razorpay;
 }
-
-
-const razorpay = new Razorpay({
-
-  key_id: process.env.RAZORPAY_KEY_ID,
-
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-
-});
-
-
-export default razorpay;

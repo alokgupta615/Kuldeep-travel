@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import razorpay from "@/lib/razorpay";
+import { getRazorpay } from "@/lib/razorpay";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,8 +15,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const razorpay = getRazorpay();
+
     const options = {
-      amount: amount * 100, // INR → Paise
+      amount: amount * 100, // Convert INR to Paise
       currency: "INR",
       receipt: `receipt_${Date.now()}`,
       payment_capture: true,
@@ -29,12 +31,15 @@ export async function POST(req: NextRequest) {
       order,
     });
   } catch (error) {
-    console.error(error);
+    console.error("Razorpay Error:", error);
 
     return NextResponse.json(
       {
         success: false,
-        message: "Unable to create order",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Unable to create Razorpay order",
       },
       { status: 500 }
     );
