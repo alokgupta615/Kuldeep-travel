@@ -6,77 +6,134 @@ import {
   ArrowRightLeft,
   RefreshCw,
   Bus,
-  Building2,
-  Briefcase,
-  Mountain,
+  CarFront,
+  HeartHandshake,
 } from "lucide-react";
+
+// const services = [
+//   {
+//     title: "Airport Taxi",
+//     description:
+//       "24×7 airport pickup and drop with flight tracking and professional drivers.",
+//     icon: Plane,
+//     href: "/services/airport-taxi",
+//   },
+//   {
+//     title: "Local Cab",
+//     description:
+//       "Comfortable city rides for shopping, office, meetings, and daily travel.",
+//     icon: Car,
+//     href: "/services/local-cab",
+//   },
+//   {
+//     title: "Outstation Taxi",
+//     description:
+//       "Travel safely to Ayodhya, Varanasi, Prayagraj, Delhi, Agra and more.",
+//     icon: MapPinned,
+//     href: "/services/outstation-taxi",
+//   },
+//   {
+//     title: "One Way Taxi",
+//     description:
+//       "Pay only for your destination without worrying about return charges.",
+//     icon: ArrowRightLeft,
+//     href: "/services/one-way-taxi",
+//   },
+//   {
+//     title: "Round Trip",
+//     description:
+//       "Book return journeys with the same trusted driver and comfortable vehicle.",
+//     icon: RefreshCw,
+//     href: "/services/round-trip",
+//   },
+//   // {
+//   //   title: "Tempo Traveller",
+//   //   description:
+//   //     "Ideal for family vacations, group tours, weddings, and corporate outings.",
+//   //   icon: Bus,
+//   //   href: "/services/tempo-traveller",
+//   // },
+//   // {
+//   //   title: "Corporate Travel",
+//   //   description:
+//   //     "Reliable transport solutions for businesses, executives, and employees.",
+//   //   icon: Briefcase,
+//   //   href: "/services/corporate-travel",
+//   // },
+//   // {
+//   //   title: "Luxury Bus Rental",
+//   //   description:
+//   //     "Premium buses for weddings, events, school trips, and large groups.",
+//   //   icon: Building2,
+//   //   href: "/services/luxury-bus",
+//   // },
+//   {
+//     title: "Tour Packages",
+//     description:
+//       "Customized family, religious, and holiday packages across North India.",
+//     icon: Mountain,
+//     href: "/tour-packages",
+//   },
+// ];
 
 const services = [
   {
     title: "Airport Taxi",
     description:
-      "24×7 airport pickup and drop with flight tracking and professional drivers.",
+      "24×7 airport pickup and drop services with flight tracking, punctual drivers, and comfortable AC vehicles.",
     icon: Plane,
     href: "/services/airport-taxi",
   },
   {
     title: "Local Cab",
     description:
-      "Comfortable city rides for shopping, office, meetings, and daily travel.",
+      "Reliable city taxi services for office commutes, shopping, business meetings, sightseeing, and daily travel.",
     icon: Car,
     href: "/services/local-cab",
   },
   {
     title: "Outstation Taxi",
     description:
-      "Travel safely to Ayodhya, Varanasi, Prayagraj, Delhi, Agra and more.",
+      "Safe and affordable outstation cab services to Ayodhya, Varanasi, Prayagraj, Delhi, Agra, Nainital, and more.",
     icon: MapPinned,
     href: "/services/outstation-taxi",
   },
   {
     title: "One Way Taxi",
     description:
-      "Pay only for your destination without worrying about return charges.",
+      "Travel one way without paying return charges. Perfect for airport transfers and intercity journeys.",
     icon: ArrowRightLeft,
     href: "/services/one-way-taxi",
   },
+  // {
+  //   title: "Round Trip",
+  //   description:
+  //     "Book round-trip taxi services with flexible schedules, experienced drivers, and transparent pricing.",
+  //   icon: RefreshCw,
+  //   href: "/services/round-trip",
+  // },
   {
-    title: "Round Trip",
+    title: "Wedding Car Rental",
     description:
-      "Book return journeys with the same trusted driver and comfortable vehicle.",
-    icon: RefreshCw,
-    href: "/services/round-trip",
+      "Luxury wedding cars and chauffeur-driven vehicles for weddings, receptions, engagements, and special occasions.",
+    icon: CarFront,
+    href: "/services/wedding-car-rental",
+  },
+  {
+    title: "Senior Citizen Travel",
+    description:
+      "Comfortable and secure travel assistance for senior citizens with patient drivers and door-to-door service.",
+    icon: HeartHandshake,
+    href: "/services/senior-citizen-travel",
   },
   // {
   //   title: "Tempo Traveller",
   //   description:
-  //     "Ideal for family vacations, group tours, weddings, and corporate outings.",
+  //     "Spacious Tempo Travellers for family vacations, group tours, corporate outings, pilgrimages, and events.",
   //   icon: Bus,
   //   href: "/services/tempo-traveller",
   // },
-  // {
-  //   title: "Corporate Travel",
-  //   description:
-  //     "Reliable transport solutions for businesses, executives, and employees.",
-  //   icon: Briefcase,
-  //   href: "/services/corporate-travel",
-  // },
-  // {
-  //   title: "Luxury Bus Rental",
-  //   description:
-  //     "Premium buses for weddings, events, school trips, and large groups.",
-  //   icon: Building2,
-  //   href: "/services/luxury-bus",
-  // },
-  {
-    title: "Tour Packages",
-    description:
-      "Customized family, religious, and holiday packages across North India.",
-    icon: Mountain,
-    href: "/tour-packages",
-  },
 ];
-
 export default function ServicesSection() {
   return (
     <section className="py-20 bg-white">

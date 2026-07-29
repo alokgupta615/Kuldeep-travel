@@ -14,29 +14,16 @@ export const metadata = {
 
 export default function BookNowPage() {
   return (
-    <main className="min-h-screen bg-slate-50">
-
-      {/* Hero Section */}
+    <main className="min-h-screen bg-slate-50 pt-10 md:pt-10">
       {/* <BookingHero /> */}
 
-      {/* Booking Form */}
       <BookingForm />
 
-      {/* Booking Process */}
       <BookingSteps />
-
-      {/* Why Choose Us */}
       <TrustSection />
-
-      {/* Booking Policies */}
       <BookingPolicy />
-
-      {/* Frequently Asked Questions */}
       <BookingFAQ />
-
-      {/* Contact Support */}
       <ContactSupport />
-
     </main>
   );
 }
