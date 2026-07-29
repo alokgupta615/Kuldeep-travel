@@ -53,9 +53,11 @@ export default function Navbar() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const [serviceOpen, setServiceOpen] = useState(false);
+  const [desktopServiceOpen, setDesktopServiceOpen] = useState(false);
+  const [desktopTourOpen, setDesktopTourOpen] = useState(false);
 
-  const [tourOpen, setTourOpen] = useState(false);
+  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
+  const [mobileTourOpen, setMobileTourOpen] = useState(false);
 
   const [scrolled, setScrolled] = useState(false);
 
@@ -78,11 +80,11 @@ export default function Navbar() {
         serviceRef.current &&
         !serviceRef.current.contains(event.target as Node)
       ) {
-        setServiceOpen(false);
+        setDesktopServiceOpen(false);
       }
 
       if (tourRef.current && !tourRef.current.contains(event.target as Node)) {
-        setTourOpen(false);
+        setDesktopServiceOpen(false);
       }
     };
 
@@ -202,8 +204,8 @@ export default function Navbar() {
                 <li
                   ref={serviceRef}
                   className="relative group"
-                  onMouseEnter={() => setServiceOpen(true)}
-                  onMouseLeave={() => setServiceOpen(false)}
+                  onMouseEnter={() => setDesktopServiceOpen(true)}
+                  onMouseLeave={() => setDesktopServiceOpen(false)}
                 >
                   <div className="flex items-center gap-1">
                     <Link
@@ -220,12 +222,12 @@ export default function Navbar() {
                     <ChevronDown
                       size={16}
                       className={`transition-transform duration-200 ${
-                        serviceOpen ? "rotate-180" : ""
+                        desktopServiceOpen ? "rotate-180" : ""
                       }`}
                     />
                   </div>
 
-                  {serviceOpen && (
+                  {desktopServiceOpen && (
                     <div className="absolute left-0 top-full pt-2 z-50">
                       <div className="w-72 rounded-2xl bg-white py-3 shadow-2xl border border-gray-100">
                         {services.map((service) => (
@@ -264,6 +266,7 @@ export default function Navbar() {
                           ? "rotate-180"
                           : ""
                       }`}
+                      
                     />
 
                   </button>
@@ -293,8 +296,8 @@ export default function Navbar() {
                 <li
                   ref={tourRef}
                   className="relative group"
-                  onMouseEnter={() => setTourOpen(true)}
-                  onMouseLeave={() => setTourOpen(false)}
+                  onMouseEnter={() => setDesktopTourOpen(true)}
+                  onMouseLeave={() => setDesktopTourOpen(false)}
                 >
                   <div className="flex items-center gap-1">
                     <Link
@@ -311,12 +314,12 @@ export default function Navbar() {
                     <ChevronDown
                       size={16}
                       className={`transition-transform duration-200 ${
-                        tourOpen ? "rotate-180" : ""
+                        desktopTourOpen ? "rotate-180" : ""
                       }`}
                     />
                   </div>
 
-                  {tourOpen && (
+                  {desktopTourOpen && (
                     <div className="absolute left-0 top-full pt-2 z-50">
                       <div className="w-72 rounded-2xl border border-gray-100 bg-white py-3 shadow-2xl">
                         {tours.map((tour) => (
@@ -425,8 +428,8 @@ export default function Navbar() {
 
                 {/* Services */}
 
-                <button
-                  onClick={() => setServiceOpen(!serviceOpen)}
+                {/* <button
+                  onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
                   className="flex items-center justify-between py-3 text-white"
                 >
                   <span>Services</span>
@@ -434,19 +437,48 @@ export default function Navbar() {
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      serviceOpen ? "rotate-180" : ""
+                      mobileServiceOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button> */}
+
+                <button
+                  type="button"
+                  onClick={() => setMobileServiceOpen((prev) => !prev)}
+                  className="flex w-full items-center justify-between py-3 text-white"
+                >
+                  <span>Services</span>
+
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-200 ${
+                      mobileServiceOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
 
-                {serviceOpen && (
+                {mobileServiceOpen && (
                   <div className="ml-4 mb-3 flex flex-col rounded-xl bg-white/5">
+                    <Link
+                      href="/services"
+                      onClick={() => {
+                        setMobileServiceOpen(false);
+                        setMobileOpen(false);
+                      }}
+                      className="block border-b border-white/10 py-3 font-semibold text-yellow-400 hover:text-yellow-300"
+                    >
+                      All Services
+                    </Link>
+
                     {services.map((service) => (
                       <Link
                         key={service.href}
                         href={service.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="py-3 text-sm text-gray-300 hover:text-yellow-400"
+                        onClick={() => {
+                          setMobileServiceOpen(false);
+                          setMobileOpen(false);
+                        }}
+                        className="block py-3 text-sm text-gray-300 hover:text-yellow-400"
                       >
                         {service.title}
                       </Link>
@@ -456,8 +488,8 @@ export default function Navbar() {
 
                 {/* Tour Packages */}
 
-                <button
-                  onClick={() => setTourOpen(!tourOpen)}
+                {/* <button
+                  onClick={() => setMobileTourOpen(!mobileTourOpen)}
                   className="flex items-center justify-between py-3 text-white"
                 >
                   <span>Tour Packages</span>
@@ -465,19 +497,48 @@ export default function Navbar() {
                   <ChevronDown
                     size={18}
                     className={`transition-transform ${
-                      tourOpen ? "rotate-180" : ""
+                      mobileTourOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button> */}
+
+                <button
+                  type="button"
+                  onClick={() => setMobileTourOpen((prev) => !prev)}
+                  className="flex w-full items-center justify-between py-3 text-white"
+                >
+                  <span>Tour Packages</span>
+
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-200 ${
+                      mobileTourOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
 
-                {tourOpen && (
+                {mobileTourOpen && (
                   <div className="ml-4 mb-3 flex flex-col rounded-xl bg-white/5">
+                    <Link
+                      href="/tour-packages"
+                      onClick={() => {
+                        setMobileTourOpen(false);
+                        setMobileOpen(false);
+                      }}
+                      className="block border-b border-white/10 py-3 font-semibold text-yellow-400 hover:text-yellow-300"
+                    >
+                      All Tour Packages
+                    </Link>
+
                     {tours.map((tour) => (
                       <Link
                         key={tour.href}
                         href={tour.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="py-3 text-sm text-gray-300 hover:text-yellow-400"
+                        onClick={() => {
+                          setMobileTourOpen(false);
+                          setMobileOpen(false);
+                        }}
+                        className="block py-3 text-sm text-gray-300 hover:text-yellow-400"
                       >
                         {tour.title}
                       </Link>

@@ -262,7 +262,7 @@ export default function BookingForm() {
     <>
       <section
         id="booking-form"
-        className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-yellow-50 py-24"
+        className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-yellow-50 py-12 sm:py-16 lg:py-24"
       >
         {/* Background Glow */}
 
@@ -270,19 +270,19 @@ export default function BookingForm() {
 
         <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-blue-300/20 blur-3xl" />
 
-        <div className="container mx-auto max-w-7xl px-6">
-          <div className="grid gap-10 lg:grid-cols-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* =====================================
       MAIN BOOKING FORM
 ===================================== */}
 
             <form
               onSubmit={handleSubmit}
-              className="overflow-hidden rounded-[36px] border border-white/60 bg-white/80 shadow-[0_25px_70px_rgba(15,23,42,0.12)] backdrop-blur-xl lg:col-span-2"
+              className="overflow-hidden rounded-2xl lg:rounded-[36px] border border-white/60 bg-white/80 shadow-xl lg:shadow-[0_25px_70px_rgba(15,23,42,0.12)] backdrop-blur-xl lg:col-span-2"
             >
               {/* HERO HEADER */}
 
-              <div className="relative overflow-hidden bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 px-10 py-14 text-white">
+              <div className="relative overflow-hidden bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 px-5 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14 text-white">
                 <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-yellow-400/20 blur-3xl" />
 
                 <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
@@ -293,19 +293,19 @@ export default function BookingForm() {
                     Premium Taxi Booking
                   </div>
 
-                  <h1 className="mt-6 text-5xl font-extrabold leading-tight">
+                  <h1 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
                     Book Your Ride
                     <span className="block text-yellow-400">
                       In Just 2 Minutes
                     </span>
                   </h1>
 
-                  <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+                  <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg">
                     Safe, comfortable and affordable taxi booking with instant
                     confirmation, verified drivers and secure online payment.
                   </p>
 
-                  <div className="mt-10 grid gap-6 md:grid-cols-3">
+                  <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
                     <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
                       <Star className="h-8 w-8 fill-yellow-400 text-yellow-400" />
 
@@ -585,7 +585,19 @@ CUSTOMER INFORMATION
                     </p>
                   </div>
 
-                  <div className="rounded-[30px] border border-yellow-200 bg-gradient-to-br from-yellow-50 to-white p-8 shadow-lg">
+                  <div
+                    className="
+  rounded-[30px]
+  border border-yellow-200
+  bg-gradient-to-br
+  from-yellow-50
+  to-white
+  p-0
+  sm:p-4
+  lg:p-8
+  shadow-lg
+"
+                  >
                     <FareCalculator
                       vehicle={formData.vehicle}
                       pickup={formData.pickup}
@@ -770,12 +782,12 @@ CUSTOMER INFORMATION
       RIGHT SIDEBAR
 ================================================ */}
 
-            <div className="space-y-8">
+            <div className="space-y-6 lg:sticky lg:top-28 h-fit">
               <BookingSummary formData={formData} fare={calculateAmount()} />
 
               {/* TRUST CARD */}
 
-              <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-xl">
+              <div className="rounded-[32px] border border-slate-200 bg-white p-5 sm:p-6 lg:p-8 shadow-xl">
                 <div className="flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-100">
                     <ShieldCheck className="h-7 w-7 text-yellow-600" />
@@ -829,7 +841,7 @@ CUSTOMER INFORMATION
 
               {/* HELP CARD */}
 
-              <div className="rounded-[32px] bg-gradient-to-br from-blue-950 via-blue-900 to-slate-950 p-8 text-white">
+              <div className="rounded-[32px] bg-gradient-to-br from-blue-950 via-blue-900 to-slate-950 p-5 sm:p-6 lg:p-8 text-white">
                 <h3 className="text-2xl font-bold">Need Help?</h3>
 
                 <p className="mt-3 text-slate-300">
@@ -838,7 +850,7 @@ CUSTOMER INFORMATION
 
                 <a
                   href="tel:+919876543210"
-                  className="mt-6 flex h-14 items-center justify-center rounded-2xl bg-yellow-400 font-bold text-slate-900 transition hover:bg-yellow-300"
+                  className="mt-6 flex h-12 sm:h-14 items-center justify-center rounded-2xl bg-yellow-400 font-bold text-slate-900 transition hover:bg-yellow-300"
                 >
                   Call Now
                 </a>

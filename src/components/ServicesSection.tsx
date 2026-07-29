@@ -47,27 +47,27 @@ const services = [
     icon: RefreshCw,
     href: "/services/round-trip",
   },
-  {
-    title: "Tempo Traveller",
-    description:
-      "Ideal for family vacations, group tours, weddings, and corporate outings.",
-    icon: Bus,
-    href: "/services/tempo-traveller",
-  },
-  {
-    title: "Corporate Travel",
-    description:
-      "Reliable transport solutions for businesses, executives, and employees.",
-    icon: Briefcase,
-    href: "/services/corporate-travel",
-  },
-  {
-    title: "Luxury Bus Rental",
-    description:
-      "Premium buses for weddings, events, school trips, and large groups.",
-    icon: Building2,
-    href: "/services/luxury-bus",
-  },
+  // {
+  //   title: "Tempo Traveller",
+  //   description:
+  //     "Ideal for family vacations, group tours, weddings, and corporate outings.",
+  //   icon: Bus,
+  //   href: "/services/tempo-traveller",
+  // },
+  // {
+  //   title: "Corporate Travel",
+  //   description:
+  //     "Reliable transport solutions for businesses, executives, and employees.",
+  //   icon: Briefcase,
+  //   href: "/services/corporate-travel",
+  // },
+  // {
+  //   title: "Luxury Bus Rental",
+  //   description:
+  //     "Premium buses for weddings, events, school trips, and large groups.",
+  //   icon: Building2,
+  //   href: "/services/luxury-bus",
+  // },
   {
     title: "Tour Packages",
     description:

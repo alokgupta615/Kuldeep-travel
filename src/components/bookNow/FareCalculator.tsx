@@ -16,25 +16,28 @@ interface Props {
   drop: string;
 }
 
+/**
+ * Per KM Rates
+ */
 const vehicleRates: Record<string, number> = {
-  "Swift Dzire": 12,
-  Ertiga: 15,
-  Innova: 18,
-  "Innova Crysta": 20,
-  "Tempo Traveller": 28,
-  "Mini Bus": 35,
+  hatchback: 11,
+  sedan: 13,
+  suv: 18,
+  ertiga: 17,
+  crysta: 22,
+  tempo: 28,
 };
 
-export default function FareCalculator({
-  vehicle,
-  pickup,
-  drop,
-}: Props) {
-  // Temporary Distance
-  // Replace with Google Maps Distance Matrix API later
-  const distance = 125;
+/**
+ * Demo Distance
+ * Replace this with Google Distance Matrix API later.
+ */
+const DISTANCE = 125;
 
-  const rate = vehicleRates[vehicle] || 0;
+export default function FareCalculator({ vehicle, pickup, drop }: Props) {
+  const distance = DISTANCE;
+
+  const rate = vehicleRates[vehicle] ?? 0;
 
   const baseFare = distance * rate;
 
@@ -44,269 +47,280 @@ export default function FareCalculator({
 
   const gst = Math.round((baseFare + driverAllowance + toll) * 0.05);
 
-  const total =
-    baseFare +
-    driverAllowance +
-    toll +
-    gst;
+  const total = baseFare + driverAllowance + toll + gst;
+
+  const fareRows = [
+    {
+      label: "Rate",
+      value: `₹${rate}/km`,
+    },
+    {
+      label: "Base Fare",
+      value: `₹${baseFare}`,
+    },
+    {
+      label: "Driver Allowance",
+      value: `₹${driverAllowance}`,
+    },
+    {
+      label: "Toll / Parking",
+      value: `₹${toll}`,
+    },
+    {
+      label: "GST (5%)",
+      value: `₹${gst}`,
+    },
+  ];
 
   return (
-    <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl">
-
+    <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
       {/* Header */}
 
-      <div className="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800 p-8">
+      {/* Part 2 starts here */}
+      {/* ================= BODY ================= */}
 
-        <div className="flex items-center gap-5">
+      <div className="space-y-6 p-5 sm:space-y-8 sm:p-6 lg:p-8">
+        {/* ================= ROUTE DETAILS ================= */}
 
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-yellow-400 shadow-lg">
-
-            <ReceiptIndianRupee
-              size={32}
-              className="text-slate-900"
-            />
-
-          </div>
-
-          <div>
-
-            <h2 className="text-3xl font-bold text-white">
-              Estimated Fare
-            </h2>
-
-            <p className="mt-2 text-blue-100">
-              Final fare depends on the actual travel route,
-              tolls and applicable taxes.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div className="space-y-8 p-8">
-
-        {/* Route Details */}
-
-        <div>
-
+        <section>
           <h3 className="mb-5 text-lg font-bold text-slate-900">
             Route Details
           </h3>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
+            {/* Pickup */}
 
-            <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+            <div className="flex flex-col gap-3 rounded-2xl bg-slate-50 p-4 transition hover:bg-slate-100 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-blue-100 p-2">
+                  <MapPin size={18} className="text-blue-600" />
+                </div>
 
-              <div className="flex items-center gap-2 text-slate-600">
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-slate-500">
+                    Pickup
+                  </p>
 
-                <MapPin size={18} />
-
-                Pickup
-
+                  <p className="font-semibold text-slate-900">Starting Point</p>
+                </div>
               </div>
 
-              <span className="font-semibold text-slate-900">
-                {pickup || "Select Pickup"}
-              </span>
-
+              <p className="break-words text-sm font-semibold text-slate-900 sm:max-w-[55%] sm:text-right">
+                {pickup || "Select Pickup Location"}
+              </p>
             </div>
 
-            <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+            {/* Drop */}
 
-              <div className="flex items-center gap-2 text-slate-600">
+            <div className="flex flex-col gap-3 rounded-2xl bg-slate-50 p-4 transition hover:bg-slate-100 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-red-100 p-2">
+                  <MapPin size={18} className="text-red-500" />
+                </div>
 
-                <MapPin size={18} />
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-slate-500">
+                    Destination
+                  </p>
 
-                Drop
-
+                  <p className="font-semibold text-slate-900">Drop Location</p>
+                </div>
               </div>
 
-              <span className="font-semibold text-slate-900">
+              <p className="break-words text-sm font-semibold text-slate-900 sm:max-w-[55%] sm:text-right">
                 {drop || "Select Destination"}
-              </span>
-
+              </p>
             </div>
 
-            <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+            {/* Distance */}
 
-              <div className="flex items-center gap-2 text-slate-600">
+            <div className="flex flex-col gap-3 rounded-2xl bg-slate-50 p-4 transition hover:bg-slate-100 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-green-100 p-2">
+                  <MapPinned size={18} className="text-green-600" />
+                </div>
 
-                <MapPinned size={18} />
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-slate-500">
+                    Estimated Distance
+                  </p>
 
-                Distance
-
+                  <p className="font-semibold text-slate-900">
+                    Travel Distance
+                  </p>
+                </div>
               </div>
 
-              <span className="font-semibold">
-                {distance} km
-              </span>
-
+              <p className="text-lg font-bold text-slate-900">{distance} km</p>
             </div>
 
-            <div className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+            {/* Vehicle */}
 
-              <div className="flex items-center gap-2 text-slate-600">
+            <div className="flex flex-col gap-3 rounded-2xl bg-slate-50 p-4 transition hover:bg-slate-100 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-yellow-100 p-2">
+                  <CarTaxiFront size={18} className="text-yellow-600" />
+                </div>
 
-                <CarTaxiFront size={18} />
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-slate-500">
+                    Selected Vehicle
+                  </p>
 
-                Vehicle
-
+                  <p className="font-semibold text-slate-900">Vehicle Type</p>
+                </div>
               </div>
 
-              <span className="font-semibold">
+              <p className="text-sm font-semibold capitalize text-slate-900 sm:text-base">
                 {vehicle || "Choose Vehicle"}
-              </span>
-
+              </p>
             </div>
-
           </div>
+        </section>
 
-        </div>
+        {/* ================= FARE BREAKDOWN ================= */}
 
-        {/* Fare Breakdown */}
-
-        <div>
-
+        <section>
           <h3 className="mb-5 text-lg font-bold text-slate-900">
             Fare Breakdown
           </h3>
 
-          <div className="space-y-2">
+          <div className="overflow-hidden rounded-2xl border border-slate-200">
+            {[
+              {
+                label: "Rate",
+                value: `₹${rate}/km`,
+              },
+              {
+                label: "Base Fare",
+                value: `₹${baseFare}`,
+              },
+              {
+                label: "Driver Allowance",
+                value: `₹${driverAllowance}`,
+              },
+              {
+                label: "Toll / Parking",
+                value: `₹${toll}`,
+              },
+              {
+                label: "GST (5%)",
+                value: `₹${gst}`,
+              },
+            ].map((item, index) => (
+              <div
+                key={item.label}
+                className={`flex items-center justify-between px-5 py-4 text-sm transition hover:bg-slate-50 sm:text-base ${
+                  index !== 4 ? "border-b border-slate-200" : ""
+                }`}
+              >
+                <span className="text-slate-600">{item.label}</span>
 
-            <div className="flex justify-between rounded-lg px-2 py-2 hover:bg-slate-50">
-              <span className="text-slate-600">Rate</span>
-              <span className="font-semibold">₹{rate}/km</span>
-            </div>
-
-            <div className="flex justify-between rounded-lg px-2 py-2 hover:bg-slate-50">
-              <span className="text-slate-600">Base Fare</span>
-              <span className="font-semibold">
-                ₹{baseFare}
-              </span>
-            </div>
-
-            <div className="flex justify-between rounded-lg px-2 py-2 hover:bg-slate-50">
-              <span className="text-slate-600">
-                Driver Allowance
-              </span>
-              <span className="font-semibold">
-                ₹{driverAllowance}
-              </span>
-            </div>
-
-            <div className="flex justify-between rounded-lg px-2 py-2 hover:bg-slate-50">
-              <span className="text-slate-600">
-                Toll / Parking
-              </span>
-              <span className="font-semibold">
-                ₹{toll}
-              </span>
-            </div>
-
-            <div className="flex justify-between rounded-lg px-2 py-2 hover:bg-slate-50">
-              <span className="text-slate-600">
-                GST (5%)
-              </span>
-              <span className="font-semibold">
-                ₹{gst}
-              </span>
-            </div>
-
+                <span className="font-bold text-slate-900">{item.value}</span>
+              </div>
+            ))}
           </div>
+        </section>
+        {/* ================= TOTAL FARE ================= */}
 
-        </div>
+        <section>
+          <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 shadow-xl">
+            <div className="flex flex-col gap-6 p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[3px] text-slate-700 sm:text-sm">
+                  Estimated Total Fare
+                </p>
 
-        {/* Total */}
+                <h2 className="mt-3 text-4xl font-extrabold text-slate-900 sm:text-5xl lg:text-6xl">
+                  ₹{total}
+                </h2>
 
-        <div className="rounded-3xl bg-gradient-to-r from-yellow-400 to-amber-400 p-6 shadow-lg">
+                <p className="mt-2 text-sm text-slate-700">
+                  Inclusive of GST, toll & applicable charges*
+                </p>
+              </div>
 
-          <div className="flex items-center justify-between">
+              <div className="flex flex-col items-start gap-3 sm:items-end">
+                <span className="rounded-full bg-white px-6 py-2 text-sm font-bold text-slate-900 shadow-lg">
+                  Approximate Fare
+                </span>
 
-            <div>
+                <span className="text-sm font-medium text-slate-800">
+                  Subject to actual distance
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-              <p className="text-sm font-semibold uppercase tracking-wide text-slate-700">
-                Estimated Total
+        {/* ================= TRUST BADGES ================= */}
+
+        <section>
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-100">
+                <ShieldCheck size={28} className="text-green-600" />
+              </div>
+
+              <h4 className="mt-4 text-lg font-bold text-slate-900">
+                Verified Pricing
+              </h4>
+
+              <p className="mt-2 text-sm leading-6 text-slate-500">
+                Transparent fare calculation with no surprises.
               </p>
-
-              <h2 className="mt-2 text-4xl font-extrabold text-slate-900">
-                ₹{total}
-              </h2>
-
             </div>
 
-            <div className="rounded-full bg-white px-5 py-2 text-sm font-bold shadow">
-              Approx.
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-100">
+                <BadgeCheck size={28} className="text-blue-600" />
+              </div>
+
+              <h4 className="mt-4 text-lg font-bold text-slate-900">
+                GST Included
+              </h4>
+
+              <p className="mt-2 text-sm leading-6 text-slate-500">
+                Taxes are calculated transparently.
+              </p>
             </div>
 
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:col-span-2 xl:col-span-1">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-yellow-100">
+                <CircleDollarSign size={28} className="text-yellow-600" />
+              </div>
+
+              <h4 className="mt-4 text-lg font-bold text-slate-900">
+                No Hidden Charges
+              </h4>
+
+              <p className="mt-2 text-sm leading-6 text-slate-500">
+                Honest pricing with complete transparency.
+              </p>
+            </div>
           </div>
+        </section>
 
-        </div>
+        {/* ================= IMPORTANT NOTE ================= */}
 
-        {/* Trust Badges */}
+        <section>
+          <div className="rounded-3xl border border-yellow-200 bg-gradient-to-br from-yellow-50 to-white p-6 sm:p-8">
+            <h3 className="text-xl font-bold text-slate-900">Important Note</h3>
 
-        <div className="grid grid-cols-3 gap-4">
-
-          <div className="rounded-2xl border bg-slate-50 p-4 text-center">
-
-            <ShieldCheck
-              className="mx-auto text-green-600"
-              size={26}
-            />
-
-            <p className="mt-2 text-sm font-medium">
-              Verified Pricing
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+              This fare is an approximate estimate based on the selected vehicle
+              and assumed travel distance. The final amount may vary depending
+              on the actual route, toll charges, parking fees, waiting time,
+              night allowance, state taxes, additional stops, traffic conditions
+              and any extra travel requirements.
             </p>
 
-          </div>
-
-          <div className="rounded-2xl border bg-slate-50 p-4 text-center">
-
-            <BadgeCheck
-              className="mx-auto text-blue-600"
-              size={26}
-            />
-
-            <p className="mt-2 text-sm font-medium">
-              GST Included
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+              Our travel team will always confirm the final fare with you before
+              your journey begins.
             </p>
-
           </div>
-
-          <div className="rounded-2xl border bg-slate-50 p-4 text-center">
-
-            <CircleDollarSign
-              className="mx-auto text-yellow-500"
-              size={26}
-            />
-
-            <p className="mt-2 text-sm font-medium">
-              No Hidden Charges
-            </p>
-
-          </div>
-
-        </div>
-
-        {/* Note */}
-
-        <div className="rounded-2xl border border-yellow-200 bg-yellow-50 p-5">
-
-          <p className="text-sm leading-7 text-slate-600">
-
-            <span className="font-semibold text-slate-800">
-              Note:
-            </span>{" "}
-            This fare is only an estimate. Final pricing may vary based on
-            the selected route, tolls, parking, state taxes, waiting time,
-            night charges and any additional travel requirements. The exact
-            amount will be confirmed by our team before your journey begins.
-
-          </p>
-
-        </div>
-
+        </section>
       </div>
     </div>
   );
