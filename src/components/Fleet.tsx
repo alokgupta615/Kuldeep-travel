@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Briefcase, Snowflake } from "lucide-react";
+import { Users, Briefcase, Snowflake, CarFront } from "lucide-react";
 
 const fleet = [
   {
@@ -55,35 +55,37 @@ const fleet = [
 
 export default function Fleet() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-white py-14 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         {/* Heading */}
 
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-blue-600 uppercase font-semibold tracking-widest">
+        <div className="mx-auto mb-10 max-w-3xl text-center md:mb-16">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 md:text-sm">
             Our Fleet
           </span>
 
-          <h2 className="text-4xl lg:text-5xl font-bold mt-4 text-gray-900">
+          <h2 className="mt-3 text-3xl font-bold text-gray-900 md:mt-4 md:text-5xl">
             Comfortable Vehicles For Every Journey
           </h2>
 
-          <p className="mt-6 text-lg text-gray-600 leading-8">
+          <p className="mt-4 text-sm leading-7 text-gray-600 md:mt-6 md:text-lg md:leading-8">
             From economical sedans to luxury buses, choose the perfect vehicle
             for airport transfers, local travel, outstation trips, weddings,
-            corporate events, and family vacations.
+            corporate events and family vacations.
           </p>
         </div>
 
         {/* Fleet Grid */}
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-5 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           {fleet.map((vehicle, index) => (
             <div
               key={index}
-              className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 hover:-translate-y-2 border border-gray-100"
+              className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:rounded-3xl"
             >
-              <div className="relative h-60">
+              {/* Desktop Image */}
+
+              <div className="relative hidden h-60 md:block">
                 <Image
                   src={vehicle.image}
                   alt={vehicle.name}
@@ -92,35 +94,41 @@ export default function Fleet() {
                 />
               </div>
 
-              <div className="p-7">
-                <h3 className="text-2xl font-bold text-gray-900">
+              <div className="p-5 md:p-7">
+                {/* Mobile Icon */}
+
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 md:hidden">
+                  <CarFront className="h-7 w-7 text-blue-700" />
+                </div>
+
+                <h3 className="text-xl font-bold text-gray-900 md:text-2xl">
                   {vehicle.name}
                 </h3>
 
-                <p className="text-blue-700 font-semibold mt-2">
+                <p className="mt-1 text-sm font-semibold text-blue-700 md:mt-2 md:text-base">
                   {vehicle.price}
                 </p>
 
-                <div className="space-y-4 mt-6">
-                  <div className="flex items-center gap-3 text-gray-700">
-                    <Users size={20} className="text-blue-600" />
+                <div className="mt-5 space-y-3 md:mt-6 md:space-y-4">
+                  <div className="flex items-center gap-3 text-sm text-gray-700 md:text-base">
+                    <Users className="h-4 w-4 text-blue-600 md:h-5 md:w-5" />
                     {vehicle.passengers}
                   </div>
 
-                  <div className="flex items-center gap-3 text-gray-700">
-                    <Briefcase size={20} className="text-blue-600" />
+                  <div className="flex items-center gap-3 text-sm text-gray-700 md:text-base">
+                    <Briefcase className="h-4 w-4 text-blue-600 md:h-5 md:w-5" />
                     {vehicle.luggage}
                   </div>
 
-                  <div className="flex items-center gap-3 text-gray-700">
-                    <Snowflake size={20} className="text-blue-600" />
+                  <div className="flex items-center gap-3 text-sm text-gray-700 md:text-base">
+                    <Snowflake className="h-4 w-4 text-blue-600 md:h-5 md:w-5" />
                     {vehicle.ac}
                   </div>
                 </div>
 
                 <Link
                   href="/book-now"
-                  className="mt-8 block text-center bg-blue-700 hover:bg-blue-800 text-white py-4 rounded-xl font-semibold transition"
+                  className="mt-6 block rounded-xl bg-blue-700 py-3 text-center text-sm font-semibold text-white transition hover:bg-blue-800 md:mt-8 md:py-4 md:text-base"
                 >
                   Book This Vehicle
                 </Link>
@@ -129,29 +137,29 @@ export default function Fleet() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
+        {/* CTA */}
 
-        <div className="mt-20 bg-gradient-to-r from-blue-700 to-blue-900 rounded-3xl p-12 text-center text-white">
-          <h3 className="text-3xl font-bold">
+        <div className="mt-14 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-900 p-6 text-center text-white md:mt-20 md:rounded-3xl md:p-12">
+          <h3 className="text-2xl font-bold md:text-3xl">
             Need Help Choosing the Right Vehicle?
           </h3>
 
-          <p className="mt-5 text-blue-100 max-w-2xl mx-auto text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-blue-100 md:mt-5 md:text-lg md:leading-8">
             Our travel experts are available 24×7 to recommend the best vehicle
             based on your destination, number of passengers, and luggage.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center md:mt-8 md:gap-4">
             <a
               href="tel:+918808142859"
-              className="bg-white text-blue-700 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition"
+              className="rounded-xl bg-white px-6 py-3 font-semibold text-blue-700 transition hover:bg-gray-100 md:px-8 md:py-4"
             >
               Call Now
             </a>
 
             <a
               href="https://wa.me/918808142859"
-              className="bg-amber-400 text-black px-8 py-4 rounded-xl font-semibold hover:bg-amber-300 transition"
+              className="rounded-xl bg-amber-400 px-6 py-3 font-semibold text-black transition hover:bg-amber-300 md:px-8 md:py-4"
             >
               WhatsApp Us
             </a>

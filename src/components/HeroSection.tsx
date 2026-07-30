@@ -41,24 +41,23 @@ const trustCards = [
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden text-white">
-      {/* Premium Background */}
       <HeroBackground />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-32 pb-24 lg:px-8 lg:pt-40">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16 lg:pt-40 lg:pb-24">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* LEFT */}
 
           <div>
             {/* Badge */}
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2 text-sm font-medium text-yellow-300 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3 py-1.5 text-xs sm:px-5 sm:py-2 sm:text-sm font-medium text-yellow-300 backdrop-blur">
               <CheckCircle className="h-4 w-4" />
               Trusted Taxi Service Since 2012
             </div>
 
             {/* Heading */}
 
-            <h1 className="mt-8 text-5xl font-black leading-tight lg:text-7xl">
+            <h1 className="mt-6 text-3xl font-black leading-tight sm:text-4xl lg:text-7xl">
               Best Travel
               <br />
               Agency in
@@ -68,33 +67,33 @@ export default function HeroSection() {
 
             {/* Description */}
 
-            <p className="mt-8 max-w-2xl text-xl leading-9 text-slate-200">
+            <p className="mt-5 text-base leading-7 text-slate-200 sm:text-lg lg:text-xl lg:leading-9">
               Book safe, comfortable and affordable taxi services for Airport
               Transfers, Local Cabs, Outstation Trips, Corporate Travel and
               Family Tour Packages.
             </p>
 
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
+            <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base lg:text-lg">
               Verified drivers, transparent pricing, premium fleet and 24×7
-              customer support for every journey.
+              customer support.
             </p>
 
-            {/* CTA */}
+            {/* Buttons */}
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="/book-now"
-                className="inline-flex items-center gap-2 rounded-xl bg-yellow-400 px-7 py-4 font-semibold text-slate-900 transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-300"
+                className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-yellow-400 px-6 py-3 font-semibold text-slate-900 transition hover:bg-yellow-300"
               >
                 Book Your Ride
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 w-4 lg:h-6 lg:w-6" />
               </Link>
 
               <a
                 href="tel:+918808142859"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-7 py-4 font-semibold backdrop-blur transition hover:bg-white hover:text-blue-900"
+                className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-semibold backdrop-blur transition hover:bg-white hover:text-blue-900"
               >
-                <Phone className="h-5 w-5" />
+                <Phone className="h-4 w-4 lg:h-6 lg:w-6" />
                 Call Now
               </a>
 
@@ -102,7 +101,7 @@ export default function HeroSection() {
                 href="https://wa.me/918808142859"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-7 py-4 font-semibold transition hover:bg-green-500"
+                className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-green-600 px-6 py-3 font-semibold transition hover:bg-green-500"
               >
                 <MessageCircle className="h-5 w-5" />
                 WhatsApp
@@ -111,46 +110,55 @@ export default function HeroSection() {
 
             {/* Rating */}
 
-            <div className="mt-10 flex items-center gap-3">
+            <div className="mt-8 flex items-center gap-3">
               <div className="flex text-yellow-400">
-                {[1, 2, 3, 4, 5].map((item) => (
-                  <Star key={item} className="h-5 w-5 fill-current" />
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star
+                    key={i}
+                    className="h-4 w-4 fill-current sm:h-5 sm:w-5"
+                  />
                 ))}
               </div>
 
-              <span className="text-slate-300">
+              <span className="text-sm text-slate-300 sm:text-base">
                 Rated Excellent by Thousands of Travelers
               </span>
             </div>
 
             {/* Trust Cards */}
 
-            <div className="mt-12 grid grid-cols-2 gap-5 lg:grid-cols-4">
+            <div className="mt-6 grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4 lg:gap-5">
               {trustCards.map((item) => {
                 const Icon = item.icon;
 
                 return (
                   <div
                     key={item.label}
-                    className="group rounded-2xl border border-white/10 bg-white/10 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-yellow-400/40 hover:bg-white/15"
+                    className="rounded-xl border border-white/10 bg-white/10 p-2.5 backdrop-blur transition hover:bg-white/15 lg:rounded-2xl lg:p-5"
                   >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-400 text-slate-900">
-                      <Icon className="h-6 w-6" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-yellow-400 text-slate-900 lg:h-12 lg:w-12">
+                      <Icon className="h-5 w-5 lg:h-6 lg:w-6" />
                     </div>
 
-                    <h3 className="mt-5 text-2xl font-bold">{item.value}</h3>
+                    <h3 className="mt-3 text-lg font-bold lg:mt-5 lg:text-2xl">
+                      {item.value}
+                    </h3>
 
-                    <p className="mt-2 text-sm text-slate-300">{item.label}</p>
+                    <p className="mt-1 text-xs text-slate-300 lg:mt-2 lg:text-sm">
+                      {item.label}
+                    </p>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Booking Form */}
+          {/* RIGHT */}
 
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="w-full max-w-lg rounded-[32px] border border-white/10 bg-white/5 p-2 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+          <div className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-xl shadow-2xl">
+              {/* Uncomment when ready */}
+
               {/* <BookingForm /> */}
             </div>
           </div>

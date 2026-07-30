@@ -4,187 +4,102 @@ import {
   Car,
   MapPinned,
   ArrowRightLeft,
-  RefreshCw,
-  Bus,
   CarFront,
   HeartHandshake,
 } from "lucide-react";
-
-// const services = [
-//   {
-//     title: "Airport Taxi",
-//     description:
-//       "24×7 airport pickup and drop with flight tracking and professional drivers.",
-//     icon: Plane,
-//     href: "/services/airport-taxi",
-//   },
-//   {
-//     title: "Local Cab",
-//     description:
-//       "Comfortable city rides for shopping, office, meetings, and daily travel.",
-//     icon: Car,
-//     href: "/services/local-cab",
-//   },
-//   {
-//     title: "Outstation Taxi",
-//     description:
-//       "Travel safely to Ayodhya, Varanasi, Prayagraj, Delhi, Agra and more.",
-//     icon: MapPinned,
-//     href: "/services/outstation-taxi",
-//   },
-//   {
-//     title: "One Way Taxi",
-//     description:
-//       "Pay only for your destination without worrying about return charges.",
-//     icon: ArrowRightLeft,
-//     href: "/services/one-way-taxi",
-//   },
-//   {
-//     title: "Round Trip",
-//     description:
-//       "Book return journeys with the same trusted driver and comfortable vehicle.",
-//     icon: RefreshCw,
-//     href: "/services/round-trip",
-//   },
-//   // {
-//   //   title: "Tempo Traveller",
-//   //   description:
-//   //     "Ideal for family vacations, group tours, weddings, and corporate outings.",
-//   //   icon: Bus,
-//   //   href: "/services/tempo-traveller",
-//   // },
-//   // {
-//   //   title: "Corporate Travel",
-//   //   description:
-//   //     "Reliable transport solutions for businesses, executives, and employees.",
-//   //   icon: Briefcase,
-//   //   href: "/services/corporate-travel",
-//   // },
-//   // {
-//   //   title: "Luxury Bus Rental",
-//   //   description:
-//   //     "Premium buses for weddings, events, school trips, and large groups.",
-//   //   icon: Building2,
-//   //   href: "/services/luxury-bus",
-//   // },
-//   {
-//     title: "Tour Packages",
-//     description:
-//       "Customized family, religious, and holiday packages across North India.",
-//     icon: Mountain,
-//     href: "/tour-packages",
-//   },
-// ];
 
 const services = [
   {
     title: "Airport Taxi",
     description:
-      "24×7 airport pickup and drop services with flight tracking, punctual drivers, and comfortable AC vehicles.",
+      "24×7 airport pickup & drop with flight tracking and professional drivers.",
     icon: Plane,
     href: "/services/airport-taxi",
   },
   {
     title: "Local Cab",
     description:
-      "Reliable city taxi services for office commutes, shopping, business meetings, sightseeing, and daily travel.",
+      "Reliable city taxi services for office, shopping and daily travel.",
     icon: Car,
     href: "/services/local-cab",
   },
   {
     title: "Outstation Taxi",
     description:
-      "Safe and affordable outstation cab services to Ayodhya, Varanasi, Prayagraj, Delhi, Agra, Nainital, and more.",
+      "Comfortable outstation rides to Ayodhya, Varanasi, Delhi, Agra & more.",
     icon: MapPinned,
     href: "/services/outstation-taxi",
   },
   {
     title: "One Way Taxi",
-    description:
-      "Travel one way without paying return charges. Perfect for airport transfers and intercity journeys.",
+    description: "One-way trips without paying unnecessary return charges.",
     icon: ArrowRightLeft,
     href: "/services/one-way-taxi",
   },
-  // {
-  //   title: "Round Trip",
-  //   description:
-  //     "Book round-trip taxi services with flexible schedules, experienced drivers, and transparent pricing.",
-  //   icon: RefreshCw,
-  //   href: "/services/round-trip",
-  // },
   {
     title: "Wedding Car Rental",
     description:
-      "Luxury wedding cars and chauffeur-driven vehicles for weddings, receptions, engagements, and special occasions.",
+      "Luxury chauffeur-driven wedding cars for your special occasions.",
     icon: CarFront,
     href: "/services/wedding-car-rental",
   },
   {
     title: "Senior Citizen Travel",
     description:
-      "Comfortable and secure travel assistance for senior citizens with patient drivers and door-to-door service.",
+      "Safe, comfortable travel with patient and experienced drivers.",
     icon: HeartHandshake,
     href: "/services/senior-citizen-travel",
   },
-  // {
-  //   title: "Tempo Traveller",
-  //   description:
-  //     "Spacious Tempo Travellers for family vacations, group tours, corporate outings, pilgrimages, and events.",
-  //   icon: Bus,
-  //   href: "/services/tempo-traveller",
-  // },
 ];
+
 export default function ServicesSection() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-white py-14 md:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
 
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-blue-600 uppercase font-semibold tracking-widest">
+        <div className="mx-auto mb-10 max-w-3xl text-center md:mb-14">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600 md:text-sm">
             Our Services
           </span>
 
-          <h2 className="text-4xl font-bold text-gray-900 mt-3">
-            Complete Travel Solutions Under One Roof
+          <h2 className="mt-3 text-3xl font-bold text-gray-900 md:text-4xl">
+            Complete Travel Solutions
           </h2>
 
-          <p className="mt-5 text-lg text-gray-600 leading-8">
+          <p className="mt-4 text-sm leading-6 text-gray-600 md:mt-5 md:text-lg md:leading-8">
             Whether you're traveling within Lucknow or planning an outstation
-            journey, Kuldeep Travels offers reliable taxi services and
-            customized tour packages to suit every travel need.
+            journey, Kuldeep Travels provides safe, comfortable and affordable
+            taxi services for every travel need.
           </p>
         </div>
 
-        {/* Service Cards */}
+        {/* Services */}
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
 
             return (
               <div
                 key={index}
-                className="group rounded-2xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300"
+                className="group rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:rounded-2xl md:p-7"
               >
-                <div className="w-16 h-16 rounded-xl bg-blue-100 flex items-center justify-center mb-6 group-hover:bg-blue-600 transition">
-                  <Icon
-                    size={32}
-                    className="text-blue-700 group-hover:text-white"
-                  />
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 transition group-hover:bg-blue-700 md:mb-6 md:h-16 md:w-16">
+                  <Icon className="h-6 w-6 text-blue-700 group-hover:text-white md:h-8 md:w-8" />
                 </div>
 
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-lg font-bold text-gray-900 md:text-2xl">
                   {service.title}
                 </h3>
 
-                <p className="text-gray-600 leading-7 mb-6">
+                <p className="mt-3 text-sm leading-6 text-gray-600 md:mt-4 md:text-base md:leading-7">
                   {service.description}
                 </p>
 
                 <Link
                   href={service.href}
-                  className="inline-flex items-center gap-2 text-blue-700 font-semibold hover:text-amber-500 transition"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition hover:text-amber-500 md:mt-6 md:text-base"
                 >
                   Learn More →
                 </Link>
@@ -193,22 +108,24 @@ export default function ServicesSection() {
           })}
         </div>
 
-        {/* CTA Banner */}
+        {/* CTA */}
 
-        <div className="mt-20 rounded-3xl bg-gradient-to-r from-blue-700 to-blue-900 text-white p-10 lg:p-14">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div>
-              <h3 className="text-3xl font-bold">Need a Taxi Today?</h3>
+        <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-900 p-6 text-white md:mt-20 md:rounded-3xl md:p-10 lg:p-14">
+          <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
+            <div className="text-center lg:text-left">
+              <h3 className="text-2xl font-bold md:text-3xl">
+                Need a Taxi Today?
+              </h3>
 
-              <p className="mt-4 text-blue-100 text-lg max-w-2xl">
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-blue-100 md:mt-4 md:text-lg md:leading-8">
                 Book your ride in minutes with verified drivers, transparent
-                pricing, and 24×7 customer support.
+                pricing and 24×7 customer support.
               </p>
             </div>
 
             <Link
               href="/book-now"
-              className="bg-amber-400 hover:bg-amber-300 text-black font-semibold px-8 py-4 rounded-xl transition"
+              className="w-full rounded-xl bg-amber-400 px-6 py-3 text-center font-semibold text-black transition hover:bg-amber-300 md:w-auto md:px-8 md:py-4"
             >
               Book Now
             </Link>

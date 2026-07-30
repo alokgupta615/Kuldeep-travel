@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import Hero from "@/components/tourPackages/Hero";
 import Stats from "@/components/tourPackages/Stats";
 import About from "@/components/tourPackages/About";
@@ -18,45 +20,73 @@ import Reviews from "@/components/tourPackages/Reviews";
 import FAQ from "@/components/tourPackages/FAQ";
 import CTA from "@/components/tourPackages/CTA";
 
+export const metadata: Metadata = {
+  title: "Tour Packages from Lucknow | Family, Religious & Holiday Tours",
+  description:
+    "Explore premium tour packages from Lucknow including family holidays, religious tours, weekend getaways and customized travel packages with Kuldeep Travels.",
+  keywords: [
+    "Lucknow tour packages",
+    "family tour packages",
+    "religious tours from Lucknow",
+    "holiday packages India",
+    "custom travel packages",
+  ],
+};
+
 export default function TourPackagesPage() {
   return (
     <main className="overflow-x-hidden bg-white">
+      {/* Hero */}
       <Hero />
 
+      {/* Trust Metrics */}
       <Stats />
 
-      <About />
+      {/* Company Introduction */}
+      <section>
+        <About />
+        <WhyChooseUs />
+      </section>
 
-      <WhyChooseUs />
+      {/* Tour Discovery */}
+      <section className="space-y-0">
+        <PackageCategories />
+        <PopularDestinations />
+      </section>
 
-      <PackageCategories />
+      {/* Travel Experience */}
+      <section>
+        <VehicleSection />
+        <PackageInclusions />
+      </section>
 
-      <PopularDestinations />
+      {/* Planning Guide */}
+      <section>
+        <TravelerTypes />
+        <TripDuration />
+        <BestTimeToVisit />
+      </section>
 
-      <VehicleSection />
+      {/* Conversion Sections */}
+      <section>
+        <BookingBenefits />
+        <BookingProcess />
+      </section>
 
-      <PackageInclusions />
+      {/* Content Marketing */}
+      <section>
+        <TravelTips />
+        <HolidayThemes />
+        <DepartureCities />
+      </section>
 
-      <TravelerTypes />
+      {/* Social Proof */}
+      <section>
+        <Reviews />
+        <FAQ />
+      </section>
 
-      <TripDuration />
-
-      <BestTimeToVisit />
-
-      <BookingBenefits />
-
-      <TravelTips />
-
-      <HolidayThemes />
-
-      <DepartureCities />
-
-      <BookingProcess />
-
-      <Reviews />
-
-      <FAQ />
-
+      {/* Final CTA */}
       <CTA />
     </main>
   );

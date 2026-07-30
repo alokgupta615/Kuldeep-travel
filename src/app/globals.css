@@ -76,3 +76,54 @@ body {
 .animate-floating {
   animation: floating 7s ease-in-out infinite;
 }
+
+/* ==========================================
+   Global Mobile Optimizations
+========================================== */
+
+@media (max-width: 768px) {
+
+  html {
+    font-size: 15px;
+  }
+
+  body {
+    line-height: 1.5;
+  }
+
+  section {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  h1 {
+    font-size: 2.2rem !important;
+    line-height: 1.15;
+  }
+
+  h2 {
+    font-size: 1.8rem !important;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 1.3rem !important;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  button,
+  .btn,
+  a[class*="px-"] {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
