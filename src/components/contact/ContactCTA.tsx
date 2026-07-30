@@ -10,7 +10,6 @@ export default function ContactCTA() {
 
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-4xl text-center">
-
           <span className="font-semibold uppercase tracking-[0.25em] text-yellow-400">
             Let's Get Your Journey Started
           </span>
@@ -31,7 +30,6 @@ export default function ContactCTA() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-5">
-
             <Link
               href="tel:09936408109"
               className="inline-flex items-center gap-2 rounded-xl bg-yellow-400 px-8 py-4 font-semibold text-black transition hover:bg-yellow-300"
@@ -50,15 +48,13 @@ export default function ContactCTA() {
             </Link>
 
             <Link
-              href="/book-taxi"
+              href="/book-now"
               className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 font-semibold text-blue-900 transition hover:bg-gray-100"
             >
               Book Your Ride
               <ArrowRight size={18} />
             </Link>
-
           </div>
-
         </div>
       </div>
     </section>

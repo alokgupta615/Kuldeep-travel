@@ -73,7 +73,7 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
       {/* Heading */}
 
       <div>
-        <span className="inline-flex rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
+        <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
           Step 2 of 5
         </span>
 
@@ -89,7 +89,22 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
 
       {/* Card */}
 
-      <div className="rounded-[32px] border border-slate-200 bg-white p-10 shadow-xl text-slate-900">
+      <div
+        className="
+  rounded-[32px]
+  border
+  border-slate-200
+  bg-white
+  p-6
+  md:p-10
+  shadow-xl
+  text-slate-900
+  opacity-100
+  [&_label]:text-slate-900
+  [&_input]:text-slate-900
+  [&_input::placeholder]:text-slate-500
+  "
+      >
         <h3 className="text-3xl font-bold text-slate-900">
           Pickup & Destination
         </h3>
@@ -100,7 +115,7 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <div>
-            <label className="mb-3 block font-semibold text-slate-800">
+            <label className="mb-3 block font-semibold text-slate-900 opacity-100">
               Pickup Location
             </label>
 
@@ -113,13 +128,23 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
                 value={formData.pickup}
                 onChange={handleChange}
                 placeholder="Enter pickup location"
-                className="w-full bg-transparent px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none"
+                className="
+w-full
+bg-white
+px-4
+py-4
+text-gray-900
+placeholder:text-gray-500
+caret-blue-600
+opacity-100
+focus:outline-none
+"
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-3 block font-semibold text-slate-800">
+            <label className="mb-3 block font-semibold text-slate-900 opacity-100">
               Destination
             </label>
 
@@ -132,7 +157,17 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
                 value={formData.drop}
                 onChange={handleChange}
                 placeholder="Enter destination"
-                className="w-full bg-transparent px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none"
+                className="
+w-full
+bg-white
+px-4
+py-4
+text-gray-900
+placeholder:text-gray-500
+caret-blue-600
+opacity-100
+focus:outline-none
+"
               />
             </div>
           </div>
@@ -142,11 +177,23 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <div>
-            <label className="mb-3 block font-semibold text-slate-800">
+            <label className="mb-3 block text-base font-bold text-slate-900">
               Travel Date
             </label>
 
-            <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-5">
+            <div
+              className="
+flex items-center
+rounded-2xl
+border border-slate-300
+bg-white
+px-5
+transition
+focus-within:border-blue-600
+focus-within:ring-4
+focus-within:ring-blue-100
+"
+            >
               <CalendarDays className="text-blue-600" />
 
               <input
@@ -185,7 +232,7 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
             Trip Preview
           </h4>
 
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-3 md:gap-4">
             <div className="flex flex-col items-center">
               <div className="h-4 w-4 rounded-full bg-green-500"></div>
 
