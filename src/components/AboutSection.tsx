@@ -50,7 +50,7 @@ export default function AboutSection() {
 
           <div className="relative">
             <Image
-              src="/images/about.jpg"
+              src="/images/home/about.png"
               alt="Kuldeep Travels"
               width={650}
               height={650}

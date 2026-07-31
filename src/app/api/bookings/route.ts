@@ -1,14 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { sendOwnerEmail } from "@/lib/mailer";
-import { sendCustomerEmail } from "@/lib/mailer";
+import {
+  sendOwnerEmail,
+  sendCustomerEmail,
+} from "@/lib/mailer";
 
-import { sendOwnerWhatsapp } from "@/lib/whatsapp";
-import { sendCustomerWhatsapp } from "@/lib/whatsapp";
+import {
+  sendOwnerWhatsapp,
+  sendCustomerWhatsapp,
+} from "@/lib/whatsapp";
+
+// ==============================================
+// Generate Booking ID
+// ==============================================
 
 function generateBookingID() {
-  return "KT" + Date.now().toString().slice(-8);
+  return `KT${Date.now().toString().slice(-8)}`;
 }
+
+// ==============================================
+// Booking API
+// ==============================================
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,70 +28,80 @@ export async function POST(req: NextRequest) {
 
     const booking = {
       bookingId: generateBookingID(),
-      bookingDate: new Date().toLocaleString("en-IN"),
 
-      paymentStatus:
-        data.payment === "PAY_AFTER_TRIP"
-          ? "Pending"
-          : "Paid",
+      bookingDate: new Date().toLocaleString("en-IN", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }),
 
       bookingStatus: "Pending",
+
+      paymentStatus:
+        data.payment === "PAY_NOW"
+          ? "Paid"
+          : "Pending",
 
       ...data,
     };
 
-    console.log("========== NEW BOOKING ==========");
+    console.log("==================================");
+    console.log("🚖 NEW BOOKING RECEIVED");
     console.log(booking);
+    console.log("==================================");
 
+    // =========================================
     // Email Notifications
-    // await sendOwnerEmail(booking);
-    // await sendCustomerEmail(booking);
-
-    // // WhatsApp Notifications
-    // await sendOwnerWhatsapp(booking);
-    // await sendCustomerWhatsapp(booking);
-
+    // =========================================
 
     try {
-  await sendOwnerEmail(booking);
-} catch (e) {
-  console.error("Owner email failed:", e);
-}
+      await sendOwnerEmail(booking);
+      console.log("✅ Owner Email Sent");
+    } catch (error) {
+      console.error("❌ Owner Email Failed", error);
+    }
 
-try {
-  await sendCustomerEmail(booking);
-} catch (e) {
-  console.error("Customer email failed:", e);
-}
+    try {
+      if (booking.email) {
+        await sendCustomerEmail(booking);
+        console.log("✅ Customer Email Sent");
+      }
+    } catch (error) {
+      console.error("❌ Customer Email Failed", error);
+    }
 
-try {
-  await sendOwnerWhatsapp(booking);
-} catch (e) {
-  console.error("Owner WhatsApp failed:", e);
-}
+    // =========================================
+    // WhatsApp Notifications
+    // =========================================
 
-try {
-  await sendCustomerWhatsapp(booking);
-} catch (e) {
-  console.error("Customer WhatsApp failed:", e);
-}
+    try {
+      await sendOwnerWhatsapp(booking);
+      console.log("✅ Owner WhatsApp Sent");
+    } catch (error) {
+      console.error("❌ Owner WhatsApp Failed", error);
+    }
 
-return NextResponse.json({
-  success: true,
-  booking,
-});
+    try {
+      if (booking.phone) {
+        await sendCustomerWhatsapp(booking);
+        console.log("✅ Customer WhatsApp Sent");
+      }
+    } catch (error) {
+      console.error("❌ Customer WhatsApp Failed", error);
+    }
 
     return NextResponse.json({
       success: true,
+      message: "Booking submitted successfully.",
       booking,
     });
+
   } catch (error: any) {
-    console.error(error);
+    console.error("Booking API Error:", error);
 
     return NextResponse.json(
       {
         success: false,
-        message: error.message,
+        message: error.message || "Something went wrong.",
       },
       {
         status: 500,

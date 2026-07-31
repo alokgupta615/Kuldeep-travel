@@ -1,12 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  CheckCircle2,
-  MapPinned,
-  Users,
-  CarFront,
-} from "lucide-react";
+import { CheckCircle2, MapPinned, Users, CarFront } from "lucide-react";
 
 const highlights = [
   "Reliable taxi and tour services across Lucknow and North India",
@@ -42,7 +37,7 @@ export default function CompanyIntro() {
           <div className="relative">
             <div className="overflow-hidden rounded-3xl shadow-2xl">
               <Image
-                src="/images/about/company-intro.jpg"
+                src="/images/about/journey.png"
                 alt="Kuldeep Travels Team"
                 width={700}
                 height={800}
@@ -70,26 +65,23 @@ export default function CompanyIntro() {
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Every journey has a purpose. Whether it's a business trip,
-              family vacation, pilgrimage, airport transfer, or wedding,
-              Kuldeep Travels is committed to making every journey safe,
-              comfortable, and memorable.
+              Every journey has a purpose. Whether it's a business trip, family
+              vacation, pilgrimage, airport transfer, or wedding, Kuldeep
+              Travels is committed to making every journey safe, comfortable,
+              and memorable.
             </p>
 
             <p className="mt-5 leading-8 text-slate-600">
-              We provide local taxi services, outstation travel,
-              airport transfers, customized tour packages, wedding
-              transportation, and corporate travel solutions with
-              dependable service and well-maintained vehicles.
+              We provide local taxi services, outstation travel, airport
+              transfers, customized tour packages, wedding transportation, and
+              corporate travel solutions with dependable service and
+              well-maintained vehicles.
             </p>
 
             {/* Highlights */}
             <div className="mt-8 space-y-4">
               {highlights.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-3"
-                >
+                <div key={item} className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-6 w-6 text-yellow-500" />
                   <p className="text-slate-700">{item}</p>
                 </div>
@@ -114,9 +106,7 @@ export default function CompanyIntro() {
                       {item.value}
                     </h3>
 
-                    <p className="mt-1 text-sm text-slate-500">
-                      {item.label}
-                    </p>
+                    <p className="mt-1 text-sm text-slate-500">{item.label}</p>
                   </div>
                 );
               })}

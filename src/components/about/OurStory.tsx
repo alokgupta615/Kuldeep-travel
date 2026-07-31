@@ -31,13 +31,12 @@ export default function OurStory() {
         <div className="grid items-center gap-16 lg:grid-cols-2">
           {/* Left Side */}
           <div className="relative">
-            <div className="overflow-hidden rounded-3xl shadow-2xl">
+            <div className="relative overflow-hidden rounded-3xl min-h-[650px] lg:min-h-[750px]">
               <Image
-                src="/images/about/our-story.jpg"
+                src="/images/about/abouts.png"
                 alt="Kuldeep Travels Story"
-                width={700}
-                height={900}
-                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                fill
+                className="object-cover transition duration-500 hover:scale-105"
               />
             </div>
 
@@ -72,10 +71,10 @@ export default function OurStory() {
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              What began as a commitment to honest and dependable taxi
-              services has grown into a complete travel company trusted
-              by families, tourists, businesses, and organizations
-              throughout Lucknow and beyond.
+              What began as a commitment to honest and dependable taxi services
+              has grown into a complete travel company trusted by families,
+              tourists, businesses, and organizations throughout Lucknow and
+              beyond.
             </p>
 
             <div className="mt-10 space-y-8">
@@ -112,16 +111,13 @@ export default function OurStory() {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-bold">
-                    Our Promise
-                  </h3>
+                  <h3 className="text-2xl font-bold">Our Promise</h3>
 
                   <p className="mt-3 leading-7 text-blue-100">
-                    Every booking is handled with professionalism,
-                    transparency, and attention to detail. Whether it's a
-                    short city ride or a multi-day tour, we strive to
-                    deliver a safe, comfortable, and memorable travel
-                    experience.
+                    Every booking is handled with professionalism, transparency,
+                    and attention to detail. Whether it's a short city ride or a
+                    multi-day tour, we strive to deliver a safe, comfortable,
+                    and memorable travel experience.
                   </p>
                 </div>
               </div>
