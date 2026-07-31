@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import Link from "next/link";
 import {
@@ -43,7 +44,7 @@ export default function HeroSection() {
     <section className="relative overflow-hidden text-white">
       <HeroBackground />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16 lg:pt-40 lg:pb-24">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-16 lg:pt-28 lg:pb-24">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* LEFT */}
 
@@ -156,10 +157,15 @@ export default function HeroSection() {
           {/* RIGHT */}
 
           <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-xl shadow-2xl">
-              {/* Uncomment when ready */}
-
-              {/* <BookingForm /> */}
+            <div className="relative w-full max-w-xl">
+              <Image
+                src="/images/home/hero.png"
+                alt="Kuldeep Travels Taxi Service"
+                width={650}
+                height={650}
+                priority
+                className="rounded-3xl object-cover shadow-2xl"
+              />
             </div>
           </div>
         </div>

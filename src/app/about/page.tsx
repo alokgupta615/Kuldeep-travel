@@ -45,7 +45,7 @@ export default function AboutPage() {
       <CompanyIntro />
 
       {/* Company Statistics */}
-      <CompanyStats />
+      {/* <CompanyStats /> */}
 
       {/* Our Story */}
       <OurStory />
@@ -53,8 +53,9 @@ export default function AboutPage() {
       {/* Mission & Vision */}
       <MissionVision />
 
+      <WhoWeServe />
       {/* Services */}
-      <Services />
+      {/* <Services /> */}
 
       {/* Why Choose Us */}
       <WhyChooseUs />
@@ -72,7 +73,6 @@ export default function AboutPage() {
       <Commitment />
 
       {/* Who We Serve */}
-      <WhoWeServe />
 
       {/*
       ===============================

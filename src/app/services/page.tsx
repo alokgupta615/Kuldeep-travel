@@ -11,22 +11,21 @@ import TrustBar from "@/components/service/TrustBar";
 import WhyChooseSection from "@/components/service/WhyChooseSection";
 import ServicesSection from "@/components/ServicesSection";
 
-
 export default function ServicesPage() {
   return (
     <main>
-      <ServiceHero/>
-      <TrustBar/>
-      <WhyChooseSection/>
-      <ServicesSection/>
-      <CoverageSection/>
-      <TravelRequirement/>
-      <BookingPromise/>
-      <PricingSection/>
-      <SafetySection/>
-      <BookDirectSection/>
+      <ServiceHero />
+      <TrustBar />
+      <WhyChooseSection />
+      <ServicesSection />
+      <CoverageSection />
+      <TravelRequirement />
+      <BookingPromise />
+      <PricingSection />
+      <SafetySection />
+      <BookDirectSection />
       {/* <FAQSection/> */}
-      <ContactStrip/>
+      {/* <ContactStrip/> */}
     </main>
   );
 }

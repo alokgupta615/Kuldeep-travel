@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import {
+  ArrowRight,
   ShieldCheck,
   MessageCircleMore,
   Clock3,
@@ -14,103 +16,124 @@ const commitments = [
     icon: MessageCircleMore,
     title: "Honest Communication",
     description:
-      "We keep our customers informed from booking to trip completion with clear and transparent communication.",
+      "We keep you informed throughout your journey with transparent communication, timely updates, and dedicated customer support.",
   },
   {
     icon: ShieldCheck,
     title: "Reliable Service",
     description:
-      "Our team works hard to ensure every journey begins and ends on time with dependable transportation.",
+      "From booking to destination, you can depend on us for punctual pickups, professional drivers, and consistent service quality.",
   },
   {
     icon: CarFront,
     title: "Comfortable Travel",
     description:
-      "Clean, well-maintained vehicles designed to provide a smooth and enjoyable travel experience.",
+      "Our fleet is clean, well-maintained, and equipped to ensure a safe, relaxing, and enjoyable travel experience.",
   },
   {
     icon: Clock3,
     title: "Respect for Your Time",
     description:
-      "Punctual pickups and efficient planning help you stay on schedule throughout your journey.",
+      "We value every minute of your schedule with efficient trip planning and on-time arrivals for every journey.",
   },
   {
     icon: HeartHandshake,
-    title: "Customer-First Approach",
+    title: "Customer-First Experience",
     description:
-      "Every recommendation is tailored to your destination, travel plans, group size, and budget.",
+      "Every travel plan is personalized to match your destination, group size, comfort, and budget without compromising quality.",
   },
   {
     icon: Smile,
-    title: "Memorable Experiences",
+    title: "Travel with Confidence",
     description:
-      "We don't just provide transportation—we help create enjoyable and stress-free travel memories.",
+      "Our goal is to create stress-free journeys that leave you with comfort, trust, and memorable travel experiences.",
   },
 ];
 
 export default function Commitment() {
   return (
-    <section className="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 py-24 text-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 py-16 text-white sm:py-20 lg:py-24">
+      {/* Background Blur */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl" />
+        <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-blue-400/10 blur-3xl" />
+      </div>
 
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <span className="rounded-full bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900">
+          <span className="inline-flex rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-sm font-semibold text-yellow-300">
             Our Commitment
           </span>
 
-          <h2 className="mt-6 text-4xl font-bold">
-            Every Journey Matters
+          <h2 className="mt-6 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
+            The Standards We Never Compromise
           </h2>
 
-          <p className="mt-5 text-lg leading-8 text-blue-100">
-            When you book with Kuldeep Travels, you're placing your trust in us.
-            That's why every trip is planned with care, professionalism,
-            and attention to detail.
+          <p className="mt-6 text-base leading-8 text-blue-100 sm:text-lg">
+            Every journey reflects our dedication to reliability,
+            professionalism, transparency, and exceptional customer care.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {commitments.map((item) => {
+        {/* Commitment List */}
+        <div className="mx-auto mt-16 max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
+          {commitments.map((item, index) => {
             const Icon = item.icon;
 
             return (
               <div
                 key={item.title}
-                className="group rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur transition duration-300 hover:-translate-y-2 hover:bg-white/15"
+                className={`group flex flex-col gap-6 px-6 py-8 transition-all duration-300 hover:bg-white/5 sm:flex-row sm:items-center sm:px-8 lg:px-10 ${
+                  index !== commitments.length - 1
+                    ? "border-b border-white/10"
+                    : ""
+                }`}
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-yellow-400 text-slate-900 transition group-hover:scale-110">
+                {/* Icon */}
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-500 text-slate-900 shadow-xl transition duration-300 group-hover:scale-105">
                   <Icon className="h-8 w-8" />
                 </div>
 
-                <h3 className="mt-6 text-2xl font-bold">
-                  {item.title}
-                </h3>
+                {/* Content */}
+                <div className="flex-1">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <h3 className="text-xl font-bold text-white sm:text-2xl">
+                      {item.title}
+                    </h3>
 
-                <p className="mt-4 leading-7 text-blue-100">
-                  {item.description}
-                </p>
+                    <div className="hidden h-px flex-1 bg-gradient-to-r from-yellow-400/70 via-yellow-400/20 to-transparent sm:block" />
+                  </div>
 
-                <div className="mt-6 h-1 w-12 rounded-full bg-yellow-400 transition-all duration-300 group-hover:w-full" />
+                  <p className="mt-2 max-w-3xl text-sm leading-7 text-blue-100 sm:text-base sm:leading-8">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             );
           })}
         </div>
 
-        {/* Quote */}
-        <div className="mt-20 rounded-3xl bg-white/10 p-10 text-center backdrop-blur">
-          <blockquote className="mx-auto max-w-4xl text-2xl font-semibold leading-relaxed">
-            "Our goal isn't just to take you to your destination—
-            it's to make every mile of your journey safe,
-            comfortable, and memorable."
-          </blockquote>
+        {/* Bottom CTA */}
+        {/* Bottom CTA */}
+        <div className="mt-16 border-t border-white/10 pt-10">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/book-now"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-yellow-400 px-8 py-4 text-base font-semibold text-slate-900 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-300"
+            >
+              Book Your Ride
+              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
 
-          <p className="mt-6 text-yellow-300 font-semibold">
-            — Team Kuldeep Travels
-          </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur transition-all duration-300 hover:bg-white hover:text-blue-900"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
-
       </div>
     </section>
   );
