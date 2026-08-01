@@ -39,7 +39,8 @@ const trustCards = [
 export default function HeroSection() {
   return (
     // <section className="relative h-screen min-h-[760px] overflow-hidden text-white">
-    <section className="relative overflow-hidden text-white min-h-[780px] md:min-h-[900px] lg:min-h-screen">
+    // <section className="relative overflow-hidden text-white min-h-[780px] md:min-h-[900px] lg:min-h-screen">
+    <section className="relative overflow-hidden text-white min-h-screen">
       {/* ================= Background ================= */}
 
       <div className="absolute inset-0">
@@ -52,19 +53,21 @@ export default function HeroSection() {
           priority
           quality={100}
           sizes="100vw"
-          className="hidden md:block object-cover object-[82%_center]"
+          className="hidden md:block object-cover object-[78%_center]"
         />
 
         {/* Mobile Image */}
 
         <Image
-          src="/images/home/hero-mobile.png"
+          // src="/images/home/hero-mobile.png"
+          src="/images/home/hero-bg.jpeg"
           alt="Kuldeep Travels"
           fill
           priority
           quality={100}
-          sizes="100vw"
-          className="block md:hidden object-cover object-right-bottom"
+          sizes="70vw"
+          // className="block md:hidden object-cover object-[72%_center]"
+          className="block md:hidden object-cover object-[82%_center]"
         />
 
         {/* Desktop Overlay */}
@@ -73,7 +76,11 @@ export default function HeroSection() {
 
         {/* Mobile Overlay */}
 
-        <div className="absolute inset-0 md:hidden bg-gradient-to-b from-[#04132D]/92 via-[#04132D]/72 to-[#04132D]/96" />
+        <div
+          className="absolute inset-0 md:hidden bg-gradient-to-b from-[#04132D]/78
+via-[#04132D]/45
+to-[#04132D]/886"
+        />
 
         {/* Soft Overlay */}
 
@@ -90,19 +97,19 @@ export default function HeroSection() {
 
       {/* ================= Content ================= */}
 
-      <div className="relative z-10 mx-auto flex min-h-[780px] md:min-h-[900px] lg:min-h-screen w-full max-w-7xl items-center px-5 pt-28 pb-12 md:px-8 md:pt-36 lg:px-10 lg:pt-40">
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl items-center px-5 pt-16 pb-12 md:px-8 md:pt-28 md:pb-16 lg:px-10 lg:pt-24 lg:pb-12">
         {/* <div className="max-w-[560px]"> */}
-        <div className="max-w-[650px]">
+        <div className="max-w-[600px] xl:max-w-[650px]">
           {/* Badge */}
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2 text-sm font-medium text-yellow-300 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-4 py-1.5 text-xs lg:px-5 lg:py-2 lg:text-sm font-medium text-yellow-300 backdrop-blur">
             <CheckCircle className="h-4 w-4" />
             Trusted Taxi Service Since 2012
           </div>
 
           {/* Heading */}
 
-          <h1 className="mt-5 text-[46px] leading-[0.9] font-black sm:text-6xl lg:text-[76px]">
+          <h1 className="mt-4 text-[42px] leading-[0.92] font-black sm:text-6xl lg:text-[68px] xl:text-[76px]">
             Best Travel
             <br />
             Agency in
@@ -111,13 +118,13 @@ export default function HeroSection() {
           </h1>
           {/* Description */}
 
-          <p className="mt-5 max-w-[620px] text-[17px] leading-8 sm:text-lg lg:text-xl lg:leading-9">
+          <p className="mt-4 max-w-[620px] text-base leading-7 sm:text-lg lg:text-lg lg:leading-8">
             Book safe, comfortable and affordable taxi services for Airport
             Transfers, Local Cabs, Outstation Trips, Corporate Travel and Family
             Tour Packages.
           </p>
 
-          <p className="mt-4 max-w-[520px] text-sm leading-7 text-slate-300 sm:text-base lg:text-lg">
+          <p className="mt-3 max-w-[520px] text-sm leading-6 text-slate-300 sm:text-base lg:text-lg">
             Verified drivers, transparent pricing, premium fleet and 24×7
             customer support.
           </p>
@@ -125,12 +132,12 @@ export default function HeroSection() {
           {/* CTA Buttons */}
 
           {/* <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"> */}
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {/* Book Now */}
 
             <Link
               href="/book-now"
-              className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 px-8 py-3.5 font-semibold text-slate-900 shadow-[0_20px_50px_rgba(251,191,36,.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(251,191,36,.55)]"
+              className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 px-7 py-3 font-semibold text-slate-900 shadow-[0_20px_50px_rgba(251,191,36,.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(251,191,36,.55)]"
             >
               Book Your Ride
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -140,7 +147,7 @@ export default function HeroSection() {
 
             <a
               href="tel:+918808142859"
-              className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-8 py-3.5 font-semibold backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/20"
+              className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-7 py-3 font-semibold backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/20"
             >
               <Phone className="h-5 w-5" />
               Call Now
@@ -152,7 +159,7 @@ export default function HeroSection() {
               href="https://wa.me/918808142859"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-3.5 font-semibold shadow-[0_15px_45px_rgba(16,185,129,.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(16,185,129,.55)]"
+              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 px-7 py-3 font-semibold shadow-[0_15px_45px_rgba(16,185,129,.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(16,185,129,.55)]"
             >
               <MessageCircle className="h-5 w-5" />
               WhatsApp
@@ -162,7 +169,7 @@ export default function HeroSection() {
           {/* Google Rating */}
 
           {/* {/* <div className="mt-7 flex flex-wrap items-center gap-3"> */}
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-6 grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-3">
             <div className="flex items-center gap-1">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star
@@ -190,15 +197,19 @@ export default function HeroSection() {
               return (
                 <div
                   key={item.label}
-                  className="group rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-yellow-400/30 hover:bg-white/15"
+                  className="group rounded-lg border border-white/10 bg-white/10 px-3 py-2.5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-yellow-400/30 hover:bg-white/15"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-300 to-yellow-500 text-slate-900 shadow-lg">
-                    <Icon className="h-6 w-6" />
+                  <div className="flex h-8 w-8 lg:h-10 lg:w-10 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-500 text-slate-900 shadow-lg">
+                    <Icon className="h-4 w-4 lg:h-5 lg:w-5" />
                   </div>
 
-                  <h3 className="mt-3 text-xl font-bold">{item.value}</h3>
+                  <h3 className="mt-2 text-lg font-bold lg:text-xl">
+                    {item.value}
+                  </h3>
 
-                  <p className="mt-1 text-sm text-slate-300">{item.label}</p>
+                  <p className="mt-0.5 text-[11px] text-slate-300 lg:text-xs">
+                    {item.label}
+                  </p>
                 </div>
               );
             })}
@@ -206,22 +217,34 @@ export default function HeroSection() {
 
           {/* Small Features */}
 
-          <div className="mt-8 flex flex-wrap gap-2">
-            <div className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs backdrop-blur">
+          <div className="mt-6 flex flex-wrap gap-2">
+            <Link
+              href="/services/airport-transfer"
+              className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs backdrop-blur transition hover:bg-white/20"
+            >
               🚖 Airport Transfers
-            </div>
+            </Link>
 
-            <div className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs backdrop-blur">
+            <Link
+              href="/services/outstation-taxi"
+              className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs backdrop-blur transition hover:bg-white/20"
+            >
               🛣️ Outstation Taxi
-            </div>
+            </Link>
 
-            <div className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs backdrop-blur">
-              🏙️ Local Cab
-            </div>
+            <Link
+              href="/services/one-way-taxi"
+              className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs backdrop-blur transition hover:bg-white/20"
+            >
+              🚗 One Way Taxi
+            </Link>
 
-            <div className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs backdrop-blur">
-              💼 Corporate Travel
-            </div>
+            <Link
+              href="/services/senior-citizen-travel"
+              className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs backdrop-blur transition hover:bg-white/20"
+            >
+              ❤️ Senior Citizen Travel
+            </Link>
           </div>
         </div>
       </div>
