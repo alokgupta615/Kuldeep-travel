@@ -12,8 +12,7 @@ import FAQ from "@/components/service/wedding-car/FAQ";
 import CTA from "@/components/service/wedding-car/CTA";
 
 export const metadata: Metadata = {
-  title:
-    "Wedding Car Rental Lucknow | Luxury Wedding Cars | Kuldeep Travels",
+  title: "Wedding Car Rental Lucknow | Luxury Wedding Cars | Kuldeep Travels",
 
   description:
     "Book premium wedding car rental in Lucknow with Kuldeep Travels. Luxury sedans, SUVs, Innova Crysta, Tempo Travellers, Mini Buses and destination wedding transportation with professional chauffeurs.",
@@ -35,19 +34,16 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical:
-      "https://kuldeeptravels.com/services/wedding-car-rental",
+    canonical: "https://kuldeeptravels.com/services/wedding-car-rental",
   },
 
   openGraph: {
-    title:
-      "Wedding Car Rental Lucknow | Kuldeep Travels",
+    title: "Wedding Car Rental Lucknow | Kuldeep Travels",
 
     description:
       "Luxury wedding cars with professional chauffeurs for weddings, receptions, engagements and destination weddings.",
 
-    url:
-      "https://kuldeeptravels.com/services/wedding-car-rental",
+    url: "https://kuldeeptravels.com/services/wedding-car-rental",
 
     siteName: "Kuldeep Travels",
 
@@ -68,11 +64,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title:
-      "Wedding Car Rental Lucknow | Kuldeep Travels",
+    title: "Wedding Car Rental Lucknow | Kuldeep Travels",
 
-    description:
-      "Premium Wedding Transportation in Lucknow.",
+    description: "Premium Wedding Transportation in Lucknow.",
 
     images: ["/images/wedding/hero.jpg"],
   },
@@ -126,8 +120,7 @@ export default function WeddingCarRentalPage() {
                   "@type": "ListItem",
                   position: 3,
                   name: "Wedding Car Rental",
-                  item:
-                    "https://kuldeeptravels.com/services/wedding-car-rental",
+                  item: "https://kuldeeptravels.com/services/wedding-car-rental",
                 },
               ],
             },
@@ -142,8 +135,7 @@ export default function WeddingCarRentalPage() {
                   name: "Which cars are available for weddings?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text:
-                      "Luxury Sedans, Premium SUVs, Innova Crysta, Tempo Traveller, Mini Bus and Luxury Coaches.",
+                    text: "Luxury Sedans, Premium SUVs, Innova Crysta, Tempo Traveller, Mini Bus and Luxury Coaches.",
                   },
                 },
                 {
@@ -151,8 +143,7 @@ export default function WeddingCarRentalPage() {
                   name: "Can I book multiple wedding vehicles?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text:
-                      "Yes. Separate vehicles can be arranged for bride, groom, family members and wedding guests.",
+                    text: "Yes. Separate vehicles can be arranged for bride, groom, family members and wedding guests.",
                   },
                 },
                 {
@@ -160,18 +151,15 @@ export default function WeddingCarRentalPage() {
                   name: "Do you provide decorated wedding cars?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text:
-                      "Yes. We provide flower decoration, ribbon styling and customized wedding themes.",
+                    text: "Yes. We provide flower decoration, ribbon styling and customized wedding themes.",
                   },
                 },
                 {
                   "@type": "Question",
-                  name:
-                    "Do you provide destination wedding transportation?",
+                  name: "Do you provide destination wedding transportation?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text:
-                      "Yes. Transportation is available throughout Uttar Pradesh and nearby destinations.",
+                    text: "Yes. Transportation is available throughout Uttar Pradesh and nearby destinations.",
                   },
                 },
               ],

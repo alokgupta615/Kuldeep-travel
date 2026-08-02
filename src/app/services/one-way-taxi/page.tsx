@@ -8,7 +8,7 @@ import VehicleOptions from "@/components/service/one-way-taxi/VehicleOptions";
 import BookingProcess from "@/components/service/one-way-taxi/BookingProcess";
 import DistanceTable from "@/components/service/one-way-taxi/DistanceTable";
 import WhyChooseUs from "@/components/service/one-way-taxi/WhyChooseUs";
-import ReturnTrip from"@/components/service/one-way-taxi/ReturnTrip";
+import ReturnTrip from "@/components/service/one-way-taxi/ReturnTrip";
 
 import FAQ from "@/components/service/one-way-taxi/FAQ";
 import CTA from "@/components/service/one-way-taxi/CTA";
@@ -22,16 +22,16 @@ export const metadata: Metadata = {
 export default function OneWayCabPage() {
   return (
     <>
-      <Hero/>
+      <Hero />
       <WhyOneWay />
       <Benefits />
       <PopularRoutes />
       <TravelPurpose />
-      <VehicleOptions />
+      {/* <VehicleOptions /> */}
       <BookingProcess />
       <DistanceTable />
       <WhyChooseUs />
-      <ReturnTrip/>
+      <ReturnTrip />
       <FAQ />
       <CTA />
     </>
