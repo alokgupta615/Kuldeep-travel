@@ -18,10 +18,10 @@ export default function AirportTaxiPage() {
       <Features />
       <BookingProcess />
       <PreBookingBenefits />
-      <VehicleOptions />
+      {/* <VehicleOptions /> */}
       <TravellerTypes />
       <ServiceAreas />
-      <WhyChoose />
+      {/* <WhyChoose /> */}
       <FAQ />
       <CTA />
     </main>

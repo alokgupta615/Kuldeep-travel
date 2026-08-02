@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Briefcase,
   Users,
@@ -5,6 +6,7 @@ import {
   GraduationCap,
   HeartHandshake,
   Camera,
+  ArrowRight,
 } from "lucide-react";
 
 const travellers = [
@@ -18,77 +20,89 @@ const travellers = [
     icon: Users,
     title: "Families",
     description:
-      "Comfortable vehicles with enough space for family members and luggage.",
+      "Comfortable vehicles with ample space for passengers and luggage.",
   },
   {
     icon: User,
     title: "Solo Travellers",
     description:
-      "Safe and dependable airport rides for individual travellers.",
+      "Safe, comfortable and dependable airport rides for individuals.",
   },
   {
     icon: GraduationCap,
     title: "Students",
     description:
-      "Affordable airport transportation for university and college students.",
+      "Affordable airport transportation for college and university students.",
   },
   {
     icon: HeartHandshake,
     title: "Senior Citizens",
     description:
-      "Comfortable travel with courteous drivers and luggage assistance.",
+      "Courteous drivers with luggage assistance and comfortable travel.",
   },
   {
     icon: Camera,
     title: "Tourists",
     description:
-      "Convenient airport pickups and drops for visitors exploring Lucknow.",
+      "Convenient airport pickup and drop for visitors exploring Lucknow.",
   },
 ];
 
 export default function TravellerTypes() {
   return (
-    <section className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-gray-50 py-14 md:py-24">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        {/* Heading */}
+        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+          <span className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">
+            Who We Serve
+          </span>
 
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold text-gray-900">
+          <h2 className="mt-4 text-3xl font-bold text-gray-900 md:text-5xl">
             Perfect for Every Traveller
           </h2>
 
-          <p className="mt-5 text-gray-600 leading-8">
-            Our airport taxi service is designed for different travel
-            needs with comfortable vehicles and professional drivers.
+          <p className="mt-5 text-base leading-7 text-gray-600 md:text-lg md:leading-8">
+            Whether you're travelling for business, family vacations or leisure,
+            our airport taxi service is tailored for every journey.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {travellers.map((item, index) => {
+        {/* List */}
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {travellers.map((item) => {
             const Icon = item.icon;
 
             return (
-              <div
-                key={index}
-                className="bg-white rounded-3xl border p-8 shadow-sm hover:shadow-xl transition"
+              <Link
+                key={item.title}
+                href="/book-now"
+                className="group block rounded-2xl"
+                aria-label={`Book airport taxi for ${item.title}`}
               >
-                <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
-                  <Icon className="text-blue-700" size={30} />
+                <div className="flex h-full items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-600 hover:shadow-xl">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 transition-colors duration-300 group-hover:bg-blue-700">
+                    <Icon className="h-6 w-6 text-blue-700 transition-colors duration-300 group-hover:text-white" />
+                  </div>
+
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-bold text-gray-900">
+                        {item.title}
+                      </h3>
+
+                      <ArrowRight className="h-5 w-5 text-gray-400 transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-700" />
+                    </div>
+
+                    <p className="mt-2 text-sm leading-7 text-gray-600 md:text-base">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-
-                <h3 className="mt-6 text-2xl font-bold text-gray-900">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-gray-600 leading-7">
-                  {item.description}
-                </p>
-              </div>
+              </Link>
             );
           })}
-
         </div>
-
       </div>
     </section>
   );
