@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Briefcase, Snowflake, CarFront } from "lucide-react";
+import { Users, Briefcase, Snowflake } from "lucide-react";
 
 const fleet = [
   {
@@ -85,21 +85,38 @@ export default function Fleet() {
             >
               {/* Desktop Image */}
 
-              <div className="relative hidden h-60 md:block">
+              {/* Vehicle Image */}
+
+              {/* <div className="relative h-40 overflow-hidden rounded-t-2xl bg-gradient-to-br from-blue-50 to-white sm:h-48 md:h-60">
                 <Image
                   src={vehicle.image}
                   alt={vehicle.name}
                   fill
-                  className="object-cover"
+                  className="object-contain p-4 transition-transform duration-300 hover:scale-105 md:object-cover md:p-0"
+                />
+              </div> */}
+
+              <div className="relative h-52 overflow-hidden rounded-t-2xl bg-gradient-to-br from-blue-50 via-white to-gray-50 sm:h-56 md:h-60">
+                <Image
+                  src={vehicle.image}
+                  alt={vehicle.name}
+                  fill
+                  className="object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
 
-              <div className="p-5 md:p-7">
-                {/* Mobile Icon */}
+              {/* <div className="relative h-52 overflow-hidden rounded-t-2xl bg-gradient-to-br from-blue-50 via-white to-gray-50 sm:h-56 md:h-60">
+                <Image
+                  src={vehicle.image}
+                  alt={vehicle.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-contain"
+                />
+              </div> */}
 
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 md:hidden">
-                  <CarFront className="h-7 w-7 text-blue-700" />
-                </div>
+              <div className="p-4 md:p-7">
+                {/* Mobile Icon */}
 
                 <h3 className="text-xl font-bold text-gray-900 md:text-2xl">
                   {vehicle.name}

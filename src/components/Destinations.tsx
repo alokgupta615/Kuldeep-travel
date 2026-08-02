@@ -5,42 +5,44 @@ import { ArrowRight, MapPin } from "lucide-react";
 const destinations = [
   {
     name: "Ayodhya",
-    image: "/images/destinations/ayodhya.jpg",
+    image: "/images/destinations/ayodhya.png",
     distance: "135 km",
-    description: "Visit the holy city of Lord Ram with comfortable taxi service.",
+    description:
+      "Visit the holy city of Lord Ram with comfortable taxi service.",
     href: "/destinations/lucknow-to-ayodhya",
   },
   {
     name: "Varanasi",
-    image: "/images/destinations/varanasi.jpg",
+    image: "/images/destinations/varanasi.png",
     distance: "320 km",
     description: "Travel to Kashi with safe, reliable, and comfortable rides.",
     href: "/destinations/lucknow-to-varanasi",
   },
   {
     name: "Prayagraj",
-    image: "/images/destinations/prayagraj.jpg",
+    image: "/images/destinations/prayagraj.png",
     distance: "205 km",
-    description: "Convenient trips for business, tourism, and religious visits.",
+    description:
+      "Convenient trips for business, tourism, and religious visits.",
     href: "/destinations/lucknow-to-prayagraj",
   },
   {
     name: "Agra",
-    image: "/images/destinations/agra.jpg",
+    image: "/images/destinations/agra.png",
     distance: "335 km",
     description: "Explore the Taj Mahal with our premium taxi service.",
     href: "/destinations/lucknow-to-agra",
   },
   {
     name: "Delhi",
-    image: "/images/destinations/delhi.jpg",
+    image: "/images/destinations/delhi.png",
     distance: "550 km",
     description: "Comfortable long-distance travel with experienced drivers.",
     href: "/destinations/lucknow-to-delhi",
   },
   {
-    name: "Mathura & Vrindavan",
-    image: "/images/destinations/mathura.jpg",
+    name: "Mathura",
+    image: "/images/destinations/mathura.png",
     distance: "470 km",
     description: "Religious and family trips with customized packages.",
     href: "/destinations/lucknow-to-mathura",
