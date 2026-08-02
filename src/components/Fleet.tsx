@@ -5,7 +5,7 @@ import { Users, Briefcase, Snowflake, CarFront } from "lucide-react";
 const fleet = [
   {
     name: "Sedan",
-    image: "/images/fleet/sedan.jpg",
+    image: "/images/fleet/sedan.png",
     passengers: "4 Passengers",
     luggage: "2 Bags",
     ac: "Air Conditioned",
@@ -13,7 +13,7 @@ const fleet = [
   },
   {
     name: "SUV",
-    image: "/images/fleet/suv.jpg",
+    image: "/images/fleet/suv.png",
     passengers: "6 Passengers",
     luggage: "4 Bags",
     ac: "Air Conditioned",
@@ -21,7 +21,7 @@ const fleet = [
   },
   {
     name: "Toyota Innova Crysta",
-    image: "/images/fleet/innova.jpg",
+    image: "/images/fleet/innova.png",
     passengers: "7 Passengers",
     luggage: "5 Bags",
     ac: "Premium AC",
@@ -29,7 +29,7 @@ const fleet = [
   },
   {
     name: "Ertiga",
-    image: "/images/fleet/ertiga.jpg",
+    image: "/images/fleet/ertiga.png",
     passengers: "6 Passengers",
     luggage: "4 Bags",
     ac: "Air Conditioned",
@@ -37,7 +37,7 @@ const fleet = [
   },
   {
     name: "Tempo Traveller",
-    image: "/images/fleet/tempo.jpg",
+    image: "/images/fleet/tempo.png",
     passengers: "12 / 17 / 26 Seats",
     luggage: "Large Luggage Space",
     ac: "Luxury AC",
@@ -45,7 +45,7 @@ const fleet = [
   },
   {
     name: "Luxury Bus",
-    image: "/images/fleet/bus.jpg",
+    image: "/images/fleet/bus.png",
     passengers: "35–50 Seats",
     luggage: "Large Storage",
     ac: "Luxury AC",
