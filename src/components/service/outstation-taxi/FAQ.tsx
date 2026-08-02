@@ -50,104 +50,72 @@ export default function FAQ() {
   const [active, setActive] = useState<number | null>(0);
 
   return (
-    <section className="bg-slate-50 py-24">
-      <div className="mx-auto max-w-4xl px-6">
-
+    <section className="bg-white py-14 md:py-24">
+      <div className="mx-auto max-w-4xl px-5 lg:px-8">
         {/* Heading */}
 
-        <div className="text-center">
-
-          <span className="rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold text-blue-700">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-blue-700 md:px-5 md:text-sm">
             Frequently Asked Questions
           </span>
 
-          <h2 className="mt-6 text-4xl font-black text-slate-900 lg:text-5xl">
+          <h2 className="mt-5 text-3xl font-black text-slate-900 md:text-5xl">
             Have Questions?
-            <span className="block text-blue-700">
-              We Have Answers.
-            </span>
+            <span className="block text-blue-700">We Have Answers.</span>
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-600">
-            Find answers to the most common questions about our
-            outstation cab services in Lucknow.
+          <p className="mt-5 text-base leading-7 text-slate-600 md:text-lg md:leading-8">
+            Everything you need to know before booking your outstation cab.
           </p>
-
         </div>
 
-        {/* FAQ List */}
+        {/* FAQ */}
 
-        <div className="mt-16 space-y-5">
-
+        <div className="mt-10 space-y-4 md:mt-14">
           {faqs.map((faq, index) => {
-
             const open = active === index;
 
             return (
-
               <div
                 key={index}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:border-blue-200 hover:shadow-lg"
               >
-
                 <button
-                  onClick={() =>
-                    setActive(open ? null : index)
-                  }
-                  className="flex w-full items-center justify-between p-6 text-left transition hover:bg-slate-50"
+                  onClick={() => setActive(open ? null : index)}
+                  className="flex w-full items-start justify-between gap-4 p-4 md:p-6 text-left"
                 >
-
-                  <div className="flex items-center gap-4">
-
-                    <div className="rounded-xl bg-blue-100 p-3">
-
-                      <HelpCircle className="text-blue-600" />
-
+                  <div className="flex flex-1 items-start gap-3">
+                    <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-100">
+                      <HelpCircle className="h-5 w-5 text-blue-700" />
                     </div>
 
-                    <h3 className="text-lg font-semibold text-slate-900">
-
+                    <h3 className="text-base font-semibold leading-7 text-slate-900 md:text-lg">
                       {faq.question}
-
                     </h3>
-
                   </div>
 
                   <ChevronDown
-                    className={`transition duration-300 ${
-                      open ? "rotate-180 text-blue-600" : ""
+                    className={`mt-1 h-5 w-5 shrink-0 transition-transform duration-300 ${
+                      open ? "rotate-180 text-blue-700" : "text-slate-500"
                     }`}
                   />
-
                 </button>
 
                 <div
                   className={`grid transition-all duration-300 ${
-                    open
-                      ? "grid-rows-[1fr]"
-                      : "grid-rows-[0fr]"
+                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                   }`}
                 >
                   <div className="overflow-hidden">
-
-                    <p className="px-6 pb-6 pl-20 leading-8 text-slate-600">
-
+                    <p className="px-4 pb-5 text-sm leading-7 text-slate-600 md:px-6 md:pb-6 md:pl-[4.5rem] md:text-base md:leading-8">
                       {faq.answer}
-
                     </p>
-
                   </div>
-
                 </div>
-
               </div>
-
             );
-
           })}
-
         </div>
-
       </div>
     </section>
   );

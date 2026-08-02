@@ -1,7 +1,6 @@
 import {
   Hero,
   JourneyIntro,
-  WhyChooseOutstation,
   PopularDestinations,
   TravelPlans,
   VehicleOptions,
@@ -10,14 +9,14 @@ import {
   WhyChooseKuldeep,
   FAQ,
   CTA,
-} from  "@/components/service/outstation-taxi"
+} from "@/components/service/outstation-taxi";
 
 export default function OutstationCabPage() {
   return (
     <>
       <Hero />
       <JourneyIntro />
-      <WhyChooseOutstation />
+      {/* <WhyChooseOutstation /> */}
       <PopularDestinations />
       <TravelPlans />
       <VehicleOptions />
@@ -25,7 +24,7 @@ export default function OutstationCabPage() {
       <TripPlanning />
       <WhyChooseKuldeep />
       <FAQ />
-      <CTA />
+      {/* <CTA /> */}
     </>
   );
 }

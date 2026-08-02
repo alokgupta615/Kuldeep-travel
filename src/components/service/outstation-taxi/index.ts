@@ -1,5 +1,5 @@
 export { default as Hero } from "./Hero";
-export { default as BookingForm } from "./BookingForm";
+// export { default as BookingForm } from "./BookingForm";
 export { default as JourneyIntro } from "./JourneyIntro";
 export { default as WhyChooseOutstation } from "./WhyChooseOutstation";
 export { default as PopularDestinations } from "./PopularDestinations";

@@ -1,77 +1,314 @@
+// import Image from "next/image";
+// import Link from "next/link";
+// import {
+//   Users,
+//   Briefcase,
+//   Snowflake,
+//   CheckCircle2,
+//   ArrowRight,
+// } from "lucide-react";
+
+// const vehicles = [
+//   {
+//     name: "Sedan",
+//     image: "/images/fleet/sedan.webp",
+//     passengers: "4 Passengers",
+//     luggage: "2 Bags",
+//     bestFor: "Business Travel • Couples • Small Families",
+//     features: [
+//       "Air Conditioned",
+//       "Comfortable Seats",
+//       "Professional Driver",
+//       "Fuel Efficient",
+//     ],
+//   },
+//   {
+//     name: "SUV",
+//     image: "/images/fleet/suv.webp",
+//     passengers: "6 Passengers",
+//     luggage: "4 Bags",
+//     bestFor: "Family Trips • Group Travel",
+//     features: [
+//       "Extra Legroom",
+//       "Premium Interior",
+//       "AC",
+//       "Large Boot Space",
+//     ],
+//   },
+//   {
+//     name: "Innova Crysta",
+//     image: "/images/fleet/innova.webp",
+//     passengers: "7 Passengers",
+//     luggage: "5 Bags",
+//     bestFor: "Luxury Family Trips • Corporate",
+//     features: [
+//       "Captain Seats",
+//       "Luxury Ride",
+//       "Powerful AC",
+//       "Premium Comfort",
+//     ],
+//   },
+//   {
+//     name: "Tempo Traveller",
+//     image: "/images/fleet/tempo.webp",
+//     passengers: "12–17 Passengers",
+//     luggage: "Large Capacity",
+//     bestFor: "Tours • Weddings • Group Travel",
+//     features: [
+//       "Push Back Seats",
+//       "Large Luggage Space",
+//       "Music System",
+//       "Perfect for Groups",
+//     ],
+//   },
+// ];
+
+// export default function VehicleOptions() {
+//   return (
+//     <section className="bg-white py-24">
+//       <div className="mx-auto max-w-7xl px-6">
+
+//         {/* Heading */}
+
+{
+  /* <div className="mx-auto max-w-3xl text-center">
+
+  <span className="rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold text-blue-700">
+    Our Fleet
+  </span>
+
+  <h2 className="mt-6 text-4xl font-black text-slate-900 lg:text-5xl">
+    Choose The Perfect
+    <span className="block text-blue-700">
+      Vehicle For Your Journey
+    </span>
+  </h2>
+
+  <p className="mt-6 text-lg text-slate-600 leading-8">
+    Whether you're travelling alone or with a large group,
+    Kuldeep Travels has the right vehicle for every outstation trip.
+  </p>
+
+</div> */
+}
+
+//         {/* Cards */}
+
+//         <div className="mt-16 grid gap-8 lg:grid-cols-2">
+
+//           {vehicles.map((vehicle) => (
+
+//             <div
+//               key={vehicle.name}
+//               className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:border-blue-600 hover:shadow-2xl"
+//             >
+
+//               {/* Image */}
+
+//               <div className="relative h-72 overflow-hidden">
+
+//                 <Image
+//                   src={vehicle.image}
+//                   alt={vehicle.name}
+//                   fill
+//                   className="object-cover transition duration-700 group-hover:scale-110"
+//                 />
+
+//                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+//                 <div className="absolute bottom-6 left-6">
+
+//                   <h3 className="text-4xl font-black text-white">
+//                     {vehicle.name}
+//                   </h3>
+
+//                 </div>
+
+//               </div>
+
+//               {/* Content */}
+
+//               <div className="p-8">
+
+//                 <div className="grid grid-cols-2 gap-4">
+
+//                   <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-4">
+
+//                     <Users className="text-blue-600" />
+
+//                     <div>
+
+//                       <p className="text-xs uppercase text-slate-500">
+//                         Capacity
+//                       </p>
+
+//                       <h4 className="font-semibold text-slate-900">
+//                         {vehicle.passengers}
+//                       </h4>
+
+//                     </div>
+
+//                   </div>
+
+//                   <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-4">
+
+//                     <Briefcase className="text-blue-600" />
+
+//                     <div>
+
+//                       <p className="text-xs uppercase text-slate-500">
+//                         Luggage
+//                       </p>
+
+//                       <h4 className="font-semibold text-slate-900">
+//                         {vehicle.luggage}
+//                       </h4>
+
+//                     </div>
+
+//                   </div>
+
+//                 </div>
+
+//                 {/* Best For */}
+
+//                 <div className="mt-6 rounded-xl bg-blue-50 p-5">
+
+//                   <h4 className="font-bold text-blue-700">
+//                     Best For
+//                   </h4>
+
+//                   <p className="mt-2 text-slate-600">
+//                     {vehicle.bestFor}
+//                   </p>
+
+//                 </div>
+
+//                 {/* Features */}
+
+//                 <div className="mt-8 space-y-4">
+
+//                   {vehicle.features.map((feature) => (
+
+//                     <div
+//                       key={feature}
+//                       className="flex items-center gap-3"
+//                     >
+
+//                       <CheckCircle2
+//                         size={20}
+//                         className="text-green-600"
+//                       />
+
+//                       <span className="text-slate-700">
+//                         {feature}
+//                       </span>
+
+//                     </div>
+
+//                   ))}
+
+//                 </div>
+
+//                 {/* Extra */}
+
+//                 <div className="mt-8 flex items-center gap-3 rounded-xl bg-yellow-50 p-4">
+
+//                   <Snowflake className="text-blue-600" />
+
+//                   <span className="font-medium text-slate-700">
+//                     Fully Air Conditioned Vehicle
+//                   </span>
+
+//                 </div>
+
+//                 {/* Button */}
+
+//                 <Link
+//                   href="/contact"
+//                   className="mt-8 inline-flex items-center gap-2 rounded-xl bg-yellow-400 px-8 py-4 font-semibold text-slate-900 transition hover:bg-yellow-500"
+//                 >
+
+//                   Book This Vehicle
+
+//                   <ArrowRight size={18} />
+
+//                 </Link>
+
+//               </div>
+
+//             </div>
+
+//           ))}
+
+//         </div>
+
+//       </div>
+//     </section>
+//   );
+// }
+
+// ("use client");
+
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Users,
-  Briefcase,
-  Snowflake,
-  CheckCircle2,
-  ArrowRight,
-} from "lucide-react";
+import { Users, Briefcase, Snowflake, ArrowRight } from "lucide-react";
 
-const vehicles = [
+const fleet = [
   {
     name: "Sedan",
-    image: "/images/fleet/sedan.webp",
-    passengers: "4 Passengers",
+    image: "/images/fleet/sedan.png",
+    seats: "4 Seats",
     luggage: "2 Bags",
-    bestFor: "Business Travel • Couples • Small Families",
-    features: [
-      "Air Conditioned",
-      "Comfortable Seats",
-      "Professional Driver",
-      "Fuel Efficient",
-    ],
+    description:
+      "Perfect for city rides, airport transfers, and business travel.",
   },
   {
     name: "SUV",
-    image: "/images/fleet/suv.webp",
-    passengers: "6 Passengers",
+    image: "/images/fleet/suv.png",
+    seats: "6 Seats",
     luggage: "4 Bags",
-    bestFor: "Family Trips • Group Travel",
-    features: [
-      "Extra Legroom",
-      "Premium Interior",
-      "AC",
-      "Large Boot Space",
-    ],
+    description: "Comfortable choice for families and outstation journeys.",
   },
   {
     name: "Innova Crysta",
-    image: "/images/fleet/innova.webp",
-    passengers: "7 Passengers",
+    image: "/images/fleet/innova.png",
+    seats: "7 Seats",
     luggage: "5 Bags",
-    bestFor: "Luxury Family Trips • Corporate",
-    features: [
-      "Captain Seats",
-      "Luxury Ride",
-      "Powerful AC",
-      "Premium Comfort",
-    ],
+    description:
+      "Premium comfort for corporate travel and long-distance trips.",
+  },
+  {
+    name: "Ertiga",
+    image: "/images/fleet/ertiga.png",
+    seats: "7 Seats",
+    luggage: "4bag",
+    description:
+      "Luxury buses for large events, weddings, and long-distance travel.",
   },
   {
     name: "Tempo Traveller",
-    image: "/images/fleet/tempo.webp",
-    passengers: "12–17 Passengers",
-    luggage: "Large Capacity",
-    bestFor: "Tours • Weddings • Group Travel",
-    features: [
-      "Push Back Seats",
-      "Large Luggage Space",
-      "Music System",
-      "Perfect for Groups",
-    ],
+    image: "/images/fleet/tempo.png",
+    seats: "12–17 Seats",
+    luggage: "10 Bags",
+    description: "Ideal for family tours, pilgrimages, and group travel.",
+  },
+  {
+    name: "Luxury Bus Bus",
+    image: "/images/fleet/bus.png",
+    seats: "25 Seats",
+    luggage: "20 Bags",
+    description:
+      "Reliable transportation for schools, events, and corporate groups.",
   },
 ];
 
-export default function VehicleOptions() {
+export default function FleetSection() {
   return (
     <section className="bg-white py-24">
-      <div className="mx-auto max-w-7xl px-6">
-
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Heading */}
-
         <div className="mx-auto max-w-3xl text-center">
-
           <span className="rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold text-blue-700">
             Our Fleet
           </span>
@@ -84,163 +321,69 @@ export default function VehicleOptions() {
           </h2>
 
           <p className="mt-6 text-lg text-slate-600 leading-8">
-            Whether you're travelling alone or with a large group,
-            Kuldeep Travels has the right vehicle for every outstation trip.
+            Whether you're travelling alone or with a large group, Kuldeep
+            Travels has the right vehicle for every outstation trip.
           </p>
-
         </div>
-
         {/* Cards */}
-
-        <div className="mt-16 grid gap-8 lg:grid-cols-2">
-
-          {vehicles.map((vehicle) => (
-
+        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {fleet.map((vehicle) => (
             <div
               key={vehicle.name}
-              className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:border-blue-600 hover:shadow-2xl"
+              className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
-
               {/* Image */}
 
-              <div className="relative h-72 overflow-hidden">
-
+              <div className="relative h-64 overflow-hidden">
                 <Image
                   src={vehicle.image}
                   alt={vehicle.name}
                   fill
-                  className="object-cover transition duration-700 group-hover:scale-110"
+                  className="object-cover transition duration-500 group-hover:scale-110"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-                <div className="absolute bottom-6 left-6">
-
-                  <h3 className="text-4xl font-black text-white">
-                    {vehicle.name}
-                  </h3>
-
+                <div className="absolute bottom-5 left-5 rounded-xl bg-white/90 px-4 py-2 text-lg font-bold text-slate-900 backdrop-blur">
+                  {vehicle.name}
                 </div>
-
               </div>
 
               {/* Content */}
 
-              <div className="p-8">
-
-                <div className="grid grid-cols-2 gap-4">
-
-                  <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-4">
-
-                    <Users className="text-blue-600" />
-
-                    <div>
-
-                      <p className="text-xs uppercase text-slate-500">
-                        Capacity
-                      </p>
-
-                      <h4 className="font-semibold text-slate-900">
-                        {vehicle.passengers}
-                      </h4>
-
-                    </div>
-
-                  </div>
-
-                  <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-4">
-
-                    <Briefcase className="text-blue-600" />
-
-                    <div>
-
-                      <p className="text-xs uppercase text-slate-500">
-                        Luggage
-                      </p>
-
-                      <h4 className="font-semibold text-slate-900">
-                        {vehicle.luggage}
-                      </h4>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-                {/* Best For */}
-
-                <div className="mt-6 rounded-xl bg-blue-50 p-5">
-
-                  <h4 className="font-bold text-blue-700">
-                    Best For
-                  </h4>
-
-                  <p className="mt-2 text-slate-600">
-                    {vehicle.bestFor}
-                  </p>
-
-                </div>
-
-                {/* Features */}
-
-                <div className="mt-8 space-y-4">
-
-                  {vehicle.features.map((feature) => (
-
-                    <div
-                      key={feature}
-                      className="flex items-center gap-3"
-                    >
-
-                      <CheckCircle2
-                        size={20}
-                        className="text-green-600"
-                      />
-
-                      <span className="text-slate-700">
-                        {feature}
-                      </span>
-
-                    </div>
-
-                  ))}
-
-                </div>
-
-                {/* Extra */}
-
-                <div className="mt-8 flex items-center gap-3 rounded-xl bg-yellow-50 p-4">
-
-                  <Snowflake className="text-blue-600" />
-
-                  <span className="font-medium text-slate-700">
-                    Fully Air Conditioned Vehicle
+              <div className="p-7">
+                <div className="flex flex-wrap gap-3">
+                  <span className="flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+                    <Users className="h-4 w-4" />
+                    {vehicle.seats}
                   </span>
 
+                  <span className="flex items-center gap-2 rounded-full bg-yellow-100 px-4 py-2 text-sm font-medium text-yellow-700">
+                    <Briefcase className="h-4 w-4" />
+                    {vehicle.luggage}
+                  </span>
+
+                  <span className="flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700">
+                    <Snowflake className="h-4 w-4" />
+                    AC
+                  </span>
                 </div>
 
-                {/* Button */}
+                <p className="mt-6 leading-7 text-slate-600">
+                  {vehicle.description}
+                </p>
 
                 <Link
-                  href="/contact"
-                  className="mt-8 inline-flex items-center gap-2 rounded-xl bg-yellow-400 px-8 py-4 font-semibold text-slate-900 transition hover:bg-yellow-500"
+                  href="/book-now"
+                  className="mt-8 inline-flex items-center gap-2 font-semibold text-blue-600 transition hover:text-yellow-500"
                 >
-
                   Book This Vehicle
-
-                  <ArrowRight size={18} />
-
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Link>
-
               </div>
-
             </div>
-
           ))}
-
         </div>
-
       </div>
     </section>
   );
