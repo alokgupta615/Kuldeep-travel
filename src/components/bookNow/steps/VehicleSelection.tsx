@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { Users, Briefcase, Snowflake, CheckCircle2, Star } from "lucide-react";
 
-import { BookingData } from "../BookingForm";
+// import { BookingData } from "../BookingForm";
+import type { BookingData } from "@/types/booking";
 
 interface Props {
   formData: BookingData;

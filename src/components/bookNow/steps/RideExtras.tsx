@@ -14,7 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { BookingData } from "../types/booking";
+import type { BookingData } from "@/types/booking";
 
 interface Props {
   formData: BookingData;

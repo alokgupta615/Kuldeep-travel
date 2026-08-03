@@ -1,26 +1,17 @@
 "use client";
 
 import { MapPin } from "lucide-react";
-
-interface FormData {
-  customerName: string;
-  phone: string;
-  email: string;
-  pickup: string;
-  drop: string;
-  travelDate: string;
-  travelTime: string;
-  serviceType: string;
-  passengers: number;
-  vehicle: string;
-  payment: string;
-  specialNote: string;
-}
+import type { BookingData } from "@/types/booking";
 
 interface Props {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  formData: BookingData;
+  setFormData: React.Dispatch<React.SetStateAction<BookingData>>;
 }
+
+// interface Props {
+//   formData: BookingData;
+//   setFormData: React.Dispatch<React.SetStateAction<BookingData>>;
+// }
 
 export default function LocationInputs({ formData, setFormData }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

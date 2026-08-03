@@ -1,5 +1,10 @@
 export type VehicleCategory = "economy" | "standard" | "business";
 
+export type PaymentType =
+  | "PAY_NOW"
+  | "ADVANCE"
+  | "PAY_AFTER_TRIP";
+
 export interface BookingData {
   customerName: string;
   phone: string;
@@ -10,12 +15,10 @@ export interface BookingData {
 
   serviceType: string;
 
-  // NEW
   category: VehicleCategory;
 
   vehicle: string;
 
-  // NEW
   extras: string[];
 
   travelDate: string;
@@ -23,7 +26,7 @@ export interface BookingData {
 
   passengers: number;
 
-  payment: "PAY_NOW" | "ADVANCE" | "PAY_AFTER_TRIP";
+  payment: PaymentType;
 
   specialNote: string;
 }

@@ -3,7 +3,8 @@
 import { Dispatch, SetStateAction } from "react";
 import { User, Phone, Mail, Users, MessageSquare } from "lucide-react";
 
-import { BookingData } from "../BookingForm";
+// import { BookingData } from "../BookingForm";
+import type { BookingData } from "@/types/booking";
 
 interface Props {
   formData: BookingData;

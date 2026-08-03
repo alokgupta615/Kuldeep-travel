@@ -29,36 +29,37 @@ import RideCategory from "./steps/RideCategory";
 import RideExtras from "./steps/RideExtras";
 
 import { openRazorpay } from "@/lib/openRazorpay";
+import type { BookingData } from "@/types/booking";
 
-export interface BookingData {
-  customerName: string;
+// export interface BookingData {
+//   customerName: string;
 
-  phone: string;
+//   phone: string;
 
-  email: string;
+//   email: string;
 
-  pickup: string;
+//   pickup: string;
 
-  drop: string;
+//   drop: string;
 
-  serviceType: string;
+//   serviceType: string;
 
-  vehicle: string;
+//   vehicle: string;
 
-  rideCategory: string;
+//   rideCategory: string;
 
-  extras: string[];
+//   extras: string[];
 
-  travelDate: string;
+//   travelDate: string;
 
-  travelTime: string;
+//   travelTime: string;
 
-  passengers: number;
+//   passengers: number;
 
-  payment: string;
+//   payment: string;
 
-  specialNote: string;
-}
+//   specialNote: string;
+// }
 
 export default function BookingForm() {
   const [loading, setLoading] = useState(false);
@@ -80,7 +81,7 @@ export default function BookingForm() {
 
     vehicle: "",
 
-    rideCategory: "Standard",
+    category: "standard",
 
     extras: [],
 
@@ -148,7 +149,7 @@ export default function BookingForm() {
 
       vehicle: "",
 
-      rideCategory: "Standard",
+      category: "standard",
 
       extras: [],
 
