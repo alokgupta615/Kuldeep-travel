@@ -25,6 +25,9 @@ import BookingSummary from "./BookingSummary";
 import SuccessModal from "./SuccessModal";
 import LoadingOverlay from "./LoadingOverlay";
 
+import RideCategory from "./steps/RideCategory";
+import RideExtras from "./steps/RideExtras";
+
 import { openRazorpay } from "@/lib/openRazorpay";
 
 export interface BookingData {
@@ -41,6 +44,10 @@ export interface BookingData {
   serviceType: string;
 
   vehicle: string;
+
+  rideCategory: string;
+
+  extras: string[];
 
   travelDate: string;
 
@@ -72,6 +79,10 @@ export default function BookingForm() {
     serviceType: "One Way",
 
     vehicle: "",
+
+    rideCategory: "Standard",
+
+    extras: [],
 
     travelDate: "",
 
@@ -136,6 +147,10 @@ export default function BookingForm() {
       serviceType: "One Way",
 
       vehicle: "",
+
+      rideCategory: "Standard",
+
+      extras: [],
 
       travelDate: "",
 
@@ -473,6 +488,8 @@ CUSTOMER INFORMATION
                   </div>
                 </div>
 
+                <RideCategory formData={formData} setFormData={setFormData} />
+
                 {/* ===============================================
       VEHICLE SELECTION
 ================================================ */}
@@ -498,6 +515,8 @@ CUSTOMER INFORMATION
                       setFormData={setFormData}
                     />
                   </div>
+
+                  <RideExtras formData={formData} setFormData={setFormData} />
 
                   {/* VEHICLE CATEGORY CARDS */}
 

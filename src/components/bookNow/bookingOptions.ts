@@ -1,0 +1,136 @@
+export const vehicleCategories = [
+  {
+    id: "economy",
+    name: "Economy",
+    badge: "Budget",
+    price: "₹11/km",
+    description: "Affordable rides for everyday travel.",
+    features: [
+      "Budget Friendly",
+      "AC Vehicle",
+      "4 Passengers",
+      "2 Luggage Bags",
+    ],
+    vehicles: ["Hatchback", "WagonR", "Tiago"],
+  },
+  {
+    id: "standard",
+    name: "Standard",
+    badge: "Most Popular",
+    price: "₹14/km",
+    description: "Extra comfort for family and business trips.",
+    features: [
+      "Premium Sedan",
+      "AC Vehicle",
+      "4 Passengers",
+      "3 Luggage Bags",
+    ],
+    vehicles: ["Sedan", "Swift Dzire", "Honda Amaze", "Maruti Ciaz"],
+  },
+  {
+    id: "business",
+    name: "Business",
+    badge: "Luxury",
+    price: "₹20/km",
+    description: "Luxury travel with premium comfort.",
+    features: [
+      "Luxury Vehicle",
+      "Professional Chauffeur",
+      "Premium Interior",
+      "Priority Service",
+    ],
+    vehicles: [
+      "Innova Crysta",
+      "Toyota Camry",
+      "Innova Hycross",
+      "Fortuner",
+    ],
+  },
+];
+
+export const rideExtras = [
+  {
+    id: "water",
+    name: "Mineral Water Bottle",
+    price: 30,
+    complimentary: false,
+  },
+  {
+    id: "newspaper",
+    name: "Daily Newspaper",
+    price: 20,
+    complimentary: false,
+  },
+  {
+    id: "snacks",
+    name: "Light Snacks",
+    price: 150,
+    complimentary: false,
+  },
+  {
+    id: "cold-drink",
+    name: "Cold Drink",
+    price: 80,
+    complimentary: false,
+  },
+  {
+    id: "baby-seat",
+    name: "Baby Seat",
+    price: 300,
+    complimentary: false,
+  },
+  {
+    id: "wheelchair",
+    name: "Wheelchair Assistance",
+    price: 500,
+    complimentary: false,
+  },
+  {
+    id: "meet-greet",
+    name: "Airport Meet & Greet",
+    price: 400,
+    complimentary: false,
+  },
+  {
+    id: "name-board",
+    name: "Driver Name Board",
+    price: 150,
+    complimentary: false,
+  },
+  {
+    id: "wifi",
+    name: "Wi-Fi Hotspot",
+    price: 100,
+    complimentary: false,
+  },
+  {
+    id: "charger",
+    name: "Mobile Charger",
+    price: 0,
+    complimentary: true,
+  },
+  {
+    id: "tissue",
+    name: "Tissue Paper",
+    price: 0,
+    complimentary: true,
+  },
+  {
+    id: "multiple-stops",
+    name: "Multiple Stops",
+    price: 300,
+    complimentary: false,
+  },
+  {
+    id: "pet",
+    name: "Pet Friendly Ride",
+    price: 250,
+    complimentary: false,
+  },
+  {
+    id: "senior",
+    name: "Senior Citizen Assistance",
+    price: 200,
+    complimentary: false,
+  },
+];
