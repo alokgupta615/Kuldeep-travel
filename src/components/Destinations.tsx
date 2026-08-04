@@ -9,14 +9,14 @@ const destinations = [
     distance: "135 km",
     description:
       "Visit the holy city of Lord Ram with comfortable taxi service.",
-    href: "/destinations/lucknow-to-ayodhya",
+    href: "/book-now",
   },
   {
     name: "Varanasi",
     image: "/images/destinations/varanasi.png",
     distance: "320 km",
     description: "Travel to Kashi with safe, reliable, and comfortable rides.",
-    href: "/destinations/lucknow-to-varanasi",
+    href: "/book-now",
   },
   {
     name: "Prayagraj",
@@ -24,28 +24,28 @@ const destinations = [
     distance: "205 km",
     description:
       "Convenient trips for business, tourism, and religious visits.",
-    href: "/destinations/lucknow-to-prayagraj",
+    href: "/book-now",
   },
   {
     name: "Agra",
     image: "/images/destinations/agra.png",
     distance: "335 km",
     description: "Explore the Taj Mahal with our premium taxi service.",
-    href: "/destinations/lucknow-to-agra",
+    href: "/book-now",
   },
   {
     name: "Delhi",
     image: "/images/destinations/delhi.png",
     distance: "550 km",
     description: "Comfortable long-distance travel with experienced drivers.",
-    href: "/destinations/lucknow-to-delhi",
+    href: "/book-now",
   },
   {
     name: "Mathura",
     image: "/images/destinations/mathura.png",
     distance: "470 km",
     description: "Religious and family trips with customized packages.",
-    href: "/destinations/lucknow-to-mathura",
+    href: "/book-now",
   },
 ];
 

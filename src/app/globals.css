@@ -132,3 +132,10 @@ body {
    Additional Global Fixes
    (Keep existing CSS above)
 ================================ */
+input::placeholder {
+  color: #94a3b8 !important;
+}
+
+label {
+  color: #0f172a !important;
+}

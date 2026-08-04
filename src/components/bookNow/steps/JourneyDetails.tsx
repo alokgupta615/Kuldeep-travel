@@ -134,7 +134,7 @@ text-slate-900
 
 [&_label]:text-slate-900
 [&_input]:text-slate-900
-[&_input::placeholder]:text-slate-400
+[&_input::placeholder]:!text-slate-400
 
 sm:p-6
 md:p-10
@@ -230,63 +230,71 @@ lg:grid-cols-2
 
           {/* DROP */}
 
+          {/* DROP */}
+
           <div>
             <label
               className="
-mb-3
-block
-text-sm
-font-bold
-!text-slate-900
-opacity-100
-"
+      mb-3
+      block
+      text-sm
+      font-bold
+      text-slate-900
+      !text-slate-900
+      opacity-100
+      visible
+    "
             >
               Destination
             </label>
 
             <div
               className="
-flex
-items-center
-rounded-2xl
-border
-border-slate-300
-bg-white
-px-4
-
-focus-within:border-blue-600
-focus-within:ring-4
-focus-within:ring-blue-100
-"
+      flex
+      items-center
+      rounded-2xl
+      border
+      border-slate-300
+      bg-white
+      px-4
+      transition
+      focus-within:border-blue-600
+      focus-within:ring-4
+      focus-within:ring-blue-100
+    "
             >
               <Navigation
                 className="
-h-5
-w-5
-text-red-600
-"
+        h-5
+        w-5
+        shrink-0
+        text-red-600
+      "
               />
 
               <input
                 type="text"
                 name="drop"
-                value={formData.drop}
+                value={formData.drop || ""}
                 onChange={handleChange}
                 placeholder="Enter destination"
                 className="
-w-full
-bg-transparent
-px-4
-py-4
+        w-full
+        bg-transparent
+        px-4
+        py-4
 
-!text-slate-900
-!placeholder:text-slate-500
+        text-slate-900
+        !text-slate-900
 
-text-sm
-font-semibold
+        placeholder:text-slate-400
+        !placeholder:text-slate-400
 
-outline-none
-"
+        text-sm
+        font-semibold
+
+        outline-none
+      "
               />
             </div>
           </div>
