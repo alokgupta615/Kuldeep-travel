@@ -309,14 +309,14 @@ export default function BookingForm() {
                     Premium Taxi Booking
                   </div>
 
-                  <h1 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+                  <h1 className="mt-5 text-2xl sm:text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
                     Book Your Ride
                     <span className="block text-yellow-400">
                       In Just 2 Minutes
                     </span>
                   </h1>
 
-                  <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300 sm:text-lg">
+                  <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300 text-base sm:text-lg">
                     Safe, comfortable and affordable taxi booking with instant
                     confirmation, verified drivers and secure online payment.
                   </p>
@@ -325,7 +325,9 @@ export default function BookingForm() {
                     <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
                       <Star className="h-8 w-8 fill-yellow-400 text-yellow-400" />
 
-                      <h3 className="mt-4 text-3xl font-bold">4.9★</h3>
+                      <h3 className="mt-4 text-2xl sm:text-3xl font-bold">
+                        4.9★
+                      </h3>
 
                       <p className="mt-2 text-slate-300">Customer Rating</p>
                     </div>
@@ -333,7 +335,9 @@ export default function BookingForm() {
                     <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
                       <BadgeCheck className="h-8 w-8 text-green-400" />
 
-                      <h3 className="mt-4 text-3xl font-bold">10K+</h3>
+                      <h3 className="mt-4 text-2xl sm:text-3xl font-bold">
+                        10K+
+                      </h3>
 
                       <p className="mt-2 text-slate-300">Happy Customers</p>
                     </div>
@@ -341,7 +345,9 @@ export default function BookingForm() {
                     <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
                       <ShieldCheck className="h-8 w-8 text-yellow-400" />
 
-                      <h3 className="mt-4 text-3xl font-bold">24×7</h3>
+                      <h3 className="mt-4 text-2xl sm:text-3xl font-bold">
+                        24×7
+                      </h3>
 
                       <p className="mt-2 text-slate-300">Customer Support</p>
                     </div>
@@ -351,7 +357,7 @@ export default function BookingForm() {
 
               {/* FORM BODY */}
 
-              <div className="space-y-12 p-10">
+              <div className="space-y-8 px-4 py-6 sm:space-y-10 sm:px-6 sm:py-8 lg:space-y-12 lg:px-10 lg:py-10">
                 {/* =============================
 CUSTOMER INFORMATION
 ============================= */}
@@ -361,7 +367,7 @@ CUSTOMER INFORMATION
                     STEP 1
                   </div>
 
-                  <h2 className="mt-5 text-3xl font-bold text-slate-900">
+                  <h2 className="mt-5 text-2xl sm:text-3xl font-bold text-slate-900">
                     Customer Information
                   </h2>
 
@@ -388,7 +394,7 @@ CUSTOMER INFORMATION
                         value={formData.customerName}
                         onChange={handleChange}
                         placeholder="Your Name"
-                        className="h-16 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+                        className="h-12 sm:h-14 lg:h-16 w-full rounded-2xl border border-slate-300 bg-white pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
                       />
                     </div>
                   </div>
@@ -472,11 +478,11 @@ CUSTOMER INFORMATION
                       STEP 2
                     </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
+                    <h2 className="mt-5 text-2xl sm:text-3xl font-bold text-slate-900">
                       Journey Route
                     </h2>
 
-                    <p className="mt-3 text-lg text-slate-600">
+                    <p className="mt-3 text-base sm:text-lg text-slate-600">
                       Enter your pickup and destination details.
                     </p>
                   </div>
@@ -501,11 +507,11 @@ CUSTOMER INFORMATION
                       STEP 3
                     </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
+                    <h2 className="mt-5 text-2xl sm:text-3xl font-bold text-slate-900">
                       Select Your Vehicle
                     </h2>
 
-                    <p className="mt-3 text-lg text-slate-600">
+                    <p className="mt-3 text-base sm:text-lg text-slate-600">
                       Choose the vehicle that best fits your travel needs.
                     </p>
                   </div>
@@ -518,72 +524,6 @@ CUSTOMER INFORMATION
                   </div>
 
                   <RideExtras formData={formData} setFormData={setFormData} />
-
-                  {/* VEHICLE CATEGORY CARDS */}
-
-                  <div className="mt-8 grid gap-6 md:grid-cols-3">
-                    {/* Economy */}
-
-                    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-bold text-slate-900">
-                        Economy
-                      </h3>
-
-                      <p className="mt-3 text-slate-600">
-                        Swift Dzire, Etios or Similar
-                      </p>
-
-                      <ul className="mt-5 space-y-2 text-sm text-slate-500">
-                        <li>✓ 4 Passengers</li>
-
-                        <li>✓ AC Vehicle</li>
-
-                        <li>✓ 2 Bags</li>
-                      </ul>
-                    </div>
-
-                    {/* Sedan */}
-
-                    <div className="rounded-3xl border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 to-white p-6 shadow-lg">
-                      <span className="rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-slate-900">
-                        MOST POPULAR
-                      </span>
-
-                      <h3 className="mt-4 text-xl font-bold text-slate-900">
-                        Sedan
-                      </h3>
-
-                      <p className="mt-3 text-slate-600">
-                        Honda City, Ciaz, Verna
-                      </p>
-
-                      <ul className="mt-5 space-y-2 text-sm text-slate-500">
-                        <li>✓ Premium Comfort</li>
-
-                        <li>✓ 4 Passengers</li>
-
-                        <li>✓ Large Boot Space</li>
-                      </ul>
-                    </div>
-
-                    {/* SUV */}
-
-                    <div className="rounded-3xl border border-blue-200 bg-blue-50 p-6 shadow-sm">
-                      <h3 className="text-xl font-bold text-slate-900">SUV</h3>
-
-                      <p className="mt-3 text-slate-600">
-                        Ertiga, Innova, Crysta
-                      </p>
-
-                      <ul className="mt-5 space-y-2 text-sm text-slate-500">
-                        <li>✓ 6–7 Passengers</li>
-
-                        <li>✓ Extra Luggage</li>
-
-                        <li>✓ Family Trips</li>
-                      </ul>
-                    </div>
-                  </div>
                 </div>
 
                 {/* ===============================================
@@ -596,11 +536,11 @@ CUSTOMER INFORMATION
                       STEP 4
                     </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
+                    <h2 className="mt-5 text-2xl sm:text-3xl font-bold text-slate-900">
                       Estimated Fare
                     </h2>
 
-                    <p className="mt-3 text-lg text-slate-600">
+                    <p className="mt-3 text-base sm:text-lg text-slate-600">
                       Calculate your estimated taxi fare instantly.
                     </p>
                   </div>
@@ -622,6 +562,9 @@ CUSTOMER INFORMATION
                       vehicle={formData.vehicle}
                       pickup={formData.pickup}
                       drop={formData.drop}
+                      category={formData.category}
+                      extras={formData.extras}
+                      serviceType={formData.serviceType}
                     />
                   </div>
                 </div>
@@ -636,11 +579,11 @@ CUSTOMER INFORMATION
                       STEP 5
                     </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
+                    <h2 className="mt-5 text-2xl sm:text-3xl font-bold text-slate-900">
                       Journey Schedule
                     </h2>
 
-                    <p className="mt-3 text-lg text-slate-600">
+                    <p className="mt-3 text-base sm:text-lg text-slate-600">
                       Select your travel date, pickup time and passenger count.
                     </p>
                   </div>
@@ -723,11 +666,11 @@ CUSTOMER INFORMATION
                       STEP 6
                     </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
+                    <h2 className="mt-5 text-2xl sm:text-3xl font-bold text-slate-900">
                       Payment Method
                     </h2>
 
-                    <p className="mt-3 text-lg text-slate-600">
+                    <p className="mt-3 text-base sm:text-lg text-slate-600">
                       Choose how you want to pay.
                     </p>
                   </div>
@@ -748,11 +691,11 @@ CUSTOMER INFORMATION
                       STEP 7
                     </div>
 
-                    <h2 className="mt-5 text-3xl font-bold text-slate-900">
+                    <h2 className="mt-5 text-2xl sm:text-3xl font-bold text-slate-900">
                       Additional Requirements
                     </h2>
 
-                    <p className="mt-3 text-lg text-slate-600">
+                    <p className="mt-3 text-base sm:text-lg text-slate-600">
                       Tell us anything important about your trip.
                     </p>
                   </div>

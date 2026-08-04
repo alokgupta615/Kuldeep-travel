@@ -1,6 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
+
 import {
   MapPin,
   Navigation,
@@ -12,9 +13,9 @@ import {
   Route,
   CarTaxiFront,
   HeartHandshake,
+  CheckCircle2,
 } from "lucide-react";
 
-// import { BookingData } from "../BookingForm";
 import type { BookingData } from "@/types/booking";
 
 interface Props {
@@ -70,58 +71,138 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
   };
 
   return (
-    <section className="space-y-10">
-      {/* Heading */}
+    <section className="space-y-6 md:space-y-10">
+      {/* HEADER */}
 
       <div>
-        <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+        <span
+          className="
+inline-flex
+rounded-full
+bg-blue-100
+px-4
+py-2
+text-xs
+font-bold
+text-blue-700
+sm:text-sm
+"
+        >
           Step 2 of 5
         </span>
 
-        <h2 className="mt-5 text-4xl font-bold text-slate-900">
-          Journey Route
+        <h2
+          className="
+mt-4
+text-2xl
+font-extrabold
+tracking-tight
+text-slate-900
+sm:text-3xl
+md:text-4xl
+"
+        >
+          Plan Your Journey
         </h2>
 
-        <p className="mt-3 text-lg text-slate-600">
-          Enter your pickup location and destination. We'll calculate your
-          estimated fare instantly.
+        <p
+          className="
+mt-2
+text-sm
+leading-relaxed
+text-slate-600
+sm:text-base
+"
+        >
+          Enter pickup and destination details. We will calculate your estimated
+          fare.
         </p>
       </div>
 
-      {/* Card */}
+      {/* MAIN CARD */}
 
       <div
         className="
-  rounded-[32px]
-  border
-  border-slate-200
-  bg-white
-  p-6
-  md:p-10
-  shadow-xl
-  text-slate-900
-  opacity-100
-  [&_label]:text-slate-900
-  [&_input]:text-slate-900
-  [&_input::placeholder]:text-slate-500
-  "
+rounded-[24px]
+border
+border-slate-200
+bg-white
+p-4
+shadow-[0_15px_40px_rgba(0,0,0,0.08)]
+
+text-slate-900
+
+[&_label]:text-slate-900
+[&_input]:text-slate-900
+[&_input::placeholder]:text-slate-400
+
+sm:p-6
+md:p-10
+"
       >
-        <h3 className="text-3xl font-bold text-slate-900">
+        <h3
+          className="
+text-xl
+font-extrabold
+text-slate-900
+sm:text-3xl
+"
+        >
           Pickup & Destination
         </h3>
 
-        <p className="mt-2 text-slate-500">Enter your journey locations.</p>
+        <p
+          className="
+mt-2
+text-sm
+text-slate-500
+"
+        >
+          Enter your travel locations
+        </p>
 
-        {/* Pickup Drop */}
+        {/* LOCATIONS */}
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <div
+          className="
+mt-8
+grid
+gap-5
+lg:grid-cols-2
+"
+        >
+          {/* PICKUP */}
+
           <div>
-            <label className="mb-3 block font-semibold text-slate-900 opacity-100">
+            <label
+              className="
+    mb-3
+    block
+    text-sm
+    font-bold
+    text-slate-900
+    opacity-100
+    "
+            >
               Pickup Location
             </label>
 
-            <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-5">
-              <MapPin className="text-green-600" />
+            <div
+              className="
+    flex
+    items-center
+    rounded-2xl
+    border
+    border-slate-300
+    bg-white
+    px-4
+    transition
+    focus-within:border-blue-600
+    focus-within:ring-4
+    focus-within:ring-blue-100
+    "
+            >
+              <MapPin className="h-5 w-5 text-green-600" />
 
               <input
                 type="text"
@@ -130,27 +211,61 @@ export default function JourneyDetails({ formData, setFormData }: Props) {
                 onChange={handleChange}
                 placeholder="Enter pickup location"
                 className="
-w-full
-bg-white
-px-4
-py-4
-text-gray-900
-placeholder:text-gray-500
-caret-blue-600
-opacity-100
-focus:outline-none
-"
+      w-full
+      bg-transparent
+      px-4
+      py-4
+
+      !text-slate-900
+      !placeholder:text-slate-500
+
+      text-sm
+      font-semibold
+
+      outline-none
+      "
               />
             </div>
           </div>
 
+          {/* DROP */}
+
           <div>
-            <label className="mb-3 block font-semibold text-slate-900 opacity-100">
+            <label
+              className="
+mb-3
+block
+text-sm
+font-bold
+!text-slate-900
+opacity-100
+"
+            >
               Destination
             </label>
 
-            <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-5">
-              <Navigation className="text-red-600" />
+            <div
+              className="
+flex
+items-center
+rounded-2xl
+border
+border-slate-300
+bg-white
+px-4
+
+focus-within:border-blue-600
+focus-within:ring-4
+focus-within:ring-blue-100
+"
+            >
+              <Navigation
+                className="
+h-5
+w-5
+text-red-600
+"
+              />
 
               <input
                 type="text"
@@ -160,101 +275,246 @@ focus:outline-none
                 placeholder="Enter destination"
                 className="
 w-full
-bg-white
+bg-transparent
 px-4
 py-4
-text-gray-900
-placeholder:text-gray-500
-caret-blue-600
-opacity-100
-focus:outline-none
+
+!text-slate-900
+!placeholder:text-slate-500
+
+text-sm
+font-semibold
+
+outline-none
 "
               />
             </div>
           </div>
         </div>
 
-        {/* Date Time */}
+        {/* DATE TIME */}
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div
+          className="
+mt-6
+grid
+gap-5
+lg:grid-cols-2
+"
+        >
           <div>
-            <label className="mb-3 block text-base font-bold text-slate-900">
+            <label
+              className="
+mb-2
+block
+text-sm
+font-bold
+text-slate-900
+"
+            >
               Travel Date
             </label>
 
             <div
               className="
-flex items-center
+flex
+items-center
 rounded-2xl
-border border-slate-300
+border
+border-slate-300
 bg-white
-px-5
-transition
-focus-within:border-blue-600
-focus-within:ring-4
-focus-within:ring-blue-100
+px-4
 "
             >
-              <CalendarDays className="text-blue-600" />
+              <CalendarDays
+                className="
+text-blue-600
+"
+              />
 
               <input
                 type="date"
                 name="travelDate"
                 value={formData.travelDate}
                 onChange={handleChange}
-                className="w-full bg-transparent px-4 py-4 text-slate-900 outline-none"
+                className="
+w-full
+bg-transparent
+px-3
+py-4
+text-sm
+font-semibold
+text-slate-900
+outline-none
+"
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-3 block font-semibold text-slate-800">
+            <label
+              className="
+mb-2
+block
+text-sm
+font-bold
+text-slate-900
+"
+            >
               Pickup Time
             </label>
 
-            <div className="flex items-center rounded-2xl border border-slate-300 bg-white px-5">
-              <Clock3 className="text-orange-600" />
+            <div
+              className="
+flex
+items-center
+rounded-2xl
+border
+border-slate-300
+bg-white
+px-4
+"
+            >
+              <Clock3
+                className="
+text-orange-600
+"
+              />
 
               <input
                 type="time"
                 name="travelTime"
                 value={formData.travelTime}
                 onChange={handleChange}
-                className="w-full bg-transparent px-4 py-4 text-slate-900 outline-none"
+                className="
+w-full
+bg-transparent
+px-3
+py-4
+text-sm
+font-semibold
+text-slate-900
+outline-none
+"
               />
             </div>
           </div>
         </div>
 
-        {/* Route Preview */}
+        {/* ROUTE PREVIEW */}
 
-        <div className="mt-10 rounded-3xl bg-slate-50 p-8">
-          <h4 className="mb-6 text-xl font-bold text-slate-900">
+        <div
+          className="
+mt-8
+rounded-3xl
+border
+border-slate-200
+bg-gradient-to-br
+from-slate-50
+to-blue-50
+p-5
+sm:p-8
+"
+        >
+          <h4
+            className="
+mb-5
+text-lg
+font-extrabold
+text-slate-900
+sm:text-xl
+"
+          >
             Trip Preview
           </h4>
 
-          <div className="flex items-start gap-3 md:gap-4">
+          <div className="flex gap-4">
+            {/* Timeline */}
+
             <div className="flex flex-col items-center">
-              <div className="h-4 w-4 rounded-full bg-green-500"></div>
+              <div
+                className="
+h-4
+w-4
+rounded-full
+bg-green-500
+ring-4
+ring-green-100
+"
+              />
 
-              <div className="h-12 border-l-2 border-dashed border-slate-300"></div>
+              <div
+                className="
+h-14
+border-l-2
+border-dashed
+border-slate-300
+"
+              />
 
-              <div className="h-4 w-4 rounded-full bg-red-500"></div>
+              <div
+                className="
+h-4
+w-4
+rounded-full
+bg-red-500
+ring-4
+ring-red-100
+"
+              />
             </div>
 
-            <div className="space-y-8">
+            <div
+              className="
+space-y-7
+"
+            >
               <div>
-                <p className="text-sm text-slate-500">Pickup Location</p>
+                <p
+                  className="
+text-xs
+font-semibold
+text-slate-500
+"
+                >
+                  Pickup Location
+                </p>
 
-                <p className="font-semibold text-slate-900">
+                <p
+                  className="
+mt-1
+break-words
+text-sm
+font-bold
+text-slate-900
+sm:text-base
+"
+                >
                   {formData.pickup || "Not selected"}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm text-slate-500">Destination</p>
+                <p
+                  className="
+text-xs
+font-semibold
+text-slate-500
+"
+                >
+                  Destination
+                </p>
 
-                <p className="font-semibold text-slate-900">
+                <p
+                  className="
+mt-1
+break-words
+text-sm
+font-bold
+text-slate-900
+sm:text-base
+"
+                >
                   {formData.drop || "Not selected"}
                 </p>
               </div>
@@ -263,17 +523,38 @@ focus-within:ring-blue-100
         </div>
       </div>
 
-      {/* Service */}
+      {/* SERVICE SELECTOR */}
 
       <div>
-        <h3 className="mb-6 flex items-center gap-2 text-2xl font-bold text-slate-900">
-          <BriefcaseBusiness />
+        <h3
+          className="
+mb-5
+flex
+items-center
+gap-2
+text-xl
+font-extrabold
+text-slate-900
+sm:text-2xl
+"
+        >
+          <BriefcaseBusiness className="text-blue-700" />
           Choose Service
         </h3>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div
+          className="
+grid
+grid-cols-2
+gap-3
+sm:grid-cols-2
+xl:grid-cols-3
+"
+        >
           {services.map((service) => {
             const Icon = service.icon;
+
+            const active = formData.serviceType === service.id;
 
             return (
               <button
@@ -282,43 +563,151 @@ focus-within:ring-blue-100
                 onClick={() =>
                   setFormData((prev) => ({
                     ...prev,
+
                     serviceType: service.id,
                   }))
                 }
-                className={`rounded-3xl border p-6 text-left transition hover:-translate-y-2 hover:shadow-xl ${
-                  formData.serviceType === service.id
-                    ? "border-yellow-400 bg-yellow-50 ring-2 ring-yellow-300"
-                    : "border-slate-200 bg-white"
-                }`}
+                className={`
+group
+rounded-2xl
+border
+p-4
+text-left
+transition-all
+duration-300
+
+active:scale-95
+
+sm:rounded-3xl
+sm:p-6
+
+
+${
+  active
+    ? "border-yellow-400 bg-yellow-50 shadow-lg ring-2 ring-yellow-200"
+    : "border-slate-200 bg-white hover:-translate-y-1 hover:shadow-xl"
+}
+
+`}
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-900">
-                  <Icon className="text-yellow-400" />
+                <div
+                  className="
+flex
+h-11
+w-11
+items-center
+justify-center
+rounded-xl
+bg-gradient-to-br
+from-blue-950
+to-blue-700
+
+sm:h-14
+sm:w-14
+"
+                >
+                  <Icon
+                    className="
+h-5
+w-5
+text-yellow-400
+sm:h-6
+sm:w-6
+"
+                  />
                 </div>
 
-                <h4 className="mt-5 text-xl font-bold text-slate-900">
-                  {service.title}
-                </h4>
+                <div
+                  className="
+mt-3
+flex
+items-center
+gap-1
+"
+                >
+                  <h4
+                    className="
+text-sm
+font-extrabold
+text-slate-900
+sm:text-xl
+"
+                  >
+                    {service.title}
+                  </h4>
 
-                <p className="mt-2 text-slate-600">{service.desc}</p>
+                  {active && (
+                    <CheckCircle2
+                      className="
+h-4
+w-4
+text-green-600
+"
+                    />
+                  )}
+                </div>
+
+                <p
+                  className="
+mt-1
+text-xs
+font-medium
+text-slate-500
+sm:text-base
+"
+                >
+                  {service.desc}
+                </p>
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* Tips */}
+      {/* BOOKING TIPS */}
 
-      <div className="rounded-3xl border border-blue-100 bg-gradient-to-r from-blue-50 to-yellow-50 p-8">
-        <h3 className="text-2xl font-bold text-slate-900">Booking Tips</h3>
+      <div
+        className="
+rounded-3xl
+border
+border-blue-100
+bg-gradient-to-r
+from-blue-50
+to-yellow-50
+p-5
 
-        <ul className="mt-5 space-y-3 text-slate-700">
-          <li>✅ Enter the complete pickup address.</li>
+sm:p-8
+"
+      >
+        <h3
+          className="
+text-xl
+font-extrabold
+text-slate-900
+sm:text-2xl
+"
+        >
+          Booking Tips
+        </h3>
 
-          <li>✅ Mention nearby landmarks.</li>
+        <ul
+          className="
+mt-4
+space-y-3
+text-sm
+font-medium
+leading-relaxed
+text-slate-700
+sm:text-base
+"
+        >
+          <li>✅ Enter complete pickup address</li>
 
-          <li>✅ Book airport rides at least 2 hours in advance.</li>
+          <li>✅ Add nearby landmark for easy pickup</li>
 
-          <li>✅ Choose the correct service type for accurate pricing.</li>
+          <li>✅ Airport rides should be booked early</li>
+
+          <li>✅ Select correct service for accurate fare</li>
         </ul>
       </div>
     </section>
