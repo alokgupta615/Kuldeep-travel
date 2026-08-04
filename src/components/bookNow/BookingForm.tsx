@@ -681,42 +681,8 @@ CUSTOMER INFORMATION
                   />
                 </div>
 
-                {/* ===============================================
-      ADDITIONAL REQUIREMENTS
-================================================ */}
-
-                <div className="border-t border-slate-200 pt-12">
-                  <div className="mb-8">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-700">
-                      STEP 7
-                    </div>
-
-                    <h2 className="mt-5 text-2xl sm:text-3xl font-bold text-slate-900">
-                      Additional Requirements
-                    </h2>
-
-                    <p className="mt-3 text-base sm:text-lg text-slate-600">
-                      Tell us anything important about your trip.
-                    </p>
-                  </div>
-
-                  <div className="relative">
-                    <FileText className="absolute left-5 top-5 text-slate-400" />
-
-                    <textarea
-                      rows={6}
-                      name="specialNote"
-                      value={formData.specialNote}
-                      onChange={handleChange}
-                      placeholder="Child seat, wheelchair, multiple stops..."
-                      className="w-full rounded-3xl border border-slate-300 py-5 pl-14 pr-5 text-slate-900 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
-                    />
-                  </div>
-                </div>
-
-                {/* ===============================================
-      SUBMIT BUTTON
-================================================ */}
+                {/* SUBMIT BUTTON
+================================================  */}
 
                 <div className="border-t border-slate-200 pt-12">
                   <button
