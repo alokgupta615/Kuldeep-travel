@@ -51,19 +51,19 @@ export default function TourPackagesPage() {
       {/* Tour Discovery */}
       <section className="space-y-0">
         <PackageCategories />
-        <PopularDestinations />
+        {/* <PopularDestinations /> */}
       </section>
 
       {/* Travel Experience */}
       <section>
-        <VehicleSection />
+        {/* <VehicleSection /> */}
         <PackageInclusions />
       </section>
 
       {/* Planning Guide */}
       <section>
         <TravelerTypes />
-        <TripDuration />
+        {/* <TripDuration /> */}
         <BestTimeToVisit />
       </section>
 

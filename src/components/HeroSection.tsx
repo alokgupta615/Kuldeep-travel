@@ -102,7 +102,7 @@ to-[#04132D]/886"
         <div className="max-w-[600px] xl:max-w-[650px]">
           {/* Badge */}
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-4 py-1.5 text-xs lg:px-5 lg:py-2 lg:text-sm font-medium text-yellow-300 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-4 py-1.5 text-xs lg:px-5 lg:py-2 lg:text-sm font-medium text-yellow-300 backdrop-blur lg:mt-4">
             <CheckCircle className="h-4 w-4" />
             Trusted Taxi Service Since 2012
           </div>

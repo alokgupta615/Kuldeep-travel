@@ -16,10 +16,10 @@ export default function Home() {
     <>
       <HeroSection />
       <WhyChooseUs />
-      <Services/>
+      <Services />
       <AboutSection />
       <Fleet />
-      <Destinations/>
+      <Destinations />
       {/* <BookingProcess/> */}
       {/* <Testimonial /> */}
       <FAQ />

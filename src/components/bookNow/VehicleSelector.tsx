@@ -324,7 +324,7 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
 
       {/* Vehicles Grid */}
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {vehicles.map((vehicle) => {
           const selected = formData.vehicle === vehicle.id;
 
@@ -358,23 +358,23 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
 
                 {/* Vehicle Image */}
 
-                <div className="mt-3 flex justify-center">
+                <div className="mt-4 flex h-36 items-center justify-center overflow-hidden rounded-xl bg-white p-3">
                   <Image
                     src={vehicle.image}
                     alt={vehicle.id}
-                    width={220}
-                    height={120}
-                    className="h-24 w-auto object-contain transition duration-300 group-hover:scale-105"
+                    width={320}
+                    height={180}
+                    className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
 
                 {/* Vehicle Name */}
 
-                <h4 className="mt-4 text-center text-xl font-bold text-white">
+                <h4 className="mt-4 text-center text-xl font-bold text-white sm:text-2xl">
                   {vehicle.id}
                 </h4>
 
-                <p className="mt-2 text-center text-sm leading-6 text-white">
+                <p className="mt-2 text-center text-sm leading-6 text-blue-100">
                   Premium • AC • Professional Driver
                 </p>
               </div>
@@ -382,37 +382,33 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
               {/* Features */}
 
               <div className="space-y-5 p-4 sm:p-5">
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
                   {/* Seats */}
 
                   <div className="rounded-xl bg-slate-50 p-3 text-center">
-                    <Users size={18} className="mx-auto mb-2 text-blue-600" />
+                    <Users className="mx-auto mb-2 h-5 w-5 text-blue-600" />
 
-                    <p className="text-lg font-bold text-slate-900">
+                    <p className="text-xl font-bold text-slate-900">
                       {vehicle.seats}
                     </p>
 
-                    <span className="text-xs font-medium text-slate-600">
-                      Seats
-                    </span>
+                    <span className="text-xs text-slate-600">Seats</span>
                   </div>
-
                   {/* Bags */}
 
-                  <div className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm">
-                    <Briefcase
-                      size={18}
-                      className="mx-auto mb-2 text-orange-500"
-                    />
+                  <div className="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm">
+                    <Briefcase className="mx-auto mb-2 h-5 w-5 text-orange-500" />
 
-                    <p className="text-base font-bold">{vehicle.luggage}</p>
+                    <p className="text-xl font-bold text-slate-900">
+                      {vehicle.luggage}
+                    </p>
 
-                    <span className="text-[11px] text-slate-500">Bags</span>
+                    <span className="text-xs text-slate-600">Bags</span>
                   </div>
 
                   {/* AC */}
 
-                  <div className="rounded-xl bg-slate-50 p-3 text-center">
+                  {/* <div className="rounded-xl bg-slate-50 p-3 text-center">
                     <Snowflake
                       size={18}
                       className="mx-auto mb-2 text-cyan-600"
@@ -423,6 +419,15 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
                     </p>
 
                     <span className="text-[11px] text-slate-500">Comfort</span>
+                  </div>
+                </div> */}
+
+                  <div className="rounded-xl bg-slate-50 p-3 text-center">
+                    <Snowflake className="mx-auto mb-2 h-5 w-5 text-cyan-600" />
+
+                    <p className="text-base font-bold text-slate-900">AC</p>
+
+                    <span className="text-xs text-slate-600">Comfort</span>
                   </div>
                 </div>
 

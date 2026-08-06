@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/service/senior-citizen/Hero";
 import TravelNeeds from "@/components/service/senior-citizen/TravelNeeds";
 import ServiceTypes from "@/components/service/senior-citizen/ServiceTypes";
-import VehicleOptions from "@/components/service/senior-citizen/VehicleOptions";
+// import VehicleOptions from "@/components/service/senior-citizen/VehicleOptions";
 import CommonTrips from "@/components/service/senior-citizen/CommonTrips";
 import BookingProcess from "@/components/service/senior-citizen/BookingProcess";
 import FAQ from "@/components/service/senior-citizen/FAQ";
@@ -22,7 +22,7 @@ export default function SeniorCitizenCabPage() {
       <Hero />
       <TravelNeeds />
       <ServiceTypes />
-      <VehicleOptions />
+      {/* <VehicleOptions /> */}
       <CommonTrips />
       <BookingProcess />
       <FAQ />

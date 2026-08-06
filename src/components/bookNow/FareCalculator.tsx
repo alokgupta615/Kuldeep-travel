@@ -200,8 +200,8 @@ export default function FareCalculator({
   ];
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg sm:rounded-3xl sm:shadow-xl">
-      <div className="space-y-3 px-2 py-3 sm:space-y-4 sm:px-5 sm:py-5 lg:space-y-5 lg:px-6 lg:py-6">
+    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg sm:rounded-2xl sm:rounded-3xl sm:shadow-xl">
+      <div className="space-y-4 p-3 sm:space-y-5 sm:p-5 lg:p-6">
         {/* ================= JOURNEY OVERVIEW ================= */}
 
         <section className="w-full">
@@ -221,13 +221,13 @@ export default function FareCalculator({
             </span>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5 sm:space-y-2">
             {/* Pickup */}
 
-            <div className="rounded-xl border border-slate-100 bg-white p-3 shadow-sm transition-all duration-300 hover:border-blue-200 hover:shadow-md sm:rounded-xl sm:p-3">
-              <div className="flex items-start gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-md">
-                  <MapPin size={18} />
+            <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
+              <div className="flex items-start gap-2">
+                <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-md">
+                  <MapPin size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </div>
 
                 <div className="min-w-0 flex-1">
@@ -235,7 +235,7 @@ export default function FareCalculator({
                     Pickup
                   </p>
 
-                  <p className="mt-1 break-words text-sm font-semibold text-slate-900 sm:text-base">
+                  <p className="mt-1 break-words text-[13px] sm:text-base font-semibold text-slate-900">
                     {pickup || "Select Pickup Location"}
                   </p>
                 </div>
@@ -255,11 +255,10 @@ export default function FareCalculator({
             </div>
 
             {/* Drop */}
-
-            <div className="rounded-xl border border-slate-100 bg-white p-3 shadow-sm transition-all duration-300 hover:border-red-200 hover:shadow-md sm:rounded-xl sm:p-3">
-              <div className="flex items-start gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-md">
-                  <MapPin size={18} />
+            <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm transition-all duration-300 hover:border-red-200 hover:shadow-md">
+              <div className="flex items-start gap-2">
+                <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-md">
+                  <MapPin className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
                 </div>
 
                 <div className="min-w-0 flex-1">
@@ -267,7 +266,7 @@ export default function FareCalculator({
                     Destination
                   </p>
 
-                  <p className="mt-1 break-words text-sm font-semibold text-slate-900 sm:text-base">
+                  <p className="mt-1 break-words text-[13px] font-semibold text-slate-900 sm:text-base">
                     {drop || "Select Destination"}
                   </p>
                 </div>
@@ -278,7 +277,7 @@ export default function FareCalculator({
 
         {/* ================= RIDE INFORMATION ================= */}
 
-        <section>
+        <section className="space-y-2">
           <div className="mb-2">
             <h3 className="text-base font-bold text-slate-900 sm:text-lg">
               Ride Information
@@ -292,9 +291,9 @@ export default function FareCalculator({
           <div className="grid grid-cols-2 gap-2">
             {/* Vehicle */}
 
-            <div className="rounded-xl border border-slate-100 bg-white p-3 shadow-sm">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white">
-                <CarTaxiFront size={18} />
+            <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
+              <div className="mb-2 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white">
+                <CarTaxiFront className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
               </div>
 
               <p className="text-xs text-slate-500">Vehicle</p>
@@ -306,8 +305,8 @@ export default function FareCalculator({
 
             {/* Category */}
 
-            <div className="rounded-xl border border-slate-100 bg-white p-3 shadow-sm">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white">
+            <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
+              <div className="mb-2 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white">
                 <Tag size={18} />
               </div>
 
@@ -320,8 +319,8 @@ export default function FareCalculator({
 
             {/* Service */}
 
-            <div className="col-span-2 rounded-xl border border-slate-100 bg-white p-3 shadow-sm">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 text-white">
+            <div className="col-span-2 rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
+              <div className="mb-2 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white">
                 <BriefcaseBusiness size={18} />
               </div>
 
@@ -343,7 +342,7 @@ export default function FareCalculator({
             </h3>
           </div>
 
-          <div className="rounded-xl border border-slate-100 bg-white p-3 shadow-sm">
+          <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
             {(extras ?? []).length ? (
               <div className="flex flex-wrap gap-2">
                 {(extras ?? []).map((item) => (
@@ -356,7 +355,7 @@ export default function FareCalculator({
                 ))}
               </div>
             ) : (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <Sparkles size={18} className="text-slate-400" />
 
                 <p className="text-sm text-slate-500">
@@ -389,13 +388,13 @@ export default function FareCalculator({
             {fareRows.map((item, index) => (
               <div
                 key={item.label}
-                className={`flex items-center justify-between px-4 py-3 transition-all duration-200 hover:bg-slate-50 sm:px-5 sm:py-4 ${
+                className={`flex items-center justify-between px-3 py-2.5 transition-all duration-200 hover:bg-slate-50 sm:px-5 sm:py-4  ${
                   index !== fareRows.length - 1
                     ? "border-b border-slate-100"
                     : ""
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <div
                     className={`h-2.5 w-2.5 rounded-full ${
                       item.label === "Base Fare"
@@ -431,7 +430,7 @@ export default function FareCalculator({
 
         {/* ================= PRICE SUMMARY ================= */}
 
-        <section>
+        {/* <section>
           <div className="grid grid-cols-2 gap-2">
             <div className="rounded-xl border border-blue-100 bg-blue-50 p-3">
               <p className="text-xs font-medium uppercase tracking-wide text-blue-600">
@@ -453,28 +452,28 @@ export default function FareCalculator({
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
         {/* ================= TOTAL FARE ================= */}
 
         <section>
-          <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 shadow-xl">
+          <div className="overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 shadow-xl">
             {/* Background Glow */}
 
             <div className="relative overflow-hidden">
-              <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
+              <div className="absolute -right-20 -top-20 p-3 sm:p-5 lg:p-6 rounded-full bg-white/10 blur-3xl" />
 
-              <div className="absolute -bottom-24 -left-20 h-56 w-56 rounded-full bg-cyan-400/20 blur-3xl" />
+              <div className="absolute -bottom-24 -left-20 p-3 sm:p-5 lg:p-6 rounded-full bg-cyan-400/20 blur-3xl" />
 
-              <div className="relative p-4 sm:p-5 lg:p-6">
+              <div className="relative p-3 sm:p-5 lg:p-6">
                 {/* Header */}
 
-                <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
                   <div>
                     <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-100 backdrop-blur">
                       Estimated Fare
                     </span>
 
-                    <h2 className="mt-4 text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    <h2 className="mt-2 sm:mt-4 text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
                       ₹{total}
                     </h2>
 
@@ -485,7 +484,7 @@ export default function FareCalculator({
 
                   {/* Fare Badge */}
 
-                  <div className="rounded-xl border border-white/20 bg-white/10 p-5 backdrop-blur">
+                  <div className="rounded-xl border border-white/20 bg-white/10 p-3 sm:p-5 backdrop-blur">
                     <p className="text-xs uppercase tracking-wider text-blue-100">
                       Average Cost
                     </p>
