@@ -35,7 +35,7 @@ export const heroFeatures = [
 export const destinations = [
   {
     title: "Ayodhya",
-    image: "/images/pilgrimage/ayodhya.jpg",
+    image: "/images/destinations/ayodhya.png",
     description:
       "Visit the birthplace of Lord Ram and experience one of India's holiest cities.",
     places: [
@@ -47,7 +47,7 @@ export const destinations = [
   },
   {
     title: "Varanasi",
-    image: "/images/pilgrimage/varanasi.jpg",
+    image: "/images/destinations/varanasi.png",
     description:
       "Experience the spiritual energy of Kashi with temples and the famous Ganga Aarti.",
     places: [
@@ -59,7 +59,7 @@ export const destinations = [
   },
   {
     title: "Prayagraj",
-    image: "/images/pilgrimage/prayagraj.jpg",
+    image: "/images/destinations/prayagraj.png",
     description:
       "Take a holy dip at Triveni Sangam and visit famous temples.",
     places: [
@@ -71,7 +71,7 @@ export const destinations = [
   },
   {
     title: "Naimisharanya",
-    image: "/images/pilgrimage/naimish.jpg",
+    image: "/images/destinations/naimish.jpg",
     description:
       "Ancient spiritual destination known for its peaceful atmosphere.",
     places: [
@@ -209,35 +209,35 @@ export const packageIncludes = [
 export const vehicles = [
   {
     name: "Sedan",
-    image: "/images/vehicles/sedan.png",
+    image: "/images/fleet/sedan.png",
     seats: "1-4 Passengers",
     description:
       "Ideal for couples and small families travelling nearby.",
   },
   {
     name: "SUV",
-    image: "/images/vehicles/suv.png",
+    image: "/images/fleet/suv.png",
     seats: "4-6 Passengers",
     description:
       "Additional comfort and luggage space for long journeys.",
   },
   {
     name: "Innova Crysta",
-    image: "/images/vehicles/innova.png",
+    image: "/images/fleet/innova.png",
     seats: "6-7 Passengers",
     description:
       "Most preferred vehicle for pilgrimage tours.",
   },
   {
     name: "Tempo Traveller",
-    image: "/images/vehicles/tempo.png",
+    image: "/images/fleet/tempo.png",
     seats: "9-20 Passengers",
     description:
       "Perfect for religious groups and family tours.",
   },
   {
     name: "Luxury Coach",
-    image: "/images/vehicles/bus.png",
+    image: "/images/fleet/bus.png",
     seats: "20-50 Passengers",
     description:
       "Suitable for schools, trusts and large pilgrimage groups.",

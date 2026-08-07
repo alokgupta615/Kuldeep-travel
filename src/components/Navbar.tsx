@@ -38,10 +38,10 @@ const tours = [
     title: "Pilgrimage Tours",
     href: "/tour-packages/pilgrimage-tours",
   },
-  {
-    title: "Weekend Gateway",
-    href: "/tour-packages/weekend-gateways",
-  },
+  // {
+  //   title: "Weekend Gateway",
+  //   href: "/tour-packages/weekend-gateways",
+  // },
   {
     title: "Custom Tour",
     href: "/tour-packages/custom-tour-packages",

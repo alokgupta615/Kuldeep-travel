@@ -31,14 +31,6 @@ const services = [
     title: "One Way Taxi",
     href: "/services/one-way-taxi",
   },
-  {
-    title: "Tempo Traveller",
-    href: "/services/tempo-traveller",
-  },
-  {
-    title: "Corporate Travel",
-    href: "/services/corporate-travel",
-  },
 ];
 
 export default function Footer() {

@@ -43,21 +43,32 @@ export default function Hero() {
 
       <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-cyan-500/20 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-24 lg:px-8">
+      <div
+        className="
+    relative z-10 mx-auto flex
+    min-h-screen
+    items-center lg:items-center
+    max-w-7xl
+    px-6 lg:px-8
+    pt-16
+    pb-12
+    lg:py-24
+  "
+      >
         <div className="max-w-3xl">
           {/* Badge */}
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 backdrop-blur-md lg:mt-4">
             <Sparkles className="h-4 w-4 text-yellow-300" />
 
-            <span className="text-sm font-semibold">
+            <span className="text-sm font-semibold ">
               Trusted Religious Tours from Lucknow
             </span>
           </div>
 
           {/* Heading */}
 
-          <h1 className="mt-8 text-5xl font-black leading-tight text-white md:text-7xl">
+          <h1 className="mt-5 text-4xl font-black leading-tight text-white sm:text-5xl md:text-7xl">
             Pilgrimage Tour
             <br />
             Packages
@@ -75,7 +86,7 @@ export default function Hero() {
 
           {/* CTA */}
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-4 md:mt-10">
             <Link
               href="/book-now"
               className="inline-flex items-center gap-2 rounded-xl bg-yellow-400 px-8 py-4 font-bold text-blue-950 transition hover:scale-105"
