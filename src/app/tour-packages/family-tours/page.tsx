@@ -20,7 +20,7 @@ export default function FamilyTourPackagesPage() {
       <WhyChooseUs />
       <PackageTypes />
       <PopularDestinations />
-      <VehicleSection />
+      {/* <VehicleSection /> */}
       <IncludedSection />
       <BestTimeSection />
       <BookingProcess />

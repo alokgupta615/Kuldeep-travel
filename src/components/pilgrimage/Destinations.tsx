@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import Image from "next/image";
 import { CheckCircle2, ArrowRight, MapPin } from "lucide-react";
@@ -78,10 +79,13 @@ export default function Destinations() {
 
                 {/* Button */}
 
-                <button className="mt-8 inline-flex items-center gap-2 font-bold text-blue-700 transition hover:text-yellow-600">
+                <Link
+                  href="/book-now"
+                  className="mt-8 inline-flex items-center gap-2 font-bold text-blue-700 transition hover:text-yellow-600"
+                >
                   Explore Tour
                   <ArrowRight size={18} />
-                </button>
+                </Link>
               </div>
             </div>
           ))}

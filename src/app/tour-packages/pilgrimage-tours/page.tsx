@@ -37,7 +37,7 @@ export default function PilgrimageToursPage() {
 
       <PackageIncludes />
 
-      <VehicleSection />
+      {/* <VehicleSection /> */}
 
       <BookingSteps />
 

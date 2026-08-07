@@ -71,7 +71,7 @@ export const destinations = [
   },
   {
     title: "Naimisharanya",
-    image: "/images/destinations/naimish.jpg",
+    image: "/images/destinations/naimish.png",
     description:
       "Ancient spiritual destination known for its peaceful atmosphere.",
     places: [
@@ -83,7 +83,7 @@ export const destinations = [
   },
   {
     title: "Vindhyachal",
-    image: "/images/pilgrimage/vindhyachal.jpg",
+    image: "/images/destinations/vindhyachal.png",
     description:
       "Seek blessings at Maa Vindhyavasini Temple.",
     places: [
@@ -94,7 +94,7 @@ export const destinations = [
   },
   {
     title: "Haridwar & Rishikesh",
-    image: "/images/pilgrimage/haridwar.jpg",
+    image: "/images/destinations/rishikesh.png",
     description:
       "Witness divine Ganga Aarti and explore sacred temples.",
     places: [
