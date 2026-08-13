@@ -45,7 +45,7 @@ const fleet = [
   },
   {
     name: "Luxury Coach",
-    image: "/images/fleet/luxury-coach.jpg",
+    image: "/images/fleet/bus.png",
     seats: "40+ Seats",
     luggage: "Large Storage",
     description:
