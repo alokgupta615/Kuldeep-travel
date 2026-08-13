@@ -172,8 +172,8 @@ export default function WeddingCarRentalPage() {
         <Hero />
         <StorySection />
         <Services />
-        <Fleet />
-        <DecorationOptions />
+        {/* <Fleet /> */}
+        {/* <DecorationOptions /> */}
         <WhyChooseUs />
         <BookingProcess />
         <ServiceAreas />

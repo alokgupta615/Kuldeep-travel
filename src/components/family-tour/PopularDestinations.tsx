@@ -7,7 +7,7 @@ import { ArrowRight, Clock3, MapPin, Star } from "lucide-react";
 const destinations = [
   {
     name: "Nainital",
-    image: "/images/family-tour/destinations/nainital.jpg",
+    image: "/images/destinations/nainital.png",
     duration: "3N / 4D",
     description:
       "Experience peaceful lakes, boating, ropeway rides, Mall Road shopping, and breathtaking Himalayan views with your family.",
@@ -15,7 +15,7 @@ const destinations = [
   },
   {
     name: "Mussoorie",
-    image: "/images/family-tour/destinations/mussoorie.jpg",
+    image: "/images/destinations/mussoorie.png",
     duration: "3N / 4D",
     description:
       "Enjoy pleasant weather, waterfalls, Gun Hill, Camel's Back Road, and beautiful mountain scenery together.",
@@ -23,7 +23,7 @@ const destinations = [
   },
   {
     name: "Jim Corbett",
-    image: "/images/family-tour/destinations/corbett.jpg",
+    image: "/images/destinations/jim corbett.png",
     duration: "2N / 3D",
     description:
       "A perfect wildlife getaway offering jungle safaris, riverside resorts, and exciting outdoor adventures.",
@@ -31,7 +31,7 @@ const destinations = [
   },
   {
     name: "Agra",
-    image: "/images/family-tour/destinations/agra.jpg",
+    image: "/images/destinations/agra.png",
     duration: "2N / 3D",
     description:
       "Discover India's iconic Taj Mahal, Agra Fort, local markets, and Mughal heritage with your loved ones.",
@@ -39,7 +39,7 @@ const destinations = [
   },
   {
     name: "Jaipur",
-    image: "/images/family-tour/destinations/jaipur.jpg",
+    image: "/images/destinations/jaipur.png",
     duration: "4N / 5D",
     description:
       "Explore royal palaces, magnificent forts, colourful markets, and Rajasthan's vibrant culture.",
@@ -47,7 +47,7 @@ const destinations = [
   },
   {
     name: "Ayodhya",
-    image: "/images/family-tour/destinations/ayodhya.jpg",
+    image: "/images/destinations/ayodhya.png",
     duration: "2N / 3D",
     description:
       "Visit Ram Janmabhoomi, Hanuman Garhi, Kanak Bhawan, and other sacred places with your family.",
@@ -55,7 +55,7 @@ const destinations = [
   },
   {
     name: "Varanasi",
-    image: "/images/family-tour/destinations/varanasi.jpg",
+    image: "/images/destinations/varanasi.png",
     duration: "3N / 4D",
     description:
       "Witness the spiritual beauty of Kashi Vishwanath Temple, Ganga Aarti, and ancient ghats.",
@@ -63,7 +63,7 @@ const destinations = [
   },
   {
     name: "Haridwar & Rishikesh",
-    image: "/images/family-tour/destinations/haridwar.jpg",
+    image: "/images/destinations/haridwar.png",
     duration: "4N / 5D",
     description:
       "Experience spirituality, yoga, riverfronts, adventure activities, and scenic Himalayan surroundings.",
