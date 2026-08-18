@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Users, Briefcase, Snowflake, CheckCircle2 } from "lucide-react";
+import { Users, Briefcase, Snowflake, CheckCircle2, Sparkles } from "lucide-react";
 
 interface Props {
   formData: {
@@ -13,80 +13,83 @@ interface Props {
 const vehicles = [
   {
     id: "Swift Dzire",
+    name: "Prime Sedan (Dzire / Etios)",
     image: "/images/fleet/dzire.png",
-    seats: 4,
-    luggage: 2,
+    seats: "4 Seats",
+    luggage: "2-3 Bags",
     ac: true,
     price: "₹12/km",
+    tag: "Economical",
   },
   {
     id: "Ertiga",
+    name: "Spacious SUV (Ertiga / XL6)",
     image: "/images/fleet/ertiga.png",
-    seats: 6,
-    luggage: 3,
+    seats: "6 Seats",
+    luggage: "3-4 Bags",
     ac: true,
     price: "₹15/km",
+    tag: "Most Popular",
   },
   {
     id: "Innova",
+    name: "Toyota Innova",
     image: "/images/fleet/innova.png",
-    seats: 7,
-    luggage: 4,
+    seats: "7 Seats",
+    luggage: "4-5 Bags",
     ac: true,
     price: "₹18/km",
+    tag: "Comfortable",
   },
   {
     id: "Innova Crysta",
+    name: "Innova Crysta (Captain Seats)",
     image: "/images/fleet/innova.png",
-    seats: 7,
-    luggage: 4,
+    seats: "6-7 Seats",
+    luggage: "5 Bags",
     ac: true,
     price: "₹20/km",
+    tag: "Executive Class",
   },
   {
     id: "Tempo Traveller",
+    name: "Tempo Traveller (12–26 Seater)",
     image: "/images/fleet/tempo.png",
-    seats: 12,
-    luggage: 8,
+    seats: "12-26 Seats",
+    luggage: "15+ Bags",
     ac: true,
-    price: "₹28/km",
+    price: "₹26/km",
+    tag: "Big Families",
   },
   {
     id: "Mini Bus",
+    name: "Luxury Mini Bus / Coach",
     image: "/images/fleet/bus.png",
-    seats: 20,
-    luggage: 12,
+    seats: "25 Seats",
+    luggage: "20+ Bags",
     ac: true,
-    price: "Contact Us",
+    price: "Custom Quote",
+    tag: "Group Events",
   },
 ];
 
 export default function VehicleSelector({ formData, setFormData }: Props) {
   return (
-    <section className="space-y-8">
-      {/* Heading */}
-
-      <div className="text-center lg:text-left">
-        <span className="inline-flex rounded-full bg-yellow-100 px-4 py-2 text-xs font-semibold text-yellow-700 sm:text-sm">
-          🚖 Choose Your Vehicle
-        </span>
-
-        <h3 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
-          Select Your Preferred Vehicle
-        </h3>
-
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base lg:mx-0">
-          Choose from our premium fleet of clean, comfortable and professionally
-          maintained vehicles. Every booking includes experienced drivers, air
-          conditioning and transparent pricing.
+    <div className="space-y-6">
+      {/* Subheader */}
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-xs sm:text-sm text-slate-600">
+          Tap on a vehicle to select for your journey:
         </p>
+        <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+          All vehicles include Chilled AC
+        </span>
       </div>
 
-      {/* Vehicles Grid */}
-
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {/* Grid */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {vehicles.map((vehicle) => {
-          const selected = formData.vehicle === vehicle.id;
+          const isSelected = formData.vehicle === vehicle.id;
 
           return (
             <div
@@ -97,124 +100,74 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
                   vehicle: vehicle.id,
                 }))
               }
-              className={`group cursor-pointer overflow-hidden rounded-2xl border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl lg:rounded-3xl ${
-                selected
-                  ? "border-yellow-400 ring-2 ring-yellow-400 shadow-xl"
+              className={`group relative cursor-pointer overflow-hidden rounded-2xl border bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${
+                isSelected
+                  ? "border-blue-600 bg-blue-50/20 ring-2 ring-blue-600 shadow-md"
                   : "border-slate-200 hover:border-blue-300"
               }`}
             >
-              {/* Header */}
+              {/* Top Badge & Rate */}
+              <div className="flex items-center justify-between mb-2">
+                <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-bold text-white">
+                  {vehicle.tag}
+                </span>
 
-              {/* Header */}
+                <span className="rounded-full bg-yellow-400 px-2.5 py-0.5 text-[11px] font-extrabold text-slate-950">
+                  {vehicle.price}
+                </span>
+              </div>
 
-              <div className="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-700 p-5">
-                {/* Price */}
+              {/* Vehicle Image */}
+              <div className="relative h-36 w-full overflow-hidden rounded-xl bg-slate-50 flex items-center justify-center p-2">
+                <Image
+                  src={vehicle.image}
+                  alt={vehicle.name}
+                  width={320}
+                  height={180}
+                  className="max-h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
 
-                <div className="flex justify-end">
-                  <span className="rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-slate-900">
-                    {vehicle.price}
+              {/* Vehicle Name */}
+              <h4 className="mt-3 text-sm font-bold text-slate-900 line-clamp-1">
+                {vehicle.name}
+              </h4>
+
+              {/* Specs */}
+              <div className="mt-2.5 grid grid-cols-3 gap-1.5 text-center text-xs">
+                <div className="rounded-lg bg-slate-100/80 p-1.5">
+                  <Users size={14} className="mx-auto text-blue-700 mb-0.5" />
+                  <span className="font-semibold text-slate-800 text-[11px] block truncate">
+                    {vehicle.seats}
                   </span>
                 </div>
 
-                {/* Vehicle Image */}
-
-                {/* Vehicle Image */}
-                {/* Vehicle Image */}
-                <div className="mt-4 mx-auto w-full overflow-hidden rounded-xl bg-white text-slate-900">
-                  <div className="relative aspect-[16/9] w-full">
-                    <Image
-                      src={vehicle.image}
-                      alt={vehicle.id}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                      className="object-cover scale-[1.08] transition-transform duration-300 group-hover:scale-[1.12]"
-                    />
-                  </div>
+                <div className="rounded-lg bg-slate-100/80 p-1.5">
+                  <Briefcase size={14} className="mx-auto text-amber-600 mb-0.5" />
+                  <span className="font-semibold text-slate-800 text-[11px] block truncate">
+                    {vehicle.luggage}
+                  </span>
                 </div>
 
-                {/* Vehicle Name */}
-
-                <h4 className="mt-4 text-center text-xl font-bold text-white sm:text-2xl">
-                  {vehicle.id}
-                </h4>
-
-                <p className="mt-2 text-center text-sm leading-6 text-blue-100">
-                  Premium • AC • Professional Driver
-                </p>
+                <div className="rounded-lg bg-slate-100/80 p-1.5">
+                  <Snowflake size={14} className="mx-auto text-cyan-600 mb-0.5" />
+                  <span className="font-semibold text-slate-800 text-[11px] block">
+                    AC
+                  </span>
+                </div>
               </div>
 
-              {/* Features */}
-
-              <div className="space-y-5 p-4 sm:p-5">
-                <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                  {/* Seats */}
-
-                  <div className="rounded-xl bg-slate-50 p-3 text-center">
-                    <Users className="mx-auto mb-2 h-5 w-5 text-blue-600" />
-
-                    <p className="text-xl font-bold text-slate-900">
-                      {vehicle.seats}
-                    </p>
-
-                    <span className="text-xs text-slate-600">Seats</span>
-                  </div>
-                  {/* Bags */}
-
-                  <div className="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm">
-                    <Briefcase className="mx-auto mb-2 h-5 w-5 text-orange-500" />
-
-                    <p className="text-xl font-bold text-slate-900">
-                      {vehicle.luggage}
-                    </p>
-
-                    <span className="text-xs text-slate-600">Bags</span>
-                  </div>
-
-                  {/* AC */}
-
-                  {/* <div className="rounded-xl bg-slate-50 p-3 text-center">
-                    <Snowflake
-                      size={18}
-                      className="mx-auto mb-2 text-cyan-600"
-                    />
-
-                    <p className="text-base font-bold">
-                      {vehicle.ac ? "AC" : "No"}
-                    </p>
-
-                    <span className="text-[11px] text-slate-500">Comfort</span>
-                  </div>
-                </div> */}
-
-                  <div className="rounded-xl bg-slate-50 p-3 text-center">
-                    <Snowflake className="mx-auto mb-2 h-5 w-5 text-cyan-600" />
-
-                    <p className="text-base font-bold text-slate-900">AC</p>
-
-                    <span className="text-xs text-slate-600">Comfort</span>
-                  </div>
-                </div>
-
-                {/* Selected Button */}
-
-                {selected ? (
-                  <div className="flex items-center justify-center gap-2 rounded-xl bg-green-50 py-3 text-sm font-semibold text-green-700">
-                    <CheckCircle2 size={18} />
-
-                    <span>Selected Vehicle</span>
+              {/* Select Status */}
+              <div className="mt-3.5 pt-2.5 border-t border-slate-100">
+                {isSelected ? (
+                  <div className="flex items-center justify-center gap-1.5 rounded-xl bg-blue-700 py-2 text-xs font-bold text-white">
+                    <CheckCircle2 size={15} />
+                    <span>Selected</span>
                   </div>
                 ) : (
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-
-                      setFormData((prev: any) => ({
-                        ...prev,
-                        vehicle: vehicle.id,
-                      }));
-                    }}
-                    className="w-full rounded-xl bg-slate-900 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900"
+                    className="w-full rounded-xl bg-slate-100 py-2 text-xs font-semibold text-slate-700 group-hover:bg-blue-600 group-hover:text-white transition"
                   >
                     Select Vehicle
                   </button>
@@ -224,6 +177,6 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
           );
         })}
       </div>
-    </section>
+    </div>
   );
 }

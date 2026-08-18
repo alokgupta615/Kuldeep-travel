@@ -1,38 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 
 const faqs = [
   {
-    question: "How do I book a taxi?",
+    question: "How do I confirm my taxi booking?",
     answer:
-      "Simply fill out the booking form with your pickup location, destination, travel date, time, and vehicle preference. Once submitted, our team will review and confirm your booking.",
+      "Simply fill in your travel route, select your vehicle, and choose whether to pay online or pay after the trip. Once submitted, our 24×7 dispatch team immediately confirms your booking via WhatsApp and SMS.",
   },
   {
-    question: "When will my booking be confirmed?",
+    question: "Can I book a cab without paying advance?",
     answer:
-      "Most bookings are confirmed within 5–15 minutes during business hours. You'll receive confirmation via WhatsApp and email.",
+      "Yes! Select the 'Pay After Trip' option in Step 6 of the booking form. You can pay the chauffeur directly via UPI, Card, or Cash after reaching your destination.",
   },
   {
-    question: "Can I pay after my trip?",
+    question: "When will I receive driver and vehicle details?",
     answer:
-      "Yes. You can choose 'Pay After Trip' while booking or pay online in advance using our secure payment gateway.",
+      "For scheduled bookings, driver contact number and cab license plate are shared 1–2 hours before your pickup time via WhatsApp and SMS. For immediate bookings, details are shared within 5 minutes.",
   },
   {
-    question: "Do you provide airport pickup and drop?",
+    question: "What if my flight arrives late at Lucknow Airport?",
     answer:
-      "Yes. We provide reliable airport transfers with professional drivers and timely pickups for all major airports.",
+      "We monitor live flight statuses for Chaudhary Charan Singh International Airport (LKO). There are no extra waiting fees for flight delays, and our driver will be waiting at the arrival gate.",
   },
   {
-    question: "Can I cancel or modify my booking?",
+    question: "Can I modify or cancel my booking?",
     answer:
-      "Yes. Contact us as early as possible. Depending on the timing and booking status, cancellation or modification may be possible.",
+      "Yes. You can modify your travel date, time, or route by contacting our 24×7 helpline at +91 99364 08109 or via WhatsApp. Cancellation is 100% free up to 6 hours before pickup.",
   },
   {
-    question: "Are tolls and parking charges included?",
+    question: "Are toll taxes and state permits included?",
     answer:
-      "Tolls, parking fees, and state taxes (if applicable) are generally charged separately unless otherwise mentioned in your booking confirmation.",
+      "For standard outstation and airport fares, toll taxes, state border permits, and parking charges are charged transparently as per actual receipts unless included in a fixed package rate.",
   },
 ];
 
@@ -40,73 +40,58 @@ export default function BookingFAQ() {
   const [active, setActive] = useState<number | null>(0);
 
   return (
-    <section className="bg-slate-50 py-20">
-      <div className="container mx-auto max-w-4xl px-6">
-
+    <section className="bg-white py-14 md:py-24">
+      <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-
-        <div className="mb-14 text-center">
-
-          <span className="rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-700">
-            Frequently Asked Questions
+        <div className="mb-10 md:mb-14 text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-100 px-3.5 py-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-yellow-800">
+            <HelpCircle size={14} className="text-yellow-600" />
+            Booking Help
           </span>
 
-          <h2 className="mt-6 text-4xl font-extrabold text-slate-900">
-            Have Questions?
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Frequently Asked Questions
           </h2>
 
-          <p className="mt-4 text-lg text-slate-600">
-            Find answers to the most common questions about booking with
-            Kuldeep Travels.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+            Everything you need to know about booking with Kuldeep Travels.
           </p>
-
         </div>
 
-        {/* FAQ */}
-
-        <div className="space-y-5">
-
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
-            >
-              <button
-                onClick={() =>
-                  setActive(active === index ? null : index)
-                }
-                className="flex w-full items-center justify-between px-6 py-5 text-left"
-              >
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {faq.question}
-                </h3>
-
-                <ChevronDown
-                  className={`transition-transform duration-300 ${
-                    active === index ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
+        {/* FAQ Accordion */}
+        <div className="space-y-3.5">
+          {faqs.map((faq, index) => {
+            const isOpen = active === index;
+            return (
               <div
-                className={`grid transition-all duration-300 ${
-                  active === index
-                    ? "grid-rows-[1fr]"
-                    : "grid-rows-[0fr]"
-                }`}
+                key={faq.question}
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-200"
               >
-                <div className="overflow-hidden">
-                  <p className="px-6 pb-6 text-slate-600 leading-7">
+                <button
+                  onClick={() => setActive(isOpen ? null : index)}
+                  className="flex w-full items-center justify-between p-4 sm:p-5 text-left bg-slate-50/50 hover:bg-slate-50 transition"
+                >
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-slate-900 pr-4">
+                    {faq.question}
+                  </span>
+
+                  <ChevronDown
+                    size={18}
+                    className={`text-slate-500 transition-transform duration-300 shrink-0 ${
+                      isOpen ? "rotate-180 text-blue-700" : ""
+                    }`}
+                  />
+                </button>
+
+                {isOpen && (
+                  <div className="p-4 sm:p-5 pt-0 bg-slate-50/50 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
                     {faq.answer}
-                  </p>
-                </div>
+                  </div>
+                )}
               </div>
-
-            </div>
-          ))}
-
+            );
+          })}
         </div>
-
       </div>
     </section>
   );
