@@ -16,7 +16,7 @@ export default function SuccessModal({
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 p-6 backdrop-blur-sm">
-      <div className="w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl">
+      <div className="w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl text-slate-900">
 
         {/* Header */}
 

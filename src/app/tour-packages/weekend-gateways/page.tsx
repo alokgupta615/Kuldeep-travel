@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/weekend-getaway/hero.jpg",
+        url: "/images/destinations/hero.png",
         width: 1200,
         height: 630,
         alt: "Weekend Getaway from Lucknow",

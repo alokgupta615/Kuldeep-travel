@@ -67,7 +67,7 @@ export default async function SingleBlogPage({
         />
 
         {post.featuredImage?.node?.sourceUrl && (
-          <div className="relative w-full h-[450px] rounded-3xl overflow-hidden mb-10">
+          <div className="relative w-full h-[450px] rounded-3xl overflow-hidden mb-10 text-slate-900">
             <Image
               src={post.featuredImage.node.sourceUrl}
               alt={post.title}

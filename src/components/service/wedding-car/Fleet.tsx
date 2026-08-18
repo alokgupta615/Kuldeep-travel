@@ -12,7 +12,7 @@ import {
 const fleet = [
   {
     title: "Luxury Sedans",
-    image: "/images/wedding/fleet/sedan.jpg",
+    image: "/images/fleet/sedan.png",
     description:
       "Elegant luxury sedans for sophisticated wedding arrivals and timeless photographs.",
     suitable: [
@@ -25,7 +25,7 @@ const fleet = [
   },
   {
     title: "Premium SUVs",
-    image: "/images/wedding/fleet/suv.jpg",
+    image: "/images/fleet/suv.png",
     description:
       "A perfect combination of luxury, comfort and commanding presence for modern weddings.",
     suitable: ["Bride & Groom", "VIP Guests", "Luxury Entry", "Family Members"],
@@ -33,7 +33,7 @@ const fleet = [
   },
   {
     title: "Innova Crysta",
-    image: "/images/wedding/fleet/crysta.jpg",
+    image: "/images/fleet/innova.png",
     description:
       "Premium interiors with exceptional comfort for families and airport transfers.",
     suitable: [
@@ -46,7 +46,7 @@ const fleet = [
   },
   {
     title: "Tempo Traveller",
-    image: "/images/wedding/fleet/traveller.jpg",
+    image: "/images/fleet/tempo.png",
     description:
       "Ideal for transporting family members and wedding guests between venues comfortably.",
     suitable: ["Family Groups", "Friends", "Guest Transfers", "Hotels"],
@@ -54,7 +54,7 @@ const fleet = [
   },
   {
     title: "Mini Bus & Luxury Coach",
-    image: "/images/wedding/fleet/coach.jpg",
+    image: "/images/fleet/bus.png",
     description:
       "The ideal choice for weddings with large guest lists requiring coordinated transportation.",
     suitable: [

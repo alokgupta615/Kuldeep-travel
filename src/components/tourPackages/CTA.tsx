@@ -141,7 +141,7 @@ export default function CTA() {
               </Link>
 
               <a
-                href="tel:+919999999999"
+                href="tel:+919936408109"
                 className="flex w-full items-center justify-center rounded-xl bg-green-600 px-6 py-4 text-lg font-semibold text-white transition hover:bg-green-700"
               >
                 <Phone className="mr-2 h-5 w-5" />
@@ -151,7 +151,7 @@ export default function CTA() {
               </a>
 
               <a
-                href="https://wa.me/919999999999"
+                href="https://wa.me/919936408109"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex w-full items-center justify-center rounded-xl bg-green-500 px-6 py-4 text-lg font-semibold text-white transition hover:bg-green-600"

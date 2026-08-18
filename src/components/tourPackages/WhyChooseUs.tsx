@@ -132,7 +132,7 @@ export default function WhyChooseUs() {
             <div className="grid grid-cols-2 gap-5">
               <div className="rounded-2xl bg-white/10 p-5 backdrop-blur">
                 <h4 className="text-3xl font-bold text-yellow-400">
-                  10,000+
+                  51,000+
                 </h4>
                 <p className="mt-2 text-blue-100">Happy Travelers</p>
               </div>

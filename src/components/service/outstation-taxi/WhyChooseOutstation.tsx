@@ -101,7 +101,7 @@ export default function WhyChooseOutstation() {
 
                 {/* Divider */}
 
-                <div className="mt-8 h-1 w-16 rounded-full bg-yellow-400 transition-all duration-300 group-hover:w-full" />
+                <div className="mt-8 h-1 w-16 rounded-full bg-yellow-400 transition-all duration-300 group-hover:w-full text-slate-900" />
               </div>
             );
           })}

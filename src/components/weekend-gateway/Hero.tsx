@@ -187,9 +187,9 @@ export default function Hero() {
 
             {/* Main Image */}
 
-            <div className="relative z-10 w-full max-w-sm overflow-hidden rounded-[28px] border border-white/20 bg-white/10 shadow-2xl backdrop-blur lg:max-w-lg">
+            <div className="relative z-10 w-full max-w-sm overflow-hidden rounded-[28px] border border-white/20 bg-white/10 shadow-2xl backdrop-blur lg:max-w-lg text-slate-900">
               <Image
-                src="/images/weekend-getaway/hero.jpg"
+                src="/images/destinations/hero.png"
                 alt="Weekend Getaway from Lucknow"
                 width={700}
                 height={900}
@@ -224,7 +224,7 @@ export default function Hero() {
                 </div>
 
                 <div>
-                  <p className="text-lg font-bold text-slate-900">10,000+</p>
+                  <p className="text-lg font-bold text-slate-900">51,000+</p>
 
                   <p className="text-sm text-slate-600">Happy Travellers</p>
                 </div>

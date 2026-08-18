@@ -120,7 +120,7 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
 
                 {/* Vehicle Image */}
                 {/* Vehicle Image */}
-                <div className="mt-4 mx-auto w-full overflow-hidden rounded-xl bg-white">
+                <div className="mt-4 mx-auto w-full overflow-hidden rounded-xl bg-white text-slate-900">
                   <div className="relative aspect-[16/9] w-full">
                     <Image
                       src={vehicle.image}

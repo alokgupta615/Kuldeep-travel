@@ -84,7 +84,7 @@ export default function WhyChooseUs() {
           <div className="relative order-2 lg:order-1">
             <div className="overflow-hidden rounded-[32px] shadow-2xl">
               <Image
-                src="/images/custom-tour/why-us.jpg"
+                src="/images/home/about.png"
                 alt="Kuldeep Travels"
                 width={700}
                 height={800}

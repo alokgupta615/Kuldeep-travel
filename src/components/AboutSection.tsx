@@ -24,7 +24,7 @@ const stats = [
   },
   {
     icon: Users,
-    value: "10K+",
+    value: "51K+",
     label: "Happy Customers",
   },
   {
@@ -54,7 +54,7 @@ export default function AboutSection() {
               alt="Kuldeep Travels"
               width={650}
               height={650}
-              className="h-56 w-full rounded-2xl object-cover shadow-xl sm:h-80 lg:h-[620px]"
+              className="h-56 w-full rounded-2xl object-cover shadow-xl sm:h-80 lg:h-[620px] text-slate-900"
             />
 
             {/* Floating Card */}

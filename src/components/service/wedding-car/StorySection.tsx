@@ -110,7 +110,7 @@ export default function StorySection() {
 
           <div className="order-1 relative pb-6 lg:order-2 lg:pb-0">
             {/* Gold Border */}
-            <div className="absolute -left-2 -top-2 hidden h-full w-full rounded-[32px] border border-yellow-300 lg:-left-5 lg:-top-5 lg:block lg:border-2" />
+            <div className="absolute -left-2 -top-2 hidden h-full w-full rounded-[32px] border border-yellow-300 lg:-left-5 lg:-top-5 lg:block lg:border-2 text-slate-900" />
 
             {/* Image */}
             <div className="relative overflow-hidden rounded-[28px] shadow-[0_25px_60px_rgba(0,0,0,0.18)] lg:rounded-[32px]">

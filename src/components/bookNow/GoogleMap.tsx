@@ -139,7 +139,7 @@ export default function GoogleMapComponent({
                 }))
               }
               placeholder="Enter Pickup Location"
-              className="w-full rounded-xl border p-3 outline-none focus:border-yellow-400"
+              className="w-full rounded-xl border p-3 outline-none focus:border-yellow-400 text-slate-900"
             />
           </Autocomplete>
 
@@ -178,7 +178,7 @@ export default function GoogleMapComponent({
                 }))
               }
               placeholder="Enter Destination"
-              className="w-full rounded-xl border p-3 outline-none focus:border-yellow-400"
+              className="w-full rounded-xl border p-3 outline-none focus:border-yellow-400 text-slate-900"
             />
           </Autocomplete>
 

@@ -1,38 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, HelpCircle, Phone, MessageCircle } from "lucide-react";
 
 const faqs = [
   {
-    question: "How can I book a cab or tour package?",
+    question: "How do I book a cab or tour with Kuldeep Travels?",
     answer:
-      "You can call us directly, send us a WhatsApp message, email us, or fill out the contact form. Share your travel details, and our team will guide you through the booking process.",
+      "You can book instantly by calling us at +91 99364 08109, chatting on WhatsApp, or submitting the online booking form on this page. Our travel coordinator will confirm vehicle availability and send you driver details promptly.",
   },
   {
-    question: "How quickly will I receive a quotation?",
+    question: "Are your fares fixed with no hidden charges?",
     answer:
-      "Most quotations are shared shortly after we receive your travel details. Customized tours or large group bookings may take a little longer depending on your requirements.",
+      "Yes. We practice 100% transparent pricing. Your quotation includes driver allowance, fuel, and vehicle charges. Toll taxes and state entry permits are clearly specified in advance so you face zero surprises.",
   },
   {
-    question: "Can I book transportation for a large group?",
+    question: "How early should I book for airport transfers and outstation trips?",
     answer:
-      "Yes. We arrange transportation for families, corporate teams, wedding guests, schools, colleges, and other group travel requirements using Tempo Travellers, Mini Buses, and Luxury Coaches.",
+      "For local and airport transfers, we recommend booking at least 1-2 hours in advance. For outstation trips, Tempo Travellers, and luxury buses, booking 24-48 hours ahead ensures you get your preferred vehicle model and best rates.",
   },
   {
-    question: "Do you arrange customized tour packages?",
+    question: "What group transportation options do you provide?",
     answer:
-      "Yes. We create personalized travel itineraries based on your destination, travel duration, group size, and budget.",
+      "We operate 12-seater, 17-seater, 20-seater, and 26-seater luxury Tempo Travellers, as well as 35, 45, and 55-seater luxury AC tourist buses for weddings, corporate outings, school trips, and pilgrimages.",
   },
   {
-    question: "Is advance booking recommended?",
+    question: "Can I customize my tour itinerary (e.g. Ayodhya, Varanasi, Nepal)?",
     answer:
-      "Yes. We recommend booking as early as possible, especially during weekends, long holidays, wedding season, and major festivals, to ensure better vehicle availability.",
+      "Absolutely! We specialize in tailored itineraries. Tell us your departure dates, family or group size, and points of interest, and our travel specialists will curate a custom trip plan.",
   },
   {
-    question: "Which areas do you serve?",
+    question: "What is your cancellation and refund policy?",
     answer:
-      "We provide travel services across Lucknow, including local transportation, airport transfers, outstation taxi services, and tour packages to destinations across North India.",
+      "We offer flexible cancellation. If your travel plans change, notify us before the chauffeur is dispatched for a hassle-free cancellation or rescheduling.",
   },
 ];
 
@@ -40,55 +40,63 @@ export default function ContactFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-gray-50 py-20">
-      <div className="mx-auto max-w-5xl px-6">
-        {/* Heading */}
+    <section className="bg-white py-14 md:py-20 border-t border-slate-100">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        {/* Section Heading */}
         <div className="text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-            FAQs
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-3.5 py-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-800">
+            <HelpCircle size={14} className="text-blue-600" />
+            Common Queries
           </span>
 
-          <h2 className="mt-3 text-4xl font-bold text-gray-900">
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
             Frequently Asked Questions
           </h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-gray-600">
-            Find answers to common questions about our taxi services, tour
-            packages, and booking process.
+          <p className="mx-auto mt-3 max-w-2xl text-sm sm:text-base text-slate-600 leading-relaxed">
+            Quick answers about booking cabs, outstation trips, Tempo Travellers,
+            and custom tour packages in Lucknow.
           </p>
         </div>
 
-        {/* FAQ List */}
-        <div className="mt-14 space-y-6">
+        {/* FAQ Accordion List */}
+        <div className="mt-10 space-y-3.5">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
               <div
                 key={index}
-                className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg"
+                className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
+                  isOpen
+                    ? "border-blue-300 bg-blue-50/40 shadow-sm"
+                    : "border-slate-200 bg-white hover:border-slate-300"
+                }`}
               >
                 <button
-                  onClick={() =>
-                    setOpenIndex(isOpen ? null : index)
-                  }
-                  className="flex w-full items-center justify-between p-6 text-left"
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="flex w-full items-center justify-between p-4 sm:p-5 text-left gap-3"
+                  aria-expanded={isOpen}
                 >
-                  <span className="text-lg font-semibold text-gray-900">
+                  <span className="text-sm sm:text-base font-bold text-slate-900">
                     {faq.question}
                   </span>
 
-                  <ChevronDown
-                    size={22}
-                    className={`text-gray-600 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
+                  <div
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-transform duration-200 ${
+                      isOpen
+                        ? "bg-blue-600 text-white rotate-180"
+                        : "bg-slate-100 text-slate-600"
                     }`}
-                  />
+                  >
+                    <ChevronDown size={16} />
+                  </div>
                 </button>
 
                 {isOpen && (
-                  <div className="border-t border-gray-200 px-6 py-5">
-                    <p className="leading-8 text-gray-600">
+                  <div className="border-t border-blue-100/80 px-4 sm:px-5 pb-5 pt-3">
+                    <p className="text-xs sm:text-sm leading-relaxed text-slate-600">
                       {faq.answer}
                     </p>
                   </div>
@@ -96,6 +104,36 @@ export default function ContactFAQ() {
               </div>
             );
           })}
+        </div>
+
+        {/* Still have questions? */}
+        <div className="mt-10 rounded-2xl bg-slate-50 border border-slate-200 p-5 sm:p-6 text-center">
+          <h3 className="text-base sm:text-lg font-bold text-slate-900">
+            Have a question not listed above?
+          </h3>
+          <p className="mt-1 text-xs sm:text-sm text-slate-500">
+            Speak directly with our 24×7 customer support team.
+          </p>
+
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <a
+              href="tel:+919936408109"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-blue-700 px-4 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-blue-800 transition"
+            >
+              <Phone size={14} />
+              <span>Call +91 99364 08109</span>
+            </a>
+
+            <a
+              href="https://wa.me/919936408109"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2 text-xs sm:text-sm font-semibold text-emerald-800 hover:bg-emerald-100 transition"
+            >
+              <MessageCircle size={14} className="text-emerald-600" />
+              <span>Ask on WhatsApp</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

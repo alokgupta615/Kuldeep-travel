@@ -1,4 +1,6 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import {
   Phone,
   MessageCircle,
@@ -7,342 +9,226 @@ import {
   Clock,
   ArrowUpRight,
   ShieldCheck,
-  Star,
-  Headphones,
+  CheckCircle2,
+  Copy,
+  Check,
+  Sparkles,
 } from "lucide-react";
 
-const contactCards = [
-  {
-    icon: Phone,
-    title: "Call Us",
-    description:
-      "Speak directly with our travel experts for instant bookings, fare details, and personalized travel assistance.",
-    value: "099364 08109",
-    href: "tel:09936408109",
-    color: "text-blue-700",
-    bg: "bg-blue-100",
-  },
-  {
-    icon: MessageCircle,
-    title: "WhatsApp",
-    description:
-      "Share your journey details on WhatsApp and receive an instant quotation with vehicle availability.",
-    value: "Chat on WhatsApp",
-    href: "https://wa.me/919936408109",
-    color: "text-green-700",
-    bg: "bg-green-100",
-  },
-  {
-    icon: Mail,
-    title: "Email Support",
-    description:
-      "Ideal for corporate travel, group bookings, customized tours, and partnership inquiries.",
-    value: "kuldeeptravelslko@gmail.com",
-    href: "mailto:kuldeeptravelslko@gmail.com",
-    color: "text-red-600",
-    bg: "bg-red-100",
-  },
-  {
-    icon: MapPin,
-    title: "Office Location",
-    description:
-      "Meet our travel consultants to plan your business trips, holidays, and family vacations.",
-    value: "Lucknow, Uttar Pradesh",
-    href: "#map",
-    color: "text-yellow-600",
-    bg: "bg-yellow-100",
-  },
-  {
-    icon: Clock,
-    title: "Business Hours",
-    description:
-      "Our booking team is available every day to assist you with your travel requirements.",
-    value: "Monday – Sunday",
-    extra: "Advance booking is recommended during weekends and festive seasons.",
-    color: "text-purple-700",
-    bg: "bg-purple-100",
-  },
-];
-
 export default function ContactInfo() {
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const handleCopy = (text: string, key: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedKey(key);
+    setTimeout(() => {
+      setCopiedKey(null);
+    }, 2000);
+  };
+
+  const contactChannels = [
+    {
+      key: "phone",
+      icon: Phone,
+      title: "Call Us Directly",
+      subtitle: "Instant booking & immediate travel consultation",
+      value: "+91 99364 08109",
+      actionText: "Call Now",
+      href: "tel:+919936408109",
+      color: "text-blue-700",
+      bg: "bg-blue-50 border-blue-100",
+      iconBg: "bg-blue-600 text-white",
+      badge: "24×7 Toll-Free Support",
+      copyable: "+919936408109",
+    },
+    {
+      key: "whatsapp",
+      icon: MessageCircle,
+      title: "WhatsApp Booking",
+      subtitle: "Get instant fare estimate & vehicle photos",
+      value: "Chat on WhatsApp",
+      actionText: "Open WhatsApp",
+      href: "https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20I%20want%20to%20inquire%20about%20a%20booking.",
+      color: "text-emerald-700",
+      bg: "bg-emerald-50 border-emerald-100",
+      iconBg: "bg-emerald-600 text-white",
+      badge: "Avg Reply < 5 Mins",
+      copyable: "+919936408109",
+    },
+    {
+      key: "email",
+      icon: Mail,
+      title: "Email Assistance",
+      subtitle: "Corporate travel, bulk fleet & tour quotations",
+      value: "kuldeeptravelslko@gmail.com",
+      actionText: "Send Email",
+      href: "mailto:kuldeeptravelslko@gmail.com",
+      color: "text-rose-700",
+      bg: "bg-rose-50 border-rose-100",
+      iconBg: "bg-rose-600 text-white",
+      badge: "Official Correspondence",
+      copyable: "kuldeeptravelslko@gmail.com",
+    },
+    {
+      key: "location",
+      icon: MapPin,
+      title: "Head Office",
+      subtitle: "Visit our office for customized package planning",
+      value: "Lucknow, Uttar Pradesh",
+      actionText: "View on Map",
+      href: "#map",
+      color: "text-amber-700",
+      bg: "bg-amber-50 border-amber-100",
+      iconBg: "bg-amber-600 text-white",
+      badge: "Mon - Sun • 24 Hours",
+      copyable: "Kuldeep Travels, Lucknow, Uttar Pradesh",
+    },
+  ];
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 py-24">
-
-      {/* Decorative Background */}
-
-      <div className="absolute -left-24 top-0 h-96 w-96 rounded-full bg-blue-200/30 blur-3xl" />
-      <div className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-yellow-200/30 blur-3xl" />
-
-      <div className="relative mx-auto max-w-7xl px-6">
-
-        {/* Heading */}
-
+    <section className="relative overflow-hidden bg-slate-50/80 py-14 md:py-20">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+        {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-
-          <span className="inline-flex rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold uppercase tracking-widest text-blue-700">
-            Contact Kuldeep Travels
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-4 py-1.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-800">
+            <Sparkles size={14} className="text-blue-600" />
+            Get In Touch
           </span>
 
-          <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
-
-            Let's Connect &
-            <span className="block bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 bg-clip-text text-transparent">
-              Plan Your Perfect Journey
-            </span>
-
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Direct Communication Channels
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-600">
-            Whether you need a local taxi, airport transfer, outstation cab,
-            Tempo Traveller, luxury bus, or a customized holiday package,
-            our dedicated travel specialists are always ready to help.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+            Reach out via phone, WhatsApp, email, or visit our office in
+            Lucknow. Our dedicated support team is available round the clock.
           </p>
-
         </div>
 
-        {/* Trust Cards */}
-
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
-
-            <ShieldCheck className="text-blue-700" size={42} />
-
-            <h3 className="mt-5 text-2xl font-bold text-slate-900">
-              Trusted Service
-            </h3>
-
-            <p className="mt-3 leading-7 text-slate-600">
-              Professional chauffeurs, transparent pricing, and well-maintained
-              vehicles for every journey.
-            </p>
-
-          </div>
-
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
-
-            <Headphones className="text-blue-700" size={42} />
-
-            <h3 className="mt-5 text-2xl font-bold text-slate-900">
-              24×7 Support
-            </h3>
-
-            <p className="mt-3 leading-7 text-slate-600">
-              Our booking specialists are available every day to assist you
-              before, during, and after your trip.
-            </p>
-
-          </div>
-
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg">
-
-            <Star
-              className="fill-yellow-400 text-yellow-400"
-              size={42}
-            />
-
-            <h3 className="mt-5 text-2xl font-bold text-slate-900">
-              Premium Experience
-            </h3>
-
-            <p className="mt-3 leading-7 text-slate-600">
-              Experience comfortable rides with clean vehicles, courteous
-              drivers, and reliable customer service.
-            </p>
-
-          </div>
-
-        </div>
-
-        {/* Contact Cards */}
-
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-          {contactCards.map((card) => {
-
-            const Icon = card.icon;
+        {/* Channels Grid - Responsive 1 -> 2 -> 4 col */}
+        <div className="mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {contactChannels.map((item) => {
+            const Icon = item.icon;
+            const isCopied = copiedKey === item.key;
 
             return (
-
               <div
-                key={card.title}
-                className="group relative overflow-hidden rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(37,99,235,0.15)]"
+                key={item.key}
+                className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-blue-200"
               >
+                <div>
+                  {/* Top Bar: Icon + Badge */}
+                  <div className="flex items-center justify-between gap-2">
+                    <div
+                      className={`flex h-12 w-12 items-center justify-center rounded-2xl ${item.iconBg} shadow-md transition-transform duration-300 group-hover:scale-105`}
+                    >
+                      <Icon size={22} />
+                    </div>
 
-                {/* Gold Line */}
+                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600">
+                      {item.badge}
+                    </span>
+                  </div>
 
-                <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400" />
+                  <h3 className="mt-5 text-lg font-bold text-slate-900">
+                    {item.title}
+                  </h3>
 
-                {/* Icon */}
+                  <p className="mt-1.5 text-xs text-slate-500 leading-relaxed">
+                    {item.subtitle}
+                  </p>
 
-                <div
-                  className={`flex h-20 w-20 items-center justify-center rounded-full ${card.bg} shadow-lg transition-transform duration-300 group-hover:scale-110`}
-                >
+                  <div className="mt-4 rounded-xl bg-slate-50 p-2.5 border border-slate-100 flex items-center justify-between gap-2">
+                    <span className="text-xs sm:text-sm font-bold text-slate-800 truncate">
+                      {item.value}
+                    </span>
 
-                  <Icon className={`h-10 w-10 ${card.color}`} />
-
+                    {item.copyable && (
+                      <button
+                        type="button"
+                        onClick={() => handleCopy(item.copyable!, item.key)}
+                        title="Copy to clipboard"
+                        className="shrink-0 p-1 rounded-lg text-slate-400 hover:text-blue-700 hover:bg-slate-200 transition"
+                        aria-label={`Copy ${item.title}`}
+                      >
+                        {isCopied ? (
+                          <Check size={14} className="text-emerald-600" />
+                        ) : (
+                          <Copy size={14} />
+                        )}
+                      </button>
+                    )}
+                  </div>
                 </div>
 
-                <h3 className="mt-8 text-2xl font-bold text-slate-900">
-                  {card.title}
-                </h3>
-
-                <p className="mt-4 leading-8 text-slate-600">
-                  {card.description}
-                </p>
-                                {card.href ? (
-                  <Link
-                    href={card.href}
-                    target={
-                      card.href.startsWith("http") ? "_blank" : undefined
-                    }
+                {/* Primary Action Button */}
+                <div className="mt-5">
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
                     rel={
-                      card.href.startsWith("http")
+                      item.href.startsWith("http")
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-700 to-blue-900 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                    className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-4 text-xs sm:text-sm font-semibold text-white transition-all duration-300 group-hover:bg-blue-700 active:scale-95 shadow-sm"
                   >
-                    {card.value}
-
-                    <ArrowUpRight
-                      size={18}
-                      className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                    />
-                  </Link>
-                ) : (
-                  <p className="mt-8 text-lg font-semibold text-blue-700">
-                    {card.value}
-                  </p>
-                )}
-
-                {card.extra && (
-                  <div className="mt-5 rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm leading-6 text-slate-600">
-                      {card.extra}
-                    </p>
-                  </div>
-                )}
-
+                    <span>{item.actionText}</span>
+                    <ArrowUpRight size={14} />
+                  </a>
+                </div>
               </div>
-
             );
-
           })}
-
         </div>
 
-        {/* Premium CTA Banner */}
-
-        <div className="mt-20 overflow-hidden rounded-[36px] bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 p-10 text-white shadow-[0_25px_70px_rgba(30,64,175,0.35)]">
-
-          <div className="grid items-center gap-10 lg:grid-cols-[1.5fr_1fr]">
-
-            {/* Left */}
-
-            <div>
-
-              <span className="inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur">
-                Available 24×7
-              </span>
-
-              <h3 className="mt-6 text-4xl font-bold leading-tight">
-                Ready to Book Your Next Journey?
-              </h3>
-
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-blue-100">
-                Whether you're planning an airport transfer, an outstation trip,
-                a wedding, a family vacation, or a corporate journey, our team
-                is here to provide a comfortable, safe, and hassle-free travel
-                experience.
-              </p>
-
+        {/* Trust Badges Banner */}
+        <div className="mt-10 rounded-2xl bg-white border border-slate-200 p-5 sm:p-6 shadow-sm">
+          <div className="grid gap-4 sm:grid-cols-3 text-center sm:text-left divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+            <div className="flex items-center gap-3 sm:px-4 pt-2 sm:pt-0">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700">
+                <ShieldCheck size={20} />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900">
+                  Verified & Safe Rides
+                </h4>
+                <p className="text-xs text-slate-500">
+                  Background-checked chauffeurs & insured fleet
+                </p>
+              </div>
             </div>
 
-            {/* Right */}
-
-            <div className="grid grid-cols-2 gap-5">
-
-              <div className="rounded-3xl bg-white/10 p-6 text-center backdrop-blur">
-
-                <h4 className="text-4xl font-extrabold">
-                  10K+
-                </h4>
-
-                <p className="mt-2 text-sm text-blue-100">
-                  Happy Travellers
-                </p>
-
+            <div className="flex items-center gap-3 sm:px-4 pt-4 sm:pt-0">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                <CheckCircle2 size={20} />
               </div>
-
-              <div className="rounded-3xl bg-white/10 p-6 text-center backdrop-blur">
-
-                <h4 className="text-4xl font-extrabold">
-                  24×7
+              <div>
+                <h4 className="text-sm font-bold text-slate-900">
+                  Fixed & Transparent
                 </h4>
-
-                <p className="mt-2 text-sm text-blue-100">
-                  Customer Support
+                <p className="text-xs text-slate-500">
+                  No hidden surcharges or surprise toll fees
                 </p>
-
               </div>
-
-              <div className="rounded-3xl bg-white/10 p-6 text-center backdrop-blur">
-
-                <h4 className="text-4xl font-extrabold">
-                  100%
-                </h4>
-
-                <p className="mt-2 text-sm text-blue-100">
-                  Safe Journey
-                </p>
-
-              </div>
-
-              <div className="rounded-3xl bg-white/10 p-6 text-center backdrop-blur">
-
-                <h4 className="text-4xl font-extrabold">
-                  4.9★
-                </h4>
-
-                <p className="mt-2 text-sm text-blue-100">
-                  Customer Rating
-                </p>
-
-              </div>
-
             </div>
 
+            <div className="flex items-center gap-3 sm:px-4 pt-4 sm:pt-0">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-700">
+                <Clock size={20} />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900">
+                  On-Time Guarantee
+                </h4>
+                <p className="text-xs text-slate-500">
+                  Punctual doorstep pickup for airports & tours
+                </p>
+              </div>
+            </div>
           </div>
-
-          {/* CTA Buttons */}
-
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-
-            <Link
-              href="tel:09936408109"
-              className="inline-flex items-center justify-center rounded-full bg-yellow-400 px-8 py-4 font-semibold text-slate-900 transition-all duration-300 hover:bg-yellow-300 hover:shadow-xl"
-            >
-              <Phone className="mr-2 h-5 w-5" />
-              Call Now
-            </Link>
-
-            <Link
-              href="https://wa.me/919936408109"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-8 py-4 font-semibold text-white backdrop-blur transition-all duration-300 hover:bg-white/20"
-            >
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Chat on WhatsApp
-            </Link>
-
-          </div>
-
         </div>
-
       </div>
-
     </section>
   );
 }

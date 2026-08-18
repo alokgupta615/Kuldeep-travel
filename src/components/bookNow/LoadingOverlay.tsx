@@ -13,7 +13,7 @@ export default function LoadingOverlay({
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm">
-      <div className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-2xl">
+      <div className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-2xl text-slate-900">
 
         <div className="flex justify-center">
           <div className="rounded-full bg-yellow-100 p-5">
@@ -33,7 +33,7 @@ export default function LoadingOverlay({
         </p>
 
         <div className="mt-8 h-2 overflow-hidden rounded-full bg-slate-200">
-          <div className="h-full w-full animate-pulse rounded-full bg-yellow-400" />
+          <div className="h-full w-full animate-pulse rounded-full bg-yellow-400 text-slate-900" />
         </div>
 
         <p className="mt-3 text-center text-sm text-slate-400">

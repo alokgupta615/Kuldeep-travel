@@ -13,35 +13,35 @@ import {
 const decorations = [
   {
     title: "Fresh Flower Arrangements",
-    image: "/images/wedding/decor/fresh-flowers.jpg",
+    image: "/images/heroimg/weddingcar.png",
     icon: Flower2,
     description:
       "Beautiful fresh roses, orchids, lilies and seasonal flowers arranged by experienced decorators for a luxurious wedding appearance.",
   },
   {
     title: "Premium Ribbon Styling",
-    image: "/images/wedding/decor/ribbon.jpg",
+    image: "/images/heroimg/weddingcar.png",
     icon: Ribbon,
     description:
       "Elegant ribbon work combined with floral accents to create a sophisticated and timeless wedding car decoration.",
   },
   {
     title: "Traditional Indian Decoration",
-    image: "/images/wedding/decor/traditional.jpg",
+    image: "/images/heroimg/weddingcar.png",
     icon: Heart,
     description:
       "Classic Indian wedding decorations with vibrant flowers and traditional styling that perfectly suit cultural ceremonies.",
   },
   {
     title: "Minimal Luxury Theme",
-    image: "/images/wedding/decor/minimal.jpg",
+    image: "/images/heroimg/weddingcar.png",
     icon: Sparkles,
     description:
       "Clean and elegant decoration using subtle flowers, ribbons and premium finishing for modern weddings.",
   },
   {
     title: "Theme-Based Decoration",
-    image: "/images/wedding/decor/theme.jpg",
+    image: "/images/heroimg/weddingcar.png",
     icon: Palette,
     description:
       "Customized decoration matching your wedding colors, venue theme and overall event styling.",

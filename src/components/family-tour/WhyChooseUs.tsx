@@ -52,7 +52,7 @@ const features = [
 
 const stats = [
   {
-    value: "10K+",
+    value: "51K+",
     label: "Happy Families",
   },
   {

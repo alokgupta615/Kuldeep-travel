@@ -138,7 +138,7 @@ export default function Hero() {
           <div className="relative">
             <div className="overflow-hidden rounded-[32px] border border-white/20 shadow-2xl">
               <Image
-                src="/images/custom-tour/hero.jpg"
+                src="/images/tour-package/tour.png"
                 alt="Custom Tour Packages"
                 width={750}
                 height={850}

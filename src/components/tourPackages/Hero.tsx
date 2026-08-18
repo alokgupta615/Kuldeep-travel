@@ -23,7 +23,7 @@
 // const stats = [
 //   {
 //     icon: Users,
-//     value: "10K+",
+//     value: "51K+",
 //     label: "Happy Travellers",
 //   },
 //   {
@@ -136,7 +136,7 @@
 //                 width={700}
 //                 height={500}
 //                 priority
-//                 // className="h-64 w-full rounded-2xl object-cover sm:h-80 md:h-[450px] lg:h-[600px]"
+//                 // className="h-64 w-full rounded-2xl object-cover sm:h-80 md:h-[450px] lg:h-[600px] text-slate-900"
 //                 className="object-cover"
 //               />
 //             </div>
@@ -263,7 +263,7 @@ export default function Hero() {
           {/* ================= RIGHT IMAGE ================= */}
           {/* ================= RIGHT IMAGE ================= */}
           <div className="relative flex items-center justify-center">
-            <div className="w-full max-w-[620px] overflow-hidden rounded-2xl border border-white/10 bg-white/10 p-2 shadow-2xl backdrop-blur-sm sm:rounded-3xl">
+            <div className="w-full max-w-[620px] overflow-hidden rounded-2xl border border-white/10 bg-white/10 p-2 shadow-2xl backdrop-blur-sm sm:rounded-3xl text-slate-900">
               <Image
                 src="/images/tour-package/tour.png"
                 alt="Lucknow Holiday Packages"
@@ -275,7 +275,7 @@ export default function Hero() {
         w-full
         rounded-xl
         object-contain
-      "
+       text-slate-900"
               />
             </div>
           </div>

@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/images/wedding/hero.jpg",
+        url: "/images/heroimg/wedding.png",
         width: 1200,
         height: 630,
         alt: "Wedding Car Rental Lucknow",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
 
     description: "Premium Wedding Transportation in Lucknow.",
 
-    images: ["/images/wedding/hero.jpg"],
+    images: ["/images/heroimg/wedding.png"],
   },
 };
 

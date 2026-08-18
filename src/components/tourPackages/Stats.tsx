@@ -12,7 +12,7 @@ import {
 const stats = [
   {
     icon: Users,
-    value: "10,000+",
+    value: "51,000+",
     title: "Happy Travelers",
     description:
       "Families, couples, corporate teams, and pilgrims have trusted Kuldeep Travels.",

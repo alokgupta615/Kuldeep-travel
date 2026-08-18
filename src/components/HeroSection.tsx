@@ -146,7 +146,7 @@ to-[#04132D]/886"
             {/* Call */}
 
             <a
-              href="tel:+918808142859"
+              href="tel:+919936408109"
               className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-7 py-3 font-semibold backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/20"
             >
               <Phone className="h-5 w-5" />
@@ -156,7 +156,7 @@ to-[#04132D]/886"
             {/* WhatsApp */}
 
             <a
-              href="https://wa.me/918808142859"
+              href="https://wa.me/919936408109"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 px-7 py-3 font-semibold shadow-[0_15px_45px_rgba(16,185,129,.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(16,185,129,.55)]"

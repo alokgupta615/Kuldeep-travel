@@ -60,7 +60,7 @@ export default function PersonalDetails({ formData, setFormData }: Props) {
             placeholder="Enter your full name"
             value={formData.customerName}
             onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 text-slate-900"
           />
         </div>
 
@@ -78,7 +78,7 @@ export default function PersonalDetails({ formData, setFormData }: Props) {
             placeholder="+91 9876543210"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 text-slate-900"
           />
         </div>
 
@@ -96,7 +96,7 @@ export default function PersonalDetails({ formData, setFormData }: Props) {
             placeholder="example@email.com"
             value={formData.email}
             onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 text-slate-900"
           />
         </div>
 
@@ -115,7 +115,7 @@ export default function PersonalDetails({ formData, setFormData }: Props) {
             name="passengers"
             value={formData.passengers}
             onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 text-slate-900"
           />
         </div>
       </div>
@@ -134,7 +134,7 @@ export default function PersonalDetails({ formData, setFormData }: Props) {
           placeholder="Example: Need child seat, extra luggage space, elderly passenger assistance..."
           value={formData.specialNote}
           onChange={handleChange}
-          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100"
+          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 outline-none transition focus:border-yellow-400 focus:ring-4 focus:ring-yellow-100 text-slate-900"
         />
       </div>
 

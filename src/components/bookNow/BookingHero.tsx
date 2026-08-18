@@ -8,7 +8,7 @@ export default function BookingHero() {
       <div
         className="absolute inset-0 bg-cover bg-center md:bg-center lg:bg-center"
         style={{
-          backgroundImage: "url('/images/booking/booking-banner.jpg')",
+          backgroundImage: "url('/images/heroimg/airport.png')",
         }}
       />
 

@@ -15,7 +15,7 @@ export default function CTA() {
 
       <div className="absolute inset-0">
         <Image
-          src="/images/wedding/cta.jpg"
+          src="/images/home/about.png"
           alt="Wedding Car Rental Lucknow"
           fill
           className="object-cover"
@@ -78,7 +78,7 @@ export default function CTA() {
           <div className="mt-14 flex flex-wrap justify-center gap-6">
 
             <Link
-              href="tel:+919999999999"
+              href="tel:+919936408109"
               className="inline-flex items-center gap-3 rounded-2xl bg-yellow-400 px-8 py-5 text-lg font-bold text-slate-900 transition duration-300 hover:scale-105 hover:bg-yellow-500"
             >
               <PhoneCall size={22} />
@@ -88,7 +88,7 @@ export default function CTA() {
             </Link>
 
             <Link
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919936408109"
               target="_blank"
               className="inline-flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-8 py-5 text-lg font-semibold text-white backdrop-blur transition duration-300 hover:bg-white hover:text-slate-900"
             >

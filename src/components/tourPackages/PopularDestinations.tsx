@@ -14,7 +14,7 @@ import {
 const destinations = [
   {
     title: "Ayodhya",
-    image: "/images/tour-packages/destinations/ayodhya.jpg",
+    image: "/images/destinations/ayodhya.png",
     icon: Landmark,
     description:
       "Visit Ram Janmabhoomi, Hanuman Garhi, Kanak Bhawan, and other sacred temples.",
@@ -23,7 +23,7 @@ const destinations = [
   },
   {
     title: "Varanasi",
-    image: "/images/tour-packages/destinations/varanasi.jpg",
+    image: "/images/destinations/varanasi.png",
     icon: Landmark,
     description:
       "Experience Kashi Vishwanath Temple, Ganga Aarti, ghats, and spiritual heritage.",
@@ -32,7 +32,7 @@ const destinations = [
   },
   {
     title: "Prayagraj",
-    image: "/images/tour-packages/destinations/prayagraj.jpg",
+    image: "/images/destinations/prayagraj.png",
     icon: Landmark,
     description:
       "Explore Triveni Sangam, Anand Bhavan, Allahabad Fort, and religious landmarks.",
@@ -41,7 +41,7 @@ const destinations = [
   },
   {
     title: "Agra",
-    image: "/images/tour-packages/destinations/agra.jpg",
+    image: "/images/destinations/agra.png",
     icon: Building2,
     description:
       "Discover the Taj Mahal, Agra Fort, Mehtab Bagh, and Mughal heritage.",
@@ -50,7 +50,7 @@ const destinations = [
   },
   {
     title: "Delhi",
-    image: "/images/tour-packages/destinations/delhi.jpg",
+    image: "/images/destinations/delhi.png",
     icon: Building2,
     description:
       "Visit India Gate, Red Fort, Qutub Minar, Lotus Temple, and vibrant markets.",
@@ -59,7 +59,7 @@ const destinations = [
   },
   {
     title: "Mussoorie",
-    image: "/images/tour-packages/destinations/mussoorie.jpg",
+    image: "/images/destinations/mussoorie.png",
     icon: Mountain,
     description:
       "Enjoy scenic mountain views, Kempty Falls, Mall Road, and peaceful weather.",
@@ -68,7 +68,7 @@ const destinations = [
   },
   {
     title: "Nainital",
-    image: "/images/tour-packages/destinations/nainital.jpg",
+    image: "/images/destinations/nainital.png",
     icon: Mountain,
     description:
       "Relax beside Naini Lake with boating, shopping, ropeway rides, and sightseeing.",
@@ -77,7 +77,7 @@ const destinations = [
   },
   {
     title: "Jim Corbett",
-    image: "/images/tour-packages/destinations/jim-corbett.jpg",
+    image: "/images/destinations/jim-corbett.png",
     icon: Trees,
     description:
       "Experience wildlife safaris, forests, rivers, and unforgettable nature adventures.",
@@ -86,7 +86,7 @@ const destinations = [
   },
   {
     title: "Haridwar & Rishikesh",
-    image: "/images/tour-packages/destinations/haridwar.jpg",
+    image: "/images/destinations/haridwar.png",
     icon: Landmark,
     description:
       "Enjoy Ganga Aarti, temples, yoga retreats, rafting, and spiritual experiences.",

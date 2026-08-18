@@ -296,65 +296,6 @@ export default function BookingForm() {
               onSubmit={handleSubmit}
               className="overflow-hidden rounded-2xl lg:rounded-[36px] border border-white/60 bg-white/80 shadow-xl lg:shadow-[0_25px_70px_rgba(15,23,42,0.12)] backdrop-blur-xl lg:col-span-2"
             >
-              {/* HERO HEADER */}
-
-              <div className="relative overflow-hidden bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 px-5 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14 text-white">
-                <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-yellow-400/20 blur-3xl" />
-
-                <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
-
-                <div className="relative z-10">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-sm font-semibold text-yellow-300">
-                    <Sparkles className="h-4 w-4" />
-                    Premium Taxi Booking
-                  </div>
-
-                  <h1 className="mt-5 text-2xl sm:text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-                    Book Your Ride
-                    <span className="block text-yellow-400">
-                      In Just 2 Minutes
-                    </span>
-                  </h1>
-
-                  <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300 text-base sm:text-lg">
-                    Safe, comfortable and affordable taxi booking with instant
-                    confirmation, verified drivers and secure online payment.
-                  </p>
-
-                  <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                    <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
-                      <Star className="h-8 w-8 fill-yellow-400 text-yellow-400" />
-
-                      <h3 className="mt-4 text-2xl sm:text-3xl font-bold">
-                        4.9★
-                      </h3>
-
-                      <p className="mt-2 text-slate-300">Customer Rating</p>
-                    </div>
-
-                    <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
-                      <BadgeCheck className="h-8 w-8 text-green-400" />
-
-                      <h3 className="mt-4 text-2xl sm:text-3xl font-bold">
-                        10K+
-                      </h3>
-
-                      <p className="mt-2 text-slate-300">Happy Customers</p>
-                    </div>
-
-                    <div className="rounded-3xl border border-white/10 bg-white/10 p-6">
-                      <ShieldCheck className="h-8 w-8 text-yellow-400" />
-
-                      <h3 className="mt-4 text-2xl sm:text-3xl font-bold">
-                        24×7
-                      </h3>
-
-                      <p className="mt-2 text-slate-300">Customer Support</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               {/* FORM BODY */}
 
               <div className="space-y-8 px-4 py-6 sm:space-y-10 sm:px-6 sm:py-8 lg:space-y-12 lg:px-10 lg:py-10">

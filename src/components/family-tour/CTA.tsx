@@ -8,119 +8,121 @@ import {
   ShieldCheck,
   BadgeCheck,
   Star,
+  MessageCircle,
+  Sparkles,
 } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-800 to-cyan-600 py-24">
-      {/* Background Effects */}
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 py-14 md:py-24 text-white">
+      {/* Background Glows */}
+      <div className="absolute -left-20 top-0 h-80 w-80 rounded-full bg-cyan-400/15 blur-[120px] pointer-events-none" />
+      <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-amber-400/10 blur-[140px] pointer-events-none" />
 
-      <div className="absolute inset-0">
-        <div className="absolute -left-24 top-0 h-96 w-96 rounded-full bg-cyan-400/20 blur-[120px]" />
-
-        <div className="absolute -right-24 bottom-0 h-[450px] w-[450px] rounded-full bg-blue-400/20 blur-[140px]" />
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_40%)]" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="overflow-hidden rounded-[40px] border border-white/15 bg-white/10 p-10 backdrop-blur-xl lg:p-16">
-          <div className="grid items-center gap-14 lg:grid-cols-2">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="overflow-hidden rounded-3xl sm:rounded-[36px] border border-white/15 bg-white/10 p-6 sm:p-10 md:p-14 backdrop-blur-xl shadow-2xl">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
             {/* LEFT */}
-
             <div>
-              <div className="inline-flex items-center rounded-full bg-white/15 px-5 py-2 text-sm font-semibold text-cyan-200">
-                <Star className="mr-2 h-4 w-4 fill-current" />
-                Trusted by Thousands of Families
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-yellow-400/20 border border-yellow-400/30 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-yellow-300">
+                <Sparkles size={13} />
+                Plan Your Dream Family Vacation
               </div>
 
-              <h2 className="mt-8 text-4xl font-black leading-tight text-white md:text-6xl">
-                Ready for Your
-                <span className="block bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                  Next Family Vacation?
+              <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                Ready for Your Next{" "}
+                <span className="bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">
+                  Family Holiday?
                 </span>
               </h2>
 
-              <p className="mt-8 max-w-2xl text-lg leading-8 text-blue-100">
-                Let Kuldeep Travels create a memorable family holiday with
-                comfortable vehicles, experienced drivers, customised
-                itineraries, and complete travel assistance from start to
-                finish.
+              <p className="mt-4 text-xs sm:text-base leading-relaxed text-blue-100/90 max-w-xl">
+                Let Kuldeep Travels curate an unforgettable holiday with
+                comfortable AC fleets, professional drivers, verified hotels,
+                and complete travel support from start to finish.
               </p>
 
-              {/* CTA Buttons */}
-
-              <div className="mt-10 flex flex-col gap-5 sm:flex-row">
+              {/* Action Buttons */}
+              <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                 <Link
                   href="/book-now"
-                  className="inline-flex items-center justify-center rounded-2xl bg-yellow-400 px-8 py-4 font-bold text-slate-900 transition duration-300 hover:bg-yellow-300"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-yellow-400 to-amber-500 px-6 py-3.5 text-xs sm:text-sm font-bold text-slate-950 shadow-lg hover:bg-yellow-300 active:scale-95 transition"
                 >
-                  <CalendarCheck2 className="mr-3 h-5 w-5" />
-                  Book Your Tour
+                  <CalendarCheck2 size={16} />
+                  <span>Book Family Tour</span>
                 </Link>
 
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-white/10 px-8 py-4 font-bold text-white backdrop-blur transition duration-300 hover:bg-white/20"
+                <a
+                  href="https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20I%20want%20to%20inquire%20about%20a%20family%20tour%20package."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 active:scale-95 transition shadow-md"
                 >
-                  <Phone className="mr-3 h-5 w-5" />
-                  Contact Us
-                </Link>
+                  <MessageCircle size={16} />
+                  <span>WhatsApp Tour Planner</span>
+                </a>
+
+                <a
+                  href="tel:+919936408109"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3.5 text-xs sm:text-sm font-semibold text-white hover:bg-white hover:text-slate-900 active:scale-95 transition"
+                >
+                  <Phone size={15} className="text-yellow-400" />
+                  <span>Call Us</span>
+                </a>
               </div>
             </div>
 
             {/* RIGHT */}
-
-            <div className="grid gap-6">
-              <div className="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur">
-                <div className="flex items-center">
-                  <BadgeCheck className="mr-4 h-10 w-10 text-green-300" />
-
+            <div className="grid gap-3.5">
+              <div className="rounded-2xl border border-white/15 bg-white/10 p-4 sm:p-5 backdrop-blur">
+                <div className="flex items-center gap-3.5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-300">
+                    <BadgeCheck size={24} />
+                  </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-base sm:text-lg font-bold text-white">
                       Verified Travel Service
                     </h3>
-
-                    <p className="mt-2 text-blue-100">
-                      Professional drivers and well-maintained vehicles.
+                    <p className="text-xs text-blue-100 mt-0.5">
+                      Professional highway chauffeurs and sanitized vehicles.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur">
-                <div className="flex items-center">
-                  <ShieldCheck className="mr-4 h-10 w-10 text-cyan-300" />
-
+              <div className="rounded-2xl border border-white/15 bg-white/10 p-4 sm:p-5 backdrop-blur">
+                <div className="flex items-center gap-3.5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-300">
+                    <ShieldCheck size={24} />
+                  </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-base sm:text-lg font-bold text-white">
                       Safe & Comfortable Journey
                     </h3>
-
-                    <p className="mt-2 text-blue-100">
-                      Clean vehicles, transparent pricing, and reliable support.
+                    <p className="text-xs text-blue-100 mt-0.5">
+                      Clean AC cabs, transparent fixed rates, and 24×7 dispatch.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-3xl border border-white/15 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 p-8 backdrop-blur">
-                <h3 className="text-3xl font-black text-white">
-                  Why Book with Kuldeep Travels?
+              <div className="rounded-2xl border border-white/15 bg-gradient-to-r from-cyan-500/15 to-blue-500/15 p-5 sm:p-6 backdrop-blur">
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                  Why Families Choose Kuldeep Travels?
                 </h3>
 
-                <div className="mt-6 space-y-4">
+                <div className="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-blue-100">
                   {[
-                    "✔ Custom Family Tour Packages",
-                    "✔ Luxury & Budget Vehicles",
-                    "✔ Hotel Booking Assistance",
-                    "✔ Experienced Drivers",
-                    "✔ 24×7 Customer Support",
-                    "✔ Transparent Pricing",
+                    "Custom Family Tour Plans",
+                    "Sedan, SUV & Tempo Fleets",
+                    "Hotel Booking Assistance",
+                    "Doorstep Lucknow Pickup",
+                    "24×7 Trip Assistance",
+                    "Transparent Fixed Pricing",
                   ].map((item) => (
-                    <div key={item} className="flex items-center text-blue-100">
-                      <ArrowRight className="mr-3 h-4 w-4 text-yellow-300" />
-                      {item}
+                    <div key={item} className="flex items-center gap-1.5">
+                      <ArrowRight size={13} className="text-yellow-400 shrink-0" />
+                      <span>{item}</span>
                     </div>
                   ))}
                 </div>

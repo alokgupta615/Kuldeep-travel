@@ -192,7 +192,7 @@ export default function Navbar() {
                 >
                   Home
                   {pathname === "/" && (
-                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-yellow-400" />
+                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-yellow-400 text-slate-900" />
                   )}
                 </Link>
               </li>
@@ -210,7 +210,7 @@ export default function Navbar() {
                 >
                   About
                   {pathname.startsWith("/about") && (
-                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-yellow-400" />
+                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-yellow-400 text-slate-900" />
                   )}
                 </Link>
               </li>
@@ -350,7 +350,7 @@ export default function Navbar() {
                 >
                   Blog
                   {pathname.startsWith("/blog") && (
-                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-yellow-400" />
+                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-yellow-400 text-slate-900" />
                   )}
                 </Link>
               </li>
@@ -368,7 +368,7 @@ export default function Navbar() {
                 >
                   Contact
                   {pathname.startsWith("/contact") && (
-                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-yellow-400" />
+                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-yellow-400 text-slate-900" />
                   )}
                 </Link>
               </li>
@@ -643,7 +643,7 @@ export default function Navbar() {
           {/* ================= CALL CARD ================= */}
 
           <a
-            href="tel:+919876543210"
+            href="tel:+919936408109"
             className="group flex items-center gap-3 rounded-full border border-white/10 bg-[#121722] px-3 py-2 transition-all duration-300 hover:border-yellow-400 hover:bg-[#1a2130]"
           >
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-yellow-400/15 transition group-hover:bg-yellow-400/25">
@@ -656,7 +656,7 @@ export default function Navbar() {
               </p>
 
               <p className="text-sm font-semibold text-white">
-                +91 98765 43210
+                +91 99364 08109
               </p>
             </div>
           </a>
@@ -664,7 +664,7 @@ export default function Navbar() {
           {/* ================= WHATSAPP ================= */}
 
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/919936408109"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 flex items-center justify-center gap-2 rounded-2xl bg-green-500 py-4 font-semibold text-white transition hover:bg-green-600"

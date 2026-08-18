@@ -104,7 +104,7 @@ export default function WhyChooseUs() {
                   {feature.description}
                 </p>
 
-                <div className="mt-6 h-1 w-12 rounded-full bg-yellow-400 transition-all duration-300 group-hover:w-full" />
+                <div className="mt-6 h-1 w-12 rounded-full bg-yellow-400 transition-all duration-300 group-hover:w-full text-slate-900" />
               </div>
             );
           })}

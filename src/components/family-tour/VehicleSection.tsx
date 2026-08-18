@@ -2,196 +2,190 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Users, Briefcase, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight, Users, Briefcase, ShieldCheck, Star, MessageCircle, Sparkles } from "lucide-react";
 
 const vehicles = [
   {
-    name: "Sedan",
-    image: "/images/family-tour/vehicles/sedan.jpg",
+    name: "Prime Sedan (Dzire / Etios)",
+    image: "/images/fleet/sedan.png",
     capacity: "4 Passengers",
-    luggage: "2 Bags",
-    bestFor: "Couples & Small Families",
-    features: ["AC", "Comfortable Seats", "Economical", "Professional Driver"],
+    luggage: "2-3 Large Bags",
+    bestFor: "Couples & Small Families (3-4 Pax)",
+    features: ["Chilled AC", "Comfortable Seats", "Smooth Suspension", "USB Charging"],
+    tag: "Economical & Cozy",
   },
   {
-    name: "SUV",
-    image: "/images/family-tour/vehicles/suv.jpg",
+    name: "Spacious SUV (Ertiga / XL6)",
+    image: "/images/fleet/ertiga.png",
     capacity: "6 Passengers",
-    luggage: "4 Bags",
-    bestFor: "Medium Families",
-    features: [
-      "Extra Legroom",
-      "Premium Comfort",
-      "Large Boot",
-      "Air Conditioning",
-    ],
+    luggage: "3-4 Bags + Carrier",
+    bestFor: "Medium Families (5-6 Pax)",
+    features: ["Generous Legroom", "Dual AC Blowers", "Roof Luggage Carrier", "Child-Friendly"],
+    tag: "Most Popular",
   },
   {
-    name: "Innova Crysta",
-    image: "/images/family-tour/vehicles/innova.jpg",
-    capacity: "7 Passengers",
-    luggage: "5 Bags",
-    bestFor: "Large Families",
-    features: [
-      "Luxury Interior",
-      "Captain Seats",
-      "Ample Space",
-      "Smooth Ride",
-    ],
+    name: "Luxury MPV (Innova Crysta)",
+    image: "/images/fleet/innova.png",
+    capacity: "6-7 Passengers",
+    luggage: "4-5 Bags + Carrier",
+    bestFor: "Ultimate Comfort & Long Hill Roads",
+    features: ["Reclining Captain Seats", "Supreme Highway Safety", "Silent Cabin", "Premium Ride"],
+    tag: "Top Rated Comfort",
   },
   {
-    name: "Tempo Traveller",
-    image: "/images/family-tour/vehicles/tempo.jpg",
-    capacity: "12–17 Passengers",
-    luggage: "Large Capacity",
-    bestFor: "Joint Families",
-    features: [
-      "Pushback Seats",
-      "Large Luggage",
-      "Group Travel",
-      "Air Conditioning",
-    ],
+    name: "Tempo Traveller (12–26 Seater)",
+    image: "/images/fleet/tempo.png",
+    capacity: "12 to 26 Passengers",
+    luggage: "Dedicated Extra-Large Boot",
+    bestFor: "Joint Families & Group Reunions",
+    features: ["Maharaja Pushback Chairs", "High Roof & Wide Aisle", "LED TV & Music System", "Separate Driver Cabin"],
+    tag: "Best for Big Families",
   },
 ];
 
 export default function VehicleSection() {
   return (
-    <section className="relative overflow-hidden bg-white py-24">
-      {/* Background */}
-
-      <div className="absolute inset-0">
-        <div className="absolute left-0 top-0 h-80 w-80 rounded-full bg-blue-100 blur-3xl" />
-
-        <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-cyan-100 blur-3xl" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Heading */}
-
+    <section className="relative overflow-hidden bg-slate-50/80 py-14 md:py-24">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <span className="rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold text-blue-700">
-            Premium Fleet
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-3.5 py-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-800">
+            <Sparkles size={14} className="text-blue-600" />
+            Family Fleet
           </span>
 
-          <h2 className="mt-6 text-4xl font-black text-slate-900 md:text-5xl">
-            Comfortable Vehicles for Every
-            <span className="block text-blue-700">Family Tour Package</span>
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Comfortable Vehicles for Every Family Size
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-600">
-            Every family trip deserves a comfortable journey. We provide clean,
-            spacious, and well-maintained vehicles suitable for couples, nuclear
-            families, joint families, and large groups.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+            Every family journey deserves clean, air-conditioned, and spacious
+            transportation. Choose the right vehicle for your group size and luggage.
           </p>
         </div>
 
-        {/* Vehicle Cards */}
-
-        <div className="mt-20 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+        {/* Vehicles Grid */}
+        <div className="mt-10 md:mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {vehicles.map((vehicle) => (
             <div
               key={vehicle.name}
-              className="group overflow-hidden rounded-[30px] border border-slate-200 bg-white shadow-lg transition duration-500 hover:-translate-y-3 hover:shadow-2xl"
+              className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-blue-300"
             >
-              {/* Image */}
+              <div>
+                {/* Image */}
+                <div className="relative h-48 w-full overflow-hidden bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center p-4">
+                  <Image
+                    src={vehicle.image}
+                    alt={vehicle.name}
+                    width={400}
+                    height={280}
+                    className="max-h-40 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
 
-              <div className="relative overflow-hidden">
-                <Image
-                  src={vehicle.image}
-                  alt={vehicle.name}
-                  width={600}
-                  height={450}
-                  className="h-60 w-full object-cover transition duration-700 group-hover:scale-110"
-                />
+                  <div className="absolute top-3.5 left-3.5 rounded-full bg-blue-900/80 backdrop-blur px-2.5 py-0.5 text-[11px] font-bold text-white shadow">
+                    {vehicle.tag}
+                  </div>
+                </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent" />
+                {/* Content */}
+                <div className="p-5">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                    {vehicle.name}
+                  </h3>
 
-                <div className="absolute left-4 top-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold backdrop-blur">
-                  ⭐ Premium
+                  <div className="mt-3.5 space-y-2 text-xs text-slate-600">
+                    <div className="flex items-center gap-2">
+                      <Users size={15} className="text-blue-700 shrink-0" />
+                      <span className="font-semibold text-slate-800">{vehicle.capacity}</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <Briefcase size={15} className="text-blue-700 shrink-0" />
+                      <span>{vehicle.luggage}</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <ShieldCheck size={15} className="text-emerald-600 shrink-0" />
+                      <span className="text-slate-700 font-medium">{vehicle.bestFor}</span>
+                    </div>
+                  </div>
+
+                  {/* Feature chips */}
+                  <div className="mt-4 flex flex-wrap gap-1">
+                    {vehicle.features.map((feature) => (
+                      <span
+                        key={feature}
+                        className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-700"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Content */}
+              {/* Action Buttons */}
+              <div className="p-5 pt-0 border-t border-slate-100 mt-2 flex items-center justify-between gap-2">
+                <Link
+                  href="/book-now"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-blue-700 hover:text-blue-900 transition"
+                >
+                  <span>Select Vehicle</span>
+                  <ArrowRight size={13} />
+                </Link>
 
-              <div className="p-7">
-                <h3 className="text-2xl font-bold text-slate-900">
-                  {vehicle.name}
-                </h3>
-
-                <div className="mt-6 space-y-4">
-                  <div className="flex items-center">
-                    <Users className="mr-3 h-5 w-5 text-blue-700" />
-
-                    <span>{vehicle.capacity}</span>
-                  </div>
-
-                  <div className="flex items-center">
-                    <Briefcase className="mr-3 h-5 w-5 text-blue-700" />
-
-                    <span>{vehicle.luggage}</span>
-                  </div>
-
-                  <div className="flex items-center">
-                    <ShieldCheck className="mr-3 h-5 w-5 text-blue-700" />
-
-                    <span>{vehicle.bestFor}</span>
-                  </div>
-                </div>
-
-                {/* Features */}
-
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {vehicle.features.map((feature) => (
-                    <span
-                      key={feature}
-                      className="rounded-full bg-slate-100 px-3 py-2 text-xs font-medium text-slate-700"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Footer */}
-
-                <div className="mt-8 flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-
-                    <span className="ml-2 font-semibold">Family Favourite</span>
-                  </div>
-
-                  <Link
-                    href="/book-now"
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-700 text-white transition hover:bg-blue-800"
-                  >
-                    <ArrowRight className="h-5 w-5" />
-                  </Link>
-                </div>
+                <a
+                  href={`https://wa.me/919936408109?text=${encodeURIComponent(
+                    `Hello Kuldeep Travels, please share family tour package rates with ${vehicle.name}.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition"
+                  title="Ask Quote on WhatsApp"
+                >
+                  <MessageCircle size={15} />
+                </a>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom CTA */}
+        {/* Bottom Consultation Strip */}
+        <div className="mt-10 md:mt-14 rounded-3xl bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-950 p-6 sm:p-8 md:p-10 text-white shadow-xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+              <span className="inline-flex items-center gap-1 rounded-full bg-yellow-400/20 px-3 py-1 text-xs font-bold text-yellow-300">
+                <Star size={12} className="fill-yellow-300" />
+                Fleet Recommendation
+              </span>
+              <h3 className="mt-2 text-xl sm:text-2xl font-bold">
+                Unsure which vehicle fits your family luggage & route?
+              </h3>
+              <p className="mt-1 text-xs sm:text-sm text-blue-100 max-w-xl">
+                Tell us your passenger count and destination. We will advise the
+                most cost-effective and comfortable fleet option.
+              </p>
+            </div>
 
-        <div className="mt-20 rounded-[36px] bg-gradient-to-r from-blue-900 via-blue-700 to-cyan-600 p-10 text-center text-white shadow-2xl">
-          <h3 className="text-3xl font-black">
-            Not Sure Which Vehicle is Right for Your Family?
-          </h3>
+            <div className="flex flex-wrap justify-center gap-3 shrink-0">
+              <a
+                href="tel:+919936408109"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-yellow-400 px-5 py-3 text-xs sm:text-sm font-bold text-slate-900 hover:bg-yellow-300 transition active:scale-95"
+              >
+                <span>Call +91 99364 08109</span>
+              </a>
 
-          <p className="mx-auto mt-5 max-w-3xl text-lg text-blue-100">
-            Our travel experts will recommend the ideal vehicle based on your
-            family size, luggage requirements, destination, and budget, ensuring
-            everyone enjoys a comfortable and hassle-free journey.
-          </p>
-
-          <Link
-            href="/contact"
-            className="mt-8 inline-flex items-center rounded-xl bg-yellow-400 px-8 py-4 font-bold text-slate-900 transition hover:bg-yellow-300"
-          >
-            Talk to Our Travel Expert
-            <ArrowRight className="ml-3 h-5 w-5" />
-          </Link>
+              <a
+                href="https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20please%20help%20me%20choose%20the%20right%20vehicle%20for%20my%20family%20tour."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-xs sm:text-sm font-semibold text-white backdrop-blur hover:bg-white hover:text-slate-900 transition active:scale-95"
+              >
+                <MessageCircle size={15} className="text-emerald-400" />
+                <span>WhatsApp Fleet Expert</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

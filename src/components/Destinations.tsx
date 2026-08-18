@@ -34,17 +34,17 @@ const destinations = [
     href: "/book-now",
   },
   {
-    name: "Delhi",
-    image: "/images/destinations/delhi.png",
-    distance: "550 km",
-    description: "Comfortable long-distance travel with experienced drivers.",
-    href: "/book-now",
-  },
-  {
     name: "Mathura",
     image: "/images/destinations/mathura.png",
     distance: "470 km",
     description: "Religious and family trips with customized packages.",
+    href: "/book-now",
+  },
+  {
+    name: "Delhi",
+    image: "/images/destinations/delhi.png",
+    distance: "550 km",
+    description: "Comfortable long-distance travel with experienced drivers.",
     href: "/book-now",
   },
 ];
@@ -132,14 +132,14 @@ export default function Destinations() {
 
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <a
-              href="tel:+919999999999"
+              href="tel:+919936408109"
               className="rounded-xl bg-white px-8 py-4 font-semibold text-blue-700 transition hover:bg-gray-100"
             >
               Call Now
             </a>
 
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919936408109"
               className="rounded-xl bg-amber-400 px-8 py-4 font-semibold text-black transition hover:bg-amber-300"
             >
               WhatsApp Us

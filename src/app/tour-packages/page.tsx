@@ -50,7 +50,7 @@ export default function TourPackagesPage() {
 
       {/* Tour Discovery */}
       <section className="space-y-0">
-        <PackageCategories />
+        {/* <PackageCategories /> */}
         {/* <PopularDestinations /> */}
       </section>
 
@@ -77,7 +77,7 @@ export default function TourPackagesPage() {
       <section>
         <TravelTips />
         <HolidayThemes />
-        <DepartureCities />
+        {/* <DepartureCities /> */}
       </section>
 
       {/* Social Proof */}

@@ -221,7 +221,7 @@ export default async function BookingForm() {
               href="https://wa.me/919876543210"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full rounded-2xl bg-green-500 py-4 text-center font-bold text-white transition hover:bg-green-600"
+              className="block w-full rounded-2xl bg-green-500 py-4 text-center font-bold text-white transition hover:bg-green-600 text-gray-900"
             >
               WhatsApp Booking
             </a>

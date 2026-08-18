@@ -3,16 +3,42 @@ import Link from "next/link";
 import { Users, Briefcase, Snowflake } from "lucide-react";
 
 const fleet = [
+  // Row 1
   {
-    name: "Sedan",
+    name: "Swift Dzire (CNG)",
     image: "/images/fleet/sedan.png",
     passengers: "4 Passengers",
     luggage: "2 Bags",
     ac: "Air Conditioned",
-    price: "Starting ₹12/km",
+    price: "Starting ₹10/km",
   },
   {
-    name: "SUV",
+    name: "Toyota Etios",
+    image: "/images/fleet/sedan.png",
+    passengers: "4 Passengers",
+    luggage: "2 Bags",
+    ac: "Air Conditioned",
+    price: "Starting ₹10/km",
+  },
+  {
+    name: "Honda Amaze",
+    image: "/images/fleet/sedan.png",
+    passengers: "4 Passengers",
+    luggage: "2 Bags",
+    ac: "Air Conditioned",
+    price: "Starting ₹10/km",
+  },
+  // Row 2
+  {
+    name: "Maruti Ertiga",
+    image: "/images/fleet/ertiga.png",
+    passengers: "6 Passengers",
+    luggage: "4 Bags",
+    ac: "Air Conditioned",
+    price: "Starting ₹15/km",
+  },
+  {
+    name: "Kia Carens",
     image: "/images/fleet/suv.png",
     passengers: "6 Passengers",
     luggage: "4 Bags",
@@ -27,26 +53,27 @@ const fleet = [
     ac: "Premium AC",
     price: "Starting ₹18/km",
   },
-  {
-    name: "Ertiga",
-    image: "/images/fleet/ertiga.png",
-    passengers: "6 Passengers",
-    luggage: "4 Bags",
-    ac: "Air Conditioned",
-    price: "Starting ₹15/km",
-  },
+  // Row 3
   {
     name: "Tempo Traveller",
     image: "/images/fleet/tempo.png",
-    passengers: "12 / 17 / 26 Seats",
+    passengers: "17 & 25 Seater options available",
     luggage: "Large Luggage Space",
     ac: "Luxury AC",
     price: "Call for Price",
   },
   {
+    name: "Force Urbania",
+    image: "/images/fleet/tempo.png", // using tempo image as fallback
+    passengers: "17 Seater",
+    luggage: "Large Luggage Space",
+    ac: "Premium AC",
+    price: "Call for Price",
+  },
+  {
     name: "Luxury Bus",
     image: "/images/fleet/bus.png",
-    passengers: "35–50 Seats",
+    passengers: "35 & 50 Seater options available",
     luggage: "Large Storage",
     ac: "Luxury AC",
     price: "Call for Price",
@@ -168,14 +195,14 @@ export default function Fleet() {
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center md:mt-8 md:gap-4">
             <a
-              href="tel:+918808142859"
+              href="tel:+919936408109"
               className="rounded-xl bg-white px-6 py-3 font-semibold text-blue-700 transition hover:bg-gray-100 md:px-8 md:py-4"
             >
               Call Now
             </a>
 
             <a
-              href="https://wa.me/918808142859"
+              href="https://wa.me/919936408109"
               className="rounded-xl bg-amber-400 px-6 py-3 font-semibold text-black transition hover:bg-amber-300 md:px-8 md:py-4"
             >
               WhatsApp Us

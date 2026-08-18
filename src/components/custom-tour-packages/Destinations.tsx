@@ -7,42 +7,42 @@ import { ArrowRight, MapPin } from "lucide-react";
 const destinations = [
   {
     name: "Ayodhya",
-    image: "/images/destinations/ayodhya.jpg",
+    image: "/images/destinations/ayodhya.png",
     description: "Ram Mandir • Hanuman Garhi • Saryu Aarti",
   },
   {
     name: "Varanasi",
-    image: "/images/destinations/varanasi.jpg",
+    image: "/images/destinations/varanasi.png",
     description: "Kashi Vishwanath • Ganga Aarti • Sarnath",
   },
   {
     name: "Nainital",
-    image: "/images/destinations/nainital.jpg",
+    image: "/images/destinations/nainital.png",
     description: "Naini Lake • Snow View • Mall Road",
   },
   {
     name: "Rishikesh",
-    image: "/images/destinations/rishikesh.jpg",
+    image: "/images/destinations/rishikesh.png",
     description: "River Rafting • Ganga Aarti • Lakshman Jhula",
   },
   {
     name: "Manali",
-    image: "/images/destinations/manali.jpg",
+    image: "/images/destinations/manali.png",
     description: "Solang Valley • Atal Tunnel • Snow Adventure",
   },
   {
     name: "Jaipur",
-    image: "/images/destinations/jaipur.jpg",
+    image: "/images/destinations/jaipur.png",
     description: "Amber Fort • Hawa Mahal • City Palace",
   },
   {
     name: "Haridwar",
-    image: "/images/destinations/haridwar.jpg",
+    image: "/images/destinations/haridwar.png",
     description: "Har Ki Pauri • Temples • Evening Aarti",
   },
   {
     name: "Jim Corbett",
-    image: "/images/destinations/corbett.jpg",
+    image: "/images/destinations/corbett.png",
     description: "Safari • Wildlife • Nature Escape",
   },
 ];

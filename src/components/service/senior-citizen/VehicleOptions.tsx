@@ -72,7 +72,7 @@ const vehicles = [
   },
   {
     name: "Mini Bus",
-    image: "/images/fleet/minibus.png",
+    image: "/images/fleet/bus.png",
     bestFor: "Large Family Groups",
     capacity: "18–30 Passengers",
     luggage: "Ample Space",

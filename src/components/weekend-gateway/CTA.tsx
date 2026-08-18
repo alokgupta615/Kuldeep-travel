@@ -8,7 +8,7 @@ export default function CTA() {
   return (
     <section className="relative overflow-hidden">
       <Image
-        src="/images/weekend-getaway/cta.jpg"
+        src="/images/destinations/cta.png"
         alt="Weekend Tour"
         fill
         className="object-cover"

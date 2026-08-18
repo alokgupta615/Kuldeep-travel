@@ -124,7 +124,7 @@ export default function RoadTripBenefits() {
 
             <div>
               <h3 className="text-5xl font-black text-yellow-400">
-                10K+
+                51K+
               </h3>
 
               <p className="mt-3 text-blue-100">

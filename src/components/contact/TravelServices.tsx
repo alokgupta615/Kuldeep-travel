@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Car,
   Plane,
@@ -5,134 +7,149 @@ import {
   Route,
   Bus,
   Building2,
-  Briefcase,
-  Users,
   Heart,
   Mountain,
-  School,
   Sparkles,
+  ArrowRight,
+  MessageCircle,
 } from "lucide-react";
 
 const services = [
   {
     icon: Car,
-    title: "Local Cab Service",
-    description: "Comfortable city rides across Lucknow.",
+    title: "Local City Cab",
+    tag: "Hourly & Point-to-Point",
+    description: "Affordable 4hr/40km and 8hr/80km local taxi packages across Lucknow.",
+    color: "bg-blue-600 text-white",
   },
   {
     icon: Plane,
-    title: "Airport Pickup & Drop",
-    description: "On-time airport transfers with professional drivers.",
+    title: "Airport Transfers",
+    tag: "Amausi Airport (LKO)",
+    description: "Punctual airport pickup and drop with flight tracking and doorstep assistance.",
+    color: "bg-indigo-600 text-white",
   },
   {
     icon: Route,
-    title: "Outstation Taxi",
-    description: "Reliable taxi services to nearby cities and destinations.",
+    title: "Outstation Cabs",
+    tag: "Intercity Travel",
+    description: "Reliable one-way and round trips to Ayodhya, Varanasi, Gorakhpur, Delhi, etc.",
+    color: "bg-emerald-600 text-white",
   },
   {
     icon: Map,
-    title: "One-Way & Round Trip",
-    description: "Affordable intercity travel with flexible booking options.",
+    title: "One-Way Drop Taxi",
+    tag: "Save up to 40%",
+    description: "Pay only for one-way distance without paying return toll or empty charges.",
+    color: "bg-cyan-600 text-white",
   },
   {
     icon: Bus,
     title: "Tempo Traveller",
-    description: "Perfect for family vacations and group tours.",
+    tag: "12 to 26 Seaters",
+    description: "Luxury Maharaja seats with pushback, AC, and music system for group trips.",
+    color: "bg-amber-600 text-white",
   },
   {
     icon: Building2,
-    title: "Luxury Bus Rental",
-    description: "Premium coaches for large groups and events.",
-  },
-  {
-    icon: Heart,
-    title: "Family Tour Packages",
-    description: "Memorable holiday experiences for every family.",
+    title: "Luxury Tourist Bus",
+    tag: "35 to 55 Seaters",
+    description: "Premium AC coaches for marriage baraat, corporate events, and school tours.",
+    color: "bg-purple-600 text-white",
   },
   {
     icon: Mountain,
     title: "Pilgrimage Tours",
-    description: "Comfortable religious and spiritual travel packages.",
+    tag: "Spiritual Yatra",
+    description: "Dedicated packages for Ayodhya Ram Mandir, Kashi Vishwanath, and Naimisharanya.",
+    color: "bg-orange-600 text-white",
   },
   {
-    icon: Sparkles,
-    title: "Weekend Getaways",
-    description: "Short vacations to popular nearby destinations.",
-  },
-  {
-    icon: Briefcase,
-    title: "Corporate Travel",
-    description: "Professional transportation solutions for businesses.",
-  },
-  {
-    icon: Users,
-    title: "Wedding Transportation",
-    description: "Elegant transport arrangements for wedding events.",
-  },
-  {
-    icon: School,
-    title: "School & College Tours",
-    description: "Safe and organized transportation for educational trips.",
+    icon: Heart,
+    title: "Custom Tour Packages",
+    tag: "Personalized Itineraries",
+    description: "Nepal tours, Uttarakhand hill stations, and customized holiday packages.",
+    color: "bg-rose-600 text-white",
   },
 ];
 
 export default function TravelServices() {
   return (
-    <section className="bg-gray-50 py-20">
-      <div className="mx-auto max-w-7xl px-6">
-
-        <div className="text-center max-w-3xl mx-auto">
-          <span className="font-semibold uppercase tracking-widest text-blue-600">
-            Our Services
+    <section className="bg-white py-14 md:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        {/* Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-3.5 py-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-800">
+            <Sparkles size={14} className="text-blue-600" />
+            Our Fleets & Offerings
           </span>
 
-          <h2 className="mt-3 text-4xl font-bold text-gray-900">
-            Travel Services We Can Help You With
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Travel Services We Specialize In
           </h2>
 
-          <p className="mt-5 text-lg text-gray-600">
-            Whether you're planning a local ride, airport transfer,
-            outstation trip, family vacation, corporate event, or group tour,
-            Kuldeep Travels has the right transportation solution.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+            From solo executive airport transfers to 50+ passenger tour buses,
+            Kuldeep Travels offers transparent fixed rates and modern vehicles.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-
-          {services.map((service) => {
-            const Icon = service.icon;
+        {/* Services Grid */}
+        <div className="mt-10 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((item) => {
+            const Icon = item.icon;
 
             return (
               <div
-                key={service.title}
-                className="rounded-2xl bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
+                key={item.title}
+                className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-blue-300"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-blue-100">
-                  <Icon className="h-8 w-8 text-blue-700" />
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <div
+                      className={`flex h-12 w-12 items-center justify-center rounded-2xl ${item.color} shadow-md transition-transform group-hover:scale-105`}
+                    >
+                      <Icon size={22} />
+                    </div>
+
+                    <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">
+                      {item.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 text-base sm:text-lg font-bold text-slate-900">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-1.5 text-xs sm:text-sm text-slate-500 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-gray-900">
-                  {service.title}
-                </h3>
+                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                  <a
+                    href="#contact-form"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-blue-700 hover:text-blue-900 transition"
+                  >
+                    <span>Get Quote</span>
+                    <ArrowRight size={13} />
+                  </a>
 
-                <p className="mt-4 leading-7 text-gray-600">
-                  {service.description}
-                </p>
+                  <a
+                    href={`https://wa.me/919936408109?text=${encodeURIComponent(
+                      `Hello Kuldeep Travels, I am interested in ${item.title}. Please share rates.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Ask on WhatsApp"
+                    className="p-1.5 rounded-lg text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition"
+                  >
+                    <MessageCircle size={15} />
+                  </a>
+                </div>
               </div>
             );
           })}
-        </div>
-
-        <div className="mt-16 rounded-3xl bg-blue-900 p-10 text-center text-white">
-          <h3 className="text-3xl font-bold">
-            Need Help Choosing the Right Travel Service?
-          </h3>
-
-          <p className="mt-5 max-w-3xl mx-auto text-blue-100 leading-8">
-            No matter the size or purpose of your journey, our team will
-            recommend the most suitable vehicle and travel solution based on
-            your destination, group size, and budget.
-          </p>
         </div>
       </div>
     </section>

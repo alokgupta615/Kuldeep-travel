@@ -120,7 +120,7 @@ export default function WhyChooseUs() {
             </div>
 
             <div>
-              <h3 className="text-2xl md:text-4xl font-bold">10K+</h3>
+              <h3 className="text-2xl md:text-4xl font-bold">51K+</h3>
               <p className="mt-1 md:mt-2 text-xs md:text-base text-blue-100">
                 Happy Customers
               </p>

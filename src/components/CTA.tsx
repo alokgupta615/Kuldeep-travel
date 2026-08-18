@@ -1,55 +1,83 @@
 import React from "react";
+import Link from "next/link";
+import { Phone, MessageCircle, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-16 px-6">
-      <div className="max-w-5xl mx-auto text-center">
-        {/* Heading (SEO important) */}
-        <h2 className="text-3xl md:text-4xl font-bold">
-          Book Your Taxi in Lucknow Instantly
+    <section className="relative overflow-hidden bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-950 text-white py-14 md:py-20 px-4 sm:px-6">
+      {/* Background Ambient Lights */}
+      <div className="absolute -top-16 -left-16 h-64 w-64 rounded-full bg-yellow-400/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-16 -right-16 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
+
+      <div className="relative max-w-5xl mx-auto text-center">
+        {/* Badge */}
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-400/20 border border-yellow-400/30 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-yellow-300">
+          <Sparkles size={13} />
+          24×7 Instant Cab Dispatch
+        </span>
+
+        {/* Heading */}
+        <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
+          Book Your Taxi or Tour in Lucknow Instantly
         </h2>
 
         {/* Sub text */}
-        <p className="mt-4 text-blue-100">
-          Call now or WhatsApp us for airport, outstation, and local cab booking
-          with fixed pricing.
+        <p className="mt-3 text-sm sm:text-base text-blue-100/90 max-w-2xl mx-auto leading-relaxed">
+          Call now or message on WhatsApp for instant airport transfers, local
+          city rides, outstation cabs, and Tempo Travellers with fixed
+          transparent pricing.
         </p>
 
         {/* Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           {/* Call */}
           <a
-            href="tel:+91XXXXXXXXXX"
-            className="bg-white text-blue-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
+            href="tel:+919936408109"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-amber-500 text-slate-900 font-bold px-7 py-3.5 rounded-xl shadow-lg hover:bg-yellow-300 active:scale-95 transition text-sm sm:text-base"
             aria-label="Call Kuldeep Travels for taxi booking"
           >
-            Call Now
+            <Phone size={17} />
+            <span>Call +91 99364 08109</span>
           </a>
 
           {/* WhatsApp */}
           <a
-            href="https://wa.me/91XXXXXXXXXX"
+            href="https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20I%20want%20to%20book%20a%20cab."
             target="_blank"
-            className="bg-green-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-600 transition"
+            rel="noopener noreferrer"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 bg-emerald-600 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-emerald-700 active:scale-95 transition text-sm sm:text-base shadow-md"
             aria-label="WhatsApp taxi booking"
           >
-            WhatsApp Booking
+            <MessageCircle size={18} />
+            <span>WhatsApp Booking</span>
           </a>
 
-          {/* Quote */}
-          <a
-            href="/book-taxi"
-            className="bg-yellow-400 text-blue-900 font-semibold px-6 py-3 rounded-lg hover:bg-yellow-300 transition"
+          {/* Contact Page Link */}
+          <Link
+            href="/contact"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 bg-white text-blue-900 font-bold px-7 py-3.5 rounded-xl hover:bg-slate-100 active:scale-95 transition text-sm sm:text-base shadow-md"
             aria-label="Get taxi quote in Lucknow"
           >
-            Get Quote
-          </a>
+            <span>Get Free Quote</span>
+            <ArrowRight size={17} />
+          </Link>
         </div>
 
         {/* Trust line */}
-        <p className="mt-6 text-blue-100 text-sm">
-          ✔ Fixed Pricing • ✔ 24/7 Service • ✔ Verified Drivers in Lucknow
-        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-blue-200">
+          <span className="flex items-center gap-1.5">
+            <ShieldCheck size={14} className="text-yellow-400" />
+            Fixed Pricing Guarantee
+          </span>
+          <span className="flex items-center gap-1.5">
+            <ShieldCheck size={14} className="text-yellow-400" />
+            24×7 Doorstep Service
+          </span>
+          <span className="flex items-center gap-1.5">
+            <ShieldCheck size={14} className="text-yellow-400" />
+            Verified Lucknow Chauffeurs
+          </span>
+        </div>
       </div>
     </section>
   );

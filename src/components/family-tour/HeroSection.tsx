@@ -11,18 +11,21 @@ import {
   Users,
   ShieldCheck,
   Sparkles,
+  MessageCircle,
+  Clock,
+  Heart,
 } from "lucide-react";
 
 const highlights = [
-  "Customized Family Packages",
-  "Luxury & Budget Vehicles",
-  "Hotel Booking Assistance",
-  "Professional Drivers",
+  "Kid & Senior-Citizen Friendly",
+  "Spacious AC Fleets & Tempo Travellers",
+  "Verified & Courteous Chauffeurs",
+  "Customizable Daily Sightseeing",
 ];
 
 const stats = [
   {
-    number: "10K+",
+    number: "51K+",
     label: "Happy Families",
   },
   {
@@ -33,14 +36,17 @@ const stats = [
     number: "4.9★",
     label: "Google Rating",
   },
+  {
+    number: "100%",
+    label: "Safe & Sanitized",
+  },
 ];
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700">
-      {/* ================= GRID BACKGROUND ================= */}
-
-      <div className="absolute inset-0 opacity-[0.08]">
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 text-white pt-28 pb-14 md:pt-36 md:pb-24">
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
@@ -48,279 +54,168 @@ export default function HeroSection() {
               linear-gradient(to right, white 1px, transparent 1px),
               linear-gradient(to bottom, white 1px, transparent 1px)
             `,
-            backgroundSize: "80px 80px",
+            backgroundSize: "60px 60px",
           }}
         />
       </div>
 
-      {/* ================= GLOW EFFECTS ================= */}
+      {/* Ambient Glows */}
+      <div className="absolute left-0 top-10 h-72 w-72 md:h-96 md:w-96 rounded-full bg-cyan-500/20 blur-[120px] pointer-events-none" />
+      <div className="absolute right-0 bottom-0 h-72 w-72 md:h-96 md:w-96 rounded-full bg-amber-400/15 blur-[130px] pointer-events-none" />
 
-      <div className="absolute left-0 top-0 h-[420px] w-[420px] rounded-full bg-cyan-500/20 blur-[120px]" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid items-center gap-10 lg:gap-14 lg:grid-cols-2">
+          {/* LEFT CONTENT */}
+          <div>
+            {/* Breadcrumb & Rating Badge */}
+            <div className="flex flex-wrap items-center gap-2.5 text-xs sm:text-sm">
+              <div className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 backdrop-blur">
+                <Sparkles className="mr-1.5 h-3.5 w-3.5 text-yellow-300" />
+                <Link href="/" className="hover:text-yellow-300 transition">
+                  Home
+                </Link>
+                <span className="mx-1.5 text-white/50">/</span>
+                <Link
+                  href="/tour-packages"
+                  className="hover:text-yellow-300 transition"
+                >
+                  Tour Packages
+                </Link>
+                <span className="mx-1.5 text-white/50">/</span>
+                <span className="font-semibold text-cyan-300">Family Tours</span>
+              </div>
 
-      <div className="absolute right-0 bottom-0 h-[420px] w-[420px] rounded-full bg-blue-400/20 blur-[130px]" />
-
-      {/* ================= CONTAINER ================= */}
-
-      <div className="relative mx-auto max-w-7xl px-6 pt-32 pb-16 lg:pt-40 lg:pb-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* ================================================= */}
-          {/* LEFT SIDE */}
-          {/* ================================================= */}
-
-          <div className="order-1">
-            {/* Breadcrumb */}
-
-            <div className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-5 py-2 backdrop-blur">
-              <Sparkles className="mr-2 h-4 w-4 text-yellow-300" />
-
-              <span className="text-sm font-medium text-white/90">Home</span>
-
-              <span className="mx-2 text-white/50">/</span>
-
-              <span className="text-sm font-medium text-white/90">
-                Tour Packages
-              </span>
-
-              <span className="mx-2 text-white/50">/</span>
-
-              <span className="text-sm font-semibold text-cyan-300">
-                Family Tours
-              </span>
+              <div className="inline-flex items-center gap-1 rounded-full bg-yellow-400/20 border border-yellow-400/30 px-3 py-1 text-xs font-bold text-yellow-300">
+                <Star size={13} className="fill-yellow-400 text-yellow-400" />
+                <span>4.9★ (51,000+ Families)</span>
+              </div>
             </div>
 
-            {/* Heading */}
-
-            <h1 className="mt-6 text-4xl font-black leading-[1.1] text-white sm:text-5xl lg:text-6xl">
-              Create
-              <span className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                {" "}
-                Unforgettable{" "}
-              </span>
-              Family Memories Across India
+            {/* Main Heading */}
+            <h1 className="mt-5 text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15]">
+              Create{" "}
+              <span className="bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">
+                Unforgettable
+              </span>{" "}
+              Family Holidays Across India
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-7 text-blue-100 sm:text-lg">
-              Discover carefully planned family tour packages from Lucknow with
-              comfortable vehicles, verified drivers, premium hotels,
-              sightseeing, and personalised itineraries for a safe and joyful
-              holiday.
+            {/* Subtitle */}
+            <p className="mt-4 text-sm sm:text-base md:text-lg leading-relaxed text-blue-100/90 max-w-xl">
+              Carefully planned family holiday packages from Lucknow with
+              comfortable AC vehicles, verified chauffeurs, handpicked hotels,
+              and flexible sightseeing for pure family joy.
             </p>
 
-            {/* Highlights */}
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {/* Highlights Grid */}
+            <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
               {highlights.map((item) => (
                 <div
                   key={item}
-                  className="flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur"
+                  className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 backdrop-blur text-xs sm:text-sm"
                 >
-                  <CheckCircle2 className="mr-3 h-5 w-5 text-green-400" />
-
-                  <span className="text-white">{item}</span>
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <span className="text-white/95 font-medium">{item}</span>
                 </div>
               ))}
             </div>
-            {/* ================= CTA BUTTONS ================= */}
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/book-now"
-                className="group inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 text-lg font-bold text-slate-900 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-yellow-400/40"
+            {/* Action Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+              <a
+                href="#packages"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-yellow-400 to-amber-500 px-6 py-3.5 font-bold text-slate-900 shadow-lg shadow-yellow-500/25 transition-all hover:bg-yellow-300 active:scale-95 text-sm sm:text-base"
               >
-                Book Family Tour
-                <ArrowRight className="ml-3 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+                <span>Explore Family Packages</span>
+                <ArrowRight
+                  size={17}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </a>
 
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-white/10 px-8 py-4 text-lg font-semibold text-white backdrop-blur transition-all duration-300 hover:bg-white/20"
+              <a
+                href="https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20I%20am%20planning%20a%20family%20tour%20from%20Lucknow.%20Please%20suggest%20packages."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3.5 font-semibold text-white backdrop-blur transition hover:bg-white hover:text-slate-900 active:scale-95 text-sm sm:text-base"
               >
-                <Phone className="mr-3 h-5 w-5" />
-                Contact Expert
-              </Link>
+                <MessageCircle size={18} className="text-emerald-400" />
+                <span>WhatsApp Tour Planner</span>
+              </a>
+
+              <a
+                href="tel:+919936408109"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-blue-400/30 bg-blue-600/30 px-5 py-3.5 font-semibold text-blue-100 backdrop-blur transition hover:bg-blue-600/50 hover:text-white text-sm"
+              >
+                <Phone size={15} className="text-yellow-400" />
+                <span>+91 99364 08109</span>
+              </a>
             </div>
 
-            {/* ================= TRUST BADGES ================= */}
-
-            <div className="mt-12 flex flex-wrap items-center gap-6">
-              <div className="flex items-center">
-                <ShieldCheck className="mr-3 h-6 w-6 text-green-400" />
-
-                <span className="text-white">Safe Travel</span>
-              </div>
-
-              <div className="flex items-center">
-                <Users className="mr-3 h-6 w-6 text-cyan-300" />
-
-                <span className="text-white">Verified Drivers</span>
-              </div>
-
-              <div className="flex items-center">
-                <MapPin className="mr-3 h-6 w-6 text-yellow-300" />
-
-                <span className="text-white">150+ Destinations</span>
-              </div>
-            </div>
-
-            {/* ================= STATS ================= */}
-
-            <div className="mt-12 grid grid-cols-3 gap-3">
+            {/* Quick Stats Grid */}
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-2xl border border-white/15 bg-white/10 p-4 text-center backdrop-blur-xl"
+                  className="rounded-2xl border border-white/15 bg-white/10 p-3 sm:p-4 text-center backdrop-blur-md"
                 >
-                  <div className="text-2xl lg:text-3xl- font-black text-white">
+                  <div className="text-xl sm:text-2xl font-extrabold text-yellow-400">
                     {stat.number}
                   </div>
-
-                  <div className="mt-2 text-blue-100">{stat.label}</div>
+                  <div className="mt-1 text-[11px] sm:text-xs text-blue-100 font-medium">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* ================================================= */}
-          {/* RIGHT SIDE */}
-          {/* ================================================= */}
-          <div className="relative order-2 mt-12 flex justify-center lg:mt-0 lg:order-2">
-            {/* Glow */}
+          {/* RIGHT SIDE: Featured Showcase Card */}
+          <div className="relative flex justify-center">
+            <div className="relative z-10 w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b from-white/15 to-white/5 p-3 shadow-2xl backdrop-blur-xl">
+              <div className="relative overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/destinations/Family Holiday Packages.png"
+                  alt="Family Tour Packages from Lucknow"
+                  width={600}
+                  height={500}
+                  priority
+                  className="aspect-[4/3] w-full object-cover rounded-2xl transition duration-500 hover:scale-105"
+                />
 
-            <div className="absolute h-[500px] w-[500px] rounded-full bg-cyan-400/20 blur-[130px]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
 
-            {/* Main Image Card */}
-
-            <div className="relative z-10 w-full max-w-sm overflow-hidden rounded-[28px] border border-white/20 bg-white/10 shadow-2xl backdrop-blur lg:max-w-lg">
-              <Image
-                src="/images/family-tour/hero.png"
-                alt="Family Tour Packages"
-                width={700}
-                height={900}
-                priority
-                sizes="(max-width:768px) 95vw, 560px"
-                className="aspect-[4/5] w-full object-cover transition duration-700 hover:scale-105 animate-floating"
-              />
-            </div>
-            {/* ================= FLOATING GOOGLE RATING ================= */}
-
-            <div className="absolute -left-10 top-10 z-20 hidden rounded-2xl border border-white/20 bg-white/90 p-4 shadow-2xl backdrop-blur lg:block">
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-100">
-                  <Star className="h-6 w-6 fill-yellow-500 text-yellow-500" />
-                </div>
-
-                <div>
-                  <p className="text-lg font-bold text-slate-900">4.9 / 5</p>
-
-                  <p className="text-sm text-slate-600">Google Rating</p>
-                </div>
-              </div>
-            </div>
-
-            {/* ================= HAPPY FAMILIES ================= */}
-
-            <div className="absolute -left-8 bottom-10 z-20 hidden rounded-2xl border border-white/20 bg-white/90 p-4 shadow-2xl backdrop-blur lg:block">
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100">
-                  <Users className="h-6 w-6 text-green-600" />
-                </div>
-
-                <div>
-                  <p className="text-lg font-bold text-slate-900">10,000+</p>
-
-                  <p className="text-sm text-slate-600">Happy Families</p>
-                </div>
-              </div>
-            </div>
-
-            {/* ================= PREMIUM VEHICLES ================= */}
-
-            <div className="absolute -right-10 top-24 z-20 hidden rounded-2xl border border-white/20 bg-white/90 p-4 shadow-2xl backdrop-blur lg:block">
-              <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100">
-                  <ShieldCheck className="h-6 w-6 text-blue-700" />
-                </div>
-
-                <div>
-                  <p className="text-lg font-bold text-slate-900">
-                    Premium Fleet
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-yellow-400 text-slate-950 px-2.5 py-0.5 text-[11px] font-bold">
+                    <Heart size={11} className="fill-slate-950" />
+                    Special Family Offer
+                  </span>
+                  <h2 className="mt-1.5 text-base sm:text-lg font-bold">
+                    Customized North India Family Tours
+                  </h2>
+                  <p className="text-xs text-blue-100">
+                    Hill stations, temples & wildlife resorts tailored for your family.
                   </p>
-
-                  <p className="text-sm text-slate-600">Sedan • SUV • Crysta</p>
                 </div>
               </div>
-            </div>
 
-            {/* ================= SAFE JOURNEY ================= */}
-
-            <div className="absolute -right-8 bottom-20 z-20 hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-700 p-5 text-white shadow-2xl lg:block">
-              <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-white/20 p-3">
-                  <CheckCircle2 className="h-6 w-6" />
+              {/* Floating Feature Badges */}
+              <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                <div className="flex items-center gap-2 rounded-xl bg-white/10 p-2.5 border border-white/10">
+                  <ShieldCheck size={16} className="text-emerald-400 shrink-0" />
+                  <div>
+                    <p className="font-bold text-white">Safe & Sanitized</p>
+                    <p className="text-[10px] text-blue-200">Verified Chauffeurs</p>
+                  </div>
                 </div>
 
-                <div>
-                  <p className="font-bold">Safe & Secure</p>
-
-                  <p className="text-sm text-blue-100">Verified Drivers</p>
+                <div className="flex items-center gap-2 rounded-xl bg-white/10 p-2.5 border border-white/10">
+                  <Users size={16} className="text-cyan-300 shrink-0" />
+                  <div>
+                    <p className="font-bold text-white">All Group Sizes</p>
+                    <p className="text-[10px] text-blue-200">Sedan to 26-Seater</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ================= BOTTOM TRUST STRIP ================= */}
-
-        <div className="mt-16 rounded-[32px] border border-white/15 bg-white/10 p-8 backdrop-blur-xl">
-          <div className="grid gap-8 grid-cols-1 lg:grid-cols-3">
-            <div className="flex items-start gap-4">
-              <div className="rounded-2xl bg-cyan-500/20 p-4">
-                <ShieldCheck className="h-8 w-8 text-cyan-300" />
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-white">
-                  Trusted Travel Partner
-                </h3>
-
-                <p className="mt-2 leading-7 text-blue-100">
-                  Safe, verified drivers and professionally maintained vehicles
-                  for every family journey.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="rounded-2xl bg-yellow-500/20 p-4">
-                <Star className="h-8 w-8 text-yellow-300" />
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-white">
-                  Highly Rated Service
-                </h3>
-
-                <p className="mt-2 leading-7 text-blue-100">
-                  Thousands of satisfied travellers trust Kuldeep Travels for
-                  comfortable family holidays.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="rounded-2xl bg-green-500/20 p-4">
-                <MapPin className="h-8 w-8 text-green-300" />
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-white">
-                  Explore 150+ Destinations
-                </h3>
-
-                <p className="mt-2 leading-7 text-blue-100">
-                  Hill stations, wildlife parks, heritage cities, pilgrimage
-                  sites, beaches, and customised holiday packages.
-                </p>
               </div>
             </div>
           </div>

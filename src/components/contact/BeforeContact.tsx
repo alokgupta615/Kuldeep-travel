@@ -1,180 +1,220 @@
+"use client";
+
+import { useState } from "react";
 import {
   Car,
-  MapPinned,
   Plane,
   Bus,
-  CalendarDays,
-  Clock3,
-  Users,
-  Hotel,
-  Wallet,
-  Briefcase,
-  Luggage,
-  CheckCircle,
+  CheckCircle2,
+  Phone,
+  MessageCircle,
+  Sparkles,
+  HelpCircle,
 } from "lucide-react";
 
 const bookingInfo = [
   {
-    title: "Booking a Cab",
+    id: "cab",
+    title: "Taxi & Airport Rides",
     icon: Car,
-    color: "bg-blue-100 text-blue-700",
-    description:
-      "Share these details so we can check vehicle availability and provide the best quotation.",
+    tag: "Instant 5-Min Quote",
+    color: "bg-blue-600 text-white",
+    lightBg: "bg-blue-50 border-blue-200",
+    description: "Keep these details handy for an immediate fixed price quotation:",
     items: [
-      "Pickup Location",
-      "Destination",
-      "Travel Date",
-      "Pickup Time",
-      "One Way or Round Trip",
-      "Number of Passengers",
-      "Preferred Vehicle (Optional)",
+      "Pickup location & landmark",
+      "Drop location / destination city",
+      "Travel date & exact pickup time",
+      "One-way or round-trip requirement",
+      "Number of passengers & luggage",
+      "Flight number (for airport pickup)",
     ],
   },
   {
-    title: "Planning a Tour",
-    icon: Plane,
-    color: "bg-green-100 text-green-700",
-    description:
-      "Help us prepare a personalized itinerary and accurate travel quotation.",
-    items: [
-      "Destination(s)",
-      "Number of Travelers",
-      "Travel Dates",
-      "Trip Duration",
-      "Preferred Vehicle",
-      "Hotel Requirement (Optional)",
-      "Approximate Budget",
-      "Special Requests",
-    ],
-  },
-  {
-    title: "Tempo Traveller / Bus",
+    id: "tempo",
+    title: "Tempo & Bus Rental",
     icon: Bus,
-    color: "bg-yellow-100 text-yellow-700",
-    description:
-      "These details help us recommend the ideal vehicle for your group.",
+    tag: "Group & Event Travel",
+    color: "bg-amber-600 text-white",
+    lightBg: "bg-amber-50 border-amber-200",
+    description: "Helps us allocate the perfect seating capacity & luggage space:",
     items: [
-      "Total Number of Passengers",
-      "Pickup Location",
-      "Destination",
-      "Travel Days",
-      "Event Type",
-      "Expected Luggage",
+      "Total passenger count (12 to 55 seats)",
+      "Pickup city & tour itinerary",
+      "Total days & overnight halts",
+      "Event type (Wedding, Pilgrimage, Corporate)",
+      "Luggage volume & carrier preference",
+      "AC / Luxury Maharaja seat options",
+    ],
+  },
+  {
+    id: "tour",
+    title: "Holiday & Pilgrimage",
+    icon: Plane,
+    tag: "Custom Itineraries",
+    color: "bg-emerald-600 text-white",
+    lightBg: "bg-emerald-50 border-emerald-200",
+    description: "Allows our travel planners to build a personalized schedule:",
+    items: [
+      "Preferred destinations (Ayodhya, Varanasi, Nepal, etc.)",
+      "Approximate departure dates & duration",
+      "Number of adults, seniors & children",
+      "Hotel category preference (3★, 4★, 5★, or Cab only)",
+      "Sightseeing points of interest",
+      "Approximate overall budget",
     ],
   },
 ];
 
 export default function BeforeContact() {
+  const [activeTab, setActiveTab] = useState<string>("cab");
+
   return (
-    <section className="bg-gray-50 py-20">
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Heading */}
-
-        <div className="text-center max-w-3xl mx-auto">
-
-          <span className="text-blue-600 font-semibold uppercase tracking-widest">
-            Before You Contact Us
+    <section className="relative overflow-hidden bg-slate-50/70 py-14 md:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        {/* Section Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-3.5 py-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-800">
+            <HelpCircle size={14} className="text-blue-600" />
+            Smooth Booking Guide
           </span>
 
-          <h2 className="mt-3 text-4xl font-bold text-gray-900">
-            Help Us Serve You Better
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            What to Keep Ready for a Quick Quote
           </h2>
 
-          <p className="mt-5 text-lg text-gray-600 leading-8">
-            Providing a few travel details allows our team to prepare an
-            accurate quotation, recommend the most suitable vehicle, and
-            respond more quickly.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+            Having these quick details ready allows our team to check real-time
+            vehicle availability and deliver the most competitive, transparent
+            price.
           </p>
-
         </div>
 
-        {/* Cards */}
+        {/* Mobile Tab Selector (Visible on Small Screens) */}
+        <div className="mt-8 flex md:hidden gap-2 overflow-x-auto pb-2 scrollbar-none">
+          {bookingInfo.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex shrink-0 items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition shadow-sm ${
+                  isActive
+                    ? "bg-blue-700 text-white"
+                    : "bg-white text-slate-700 border border-slate-200"
+                }`}
+              >
+                <Icon size={15} />
+                <span>{tab.title}</span>
+              </button>
+            );
+          })}
+        </div>
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
-
+        {/* Cards Grid: Desktop shows 3 cards, Mobile shows active tab or stacked cards */}
+        <div className="mt-6 md:mt-10 grid gap-6 md:grid-cols-3">
           {bookingInfo.map((section) => {
             const Icon = section.icon;
+            const isVisibleOnMobile = activeTab === section.id;
 
             return (
               <div
-                key={section.title}
-                className="rounded-3xl bg-white shadow-lg border border-gray-100 p-8 hover:-translate-y-2 transition duration-300"
+                key={section.id}
+                className={`relative flex flex-col justify-between rounded-3xl border bg-white p-6 sm:p-7 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
+                  isVisibleOnMobile ? "flex" : "hidden md:flex"
+                } border-slate-200`}
               >
-                <div
-                  className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl ${section.color}`}
-                >
-                  <Icon size={32} />
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <div
+                      className={`flex h-12 w-12 items-center justify-center rounded-2xl ${section.color} shadow-md`}
+                    >
+                      <Icon size={22} />
+                    </div>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-600">
+                      {section.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 text-xl font-bold text-slate-900">
+                    {section.title}
+                  </h3>
+
+                  <p className="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed">
+                    {section.description}
+                  </p>
+
+                  {/* Checklist Items */}
+                  <ul className="mt-5 space-y-2.5">
+                    {section.items.map((item, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
+                      >
+                        <CheckCircle2
+                          className="mt-0.5 text-emerald-600 shrink-0"
+                          size={15}
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <h3 className="mt-6 text-2xl font-bold text-gray-900">
-                  {section.title}
-                </h3>
-
-                <p className="mt-4 text-gray-600 leading-7">
-                  {section.description}
-                </p>
-
-                <ul className="mt-8 space-y-4">
-                  {section.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3"
-                    >
-                      <CheckCircle
-                        className="text-green-600 mt-1 flex-shrink-0"
-                        size={18}
-                      />
-
-                      <span className="text-gray-700">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
+                <div className="mt-6 pt-4 border-t border-slate-100">
+                  <a
+                    href="#contact-form"
+                    className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-slate-50 py-2.5 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition"
+                  >
+                    <span>Request Quotation</span>
+                    <span>→</span>
+                  </a>
+                </div>
               </div>
             );
           })}
-
         </div>
 
-        {/* Bottom CTA */}
+        {/* Quick Contact Banner */}
+        <div className="mt-10 md:mt-14 rounded-3xl bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 p-6 sm:p-8 md:p-10 text-white shadow-xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-400/20 px-3 py-1 text-xs font-bold text-yellow-300">
+                <Sparkles size={13} />
+                Need Quick Help?
+              </span>
+              <h3 className="mt-3 text-xl sm:text-2xl md:text-3xl font-extrabold text-white">
+                Not sure about your travel requirements?
+              </h3>
+              <p className="mt-2 text-xs sm:text-sm text-blue-200 max-w-xl">
+                Just give us a quick call or message on WhatsApp. Our travel
+                experts will suggest the best route, vehicle, and price.
+              </p>
+            </div>
 
-        <div className="mt-16 rounded-3xl bg-blue-900 p-10 text-center text-white">
+            <div className="flex flex-wrap justify-center gap-3 shrink-0">
+              <a
+                href="tel:+919936408109"
+                className="inline-flex items-center gap-2 rounded-xl bg-yellow-400 px-6 py-3 text-xs sm:text-sm font-bold text-slate-900 shadow-md hover:bg-yellow-300 active:scale-95 transition"
+              >
+                <Phone size={16} />
+                <span>Call +91 99364 08109</span>
+              </a>
 
-          <h3 className="text-3xl font-bold">
-            Looking for a Quick Fare Estimate?
-          </h3>
-
-          <p className="mt-5 max-w-3xl mx-auto text-blue-100 leading-8">
-            The fastest way to receive a quotation is to call us or send your
-            travel details on WhatsApp. Our travel experts will review your
-            requirements and respond as quickly as possible.
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-
-            <a
-              href="tel:09936408109"
-              className="rounded-xl bg-yellow-400 px-8 py-4 font-semibold text-black hover:bg-yellow-300 transition"
-            >
-              📞 Call Now
-            </a>
-
-            <a
-              href="https://wa.me/919936408109"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-xl border border-white px-8 py-4 font-semibold hover:bg-white hover:text-blue-900 transition"
-            >
-              💬 WhatsApp Now
-            </a>
-
+              <a
+                href="https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20I%20need%20advice%20on%20planning%20my%20trip."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-xs sm:text-sm font-semibold text-white backdrop-blur hover:bg-white hover:text-slate-900 active:scale-95 transition"
+              >
+                <MessageCircle size={16} className="text-emerald-400" />
+                <span>WhatsApp Us</span>
+              </a>
+            </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );

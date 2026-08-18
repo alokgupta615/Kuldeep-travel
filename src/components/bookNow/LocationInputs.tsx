@@ -49,7 +49,7 @@ export default function LocationInputs({ formData, setFormData }: Props) {
               value={formData.pickup}
               onChange={handleChange}
               placeholder="Enter pickup location"
-              className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-yellow-400"
+              className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-yellow-400 text-slate-900"
             />
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function LocationInputs({ formData, setFormData }: Props) {
               value={formData.drop}
               onChange={handleChange}
               placeholder="Enter destination"
-              className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-yellow-400"
+              className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-yellow-400 text-slate-900"
             />
           </div>
         </div>

@@ -108,7 +108,7 @@ export default function About() {
 
           <div className="overflow-hidden rounded-3xl shadow-xl">
             <Image
-              src="/images/tour-packages/about.jpg"
+              src="/images/home/about.png"
               alt="Holiday Packages from Lucknow"
               width={700}
               height={700}

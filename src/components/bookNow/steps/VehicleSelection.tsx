@@ -16,7 +16,7 @@ const vehicles = [
   {
     id: "hatchback",
     name: "Hatchback",
-    image: "/images/vehicles/hatchback.png",
+    image: "/images/fleet/dzire.png",
     seats: "4 Passengers",
     luggage: "2 Bags",
     ac: true,
@@ -26,7 +26,7 @@ const vehicles = [
   {
     id: "sedan",
     name: "Sedan",
-    image: "/images/vehicles/sedan.png",
+    image: "/images/fleet/sedan.png",
     seats: "4 Passengers",
     luggage: "3 Bags",
     ac: true,
@@ -36,7 +36,7 @@ const vehicles = [
   {
     id: "suv",
     name: "SUV",
-    image: "/images/vehicles/suv.png",
+    image: "/images/fleet/suv.png",
     seats: "6 Passengers",
     luggage: "4 Bags",
     ac: true,
@@ -46,7 +46,7 @@ const vehicles = [
   {
     id: "ertiga",
     name: "Maruti Ertiga",
-    image: "/images/vehicles/ertiga.png",
+    image: "/images/fleet/ertiga.png",
     seats: "6 Passengers",
     luggage: "4 Bags",
     ac: true,
@@ -56,7 +56,7 @@ const vehicles = [
   {
     id: "crysta",
     name: "Innova Crysta",
-    image: "/images/vehicles/innova-crysta.png",
+    image: "/images/fleet/innova.png",
     seats: "7 Passengers",
     luggage: "5 Bags",
     ac: true,
@@ -66,7 +66,7 @@ const vehicles = [
   {
     id: "tempo",
     name: "Tempo Traveller",
-    image: "/images/vehicles/tempo-traveller.png",
+    image: "/images/fleet/tempo.png",
     seats: "12–26 Passengers",
     luggage: "Large Capacity",
     ac: true,

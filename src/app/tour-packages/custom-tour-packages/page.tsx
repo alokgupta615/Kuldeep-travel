@@ -11,6 +11,7 @@ import {
   FAQ,
   CTA,
 } from "@/components/custom-tour-packages";
+import GetQuoteForm from "@/components/GetQuoteForm";
 
 export const metadata: Metadata = {
   title:
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     title: "Custom Tour Packages | Kuldeep Travels",
     description:
       "Travel your way with personalised holiday packages from Lucknow.",
-    images: ["/images/custom-tour/hero.jpg"],
+    images: ["/images/tour-package/tour.png"],
   },
 };
 
@@ -61,6 +62,8 @@ export default function CustomTourPackagesPage() {
       <Testimonials />
 
       <FAQ />
+
+      <GetQuoteForm />
 
       <CTA />
     </main>

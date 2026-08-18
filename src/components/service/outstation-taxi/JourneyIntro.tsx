@@ -62,7 +62,7 @@ export default function JourneyIntro() {
                 </div>
 
                 <div>
-                  <h4 className="text-2xl font-black text-slate-900">10K+</h4>
+                  <h4 className="text-2xl font-black text-slate-900">51K+</h4>
 
                   <p className="text-sm text-slate-500">Happy Travellers</p>
                 </div>
@@ -134,7 +134,7 @@ export default function JourneyIntro() {
               </div>
 
               <div>
-                <h4 className="text-2xl font-black text-blue-700">10K+</h4>
+                <h4 className="text-2xl font-black text-blue-700">51K+</h4>
                 <p className="text-sm text-slate-500">Trips Completed</p>
               </div>
 

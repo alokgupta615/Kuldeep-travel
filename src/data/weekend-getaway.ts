@@ -8,7 +8,7 @@ export const highlights = [
 export const destinations = [
   {
     name: "Ayodhya",
-    image: "/images/weekend-getaway/ayodhya.jpg",
+    image: "/images/destinations/ayodhya.png",
     distance: "135 km",
     duration: "1 Day",
     description:
@@ -16,7 +16,7 @@ export const destinations = [
   },
   {
     name: "Varanasi",
-    image: "/images/weekend-getaway/varanasi.jpg",
+    image: "/images/destinations/varanasi.png",
     distance: "320 km",
     duration: "2 Days / 1 Night",
     description:
@@ -24,7 +24,7 @@ export const destinations = [
   },
   {
     name: "Prayagraj",
-    image: "/images/weekend-getaway/prayagraj.jpg",
+    image: "/images/destinations/prayagraj.png",
     distance: "205 km",
     duration: "1 Day",
     description:
@@ -32,7 +32,7 @@ export const destinations = [
   },
   {
     name: "Naimisharanya",
-    image: "/images/weekend-getaway/naimisharanya.jpg",
+    image: "/images/destinations/naimisharanya.png",
     distance: "95 km",
     duration: "1 Day",
     description:
@@ -40,7 +40,7 @@ export const destinations = [
   },
   {
     name: "Dudhwa National Park",
-    image: "/images/weekend-getaway/dudhwa.jpg",
+    image: "/images/destinations/dudhwa.png",
     distance: "235 km",
     duration: "2 Days / 1 Night",
     description:
@@ -48,7 +48,7 @@ export const destinations = [
   },
   {
     name: "Agra",
-    image: "/images/weekend-getaway/agra.jpg",
+    image: "/images/destinations/agra.png",
     distance: "335 km",
     duration: "2 Days / 1 Night",
     description:
@@ -56,7 +56,7 @@ export const destinations = [
   },
   {
     name: "Mussoorie",
-    image: "/images/weekend-getaway/mussoorie.jpg",
+    image: "/images/destinations/mussoorie.png",
     distance: "560 km",
     duration: "3 Days / 2 Nights",
     description:
@@ -64,7 +64,7 @@ export const destinations = [
   },
   {
     name: "Nainital",
-    image: "/images/weekend-getaway/nainital.jpg",
+    image: "/images/destinations/nainital.png",
     distance: "380 km",
     duration: "2 Days / 1 Night",
     description:
@@ -72,7 +72,7 @@ export const destinations = [
   },
   {
     name: "Haridwar & Rishikesh",
-    image: "/images/weekend-getaway/haridwar-rishikesh.jpg",
+    image: "/images/destinations/haridwar-rishikesh.png",
     distance: "500 km",
     duration: "3 Days / 2 Nights",
     description:

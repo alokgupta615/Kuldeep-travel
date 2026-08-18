@@ -42,9 +42,13 @@ export default function Footer() {
 
           <div>
             <div className="flex items-center gap-3">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-400">
-                <CarFront className="text-black" />
-              </div>
+              <Link href="/">
+                <img
+                  src="/logo.png"
+                  alt="Kuldeep Travels Logo"
+                  className="h-16 w-auto object-contain bg-white rounded-xl p-2"
+                />
+              </Link>
 
               <div>
                 <h3 className="text-2xl font-bold">
@@ -110,21 +114,21 @@ export default function Footer() {
 
             <div className="space-y-5">
               <a
-                href="tel:+919876543210"
+                href="tel:+919936408109"
                 className="flex items-start gap-3 text-gray-400 hover:text-yellow-400"
               >
                 <Phone size={20} />
 
-                <span>+91 98765 43210</span>
+                <span>+91 99364 08109</span>
               </a>
 
               <a
-                href="mailto:info@kuldeeptravels.com"
+                href="mailto:kuldeeptravelslko@gmail.com"
                 className="flex items-start gap-3 text-gray-400 hover:text-yellow-400"
               >
                 <Mail size={20} />
 
-                <span>info@kuldeeptravels.com</span>
+                <span>kuldeeptravelslko@gmail.com</span>
               </a>
 
               <div className="flex gap-3 text-gray-400">
@@ -247,10 +251,10 @@ export default function Footer() {
             </Link>
 
             <Link
-              href="/refund-policy"
+              href="/cancellation-policy"
               className="hover:text-yellow-400 transition"
             >
-              Refund Policy
+              Refund & Cancellation Policy
             </Link>
 
             <Link href="/sitemap" className="hover:text-yellow-400 transition">

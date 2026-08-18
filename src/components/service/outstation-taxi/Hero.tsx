@@ -139,7 +139,7 @@
 //               </Link>
 
 //               <Link
-//                 href="tel:+919999999999"
+//                 href="tel:+919936408109"
 //                 className="flex items-center gap-3 rounded-xl border border-white/20 px-8 py-4 font-semibold text-white backdrop-blur-md transition hover:bg-white hover:text-blue-900"
 //               >
 //                 <PhoneCall className="h-5 w-5" />
@@ -173,7 +173,7 @@
 
 //                 <h3 className="text-4xl font-black text-yellow-400">
 
-//                   10K+
+//                   51K+
 
 //                 </h3>
 
@@ -301,7 +301,7 @@ export default function Hero() {
             </Link>
 
             <a
-              href="tel:+918808142859"
+              href="tel:+919936408109"
               className="flex items-center justify-center gap-2 rounded-xl border border-white/30 px-7 py-4 font-semibold text-white backdrop-blur-sm transition hover:bg-white hover:text-blue-900"
             >
               <PhoneCall className="h-5 w-5" />
@@ -343,7 +343,7 @@ export default function Hero() {
 
             <div>
               <h3 className="text-3xl font-black text-yellow-400 sm:text-4xl">
-                10K+
+                51K+
               </h3>
               <p className="mt-2 text-sm text-blue-100">Happy Travellers</p>
             </div>

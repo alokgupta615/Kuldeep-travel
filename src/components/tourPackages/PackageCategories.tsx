@@ -17,7 +17,7 @@ const packages = [
     title: "Family Holiday Packages",
     description:
       "Enjoy memorable vacations with your loved ones through comfortable transportation, sightseeing, and flexible itineraries.",
-    image: "/images/tour-packages/family.jpg",
+    image: "/images/tour-package/tour.png",
     icon: Users,
     href: "/tour-packages/family-tours",
     color: "bg-blue-100 text-blue-700",
@@ -26,7 +26,7 @@ const packages = [
     title: "Couple Holiday Packages",
     description:
       "Perfect for honeymoon trips, anniversaries, and romantic getaways to beautiful destinations across North India.",
-    image: "/images/tour-packages/couple.jpg",
+    image: "/images/tour-package/tour.png",
     icon: Heart,
     href: "/tour-packages/custom-tour-packages",
     color: "bg-pink-100 text-pink-600",
@@ -35,7 +35,7 @@ const packages = [
     title: "Group Tour Packages",
     description:
       "Ideal for friends, corporate teams, clubs, schools, colleges, and social groups with spacious vehicles.",
-    image: "/images/tour-packages/group.jpg",
+    image: "/images/tour-package/tour.png",
     icon: Building2,
     href: "/tour-packages/custom-tour-packages",
     color: "bg-green-100 text-green-700",
@@ -44,7 +44,7 @@ const packages = [
     title: "Religious Tour Packages",
     description:
       "Visit sacred destinations including Ayodhya, Varanasi, Prayagraj, Haridwar, Rishikesh, and more.",
-    image: "/images/tour-packages/religious.jpg",
+    image: "/images/tour-package/tour.png",
     icon: Landmark,
     href: "/tour-packages/religious-tours",
     color: "bg-yellow-100 text-yellow-700",
@@ -53,7 +53,7 @@ const packages = [
     title: "Weekend Getaway Packages",
     description:
       "Short vacations to nearby hill stations, heritage cities, wildlife parks, and peaceful destinations.",
-    image: "/images/tour-packages/weekend.jpg",
+    image: "/images/tour-package/tour.png",
     icon: Mountain,
     href: "/tour-packages/weekend-getaways",
     color: "bg-indigo-100 text-indigo-700",
@@ -62,7 +62,7 @@ const packages = [
     title: "Customized Holiday Packages",
     description:
       "Create your own itinerary with personalized destinations, hotels, sightseeing, and travel duration.",
-    image: "/images/tour-packages/custom.jpg",
+    image: "/images/tour-package/tour.png",
     icon: Sparkles,
     href: "/tour-packages/custom-tour-packages",
     color: "bg-orange-100 text-orange-700",

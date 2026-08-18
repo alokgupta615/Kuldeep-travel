@@ -14,8 +14,8 @@ export const metadata = {
 
 export default function BookNowPage() {
   return (
-    <main className="min-h-screen bg-slate-50 pt-10 md:pt-10">
-      {/* <BookingHero /> */}
+    <main className="min-h-screen bg-slate-50">
+      <BookingHero />
 
       <BookingForm />
 

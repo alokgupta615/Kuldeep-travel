@@ -8,7 +8,7 @@ const vehicles = [
     title: "Sedan Cars",
     description:
       "Comfortable and economical option for couples and small families travelling to nearby pilgrimage destinations.",
-    image: "/images/vehicles/sedan.jpg",
+    image: "/images/fleet/sedan.png",
     capacity: "2-4 Passengers",
     features: [
       "AC Comfortable Ride",
@@ -21,7 +21,7 @@ const vehicles = [
     title: "SUV Cars",
     description:
       "Spacious vehicles with extra luggage space, perfect for families seeking additional comfort during long journeys.",
-    image: "/images/vehicles/suv.jpg",
+    image: "/images/fleet/suv.png",
     capacity: "4-6 Passengers",
     features: [
       "Extra Leg Space",
@@ -34,7 +34,7 @@ const vehicles = [
     title: "Innova Crysta",
     description:
       "A preferred choice for long-distance pilgrimage tours with families and groups who need premium comfort.",
-    image: "/images/vehicles/innova.jpg",
+    image: "/images/fleet/innova.png",
     capacity: "6-7 Passengers",
     features: [
       "Premium Interior",
@@ -47,7 +47,7 @@ const vehicles = [
     title: "Tempo Traveller",
     description:
       "Perfect for group pilgrimages, religious tours, and family gatherings with comfortable seating.",
-    image: "/images/vehicles/tempo.jpg",
+    image: "/images/fleet/tempo.png",
     capacity: "9-17 Passengers",
     features: ["Large Group Travel", "Push Back Seats", "Tour Friendly"],
   },

@@ -75,7 +75,7 @@ export default function BookingForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
+            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700 text-gray-900"
           />
         </div>
 
@@ -94,7 +94,7 @@ export default function BookingForm() {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
+            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700 text-gray-900"
           />
         </div>
 
@@ -111,7 +111,7 @@ export default function BookingForm() {
             value={formData.eventType}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-slate-300 bg-white py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
+            className="w-full rounded-xl border border-slate-300 bg-white py-3 pl-12 pr-4 outline-none transition focus:border-blue-700 text-gray-900"
           >
             <option value="">Select Event</option>
             <option>Wedding Ceremony</option>
@@ -137,7 +137,7 @@ export default function BookingForm() {
             value={formData.vehicle}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-slate-300 bg-white py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
+            className="w-full rounded-xl border border-slate-300 bg-white py-3 pl-12 pr-4 outline-none transition focus:border-blue-700 text-gray-900"
           >
             <option value="">Preferred Vehicle</option>
             <option>Luxury Sedan</option>
@@ -164,7 +164,7 @@ export default function BookingForm() {
             value={formData.weddingDate}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
+            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700 text-gray-900"
           />
         </div>
 
@@ -183,7 +183,7 @@ export default function BookingForm() {
             value={formData.pickup}
             onChange={handleChange}
             required
-            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
+            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700 text-gray-900"
           />
         </div>
 
@@ -201,7 +201,7 @@ export default function BookingForm() {
             value={formData.message}
             onChange={handleChange}
             placeholder="Decoration style, number of vehicles, guest transportation or any special requirements..."
-            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700"
+            className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-blue-700 text-gray-900"
           />
         </div>
 

@@ -13,7 +13,7 @@ import {
 const vehicles = [
   {
     name: "Hatchback",
-    image: "/images/vehicles/hatchback.jpg",
+    image: "/images/fleet/dzire.png",
     seats: "4 Seats",
     luggage: "2 Bags",
     description:
@@ -21,7 +21,7 @@ const vehicles = [
   },
   {
     name: "Sedan",
-    image: "/images/vehicles/sedan.jpg",
+    image: "/images/fleet/sedan.png",
     seats: "4 Seats",
     luggage: "3 Bags",
     description:
@@ -29,7 +29,7 @@ const vehicles = [
   },
   {
     name: "Ertiga",
-    image: "/images/vehicles/ertiga.jpg",
+    image: "/images/fleet/ertiga.png",
     seats: "6 Seats",
     luggage: "4 Bags",
     description:
@@ -37,7 +37,7 @@ const vehicles = [
   },
   {
     name: "Innova Crysta",
-    image: "/images/vehicles/innova.jpg",
+    image: "/images/fleet/innova.png",
     seats: "7 Seats",
     luggage: "5 Bags",
     description:
@@ -45,7 +45,7 @@ const vehicles = [
   },
   {
     name: "SUV",
-    image: "/images/vehicles/suv.jpg",
+    image: "/images/fleet/suv.png",
     seats: "6–7 Seats",
     luggage: "5 Bags",
     description:
@@ -53,7 +53,7 @@ const vehicles = [
   },
   {
     name: "Tempo Traveller",
-    image: "/images/vehicles/tempo.jpg",
+    image: "/images/fleet/tempo.png",
     seats: "12–17 Seats",
     luggage: "Large",
     description:
@@ -61,7 +61,7 @@ const vehicles = [
   },
   {
     name: "Mini Bus",
-    image: "/images/vehicles/minibus.jpg",
+    image: "/images/fleet/bus.png",
     seats: "20–27 Seats",
     luggage: "Large",
     description:
@@ -69,7 +69,7 @@ const vehicles = [
   },
   {
     name: "Luxury Bus",
-    image: "/images/vehicles/luxurybus.jpg",
+    image: "/images/fleet/bus.png",
     seats: "35–50 Seats",
     luggage: "Extra Large",
     description:

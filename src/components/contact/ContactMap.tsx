@@ -1,184 +1,210 @@
-import { MapPin, Phone, Mail, Clock, MessageCircle, Star } from "lucide-react";
+"use client";
+
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  MessageCircle,
+  Star,
+  Navigation,
+  ExternalLink,
+  ShieldCheck,
+} from "lucide-react";
 
 export default function ContactMap() {
-  return (
-    <section id="map" className="bg-white py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
+  const serviceZones = [
+    "Amausi Airport (LKO)",
+    "Charbagh Railway Station",
+    "Gomti Nagar & Extension",
+    "Hazratganj & Central Lucknow",
+    "Alambagh & Transport Nagar",
+    "Indira Nagar & Munshipulia",
+    "Jankipuram & Engineering College",
+    "Ashiyana & Telibagh",
+  ];
 
-        <div className="text-center max-w-3xl mx-auto">
-          <span className="text-blue-600 font-semibold uppercase tracking-[0.2em]">
-            Find Us
+  return (
+    <section id="map" className="relative overflow-hidden bg-slate-50/80 py-14 md:py-20 scroll-mt-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        {/* Section Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-3.5 py-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-800">
+            <MapPin size={14} className="text-blue-600" />
+            Headquarters & Coverage
           </span>
 
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900">
-            Visit Kuldeep Travels
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Visit Kuldeep Travels Office in Lucknow
           </h2>
 
-          <p className="mt-5 text-lg text-gray-600 leading-8">
-            Visit our office in Lucknow for taxi bookings, holiday packages, and
-            customized travel planning with our professional team.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+            Drop by for in-person tour planning, corporate transport contracts,
+            or get picked up anywhere across Lucknow within 20-30 minutes.
           </p>
         </div>
 
-        {/* Map + Contact */}
+        {/* Map + Location Details Grid */}
+        <div className="mt-10 grid gap-8 lg:grid-cols-12 items-stretch">
+          {/* Left: Google Map Frame (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg h-[320px] sm:h-[400px] lg:h-full min-h-[320px]">
+              <iframe
+                title="Kuldeep Travels Lucknow Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.919195050948!2d80.88004937521946!3d26.77884557672729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bf90acad92fe1%3A0x148abd8a9b62f832!2sKuldeep%20Travels!5e0!3m2!1sen!2sin!4v1785439255873!5m2!1sen!2sin"
+                className="w-full h-full border-0"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
 
-        <div className="mt-14 grid lg:grid-cols-2 gap-12 items-stretch">
-          {/* Google Map */}
-
-          {/* Google Map */}
-
-          <div
-            className="
-  overflow-hidden
-  rounded-3xl
-  border border-gray-200
-  shadow-2xl
-  h-[350px]
-  md:h-[500px]
-"
-          >
-            <iframe
-              title="Kuldeep Travels Lucknow - Google Business Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.919195050948!2d80.88004937521946!3d26.77884557672729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bf90acad92fe1%3A0x148abd8a9b62f832!2sKuldeep%20Travels!5e0!3m2!1sen!2sin!4v1785439255873!5m2!1sen!2sin"
-              className="w-full h-full"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
+              {/* Floating Directions Badge */}
+              <div className="absolute bottom-4 left-4 right-4 sm:right-auto">
+                <a
+                  href="https://maps.google.com/?q=Kuldeep+Travels+Lucknow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-slate-900/90 backdrop-blur-md px-4 py-2.5 text-xs font-bold text-white shadow-xl hover:bg-blue-700 transition active:scale-95"
+                >
+                  <Navigation size={14} className="text-yellow-400" />
+                  <span>Get Driving Directions</span>
+                  <ExternalLink size={12} className="opacity-70" />
+                </a>
+              </div>
+            </div>
           </div>
 
-          {/* Contact Details */}
-
-          <div className="flex flex-col justify-start pt-2">
+          {/* Right: Office Info & Service Hub (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-md">
             <div>
-              <div className="flex items-center gap-3">
-                <Star className="text-yellow-500 fill-yellow-500" size={28} />
-
+              {/* Rating header */}
+              <div className="flex items-center justify-between gap-2 pb-4 border-b border-slate-100">
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900">
-                    Google Rated Travel Service
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+                    Kuldeep Travels
                   </h3>
-
-                  <p className="text-gray-600 mt-2">
-                    Trusted by travelers for comfortable and reliable journeys.
+                  <p className="text-xs text-slate-500">
+                    Trusted Cab & Tour Operator Since 2012
                   </p>
+                </div>
+
+                <div className="flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200 px-3 py-1 text-xs font-bold text-amber-900">
+                  <Star size={13} className="fill-amber-400 text-amber-400" />
+                  <span>4.9★ Google</span>
                 </div>
               </div>
 
-              <div className="mt-10 space-y-8">
+              {/* Quick Details */}
+              <div className="mt-5 space-y-4 text-xs sm:text-sm">
                 {/* Address */}
-
-                <div className="flex gap-5">
-                  <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
-                    <MapPin className="text-blue-700" />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                    <MapPin size={17} />
                   </div>
-
                   <div>
-                    <h4 className="font-bold text-lg text-gray-900">
-                      Office Address
-                    </h4>
-
-                    <p className="text-gray-600">Kuldeep Travels</p>
-
-                    <p className="text-gray-600">Lucknow, Uttar Pradesh</p>
+                    <h4 className="font-bold text-slate-800">Office Address</h4>
+                    <p className="text-slate-600 mt-0.5">
+                      Kuldeep Travels, Lucknow, Uttar Pradesh, India
+                    </p>
                   </div>
                 </div>
 
                 {/* Phone */}
-
-                <div className="flex gap-5">
-                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                    <Phone className="text-green-700" />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                    <Phone size={17} />
                   </div>
-
                   <div>
-                    <h4 className="font-bold text-lg text-gray-900">Call Us</h4>
-
+                    <h4 className="font-bold text-slate-800">Phone Hotline</h4>
                     <a
-                      href="tel:09936408109"
-                      className="text-blue-700 hover:underline"
+                      href="tel:+919936408109"
+                      className="text-blue-700 hover:underline font-semibold block mt-0.5"
                     >
-                      09936408109
+                      +91 99364 08109
                     </a>
                   </div>
                 </div>
 
                 {/* WhatsApp */}
-
-                <div className="flex gap-5">
-                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                    <MessageCircle className="text-green-700" />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                    <MessageCircle size={17} />
                   </div>
-
                   <div>
-                    <h4 className="font-bold text-lg text-gray-900">
-                      WhatsApp Booking
-                    </h4>
-
+                    <h4 className="font-bold text-slate-800">WhatsApp Desk</h4>
                     <a
                       href="https://wa.me/919936408109"
                       target="_blank"
-                      className="text-green-700 hover:underline"
+                      rel="noopener noreferrer"
+                      className="text-emerald-700 hover:underline font-semibold block mt-0.5"
                     >
-                      Chat with us instantly
+                      +91 99364 08109 (Instant Chat)
                     </a>
                   </div>
                 </div>
 
                 {/* Email */}
-
-                <div className="flex gap-5">
-                  <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center shrink-0">
-                    <Mail className="text-red-700" />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-700">
+                    <Mail size={17} />
                   </div>
-
                   <div>
-                    <h4 className="font-bold text-lg text-gray-900">Email</h4>
-
+                    <h4 className="font-bold text-slate-800">Email</h4>
                     <a
                       href="mailto:kuldeeptravelslko@gmail.com"
-                      className="text-blue-700 hover:underline"
+                      className="text-slate-700 hover:underline font-medium block mt-0.5 truncate max-w-[240px]"
                     >
                       kuldeeptravelslko@gmail.com
                     </a>
                   </div>
                 </div>
 
-                {/* Timing */}
-
-                <div className="flex gap-5">
-                  <div className="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center shrink-0">
-                    <Clock className="text-yellow-700" />
+                {/* Operating Hours */}
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
+                    <Clock size={17} />
                   </div>
-
                   <div>
-                    <h4 className="font-bold text-lg text-gray-900">
-                      Business Hours
-                    </h4>
-
-                    <p className="text-gray-600">Monday - Sunday</p>
-
-                    <p className="text-gray-600">Available Every Day</p>
+                    <h4 className="font-bold text-slate-800">Operational Hours</h4>
+                    <p className="text-slate-600 mt-0.5">
+                      Open 24 Hours • 7 Days a Week • All Holidays
+                    </p>
                   </div>
+                </div>
+              </div>
+
+              {/* Coverage Areas Tag Cloud */}
+              <div className="mt-5 pt-4 border-t border-slate-100">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+                  Key Pickup & Coverage Zones
+                </h4>
+                <div className="flex flex-wrap gap-1.5">
+                  {serviceZones.map((zone) => (
+                    <span
+                      key={zone}
+                      className="rounded-lg bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-700"
+                    >
+                      {zone}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
 
-            {/* CTA */}
-
-            <div className="mt-10">
+            {/* Bottom Actions */}
+            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-3">
               <a
-                href="/book-now"
-                className="
-                inline-flex items-center justify-center
-                bg-blue-700 hover:bg-blue-800
-                text-white font-semibold
-                px-8 py-4 rounded-full
-                transition
-                "
+                href="tel:+919936408109"
+                className="flex-1 text-center rounded-xl bg-blue-700 py-2.5 px-4 text-xs sm:text-sm font-bold text-white shadow hover:bg-blue-800 transition active:scale-95"
               >
-                Book Your Ride
+                Call Dispatch
+              </a>
+
+              <a
+                href="#contact-form"
+                className="flex-1 text-center rounded-xl border border-slate-300 bg-white py-2.5 px-4 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition active:scale-95"
+              >
+                Book Online
               </a>
             </div>
           </div>
