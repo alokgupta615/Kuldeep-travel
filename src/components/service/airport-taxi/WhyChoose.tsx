@@ -1,103 +1,100 @@
+"use client";
+
 import {
   Clock3,
-  IndianRupee,
+  BadgeIndianRupee,
   CarFront,
   ShieldCheck,
-  Users,
+  PlaneLanding,
   Headset,
+  Sparkles,
 } from "lucide-react";
 
 const features = [
   {
     icon: Clock3,
-    title: "On-Time Airport Transfers",
+    title: "100% On-Time Airport Arrival",
     description:
-      "We carefully schedule every pickup and drop to help you reach the airport on time.",
+      "We calculate real-time Lucknow city traffic to guarantee you arrive at your departure gate well ahead of your boarding time.",
   },
   {
-    icon: IndianRupee,
-    title: "Transparent Pricing",
+    icon: PlaneLanding,
+    title: "Free Flight Delay Tracking",
     description:
-      "Know your estimated fare before your trip with no hidden charges.",
+      "Our system tracks incoming flight delays automatically. No waiting penalty or extra charges if your flight lands late.",
   },
   {
-    icon: Users,
-    title: "Professional Drivers",
+    icon: BadgeIndianRupee,
+    title: "Fixed Transparent Rates",
     description:
-      "Experienced, courteous and verified drivers for a safe journey.",
-  },
-  {
-    icon: CarFront,
-    title: "Clean Vehicles",
-    description:
-      "Travel in regularly maintained and sanitized vehicles.",
+      "All-inclusive flat fares covering parking, tolls, and fuel. No midnight surge or surprise extra billing upon arrival.",
   },
   {
     icon: ShieldCheck,
-    title: "Trusted Since 2012",
+    title: "Verified Highway Chauffeurs",
     description:
-      "Serving individuals, families, tourists and businesses across Lucknow.",
+      "Background-verified, polite, non-smoking drivers trained in courteous luggage handling and defensive driving.",
+  },
+  {
+    icon: CarFront,
+    title: "Spotless Sanitized Fleet",
+    description:
+      "Clean AC sedans, SUVs, Innovas, and Tempo Travellers sanitized thoroughly before every airport pickup.",
   },
   {
     icon: Headset,
-    title: "24×7 Customer Support",
+    title: "24×7 Active Dispatch Desk",
     description:
-      "Our team is always available to assist before, during and after your trip.",
+      "Need a last-minute 3:00 AM airport taxi? Our active 24-hour operations team dispatches verified cabs within minutes.",
   },
 ];
 
 export default function WhyChoose() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-14 md:py-24 bg-slate-50/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-3.5 py-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-800">
+            <Sparkles size={14} className="text-blue-600" />
+            Reliability Guarantee
+          </span>
 
-      <div className="max-w-7xl mx-auto px-6">
-
-        <div className="text-center max-w-3xl mx-auto mb-16">
-
-          <h2 className="text-4xl font-bold text-gray-900">
-            Why Choose Kuldeep Travels?
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Why Lucknow Flyers Trust Kuldeep Travels
           </h2>
 
-          <p className="mt-5 text-gray-600 leading-8">
-            We focus on providing dependable airport transportation with
-            professional service, comfortable vehicles and transparent pricing.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+            Over a decade of airport transfer excellence with more than 50,000+ satisfied
+            passengers across Chaudhary Charan Singh International Airport.
           </p>
-
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {features.map((item, index) => {
+        {/* Features Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((item) => {
             const Icon = item.icon;
-
             return (
               <div
-                key={index}
-                className="bg-white rounded-3xl border p-8 shadow-sm hover:shadow-xl transition"
+                key={item.title}
+                className="group rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-blue-300"
               >
-                <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
-                  <Icon
-                    className="text-blue-700"
-                    size={30}
-                  />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-100 text-blue-700 transition group-hover:bg-blue-700 group-hover:text-white shadow-sm">
+                  <Icon size={24} />
                 </div>
 
-                <h3 className="mt-6 text-2xl font-bold text-gray-900">
+                <h3 className="mt-5 text-base sm:text-lg font-bold text-slate-900 group-hover:text-blue-700 transition">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-gray-600 leading-7">
+                <p className="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {item.description}
                 </p>
-
               </div>
             );
           })}
-
         </div>
-
       </div>
-
     </section>
   );
 }
