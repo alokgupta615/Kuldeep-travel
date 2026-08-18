@@ -30,9 +30,8 @@ import PaymentOptions from "./PaymentOptions";
 import BookingSummary from "./BookingSummary";
 import SuccessModal from "./SuccessModal";
 import LoadingOverlay from "./LoadingOverlay";
-
-import RideCategory from "./steps/RideCategory";
-import RideExtras from "./steps/RideExtras";
+import RideCategory from "./RideCategory";
+import RideExtras from "./RideExtras";
 
 import { openRazorpay } from "@/lib/openRazorpay";
 import type { BookingData } from "@/types/booking";
@@ -117,7 +116,7 @@ export default function BookingForm() {
     e.preventDefault();
 
     if (!formData.customerName || !formData.phone) {
-      alert("Please enter your name and contact phone number.");
+      alert("Please enter your name and 10-digit mobile number.");
       return;
     }
 
@@ -152,7 +151,7 @@ export default function BookingForm() {
             resetForm();
           },
           onFailure: () => {
-            alert("Payment Failed or Cancelled. You can select 'Pay After Trip' to book without upfront payment.");
+            alert("Payment Failed or Cancelled. You can select 'Pay After Trip' to book without advance payment.");
           },
         });
         return;
@@ -175,7 +174,7 @@ export default function BookingForm() {
       resetForm();
     } catch (error: any) {
       console.error(error);
-      alert(error.message || "Booking submission failed. Please try again or WhatsApp us.");
+      alert(error.message || "Booking submission failed. Please try again or reach us via WhatsApp.");
     } finally {
       setLoading(false);
     }
@@ -188,12 +187,13 @@ export default function BookingForm() {
 • Name: ${formData.customerName || "Customer"}
 • Service: ${formData.serviceType}
 • Vehicle: ${formData.vehicle || "Any Available"}
+• Tier: ${formData.category.toUpperCase()}
 • Pickup: ${formData.pickup || "Lucknow"}
 • Drop: ${formData.drop || "Not decided"}
 • Date: ${formData.travelDate || "Immediate"}
 • Time: ${formData.travelTime || "Anytime"}
 • Passengers: ${formData.passengers}
-Please confirm availability and best price.`;
+Please confirm availability and instant quote.`;
     return `https://wa.me/919936408109?text=${encodeURIComponent(text)}`;
   };
 
@@ -201,7 +201,7 @@ Please confirm availability and best price.`;
     <>
       <section
         id="booking-form"
-        className="relative overflow-hidden bg-slate-50 py-10 sm:py-16 lg:py-24"
+        className="relative overflow-hidden bg-slate-100/80 py-10 sm:py-16 lg:py-24"
       >
         {/* Decorative Gradients */}
         <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-yellow-300/15 blur-3xl pointer-events-none" />
@@ -218,7 +218,7 @@ Please confirm availability and best price.`;
                 className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 sm:p-8 md:p-10 shadow-xl"
               >
                 {/* Form Progress Header */}
-                <div className="border-b border-slate-100 pb-6 mb-8">
+                <div className="border-b border-slate-200 pb-6 mb-8">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-yellow-800">
@@ -231,13 +231,13 @@ Please confirm availability and best price.`;
                     </div>
                     <div className="flex items-center gap-2 rounded-2xl bg-slate-50 px-3.5 py-2 border border-slate-200">
                       <Lock size={15} className="text-emerald-600" />
-                      <span className="text-xs font-bold text-slate-700">256-Bit Secure</span>
+                      <span className="text-xs font-bold text-slate-800">256-Bit Secure</span>
                     </div>
                   </div>
 
                   {/* Trip Type Selector Pills */}
                   <div className="mt-6">
-                    <label className="mb-2.5 block text-xs font-bold uppercase tracking-wider text-slate-500">
+                    <label className="mb-2.5 block text-xs font-bold uppercase tracking-wider text-slate-800">
                       Select Service Type
                     </label>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
@@ -256,12 +256,12 @@ Please confirm availability and best price.`;
                             }
                             className={`flex flex-col items-center justify-center rounded-2xl border p-3 text-center transition-all duration-200 ${
                               isSelected
-                                ? "border-blue-600 bg-blue-700 text-white shadow-md shadow-blue-700/20"
-                                : "border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50/50"
+                                ? "border-blue-700 bg-blue-700 text-white shadow-md shadow-blue-700/20 font-bold"
+                                : "border-slate-300 bg-white text-slate-800 font-semibold hover:border-blue-400 hover:bg-blue-50/50"
                             }`}
                           >
                             <Icon size={18} className="mb-1" />
-                            <span className="text-xs font-bold">{type.label}</span>
+                            <span className="text-xs">{type.label}</span>
                           </button>
                         );
                       })}
@@ -269,13 +269,13 @@ Please confirm availability and best price.`;
                   </div>
                 </div>
 
-                <div className="space-y-10">
+                <div className="space-y-9">
                   {/* =============================
                       STEP 1: CUSTOMER CONTACT
                   ============================= */}
                   <div>
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
                         1
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900">
@@ -286,11 +286,11 @@ Please confirm availability and best price.`;
                     <div className="grid gap-4 sm:grid-cols-2">
                       {/* Name */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-700">
-                          Full Name <span className="text-red-500">*</span>
+                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          Full Name <span className="text-red-600">*</span>
                         </label>
                         <div className="relative">
-                          <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                          <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
                           <input
                             required
                             type="text"
@@ -298,18 +298,18 @@ Please confirm availability and best price.`;
                             value={formData.customerName}
                             onChange={handleChange}
                             placeholder="Your Name"
-                            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-xs sm:text-sm text-slate-900 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
 
                       {/* Phone */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-700">
-                          Mobile Number <span className="text-red-500">*</span>
+                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          Mobile Number <span className="text-red-600">*</span>
                         </label>
                         <div className="relative">
-                          <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                          <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
                           <input
                             required
                             type="tel"
@@ -317,33 +317,33 @@ Please confirm availability and best price.`;
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder="10-digit mobile number"
-                            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-xs sm:text-sm text-slate-900 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
 
                       {/* Email */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-700">
+                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
                           Email Address (Optional)
                         </label>
                         <div className="relative">
-                          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
                           <input
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="name@example.com"
-                            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-xs sm:text-sm text-slate-900 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
 
                       {/* Special Note */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-700">
-                          Flight No. or Special Note
+                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          Flight No. or Quick Note
                         </label>
                         <input
                           type="text"
@@ -351,7 +351,7 @@ Please confirm availability and best price.`;
                           value={formData.specialNote}
                           onChange={handleChange}
                           placeholder="e.g. Flight 6E-204, Child seat, Extra luggage"
-                          className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 text-xs sm:text-sm text-slate-900 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                          className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                         />
                       </div>
                     </div>
@@ -360,9 +360,9 @@ Please confirm availability and best price.`;
                   {/* =============================
                       STEP 2: JOURNEY ROUTE
                   ============================= */}
-                  <div className="border-t border-slate-100 pt-8">
+                  <div className="border-t border-slate-200 pt-7">
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
                         2
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900">
@@ -370,24 +370,37 @@ Please confirm availability and best price.`;
                       </h3>
                     </div>
 
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-4 sm:p-6">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
                       <LocationInputs formData={formData} setFormData={setFormData} />
                     </div>
                   </div>
 
-                  {/* Ride Category */}
-                  <RideCategory formData={formData} setFormData={setFormData} />
-
                   {/* =============================
-                      STEP 3: VEHICLE SELECTION
+                      STEP 3: TRAVEL COMFORT CATEGORY
                   ============================= */}
-                  <div className="border-t border-slate-100 pt-8">
+                  <div className="border-t border-slate-200 pt-7">
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
                         3
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Choose Your Vehicle
+                        Select Comfort Category
+                      </h3>
+                    </div>
+
+                    <RideCategory formData={formData} setFormData={setFormData} />
+                  </div>
+
+                  {/* =============================
+                      STEP 4: VEHICLE SELECTION
+                  ============================= */}
+                  <div className="border-t border-slate-200 pt-7">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                        4
+                      </span>
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                        Select Your Vehicle
                       </h3>
                     </div>
 
@@ -396,12 +409,12 @@ Please confirm availability and best price.`;
                   </div>
 
                   {/* =============================
-                      STEP 4: SCHEDULE & PASSENGERS
+                      STEP 5: SCHEDULE & PASSENGERS
                   ============================= */}
-                  <div className="border-t border-slate-100 pt-8">
+                  <div className="border-t border-slate-200 pt-7">
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
-                        4
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                        5
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900">
                         Schedule & Group Size
@@ -411,47 +424,47 @@ Please confirm availability and best price.`;
                     <div className="grid gap-4 sm:grid-cols-3">
                       {/* Date */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-700">
-                          Journey Date <span className="text-red-500">*</span>
+                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          Journey Date <span className="text-red-600">*</span>
                         </label>
                         <div className="relative">
-                          <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                          <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
                           <input
                             required
                             type="date"
                             name="travelDate"
                             value={formData.travelDate}
                             onChange={handleChange}
-                            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-xs sm:text-sm text-slate-900 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
 
                       {/* Time */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-700">
-                          Pickup Time <span className="text-red-500">*</span>
+                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          Pickup Time <span className="text-red-600">*</span>
                         </label>
                         <div className="relative">
-                          <Clock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                          <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
                           <input
                             required
                             type="time"
                             name="travelTime"
                             value={formData.travelTime}
                             onChange={handleChange}
-                            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-xs sm:text-sm text-slate-900 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
 
                       {/* Passengers */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-700">
-                          Passengers <span className="text-red-500">*</span>
+                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          Passengers <span className="text-red-600">*</span>
                         </label>
                         <div className="relative">
-                          <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                          <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
                           <input
                             required
                             type="number"
@@ -460,7 +473,7 @@ Please confirm availability and best price.`;
                             name="passengers"
                             value={formData.passengers}
                             onChange={handleChange}
-                            className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-xs sm:text-sm text-slate-900 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
@@ -468,15 +481,15 @@ Please confirm availability and best price.`;
                   </div>
 
                   {/* =============================
-                      STEP 5: FARE ESTIMATOR
+                      STEP 6: FARE ESTIMATOR
                   ============================= */}
-                  <div className="border-t border-slate-100 pt-8">
+                  <div className="border-t border-slate-200 pt-7">
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
-                        5
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                        6
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Fare Estimator & Route Distance
+                        Fare Distance & Estimator
                       </h3>
                     </div>
 
@@ -493,12 +506,12 @@ Please confirm availability and best price.`;
                   </div>
 
                   {/* =============================
-                      STEP 6: PAYMENT SELECTION
+                      STEP 7: PAYMENT SELECTION
                   ============================= */}
-                  <div className="border-t border-slate-100 pt-8">
+                  <div className="border-t border-slate-200 pt-7">
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
-                        6
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                        7
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900">
                         Payment Method
@@ -509,12 +522,12 @@ Please confirm availability and best price.`;
                   </div>
 
                   {/* SUBMIT BUTTONS (Desktop) */}
-                  <div className="border-t border-slate-100 pt-8">
+                  <div className="border-t border-slate-200 pt-8">
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-500 px-8 font-bold text-slate-950 shadow-lg hover:bg-yellow-300 active:scale-98 transition disabled:opacity-50 text-sm sm:text-base cursor-pointer"
+                        className="flex-1 inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-500 px-8 font-extrabold text-slate-950 shadow-lg hover:bg-yellow-300 active:scale-98 transition disabled:opacity-50 text-sm sm:text-base cursor-pointer"
                       >
                         {loading ? (
                           "Submitting..."
@@ -530,15 +543,15 @@ Please confirm availability and best price.`;
                         href={getWhatsAppBookingUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-6 font-semibold text-white shadow-md hover:bg-emerald-700 active:scale-98 transition text-sm sm:text-base shrink-0"
+                        className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-6 font-bold text-white shadow-md hover:bg-emerald-700 active:scale-98 transition text-sm sm:text-base shrink-0"
                       >
                         <MessageCircle size={18} />
                         <span>Instant WhatsApp</span>
                       </a>
                     </div>
 
-                    <p className="mt-4 text-center text-xs text-slate-500">
-                      🔒 Zero cancellation fee • Driver details shared via SMS & WhatsApp • 24×7 Hotline
+                    <p className="mt-4 text-center text-xs text-slate-600">
+                      🔒 Zero cancellation fee • Driver details shared via SMS & WhatsApp • 24×7 Active Helpline
                     </p>
                   </div>
                 </div>
@@ -561,13 +574,13 @@ Please confirm availability and best price.`;
                     <h3 className="text-base font-bold text-slate-900">
                       Kuldeep Safety Guarantee
                     </h3>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-600 font-medium">
                       100% Verified Chauffeurs
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-5 space-y-3 text-xs text-slate-700">
+                <div className="mt-5 space-y-3 text-xs text-slate-800 font-medium">
                   {[
                     "Zero hidden charges or toll surprises",
                     "Sanitized air-conditioned vehicles",

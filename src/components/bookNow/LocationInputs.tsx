@@ -1,17 +1,12 @@
 "use client";
 
-import { MapPin } from "lucide-react";
+import { MapPin, Navigation } from "lucide-react";
 import type { BookingData } from "@/types/booking";
 
 interface Props {
   formData: BookingData;
   setFormData: React.Dispatch<React.SetStateAction<BookingData>>;
 }
-
-// interface Props {
-//   formData: BookingData;
-//   setFormData: React.Dispatch<React.SetStateAction<BookingData>>;
-// }
 
 export default function LocationInputs({ formData, setFormData }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,25 +17,16 @@ export default function LocationInputs({ formData, setFormData }: Props) {
   };
 
   return (
-    <section className="space-y-6">
-      <div>
-        <h3 className="text-2xl font-bold text-slate-900">
-          Pickup & Destination
-        </h3>
-
-        <p className="mt-1 text-slate-500">Enter your journey locations.</p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2">
+    <div className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         {/* Pickup */}
-
         <div>
-          <label className="mb-2 block font-medium text-slate-800">
-            Pickup Location
+          <label className="mb-1.5 block text-xs font-bold text-slate-800">
+            Pickup City / Address <span className="text-red-500">*</span>
           </label>
 
           <div className="relative">
-            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-green-600" />
+            <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600" size={18} />
 
             <input
               type="text"
@@ -48,19 +34,20 @@ export default function LocationInputs({ formData, setFormData }: Props) {
               required
               value={formData.pickup}
               onChange={handleChange}
-              placeholder="Enter pickup location"
-              className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-yellow-400 text-slate-900"
+              placeholder="e.g. Gomti Nagar, Lucknow or CCS Airport"
+              className="h-12 w-full rounded-xl border border-slate-300 bg-white py-3 pl-10 pr-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
             />
           </div>
         </div>
 
         {/* Drop */}
-
         <div>
-          <label className="mb-2 block font-medium">Destination</label>
+          <label className="mb-1.5 block text-xs font-bold text-slate-800">
+            Drop Location / Destination <span className="text-red-500">*</span>
+          </label>
 
           <div className="relative">
-            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-red-600" />
+            <Navigation className="absolute left-3.5 top-1/2 -translate-y-1/2 text-rose-600" size={18} />
 
             <input
               type="text"
@@ -68,38 +55,37 @@ export default function LocationInputs({ formData, setFormData }: Props) {
               required
               value={formData.drop}
               onChange={handleChange}
-              placeholder="Enter destination"
-              className="w-full rounded-xl border border-slate-300 py-3 pl-12 pr-4 outline-none transition focus:border-yellow-400 text-slate-900"
+              placeholder="e.g. Ayodhya Dham, Kanpur, or Hazratganj"
+              className="h-12 w-full rounded-xl border border-slate-300 bg-white py-3 pl-10 pr-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
             />
           </div>
         </div>
       </div>
 
-      {/* Trip Preview */}
+      {/* Trip Route Preview */}
+      <div className="rounded-xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2">
+          Route Map Summary
+        </span>
 
-      <div className="rounded-2xl border bg-slate-50 p-6">
-        <h4 className="mb-4 font-semibold text-slate-900">Trip Preview</h4>
-
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <span className="h-3 w-3 rounded-full bg-green-500" />
-
-            <span className="text-slate-700">
-              {formData.pickup || "Pickup Location"}
+        <div className="space-y-2 text-xs font-semibold">
+          <div className="flex items-center gap-2.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 shrink-0" />
+            <span className="text-slate-900 font-bold">
+              {formData.pickup || "Pickup Location (e.g. Lucknow)"}
             </span>
           </div>
 
-          <div className="ml-[5px] h-8 border-l-2 border-dashed border-slate-300" />
+          <div className="ml-[4px] h-4 border-l-2 border-dashed border-slate-300" />
 
-          <div className="flex items-center gap-3">
-            <span className="h-3 w-3 rounded-full bg-red-500" />
-
-            <span className="text-slate-700">
-              {formData.drop || "Destination"}
+          <div className="flex items-center gap-2.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-rose-500 shrink-0" />
+            <span className="text-slate-900 font-bold">
+              {formData.drop || "Drop Location (e.g. Destination)"}
             </span>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
