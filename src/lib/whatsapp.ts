@@ -1,6 +1,6 @@
 const TOKEN = process.env.WHATSAPP_TOKEN!;
 const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID!;
-const OWNER_PHONE = process.env.OWNER_PHONE!;
+const OWNER_PHONE = process.env.OWNER_PHONE || "918801842859";
 
 async function sendMessage(phone: string, message: string) {
   const response = await fetch(
@@ -29,7 +29,7 @@ async function sendMessage(phone: string, message: string) {
 }
 
 export async function sendOwnerWhatsapp(booking: any) {
-  const message = `🚖 NEW BOOKING
+  const message = `🚖 NEW BOOKING RECEIVED
 
 Booking ID: ${booking.bookingId}
 
