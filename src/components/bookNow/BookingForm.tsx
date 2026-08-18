@@ -201,7 +201,7 @@ Please confirm availability and instant quote.`;
     <>
       <section
         id="booking-form"
-        className="relative overflow-hidden bg-slate-100/80 py-10 sm:py-16 lg:py-24"
+        className="relative overflow-hidden bg-slate-100/80 py-10 sm:py-16 lg:py-20"
       >
         {/* Decorative Gradients */}
         <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-yellow-300/15 blur-3xl pointer-events-none" />
@@ -226,7 +226,7 @@ Please confirm availability and instant quote.`;
                         Online Reservation
                       </span>
                       <h2 className="mt-2 text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900">
-                        Enter Your Travel Details
+                        Cab Booking Wizard
                       </h2>
                     </div>
                     <div className="flex items-center gap-2 rounded-2xl bg-slate-50 px-3.5 py-2 border border-slate-200">
@@ -270,16 +270,113 @@ Please confirm availability and instant quote.`;
                 </div>
 
                 <div className="space-y-9">
-                  {/* =============================
-                      STEP 1: CUSTOMER CONTACT
-                  ============================= */}
+                  {/* ===================================================
+                      STEP 1: RIDE ROUTE & SCHEDULE
+                  =================================================== */}
                   <div>
                     <div className="flex items-center gap-2 mb-4">
                       <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
                         1
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Contact Details
+                        Ride Route & Schedule
+                      </h3>
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
+                      <LocationInputs formData={formData} setFormData={setFormData} />
+
+                      {/* Date, Time & Passengers */}
+                      <div className="mt-4 pt-4 border-t border-slate-200 grid gap-4 sm:grid-cols-3">
+                        {/* Date */}
+                        <div>
+                          <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                            Journey Date <span className="text-red-600">*</span>
+                          </label>
+                          <div className="relative">
+                            <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                            <input
+                              required
+                              type="date"
+                              name="travelDate"
+                              value={formData.travelDate}
+                              onChange={handleChange}
+                              className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Time */}
+                        <div>
+                          <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                            Pickup Time <span className="text-red-600">*</span>
+                          </label>
+                          <div className="relative">
+                            <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                            <input
+                              required
+                              type="time"
+                              name="travelTime"
+                              value={formData.travelTime}
+                              onChange={handleChange}
+                              className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Passengers */}
+                        <div>
+                          <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                            Passengers <span className="text-red-600">*</span>
+                          </label>
+                          <div className="relative">
+                            <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                            <input
+                              required
+                              type="number"
+                              min={1}
+                              max={30}
+                              name="passengers"
+                              value={formData.passengers}
+                              onChange={handleChange}
+                              className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ===================================================
+                      STEP 2: VEHICLE & COMFORT TIER
+                  =================================================== */}
+                  <div className="border-t border-slate-200 pt-7">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                        2
+                      </span>
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                        Vehicle & Comfort Tier
+                      </h3>
+                    </div>
+
+                    <div className="space-y-6">
+                      <RideCategory formData={formData} setFormData={setFormData} />
+                      <VehicleSelector formData={formData} setFormData={setFormData} />
+                      <RideExtras formData={formData} setFormData={setFormData} />
+                    </div>
+                  </div>
+
+                  {/* ===================================================
+                      STEP 3: PASSENGER INFORMATION
+                  =================================================== */}
+                  <div className="border-t border-slate-200 pt-7">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                        3
+                      </span>
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                        Passenger Information
                       </h3>
                     </div>
 
@@ -306,7 +403,7 @@ Please confirm availability and instant quote.`;
                       {/* Phone */}
                       <div>
                         <label className="mb-1.5 block text-xs font-bold text-slate-900">
-                          Mobile Number <span className="text-red-600">*</span>
+                          Mobile Number (For Driver SMS) <span className="text-red-600">*</span>
                         </label>
                         <div className="relative">
                           <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
@@ -325,7 +422,7 @@ Please confirm availability and instant quote.`;
                       {/* Email */}
                       <div>
                         <label className="mb-1.5 block text-xs font-bold text-slate-900">
-                          Email Address (Optional)
+                          Email Address (For PDF Invoice)
                         </label>
                         <div className="relative">
                           <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
@@ -357,168 +454,33 @@ Please confirm availability and instant quote.`;
                     </div>
                   </div>
 
-                  {/* =============================
-                      STEP 2: JOURNEY ROUTE
-                  ============================= */}
-                  <div className="border-t border-slate-200 pt-7">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
-                        2
-                      </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Pickup & Destination Route
-                      </h3>
-                    </div>
-
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
-                      <LocationInputs formData={formData} setFormData={setFormData} />
-                    </div>
-                  </div>
-
-                  {/* =============================
-                      STEP 3: TRAVEL COMFORT CATEGORY
-                  ============================= */}
-                  <div className="border-t border-slate-200 pt-7">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
-                        3
-                      </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Select Comfort Category
-                      </h3>
-                    </div>
-
-                    <RideCategory formData={formData} setFormData={setFormData} />
-                  </div>
-
-                  {/* =============================
-                      STEP 4: VEHICLE SELECTION
-                  ============================= */}
+                  {/* ===================================================
+                      STEP 4: FARE REVIEW & PAYMENT
+                  =================================================== */}
                   <div className="border-t border-slate-200 pt-7">
                     <div className="flex items-center gap-2 mb-4">
                       <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
                         4
                       </span>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Select Your Vehicle
+                        Fare Estimate & Payment Method
                       </h3>
                     </div>
 
-                    <VehicleSelector formData={formData} setFormData={setFormData} />
-                    <RideExtras formData={formData} setFormData={setFormData} />
-                  </div>
-
-                  {/* =============================
-                      STEP 5: SCHEDULE & PASSENGERS
-                  ============================= */}
-                  <div className="border-t border-slate-200 pt-7">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
-                        5
-                      </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Schedule & Group Size
-                      </h3>
-                    </div>
-
-                    <div className="grid gap-4 sm:grid-cols-3">
-                      {/* Date */}
-                      <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
-                          Journey Date <span className="text-red-600">*</span>
-                        </label>
-                        <div className="relative">
-                          <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
-                          <input
-                            required
-                            type="date"
-                            name="travelDate"
-                            value={formData.travelDate}
-                            onChange={handleChange}
-                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
-                          />
-                        </div>
+                    <div className="space-y-6">
+                      <div className="rounded-2xl border border-yellow-200 bg-gradient-to-br from-yellow-50/70 to-white p-4 sm:p-6 shadow-sm">
+                        <FareCalculator
+                          vehicle={formData.vehicle}
+                          pickup={formData.pickup}
+                          drop={formData.drop}
+                          category={formData.category}
+                          extras={formData.extras}
+                          serviceType={formData.serviceType}
+                        />
                       </div>
 
-                      {/* Time */}
-                      <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
-                          Pickup Time <span className="text-red-600">*</span>
-                        </label>
-                        <div className="relative">
-                          <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
-                          <input
-                            required
-                            type="time"
-                            name="travelTime"
-                            value={formData.travelTime}
-                            onChange={handleChange}
-                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Passengers */}
-                      <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
-                          Passengers <span className="text-red-600">*</span>
-                        </label>
-                        <div className="relative">
-                          <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
-                          <input
-                            required
-                            type="number"
-                            min={1}
-                            max={30}
-                            name="passengers"
-                            value={formData.passengers}
-                            onChange={handleChange}
-                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
-                          />
-                        </div>
-                      </div>
+                      <PaymentOptions formData={formData} setFormData={setFormData} />
                     </div>
-                  </div>
-
-                  {/* =============================
-                      STEP 6: FARE ESTIMATOR
-                  ============================= */}
-                  <div className="border-t border-slate-200 pt-7">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
-                        6
-                      </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Fare Distance & Estimator
-                      </h3>
-                    </div>
-
-                    <div className="rounded-2xl border border-yellow-200 bg-gradient-to-br from-yellow-50/70 to-white p-4 sm:p-6 shadow-sm">
-                      <FareCalculator
-                        vehicle={formData.vehicle}
-                        pickup={formData.pickup}
-                        drop={formData.drop}
-                        category={formData.category}
-                        extras={formData.extras}
-                        serviceType={formData.serviceType}
-                      />
-                    </div>
-                  </div>
-
-                  {/* =============================
-                      STEP 7: PAYMENT SELECTION
-                  ============================= */}
-                  <div className="border-t border-slate-200 pt-7">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
-                        7
-                      </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                        Payment Method
-                      </h3>
-                    </div>
-
-                    <PaymentOptions formData={formData} setFormData={setFormData} />
                   </div>
 
                   {/* SUBMIT BUTTONS (Desktop) */}
