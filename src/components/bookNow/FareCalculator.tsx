@@ -17,57 +17,38 @@ interface Props {
   vehicle: string;
   pickup: string;
   drop: string;
-
   category: "economy" | "standard" | "business";
-
   extras: string[];
-
   serviceType: string;
 }
 
-/* -----------------------------
- Vehicle Rates (₹ / KM)
---------------------------------*/
-
 const vehicleRates: Record<string, number> = {
-  hatchback: 11,
-  sedan: 13,
-  suv: 18,
-  ertiga: 17,
-  crysta: 22,
-  tempo: 28,
+  "Swift Dzire": 12,
+  Sedan: 12,
+  Ertiga: 15,
+  SUV: 15,
+  Innova: 18,
+  "Innova Crysta": 20,
+  "Tempo Traveller": 26,
+  "Mini Bus": 35,
 };
-
-/* -----------------------------
- Category Charges
---------------------------------*/
 
 const categoryRates = {
   economy: 0,
-  standard: 300,
-  business: 700,
+  standard: 200,
+  business: 600,
 };
-
-/* -----------------------------
- Extra Service Charges
---------------------------------*/
 
 const extraPrices: Record<string, number> = {
   "Child Seat": 200,
   "Extra Luggage": 300,
-  "Meet & Greet": 500,
+  "Meet & Greet": 400,
   "Pet Friendly": 250,
   Wheelchair: 0,
-  "Roof Carrier": 400,
+  "Roof Carrier": 350,
 };
 
-/* -----------------------------
- Demo Distance
-Replace later with
-Google Distance Matrix API
---------------------------------*/
-
-const DISTANCE = 125;
+const DISTANCE = 120;
 
 export default function FareCalculator({
   vehicle,
@@ -78,474 +59,158 @@ export default function FareCalculator({
   serviceType,
 }: Props) {
   const distance = DISTANCE;
-
-  /* -----------------------------
-      Base Fare
-  --------------------------------*/
-
-  const rate = vehicleRates[vehicle] ?? 0;
-
+  const rate = vehicleRates[vehicle] ?? 12;
   const baseFare = distance * rate;
-
-  /* -----------------------------
-      Category Fare
-  --------------------------------*/
-
   const categoryFare = categoryRates[category] ?? 0;
-
-  /* -----------------------------
-      Extras Fare
-  --------------------------------*/
-
   const extrasFare = (extras ?? []).reduce(
     (total, item) => total + (extraPrices[item] || 0),
-    0,
+    0
   );
-
-  /* -----------------------------
-      Service Charge
-  --------------------------------*/
 
   let serviceCharge = 0;
+  if (serviceType === "Airport Transfer") serviceCharge = 200;
+  else if (serviceType === "Round Trip") serviceCharge = 400;
 
-  switch (serviceType) {
-    case "Airport Transfer":
-      serviceCharge = 200;
-      break;
-
-    case "Round Trip":
-      serviceCharge = 500;
-      break;
-
-    default:
-      serviceCharge = 0;
-  }
-
-  /* -----------------------------
-      Driver Allowance
-  --------------------------------*/
-
-  const driverAllowance = distance > 150 ? 500 : 0;
-
-  /* -----------------------------
-      Toll
-  --------------------------------*/
-
+  const driverAllowance = distance > 150 ? 400 : 0;
   const toll = 150;
-
-  /* -----------------------------
-      GST
-  --------------------------------*/
-
   const gst = Math.round(
-    (baseFare +
-      categoryFare +
-      extrasFare +
-      serviceCharge +
-      driverAllowance +
-      toll) *
-      0.05,
+    (baseFare + categoryFare + extrasFare + serviceCharge + driverAllowance + toll) * 0.05
   );
 
-  /* -----------------------------
-      Grand Total
-  --------------------------------*/
-
   const total =
-    baseFare +
-    categoryFare +
-    extrasFare +
-    serviceCharge +
-    driverAllowance +
-    toll +
-    gst;
-
-  /* -----------------------------
-      Fare Breakdown
-  --------------------------------*/
+    baseFare + categoryFare + extrasFare + serviceCharge + driverAllowance + toll + gst;
 
   const fareRows = [
-    {
-      label: "Rate",
-      value: `₹${rate}/km`,
-    },
-    {
-      label: "Base Fare",
-      value: `₹${baseFare}`,
-    },
-    {
-      label: "Category Charge",
-      value: `₹${categoryFare}`,
-    },
-    {
-      label: "Extras",
-      value: `₹${extrasFare}`,
-    },
-    {
-      label: "Service Charge",
-      value: `₹${serviceCharge}`,
-    },
-    {
-      label: "Driver Allowance",
-      value: `₹${driverAllowance}`,
-    },
-    {
-      label: "Toll & Parking",
-      value: `₹${toll}`,
-    },
-    {
-      label: "GST (5%)",
-      value: `₹${gst}`,
-    },
+    { label: "Base Rate", value: `₹${rate}/km`, color: "bg-blue-500" },
+    { label: "Base Fare (Estimated)", value: `₹${baseFare}`, color: "bg-indigo-500" },
+    { label: "Tier Adjustment", value: `₹${categoryFare}`, color: "bg-purple-500" },
+    { label: "Service / Inclusions", value: `₹${serviceCharge}`, color: "bg-emerald-500" },
+    { label: "Toll & State Permits", value: `₹${toll}`, color: "bg-amber-500" },
+    { label: "GST (5%)", value: `₹${gst}`, color: "bg-green-600" },
   ];
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg sm:rounded-2xl sm:rounded-3xl sm:shadow-xl">
-      <div className="space-y-4 p-3 sm:space-y-5 sm:p-5 lg:p-6">
-        {/* ================= JOURNEY OVERVIEW ================= */}
+    <div className="space-y-4">
+      {/* 1. Route Summary Box */}
+      <div className="rounded-2xl border border-slate-200 bg-white p-3.5 sm:p-4 shadow-xs">
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
+            Route Overview
+          </span>
+          <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-extrabold text-blue-800">
+            ~{distance} KM
+          </span>
+        </div>
 
-        <section className="w-full">
-          <div className="mb-2 flex items-center justify-between">
-            <div>
-              <h3 className="text-[17px] font-bold text-slate-900">
-                Journey Overview
-              </h3>
-
-              <p className="text-xs text-slate-500 sm:text-sm">
-                Review your selected ride details
+        <div className="space-y-2 text-xs">
+          <div className="flex items-start gap-2">
+            <span className="mt-1 h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
+            <div className="min-w-0">
+              <span className="text-[11px] text-slate-500 block">Pickup Location</span>
+              <p className="font-bold text-slate-900 truncate">
+                {pickup || "Lucknow City / Airport"}
               </p>
             </div>
+          </div>
 
-            <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
-              {distance} KM
+          <div className="ml-[3px] h-3 border-l-2 border-dashed border-slate-300" />
+
+          <div className="flex items-start gap-2">
+            <span className="mt-1 h-2 w-2 rounded-full bg-rose-500 shrink-0" />
+            <div className="min-w-0">
+              <span className="text-[11px] text-slate-500 block">Destination</span>
+              <p className="font-bold text-slate-900 truncate">
+                {drop || "Selected Destination"}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. Selected Parameters Summary */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+        <div className="rounded-xl border border-slate-200 bg-white p-2.5">
+          <span className="text-[10px] text-slate-500 block uppercase font-bold">Vehicle</span>
+          <p className="font-bold text-slate-900 truncate mt-0.5">{vehicle || "Swift Dzire"}</p>
+        </div>
+
+        <div className="rounded-xl border border-slate-200 bg-white p-2.5">
+          <span className="text-[10px] text-slate-500 block uppercase font-bold">Comfort Tier</span>
+          <p className="font-bold text-slate-900 capitalize truncate mt-0.5">{category}</p>
+        </div>
+
+        <div className="col-span-2 sm:col-span-1 rounded-xl border border-slate-200 bg-white p-2.5">
+          <span className="text-[10px] text-slate-500 block uppercase font-bold">Trip Type</span>
+          <p className="font-bold text-slate-900 truncate mt-0.5">{serviceType}</p>
+        </div>
+      </div>
+
+      {/* 3. Fare Breakdown Table */}
+      <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-xs">
+        <div className="bg-slate-50 px-3.5 py-2 border-b border-slate-200 flex items-center justify-between">
+          <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+            Fare Breakdown
+          </span>
+          <span className="text-[11px] font-bold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-md">
+            All-Inclusive
+          </span>
+        </div>
+
+        <div className="divide-y divide-slate-100 text-xs">
+          {fareRows.map((row) => (
+            <div key={row.label} className="flex items-center justify-between px-3.5 py-2">
+              <div className="flex items-center gap-2">
+                <span className={`h-2 w-2 rounded-full ${row.color}`} />
+                <span className="text-slate-700 font-medium">{row.label}</span>
+              </div>
+              <span className="font-bold text-slate-900">{row.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 4. Total Highlight Card */}
+      <div className="rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 p-4 sm:p-5 text-white shadow-lg">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <span className="inline-block rounded-md bg-white/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-100">
+              Estimated Total Fare
             </span>
-          </div>
-
-          <div className="space-y-1.5 sm:space-y-2">
-            {/* Pickup */}
-
-            <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
-              <div className="flex items-start gap-2">
-                <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-md">
-                  <MapPin size={16} className="sm:w-[18px] sm:h-[18px]" />
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    Pickup
-                  </p>
-
-                  <p className="mt-1 break-words text-[13px] sm:text-base font-semibold text-slate-900">
-                    {pickup || "Select Pickup Location"}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Route */}
-
-            <div className="flex justify-center">
-              <div className="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2">
-                <MapPinned size={16} className="text-blue-600" />
-
-                <span className="text-xs font-semibold text-slate-600">
-                  {distance} km Journey
-                </span>
-              </div>
-            </div>
-
-            {/* Drop */}
-            <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm transition-all duration-300 hover:border-red-200 hover:shadow-md">
-              <div className="flex items-start gap-2">
-                <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-md">
-                  <MapPin className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    Destination
-                  </p>
-
-                  <p className="mt-1 break-words text-[13px] font-semibold text-slate-900 sm:text-base">
-                    {drop || "Select Destination"}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ================= RIDE INFORMATION ================= */}
-
-        <section className="space-y-2">
-          <div className="mb-2">
-            <h3 className="text-base font-bold text-slate-900 sm:text-lg">
-              Ride Information
+            <h3 className="mt-1 text-2xl sm:text-3xl font-black text-white">
+              ₹{total.toLocaleString("en-IN")}
             </h3>
-
-            <p className="mt-1 text-xs text-slate-500 sm:text-sm">
-              Selected vehicle and services
+            <p className="text-[11px] text-blue-200 mt-0.5">
+              Includes Driver, AC, Tolls, State Taxes & GST.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
-            {/* Vehicle */}
-
-            <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
-              <div className="mb-2 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white">
-                <CarTaxiFront className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
-              </div>
-
-              <p className="text-xs text-slate-500">Vehicle</p>
-
-              <p className="mt-1 text-sm font-bold capitalize text-slate-900">
-                {vehicle || "-"}
-              </p>
-            </div>
-
-            {/* Category */}
-
-            <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
-              <div className="mb-2 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white">
-                <Tag size={18} />
-              </div>
-
-              <p className="text-xs text-slate-500">Category</p>
-
-              <p className="mt-1 text-sm font-bold capitalize text-slate-900">
-                {category}
-              </p>
-            </div>
-
-            {/* Service */}
-
-            <div className="col-span-2 rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
-              <div className="mb-2 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white">
-                <BriefcaseBusiness size={18} />
-              </div>
-
-              <p className="text-xs text-slate-500">Service Type</p>
-
-              <p className="mt-1 text-sm font-bold text-slate-900">
-                {serviceType}
-              </p>
-            </div>
+          <div className="rounded-xl border border-white/20 bg-white/10 p-2.5 text-center shrink-0 self-start sm:self-auto">
+            <span className="text-[10px] uppercase font-bold text-blue-200 block">Avg Rate</span>
+            <span className="text-sm sm:text-base font-extrabold text-yellow-300">
+              ₹{Math.round(total / distance)}/km
+            </span>
           </div>
-        </section>
+        </div>
 
-        {/* ================= RIDE EXTRAS ================= */}
-
-        <section>
-          <div className="mb-2">
-            <h3 className="text-base font-bold text-slate-900 sm:text-lg">
-              Ride Extras
-            </h3>
-          </div>
-
-          <div className="rounded-xl border border-slate-100 bg-white p-2.5 sm:p-3 shadow-sm">
-            {(extras ?? []).length ? (
-              <div className="flex flex-wrap gap-2">
-                {(extras ?? []).map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-purple-200 bg-purple-50 px-3 py-1.5 text-xs font-semibold text-purple-700"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Sparkles size={18} className="text-slate-400" />
-
-                <p className="text-sm text-slate-500">
-                  No extra services selected
-                </p>
-              </div>
-            )}
-          </div>
-        </section>
-        {/* ================= FARE BREAKDOWN ================= */}
-
-        <section>
-          <div className="mb-4 flex items-center justify-between">
-            <div>
-              <h3 className="text-base font-bold text-slate-900 sm:text-lg">
-                Fare Breakdown
-              </h3>
-
-              <p className="mt-1 text-xs text-slate-500 sm:text-sm">
-                Transparent pricing with no hidden charges
-              </p>
-            </div>
-
-            <div className="rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">
-              GST Included
-            </div>
-          </div>
-
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-            {fareRows.map((item, index) => (
-              <div
-                key={item.label}
-                className={`flex items-center justify-between px-3 py-2.5 transition-all duration-200 hover:bg-slate-50 sm:px-5 sm:py-4  ${
-                  index !== fareRows.length - 1
-                    ? "border-b border-slate-100"
-                    : ""
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <div
-                    className={`h-2.5 w-2.5 rounded-full ${
-                      item.label === "Base Fare"
-                        ? "bg-blue-500"
-                        : item.label === "Category Charge"
-                          ? "bg-indigo-500"
-                          : item.label === "Extras"
-                            ? "bg-purple-500"
-                            : item.label === "Service Charge"
-                              ? "bg-emerald-500"
-                              : item.label === "Driver Allowance"
-                                ? "bg-orange-500"
-                                : item.label === "Toll & Parking"
-                                  ? "bg-red-500"
-                                  : item.label === "GST (5%)"
-                                    ? "bg-green-500"
-                                    : "bg-slate-400"
-                    }`}
-                  />
-
-                  <span className="text-sm font-medium text-slate-600 sm:text-base">
-                    {item.label}
-                  </span>
-                </div>
-
-                <span className="text-sm font-bold text-slate-900 sm:text-base">
-                  {item.value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ================= PRICE SUMMARY ================= */}
-
-        {/* <section>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-xl border border-blue-100 bg-blue-50 p-3">
-              <p className="text-xs font-medium uppercase tracking-wide text-blue-600">
-                Base Fare
-              </p>
-
-              <p className="mt-2 text-2xl font-black text-blue-700">
-                ₹{baseFare}
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-green-100 bg-green-50 p-3">
-              <p className="text-xs font-medium uppercase tracking-wide text-green-600">
-                Additional Charges
-              </p>
-
-              <p className="mt-2 text-2xl font-black text-green-700">
-                ₹{categoryFare + extrasFare + serviceCharge}
-              </p>
-            </div>
-          </div>
-        </section> */}
-        {/* ================= TOTAL FARE ================= */}
-
-        <section>
-          <div className="overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 shadow-xl">
-            {/* Background Glow */}
-
-            <div className="relative overflow-hidden">
-              <div className="absolute -right-20 -top-20 p-3 sm:p-5 lg:p-6 rounded-full bg-white/10 blur-3xl" />
-
-              <div className="absolute -bottom-24 -left-20 p-3 sm:p-5 lg:p-6 rounded-full bg-cyan-400/20 blur-3xl" />
-
-              <div className="relative p-3 sm:p-5 lg:p-6">
-                {/* Header */}
-
-                <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
-                  <div>
-                    <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-100 backdrop-blur">
-                      Estimated Fare
-                    </span>
-
-                    <h2 className="mt-2 sm:mt-4 text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
-                      ₹{total}
-                    </h2>
-
-                    <p className="mt-2 max-w-md text-sm leading-6 text-blue-100">
-                      Inclusive of GST, toll, parking and applicable charges.
-                    </p>
-                  </div>
-
-                  {/* Fare Badge */}
-
-                  <div className="rounded-xl border border-white/20 bg-white/10 p-3 sm:p-5 backdrop-blur">
-                    <p className="text-xs uppercase tracking-wider text-blue-100">
-                      Average Cost
-                    </p>
-
-                    <p className="mt-2 text-2xl font-bold text-white">
-                      ₹{Math.round(total / distance)}
-                      <span className="ml-1 text-sm font-medium text-blue-200">
-                        /km
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                {/* Feature Pills */}
-
-                <div className="mt-5 grid grid-cols-2 gap-2 lg:grid-cols-4">
-                  <div className="rounded-xl bg-white/10 p-2.5 text-center backdrop-blur">
-                    <ShieldCheck size={20} className="mx-auto text-green-300" />
-
-                    <p className="mt-2 text-xs font-semibold text-white">
-                      Safe Ride
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl bg-white/10 p-2.5 text-center backdrop-blur">
-                    <BadgeCheck size={20} className="mx-auto text-cyan-300" />
-
-                    <p className="mt-2 text-xs font-semibold text-white">
-                      GST Included
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl bg-white/10 p-2.5 text-center backdrop-blur">
-                    <CircleDollarSign
-                      size={20}
-                      className="mx-auto text-yellow-300"
-                    />
-
-                    <p className="mt-2 text-xs font-semibold text-white">
-                      No Hidden Fees
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl bg-white/10 p-2.5 text-center backdrop-blur">
-                    <ReceiptIndianRupee
-                      size={20}
-                      className="mx-auto text-pink-300"
-                    />
-
-                    <p className="mt-2 text-xs font-semibold text-white">
-                      Best Price
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* ================= WHY BOOK WITH US ================= */}
-
-        {/* ================= IMPORTANT NOTE ================= */}
+        {/* 4 Trust Pills */}
+        <div className="mt-3.5 pt-3 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-center text-[11px] font-medium text-blue-100">
+          <span className="flex items-center justify-center gap-1">
+            <ShieldCheck size={13} className="text-emerald-400" />
+            Safe & Sanitized
+          </span>
+          <span className="flex items-center justify-center gap-1">
+            <BadgeCheck size={13} className="text-cyan-400" />
+            GST Bill Ready
+          </span>
+          <span className="flex items-center justify-center gap-1">
+            <CircleDollarSign size={13} className="text-yellow-400" />
+            No Hidden Fees
+          </span>
+          <span className="flex items-center justify-center gap-1">
+            <ReceiptIndianRupee size={13} className="text-pink-400" />
+            Guaranteed Rate
+          </span>
+        </div>
       </div>
     </div>
   );
