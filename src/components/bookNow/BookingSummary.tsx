@@ -30,8 +30,8 @@ export default function BookingSummary({
   fare,
 }: BookingSummaryProps) {
   const paymentLabel = {
-    PAY_NOW: "Pay Now",
-    ADVANCE: "Advance Payment",
+    PAY_NOW: "Pay Now Online",
+    PAY_ADVANCE: "20% Advance Token",
     PAY_AFTER_TRIP: "Pay After Trip",
   };
 
@@ -39,79 +39,80 @@ export default function BookingSummary({
     <aside className="sticky top-24">
       <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
         {/* Header */}
-        <div className="bg-slate-900 p-6 text-white">
-          <h2 className="text-2xl font-bold">Booking Summary</h2>
-
-          <p className="mt-2 text-sm text-slate-300">
-            Review your booking before submitting.
+        <div className="bg-slate-900 p-6 sm:p-7 text-white">
+          <h2 className="text-xl sm:text-2xl font-extrabold">Booking Summary</h2>
+          <p className="mt-1.5 text-xs sm:text-sm text-slate-300 font-medium">
+            Live preview of your ride details
           </p>
         </div>
 
         {/* Body */}
-        <div className="space-y-5 p-6">
+        <div className="space-y-4 p-6 sm:p-7">
           <SummaryItem
-            icon={<BadgeCheck size={18} />}
+            icon={<BadgeCheck size={20} />}
             label="Customer"
             value={formData.customerName || "Not entered"}
           />
 
           <SummaryItem
-            icon={<MapPin size={18} />}
+            icon={<MapPin size={20} />}
             label="Pickup"
             value={formData.pickup || "Not selected"}
           />
 
           <SummaryItem
-            icon={<MapPin size={18} />}
-            label="Drop"
+            icon={<MapPin size={20} />}
+            label="Drop Destination"
             value={formData.drop || "Not selected"}
           />
 
           <SummaryItem
-            icon={<Calendar size={18} />}
+            icon={<Calendar size={20} />}
             label="Journey Date"
             value={formData.travelDate || "--"}
           />
 
           <SummaryItem
-            icon={<Clock size={18} />}
+            icon={<Clock size={20} />}
             label="Journey Time"
             value={formData.travelTime || "--"}
           />
 
           <SummaryItem
-            icon={<Car size={18} />}
-            label="Vehicle"
-            value={formData.vehicle || "Not selected"}
+            icon={<Car size={20} />}
+            label="Selected Vehicle"
+            value={formData.vehicle || "Swift Dzire"}
           />
 
           <SummaryItem
-            icon={<Users size={18} />}
+            icon={<Users size={20} />}
             label="Passengers"
-            value={`${formData.passengers}`}
+            value={`${formData.passengers} Passenger${formData.passengers > 1 ? "s" : ""}`}
           />
 
           <SummaryItem
-            icon={<CreditCard size={18} />}
-            label="Payment"
+            icon={<CreditCard size={20} />}
+            label="Payment Mode"
             value={
-              paymentLabel[formData.payment as keyof typeof paymentLabel] || "-"
+              paymentLabel[formData.payment as keyof typeof paymentLabel] || "Pay After Trip"
             }
           />
         </div>
 
         {/* Fare */}
-        <div className="border-t border-slate-200 bg-slate-50 p-6">
-          <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 p-5">
-            <div className="flex items-center gap-3">
-              <div className="rounded-xl bg-green-100 p-3">
-                <IndianRupee className="h-5 w-5 text-green-700" />
+        <div className="border-t border-slate-200 bg-slate-50 p-6 sm:p-7">
+          <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 border border-emerald-200 p-5">
+            <div className="flex items-center gap-3.5">
+              <div className="rounded-xl bg-emerald-100 p-3 text-emerald-800">
+                <IndianRupee className="h-6 w-6 text-emerald-800" />
               </div>
 
               <div>
-                <p className="text-sm text-slate-500">Estimated Fare</p>
+                <p className="text-xs sm:text-sm font-bold text-slate-600 uppercase">
+                  Estimated Total Fare
+                </p>
 
-                <h3 className="text-xl font-bold text-slate-900">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
                   ₹{fare.toLocaleString("en-IN")}
                 </h3>
               </div>
@@ -120,28 +121,26 @@ export default function BookingSummary({
         </div>
 
         {/* Footer */}
-        <div className="border-t bg-slate-50 p-6">
-          <div className="mb-5 rounded-2xl bg-yellow-50 p-5">
-            <h3 className="text-lg font-bold text-yellow-700">
-              Booking Status
+        <div className="border-t border-slate-200 bg-slate-50 p-6 sm:p-7 space-y-4">
+          <div className="rounded-2xl bg-yellow-50/80 border border-yellow-200 p-5">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900">
+              Booking Confirmation
             </h3>
 
-            <p className="mt-2 text-sm text-slate-600">
-              Your booking will be submitted as
-              <span className="font-semibold text-yellow-600"> Pending</span>.
-              Our team will verify the details and confirm your ride via Email
-              and WhatsApp.
+            <p className="mt-1.5 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+              Our dispatch desk will verify vehicle availability and share driver details
+              via SMS and WhatsApp.
             </p>
           </div>
 
-          <div className="rounded-2xl bg-green-50 p-5">
-            <h4 className="font-semibold text-green-700">Included</h4>
+          <div className="rounded-2xl bg-emerald-50/80 border border-emerald-200 p-5">
+            <h4 className="text-sm sm:text-base font-bold text-emerald-900">Inclusions Guaranteed</h4>
 
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
-              <li>✔ Professional Driver</li>
-              <li>✔ Sanitized Vehicle</li>
-              <li>✔ 24×7 Customer Support</li>
-              <li>✔ Instant Booking Request</li>
+            <ul className="mt-2.5 space-y-2 text-xs sm:text-sm font-semibold text-slate-800">
+              <li>✔ Professional Chauffeur</li>
+              <li>✔ Sanitized AC Vehicle</li>
+              <li>✔ 24×7 Customer Helpline</li>
+              <li>✔ Zero Cancellation Fee</li>
             </ul>
           </div>
         </div>
@@ -158,13 +157,12 @@ interface SummaryItemProps {
 
 function SummaryItem({ icon, label, value }: SummaryItemProps) {
   return (
-    <div className="flex items-start gap-4">
-      <div className="rounded-xl bg-yellow-100 p-3 text-yellow-700">{icon}</div>
+    <div className="flex items-start gap-3.5">
+      <div className="rounded-xl bg-yellow-100 p-2.5 text-yellow-800 shrink-0">{icon}</div>
 
-      <div>
-        <p className="text-sm text-slate-500">{label}</p>
-
-        <h4 className="font-semibold text-slate-900">{value}</h4>
+      <div className="min-w-0">
+        <p className="text-xs sm:text-sm font-bold text-slate-500">{label}</p>
+        <h4 className="text-sm sm:text-base font-extrabold text-slate-900 truncate">{value}</h4>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ const serviceTypes = [
   { id: "One Way", label: "One Way Drop", icon: Navigation },
   { id: "Round Trip", label: "Round Trip", icon: Compass },
   { id: "Airport Transfer", label: "Airport Taxi", icon: Plane },
-  { id: "Local Rental", label: "Local 8Hr / 80Km", icon: Building2 },
+  { id: "Local Rental", label: "Local 8Hr/80Km", icon: Building2 },
   { id: "Tour Package", label: "Holiday Tour", icon: Car },
 ];
 
@@ -194,14 +194,14 @@ export default function BookingForm() {
 • Time: ${formData.travelTime || "Anytime"}
 • Passengers: ${formData.passengers}
 Please confirm availability and instant quote.`;
-    return `https://wa.me/919936408109?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/918801842859?text=${encodeURIComponent(text)}`;
   };
 
   return (
     <>
       <section
         id="booking-form"
-        className="relative overflow-hidden bg-slate-100/80 py-10 sm:py-16 lg:py-20"
+        className="relative overflow-hidden bg-slate-100/80 py-12 sm:py-16 lg:py-20"
       >
         {/* Decorative Gradients */}
         <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-yellow-300/15 blur-3xl pointer-events-none" />
@@ -218,29 +218,29 @@ Please confirm availability and instant quote.`;
                 className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 sm:p-8 md:p-10 shadow-xl"
               >
                 {/* Form Progress Header */}
-                <div className="border-b border-slate-200 pb-6 mb-8">
+                <div className="border-b border-slate-200 pb-7 mb-9">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-yellow-800">
-                        <Sparkles size={13} className="text-yellow-600" />
-                        Online Reservation
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-100 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-yellow-800">
+                        <Sparkles size={14} className="text-yellow-600" />
+                        Online Cab Reservation
                       </span>
-                      <h2 className="mt-2 text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900">
-                        Cab Booking Wizard
+                      <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
+                        Cab Booking Form
                       </h2>
                     </div>
-                    <div className="flex items-center gap-2 rounded-2xl bg-slate-50 px-3.5 py-2 border border-slate-200">
-                      <Lock size={15} className="text-emerald-600" />
-                      <span className="text-xs font-bold text-slate-800">256-Bit Secure</span>
+                    <div className="flex items-center gap-2 rounded-2xl bg-slate-50 px-4 py-2.5 border border-slate-200">
+                      <Lock size={16} className="text-emerald-600" />
+                      <span className="text-xs sm:text-sm font-bold text-slate-800">256-Bit SSL Protected</span>
                     </div>
                   </div>
 
                   {/* Trip Type Selector Pills */}
-                  <div className="mt-6">
-                    <label className="mb-2.5 block text-xs font-bold uppercase tracking-wider text-slate-800">
-                      Select Service Type
+                  <div className="mt-7">
+                    <label className="mb-3 block text-sm sm:text-base font-bold uppercase tracking-wider text-slate-900">
+                      Select Trip Type
                     </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
                       {serviceTypes.map((type) => {
                         const Icon = type.icon;
                         const isSelected = formData.serviceType === type.id;
@@ -254,14 +254,14 @@ Please confirm availability and instant quote.`;
                                 serviceType: type.id,
                               }))
                             }
-                            className={`flex flex-col items-center justify-center rounded-2xl border p-3 text-center transition-all duration-200 ${
+                            className={`flex flex-col items-center justify-center rounded-2xl border p-3.5 text-center transition-all duration-200 ${
                               isSelected
-                                ? "border-blue-700 bg-blue-700 text-white shadow-md shadow-blue-700/20 font-bold"
+                                ? "border-blue-700 bg-blue-700 text-white shadow-md shadow-blue-700/20 font-bold scale-[1.02]"
                                 : "border-slate-300 bg-white text-slate-800 font-semibold hover:border-blue-400 hover:bg-blue-50/50"
                             }`}
                           >
-                            <Icon size={18} className="mb-1" />
-                            <span className="text-xs">{type.label}</span>
+                            <Icon size={20} className="mb-1.5" />
+                            <span className="text-xs sm:text-sm">{type.label}</span>
                           </button>
                         );
                       })}
@@ -269,68 +269,68 @@ Please confirm availability and instant quote.`;
                   </div>
                 </div>
 
-                <div className="space-y-9">
+                <div className="space-y-10">
                   {/* ===================================================
                       STEP 1: RIDE ROUTE & SCHEDULE
                   =================================================== */}
                   <div>
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                    <div className="flex items-center gap-3 mb-5">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-700 text-sm font-extrabold text-white">
                         1
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                      <h3 className="text-lg sm:text-xl font-extrabold text-slate-900">
                         Ride Route & Schedule
                       </h3>
                     </div>
 
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-6">
                       <LocationInputs formData={formData} setFormData={setFormData} />
 
                       {/* Date, Time & Passengers */}
-                      <div className="mt-4 pt-4 border-t border-slate-200 grid gap-4 sm:grid-cols-3">
+                      <div className="mt-5 pt-5 border-t border-slate-200 grid gap-4 sm:grid-cols-3">
                         {/* Date */}
                         <div>
-                          <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          <label className="mb-2 block text-sm sm:text-base font-bold text-slate-900">
                             Journey Date <span className="text-red-600">*</span>
                           </label>
                           <div className="relative">
-                            <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                             <input
                               required
                               type="date"
                               name="travelDate"
                               value={formData.travelDate}
                               onChange={handleChange}
-                              className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                              className="h-13 sm:h-14 w-full rounded-2xl border border-slate-300 bg-white pl-12 pr-4 text-sm sm:text-base font-semibold text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                             />
                           </div>
                         </div>
 
                         {/* Time */}
                         <div>
-                          <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          <label className="mb-2 block text-sm sm:text-base font-bold text-slate-900">
                             Pickup Time <span className="text-red-600">*</span>
                           </label>
                           <div className="relative">
-                            <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                            <Clock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                             <input
                               required
                               type="time"
                               name="travelTime"
                               value={formData.travelTime}
                               onChange={handleChange}
-                              className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                              className="h-13 sm:h-14 w-full rounded-2xl border border-slate-300 bg-white pl-12 pr-4 text-sm sm:text-base font-semibold text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                             />
                           </div>
                         </div>
 
                         {/* Passengers */}
                         <div>
-                          <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                          <label className="mb-2 block text-sm sm:text-base font-bold text-slate-900">
                             Passengers <span className="text-red-600">*</span>
                           </label>
                           <div className="relative">
-                            <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                            <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                             <input
                               required
                               type="number"
@@ -339,7 +339,7 @@ Please confirm availability and instant quote.`;
                               name="passengers"
                               value={formData.passengers}
                               onChange={handleChange}
-                              className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                              className="h-13 sm:h-14 w-full rounded-2xl border border-slate-300 bg-white pl-12 pr-4 text-sm sm:text-base font-semibold text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                             />
                           </div>
                         </div>
@@ -350,12 +350,12 @@ Please confirm availability and instant quote.`;
                   {/* ===================================================
                       STEP 2: VEHICLE & COMFORT TIER
                   =================================================== */}
-                  <div className="border-t border-slate-200 pt-7">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                  <div className="border-t border-slate-200 pt-8">
+                    <div className="flex items-center gap-3 mb-5">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-700 text-sm font-extrabold text-white">
                         2
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                      <h3 className="text-lg sm:text-xl font-extrabold text-slate-900">
                         Vehicle & Comfort Tier
                       </h3>
                     </div>
@@ -370,43 +370,43 @@ Please confirm availability and instant quote.`;
                   {/* ===================================================
                       STEP 3: PASSENGER INFORMATION
                   =================================================== */}
-                  <div className="border-t border-slate-200 pt-7">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                  <div className="border-t border-slate-200 pt-8">
+                    <div className="flex items-center gap-3 mb-5">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-700 text-sm font-extrabold text-white">
                         3
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                      <h3 className="text-lg sm:text-xl font-extrabold text-slate-900">
                         Passenger Information
                       </h3>
                     </div>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="grid gap-5 sm:grid-cols-2">
                       {/* Name */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                        <label className="mb-2 block text-sm sm:text-base font-bold text-slate-900">
                           Full Name <span className="text-red-600">*</span>
                         </label>
                         <div className="relative">
-                          <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                          <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                           <input
                             required
                             type="text"
                             name="customerName"
                             value={formData.customerName}
                             onChange={handleChange}
-                            placeholder="Your Name"
-                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            placeholder="Your full name"
+                            className="h-13 sm:h-14 w-full rounded-2xl border border-slate-300 bg-white pl-12 pr-4 text-sm sm:text-base font-semibold text-slate-900 placeholder:text-slate-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
 
                       {/* Phone */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
-                          Mobile Number (For Driver SMS) <span className="text-red-600">*</span>
+                        <label className="mb-2 block text-sm sm:text-base font-bold text-slate-900">
+                          Mobile Number (Driver SMS) <span className="text-red-600">*</span>
                         </label>
                         <div className="relative">
-                          <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                          <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                           <input
                             required
                             type="tel"
@@ -414,32 +414,32 @@ Please confirm availability and instant quote.`;
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder="10-digit mobile number"
-                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            className="h-13 sm:h-14 w-full rounded-2xl border border-slate-300 bg-white pl-12 pr-4 text-sm sm:text-base font-semibold text-slate-900 placeholder:text-slate-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
 
                       {/* Email */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
-                          Email Address (For PDF Invoice)
+                        <label className="mb-2 block text-sm sm:text-base font-bold text-slate-900">
+                          Email Address (PDF Invoice)
                         </label>
                         <div className="relative">
-                          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                           <input
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="name@example.com"
-                            className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                            className="h-13 sm:h-14 w-full rounded-2xl border border-slate-300 bg-white pl-12 pr-4 text-sm sm:text-base font-semibold text-slate-900 placeholder:text-slate-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                           />
                         </div>
                       </div>
 
                       {/* Special Note */}
                       <div>
-                        <label className="mb-1.5 block text-xs font-bold text-slate-900">
+                        <label className="mb-2 block text-sm sm:text-base font-bold text-slate-900">
                           Flight No. or Quick Note
                         </label>
                         <input
@@ -447,8 +447,8 @@ Please confirm availability and instant quote.`;
                           name="specialNote"
                           value={formData.specialNote}
                           onChange={handleChange}
-                          placeholder="e.g. Flight 6E-204, Child seat, Extra luggage"
-                          className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
+                          placeholder="e.g. Flight 6E-204, Child seat, Extra boot"
+                          className="h-13 sm:h-14 w-full rounded-2xl border border-slate-300 bg-white px-4 text-sm sm:text-base font-semibold text-slate-900 placeholder:text-slate-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100 transition"
                         />
                       </div>
                     </div>
@@ -457,18 +457,18 @@ Please confirm availability and instant quote.`;
                   {/* ===================================================
                       STEP 4: FARE REVIEW & PAYMENT
                   =================================================== */}
-                  <div className="border-t border-slate-200 pt-7">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-700 text-xs font-bold text-white">
+                  <div className="border-t border-slate-200 pt-8">
+                    <div className="flex items-center gap-3 mb-5">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-700 text-sm font-extrabold text-white">
                         4
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                      <h3 className="text-lg sm:text-xl font-extrabold text-slate-900">
                         Fare Estimate & Payment Method
                       </h3>
                     </div>
 
                     <div className="space-y-6">
-                      <div className="rounded-2xl border border-yellow-200 bg-gradient-to-br from-yellow-50/70 to-white p-4 sm:p-6 shadow-sm">
+                      <div className="rounded-2xl border border-yellow-200 bg-gradient-to-br from-yellow-50/70 to-white p-5 sm:p-7 shadow-sm">
                         <FareCalculator
                           vehicle={formData.vehicle}
                           pickup={formData.pickup}
@@ -485,18 +485,18 @@ Please confirm availability and instant quote.`;
 
                   {/* SUBMIT BUTTONS (Desktop) */}
                   <div className="border-t border-slate-200 pt-8">
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-500 px-8 font-extrabold text-slate-950 shadow-lg hover:bg-yellow-300 active:scale-98 transition disabled:opacity-50 text-sm sm:text-base cursor-pointer"
+                        className="flex-1 inline-flex h-15 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-500 px-8 font-black text-slate-950 shadow-lg hover:bg-yellow-300 active:scale-98 transition disabled:opacity-50 text-base sm:text-lg cursor-pointer"
                       >
                         {loading ? (
                           "Submitting..."
                         ) : (
                           <>
                             <span>Confirm & Submit Booking</span>
-                            <ChevronRight size={18} />
+                            <ChevronRight size={20} />
                           </>
                         )}
                       </button>
@@ -505,14 +505,14 @@ Please confirm availability and instant quote.`;
                         href={getWhatsAppBookingUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-6 font-bold text-white shadow-md hover:bg-emerald-700 active:scale-98 transition text-sm sm:text-base shrink-0"
+                        className="inline-flex h-15 items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-7 font-bold text-white shadow-md hover:bg-emerald-700 active:scale-98 transition text-base sm:text-lg shrink-0"
                       >
-                        <MessageCircle size={18} />
+                        <MessageCircle size={20} />
                         <span>Instant WhatsApp</span>
                       </a>
                     </div>
 
-                    <p className="mt-4 text-center text-xs text-slate-600">
+                    <p className="mt-4 text-center text-xs sm:text-sm text-slate-700 font-medium">
                       🔒 Zero cancellation fee • Driver details shared via SMS & WhatsApp • 24×7 Active Helpline
                     </p>
                   </div>
@@ -528,29 +528,29 @@ Please confirm availability and instant quote.`;
 
               {/* Verified Trust Card */}
               <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-yellow-100 text-yellow-700">
-                    <ShieldCheck size={24} />
+                <div className="flex items-center gap-3.5">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-100 text-yellow-700">
+                    <ShieldCheck size={26} />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-slate-900">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900">
                       Kuldeep Safety Guarantee
                     </h3>
-                    <p className="text-xs text-slate-600 font-medium">
+                    <p className="text-xs sm:text-sm text-slate-600 font-semibold">
                       100% Verified Chauffeurs
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-5 space-y-3 text-xs text-slate-800 font-medium">
+                <div className="mt-5 space-y-3.5 text-xs sm:text-sm text-slate-800 font-semibold">
                   {[
                     "Zero hidden charges or toll surprises",
                     "Sanitized air-conditioned vehicles",
                     "Doorstep pickup on scheduled time",
                     "Active 24×7 customer support desk",
                   ].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <CheckCircle2 size={15} className="text-emerald-600 shrink-0" />
+                    <div key={item} className="flex items-center gap-2.5">
+                      <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -558,36 +558,36 @@ Please confirm availability and instant quote.`;
               </div>
 
               {/* 24x7 Immediate Help Desk */}
-              <div className="rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 p-6 text-white shadow-xl">
-                <div className="flex items-center gap-2 text-yellow-400 text-xs font-bold uppercase tracking-wider">
-                  <Sparkles size={13} />
+              <div className="rounded-3xl bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 p-6 sm:p-7 text-white shadow-xl">
+                <div className="flex items-center gap-2 text-yellow-400 text-xs sm:text-sm font-bold uppercase tracking-wider">
+                  <Sparkles size={14} />
                   <span>24×7 Booking Helpline</span>
                 </div>
 
-                <h3 className="mt-2 text-lg sm:text-xl font-bold">
+                <h3 className="mt-2 text-lg sm:text-xl font-extrabold">
                   Prefer Booking Over Phone?
                 </h3>
 
-                <p className="mt-2 text-xs text-blue-100 leading-relaxed">
+                <p className="mt-2 text-xs sm:text-sm text-blue-100 leading-relaxed font-medium">
                   Call our live Lucknow dispatch desk for fast vehicle confirmation.
                 </p>
 
-                <div className="mt-5 flex flex-col gap-2.5">
+                <div className="mt-6 flex flex-col gap-3">
                   <a
-                    href="tel:+919936408109"
-                    className="flex h-12 items-center justify-center gap-2 rounded-xl bg-yellow-400 text-xs sm:text-sm font-bold text-slate-950 transition hover:bg-yellow-300 active:scale-95"
+                    href="tel:+918801842859"
+                    className="flex h-13 items-center justify-center gap-2 rounded-xl bg-yellow-400 text-sm sm:text-base font-extrabold text-slate-950 transition hover:bg-yellow-300 active:scale-95"
                   >
-                    <PhoneCall size={16} />
-                    <span>Call +91 99364 08109</span>
+                    <PhoneCall size={18} />
+                    <span>Call +91 88018 42859</span>
                   </a>
 
                   <a
-                    href="https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20I%20need%20help%20with%20booking."
+                    href="https://wa.me/918801842859?text=Hello%20Kuldeep%20Travels,%20I%20need%20help%20with%20booking."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-12 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 text-xs sm:text-sm font-semibold text-white backdrop-blur hover:bg-white hover:text-slate-950 active:scale-95 transition"
+                    className="flex h-13 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 text-sm sm:text-base font-bold text-white backdrop-blur hover:bg-white hover:text-slate-950 active:scale-95 transition"
                   >
-                    <MessageCircle size={16} className="text-emerald-400" />
+                    <MessageCircle size={18} className="text-emerald-400" />
                     <span>WhatsApp Tour Expert</span>
                   </a>
                 </div>
@@ -600,42 +600,42 @@ Please confirm availability and instant quote.`;
       {/* ===================================================
           MOBILE STICKY ACTION BAR (Visible on mobile only)
       ==================================================== */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 block border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur-lg shadow-[0_-4px_20px_rgba(0,0,0,0.1)] lg:hidden">
+      <div className="fixed bottom-0 left-0 right-0 z-40 block border-t border-slate-200 bg-white/95 px-4 py-3.5 backdrop-blur-lg shadow-[0_-4px_20px_rgba(0,0,0,0.1)] lg:hidden">
         <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
           <div>
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">
+            <span className="text-xs uppercase font-bold text-slate-500 block">
               Estimated Fare
             </span>
-            <span className="text-base font-black text-slate-900">
+            <span className="text-lg font-black text-slate-900">
               ₹{estimatedFare.toLocaleString("en-IN")}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <a
-              href="tel:+919936408109"
-              className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-800 border border-slate-300"
+              href="tel:+918801842859"
+              className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-800 border border-slate-300"
               title="Call Helpline"
             >
-              <Phone size={18} />
+              <Phone size={20} />
             </a>
 
             <a
               href={getWhatsAppBookingUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-11 items-center gap-1.5 rounded-xl bg-emerald-600 px-3.5 text-xs font-bold text-white shadow"
+              className="flex h-12 items-center gap-1.5 rounded-xl bg-emerald-600 px-4 text-xs sm:text-sm font-bold text-white shadow"
             >
-              <MessageCircle size={16} />
+              <MessageCircle size={18} />
               <span>WhatsApp</span>
             </a>
 
             <a
               href="#booking-form"
-              className="flex h-11 items-center gap-1 rounded-xl bg-yellow-400 px-4 text-xs font-bold text-slate-950 shadow"
+              className="flex h-12 items-center gap-1 rounded-xl bg-yellow-400 px-4 text-xs sm:text-sm font-extrabold text-slate-950 shadow"
             >
               <span>Book</span>
-              <ChevronRight size={14} />
+              <ChevronRight size={16} />
             </a>
           </div>
         </div>
