@@ -44,30 +44,14 @@ export default function HeroSection() {
       {/* ================= Background ================= */}
 
       <div className="absolute inset-0">
-        {/* Desktop Image */}
-
         <Image
           src="/images/home/hero-bg.jpeg"
-          alt="Kuldeep Travels"
+          alt="Kuldeep Travels Lucknow"
           fill
           priority
-          quality={100}
+          quality={80}
           sizes="100vw"
-          className="hidden md:block object-cover object-[78%_center]"
-        />
-
-        {/* Mobile Image */}
-
-        <Image
-          // src="/images/home/hero-mobile.png"
-          src="/images/home/hero-bg.jpeg"
-          alt="Kuldeep Travels"
-          fill
-          priority
-          quality={100}
-          sizes="70vw"
-          // className="block md:hidden object-cover object-[72%_center]"
-          className="block md:hidden object-cover object-[82%_center]"
+          className="object-cover object-[80%_center]"
         />
 
         {/* Desktop Overlay */}

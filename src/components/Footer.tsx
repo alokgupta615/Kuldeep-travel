@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 
 import { Phone, Mail, MapPin, CarFront } from "lucide-react";
 
@@ -43,9 +44,11 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3">
               <Link href="/">
-                <img
+                <Image
                   src="/logo.png"
                   alt="Kuldeep Travels Logo"
+                  width={180}
+                  height={64}
                   className="h-16 w-auto object-contain bg-white rounded-xl p-2"
                 />
               </Link>

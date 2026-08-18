@@ -23,7 +23,7 @@ export default function RootLayout({
         <ScrollButtons />
         <Script
           src="https://checkout.razorpay.com/v1/checkout.js"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>

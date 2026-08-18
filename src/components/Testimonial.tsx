@@ -55,7 +55,13 @@ export default function Testimonial() {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 overflow-hidden rounded-full">
-                    <img src={review.image} alt={review.name} className="object-cover h-full w-full" />
+                    <Image
+                      src={review.image}
+                      alt={review.name}
+                      width={48}
+                      height={48}
+                      className="object-cover h-full w-full"
+                    />
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900">{review.name}</h3>
