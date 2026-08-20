@@ -64,7 +64,7 @@ const fleet = [
   },
   {
     name: "Force Urbania",
-    image: "/images/fleet/tempo.png", // using tempo image as fallback
+    image: "/images/fleet/urbania.png",
     passengers: "17 Seater",
     luggage: "Large Luggage Space",
     ac: "Premium AC",
@@ -128,6 +128,8 @@ export default function Fleet() {
                   src={vehicle.image}
                   alt={vehicle.name}
                   fill
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>

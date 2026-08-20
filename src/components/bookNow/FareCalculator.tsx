@@ -1,17 +1,12 @@
 "use client";
 
 import {
-  CarTaxiFront,
-  MapPinned,
-  ReceiptIndianRupee,
   ShieldCheck,
   BadgeCheck,
   CircleDollarSign,
-  MapPin,
-  Sparkles,
-  Tag,
-  BriefcaseBusiness,
+  ReceiptIndianRupee,
 } from "lucide-react";
+import { calculateFare } from "@/lib/fareCalculator";
 
 interface Props {
   vehicle: string;
@@ -22,34 +17,6 @@ interface Props {
   serviceType: string;
 }
 
-const vehicleRates: Record<string, number> = {
-  "Swift Dzire": 12,
-  Sedan: 12,
-  Ertiga: 15,
-  SUV: 15,
-  Innova: 18,
-  "Innova Crysta": 20,
-  "Tempo Traveller": 26,
-  "Mini Bus": 35,
-};
-
-const categoryRates = {
-  economy: 0,
-  standard: 200,
-  business: 600,
-};
-
-const extraPrices: Record<string, number> = {
-  "Child Seat": 200,
-  "Extra Luggage": 300,
-  "Meet & Greet": 400,
-  "Pet Friendly": 250,
-  Wheelchair: 0,
-  "Roof Carrier": 350,
-};
-
-const DISTANCE = 120;
-
 export default function FareCalculator({
   vehicle,
   pickup,
@@ -58,35 +25,20 @@ export default function FareCalculator({
   extras,
   serviceType,
 }: Props) {
-  const distance = DISTANCE;
-  const rate = vehicleRates[vehicle] ?? 12;
-  const baseFare = distance * rate;
-  const categoryFare = categoryRates[category] ?? 0;
-  const extrasFare = (extras ?? []).reduce(
-    (total, item) => total + (extraPrices[item] || 0),
-    0
-  );
-
-  let serviceCharge = 0;
-  if (serviceType === "Airport Transfer") serviceCharge = 200;
-  else if (serviceType === "Round Trip") serviceCharge = 400;
-
-  const driverAllowance = distance > 150 ? 400 : 0;
-  const toll = 150;
-  const gst = Math.round(
-    (baseFare + categoryFare + extrasFare + serviceCharge + driverAllowance + toll) * 0.05
-  );
-
-  const total =
-    baseFare + categoryFare + extrasFare + serviceCharge + driverAllowance + toll + gst;
+  const fareResult = calculateFare({
+    vehicle,
+    category,
+    extras,
+    serviceType,
+  });
 
   const fareRows = [
-    { label: "Base Rate", value: `₹${rate}/km`, color: "bg-blue-500" },
-    { label: "Base Fare (Estimated)", value: `₹${baseFare}`, color: "bg-indigo-500" },
-    { label: "Tier Adjustment", value: `₹${categoryFare}`, color: "bg-purple-500" },
-    { label: "Service / Inclusions", value: `₹${serviceCharge}`, color: "bg-emerald-500" },
-    { label: "Toll & State Permits", value: `₹${toll}`, color: "bg-amber-500" },
-    { label: "GST (5%)", value: `₹${gst}`, color: "bg-green-600" },
+    { label: "Base Rate", value: `₹${fareResult.ratePerKm}/km`, color: "bg-blue-500" },
+    { label: "Base Fare (Estimated)", value: `₹${fareResult.baseFare}`, color: "bg-indigo-500" },
+    { label: "Tier Adjustment", value: `₹${fareResult.categoryFare}`, color: "bg-purple-500" },
+    { label: "Service / Inclusions", value: `₹${fareResult.serviceCharge}`, color: "bg-emerald-500" },
+    { label: "Toll & State Permits", value: `₹${fareResult.toll}`, color: "bg-amber-500" },
+    { label: "GST (5%)", value: `₹${fareResult.gst}`, color: "bg-green-600" },
   ];
 
   return (
@@ -98,7 +50,7 @@ export default function FareCalculator({
             Route Overview
           </span>
           <span className="rounded-full bg-blue-100 px-3 py-1 text-xs sm:text-sm font-extrabold text-blue-800">
-            ~{distance} KM
+            ~{fareResult.distance} KM
           </span>
         </div>
 
@@ -177,7 +129,7 @@ export default function FareCalculator({
               Estimated Total Fare
             </span>
             <h3 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-black text-white">
-              ₹{total.toLocaleString("en-IN")}
+              ₹{fareResult.total.toLocaleString("en-IN")}
             </h3>
             <p className="text-xs sm:text-sm text-blue-200 mt-1 font-medium">
               Includes Driver, AC, Tolls, State Taxes & GST.
@@ -187,7 +139,7 @@ export default function FareCalculator({
           <div className="rounded-2xl border border-white/20 bg-white/10 p-3.5 sm:p-4 text-center shrink-0 self-start sm:self-auto">
             <span className="text-xs uppercase font-bold text-blue-200 block">Avg Rate</span>
             <span className="text-lg sm:text-xl font-black text-yellow-300">
-              ₹{Math.round(total / distance)}/km
+              ₹{Math.round(fareResult.total / fareResult.distance)}/km
             </span>
           </div>
         </div>

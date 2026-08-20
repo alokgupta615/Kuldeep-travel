@@ -2,47 +2,59 @@
 
 import { CheckCircle2, CreditCard, ShieldCheck, Wallet, Banknote } from "lucide-react";
 import type { BookingData, PaymentType } from "@/types/booking";
+import { calculateFare } from "@/lib/fareCalculator";
 
 interface Props {
   formData: BookingData;
   setFormData: React.Dispatch<React.SetStateAction<BookingData>>;
 }
 
-const paymentOptions: {
-  id: PaymentType;
-  title: string;
-  subtitle: string;
-  badge: string;
-  badgeColor: string;
-  icon: typeof Banknote;
-}[] = [
-  {
-    id: "PAY_AFTER_TRIP",
-    title: "Pay After Trip (Recommended)",
-    subtitle: "Pay the driver via UPI / Cash after safe journey completion",
-    badge: "0% Advance Required",
-    badgeColor: "bg-emerald-100 text-emerald-800",
-    icon: Banknote,
-  },
-  {
-    id: "ADVANCE",
-    title: "Pay 20% Advance Token",
-    subtitle: "Secure vehicle booking during peak festive rush",
-    badge: "Instant Confirmation",
-    badgeColor: "bg-blue-100 text-blue-800",
-    icon: Wallet,
-  },
-  {
-    id: "PAY_NOW",
-    title: "Pay 100% Online",
-    subtitle: "Prepay securely via Razorpay (UPI / Debit / Credit / NetBanking)",
-    badge: "Automated GST Invoice",
-    badgeColor: "bg-purple-100 text-purple-800",
-    icon: CreditCard,
-  },
-];
-
 export default function PaymentOptions({ formData, setFormData }: Props) {
+  const fareResult = calculateFare({
+    vehicle: formData.vehicle,
+    category: formData.category,
+    extras: formData.extras,
+    serviceType: formData.serviceType,
+  });
+
+  const paymentOptions: {
+    id: PaymentType;
+    title: string;
+    subtitle: string;
+    badge: string;
+    badgeColor: string;
+    amountDisplay: string;
+    icon: typeof Banknote;
+  }[] = [
+    {
+      id: "PAY_AFTER_TRIP",
+      title: "Pay After Trip (Recommended)",
+      subtitle: `Pay full fare (₹${fareResult.total.toLocaleString("en-IN")}) via UPI / Cash after safe journey completion`,
+      badge: "0% Advance Required",
+      badgeColor: "bg-emerald-100 text-emerald-800",
+      amountDisplay: "₹0 Now",
+      icon: Banknote,
+    },
+    {
+      id: "ADVANCE",
+      title: "Pay 20% Advance Token",
+      subtitle: `Pay ₹${fareResult.advanceAmount.toLocaleString("en-IN")} now to lock your cab, balance ₹${fareResult.remainingAmount.toLocaleString("en-IN")} after trip`,
+      badge: "Instant Cab Lock",
+      badgeColor: "bg-blue-100 text-blue-800",
+      amountDisplay: `₹${fareResult.advanceAmount.toLocaleString("en-IN")} Now`,
+      icon: Wallet,
+    },
+    {
+      id: "PAY_NOW",
+      title: "Pay 100% Online",
+      subtitle: `Prepay full fare (₹${fareResult.total.toLocaleString("en-IN")}) securely via Razorpay (UPI / Cards / NetBanking)`,
+      badge: "Automated GST Bill",
+      badgeColor: "bg-purple-100 text-purple-800",
+      amountDisplay: `₹${fareResult.total.toLocaleString("en-IN")} Total`,
+      icon: CreditCard,
+    },
+  ];
+
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -75,7 +87,7 @@ export default function PaymentOptions({ formData, setFormData }: Props) {
                   : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
               }`}
             >
-              <div className="flex items-center gap-3.5 sm:gap-4">
+              <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
                 <div
                   className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition ${
                     isSelected ? "bg-blue-700 text-white" : "bg-slate-100 text-slate-700"
@@ -84,7 +96,7 @@ export default function PaymentOptions({ formData, setFormData }: Props) {
                   <Icon size={22} />
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-sm sm:text-base font-bold text-slate-900">
                       {opt.title}
@@ -101,7 +113,10 @@ export default function PaymentOptions({ formData, setFormData }: Props) {
                 </div>
               </div>
 
-              <div className="ml-3 shrink-0">
+              <div className="ml-3 shrink-0 flex items-center gap-3">
+                <span className="hidden sm:inline-block text-xs sm:text-sm font-black text-slate-900 bg-slate-100 px-2.5 py-1 rounded-lg">
+                  {opt.amountDisplay}
+                </span>
                 <div
                   className={`flex h-6 w-6 items-center justify-center rounded-full border-2 transition ${
                     isSelected

@@ -3,33 +3,56 @@ import crypto from "crypto";
 
 export async function POST(req: NextRequest) {
   try {
+    const body = await req.json().catch(() => ({}));
+
     const {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
-    } = await req.json();
+    } = body;
 
-    const body =
-      razorpay_order_id + "|" + razorpay_payment_id;
+    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Missing payment parameters.",
+        },
+        { status: 400 }
+      );
+    }
+
+    const keySecret =
+      process.env.RAZORPAY_KEY_SECRET ||
+      process.env.RAZORPAY_SECRET ||
+      "";
+
+    if (!keySecret) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Payment secret key missing.",
+        },
+        { status: 500 }
+      );
+    }
 
     const expectedSignature = crypto
-      .createHmac(
-        "sha256",
-        process.env.RAZORPAY_SECRET!
-      )
-      .update(body)
+      .createHmac("sha256", keySecret)
+      .update(`${razorpay_order_id}|${razorpay_payment_id}`)
       .digest("hex");
 
-    const isAuthentic =
-      expectedSignature === razorpay_signature;
+    const isAuthentic = expectedSignature === razorpay_signature;
 
     return NextResponse.json({
       success: isAuthentic,
+      message: isAuthentic ? "Payment verified" : "Invalid signature",
     });
-  } catch (error) {
+  } catch (error: any) {
+    console.error("Verify payment error:", error);
     return NextResponse.json(
       {
         success: false,
+        message: error.message || "Internal server error during verification",
       },
       { status: 500 }
     );

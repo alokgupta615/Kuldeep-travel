@@ -9,7 +9,6 @@ import {
   Clock,
   Users,
   ShieldCheck,
-  BadgeCheck,
   Sparkles,
   ChevronRight,
   Plane,
@@ -21,6 +20,7 @@ import {
   PhoneCall,
   CheckCircle2,
   Lock,
+  AlertCircle,
 } from "lucide-react";
 
 import LocationInputs from "./LocationInputs";
@@ -34,6 +34,7 @@ import RideCategory from "./RideCategory";
 import RideExtras from "./RideExtras";
 
 import { openRazorpay } from "@/lib/openRazorpay";
+import { calculateFare } from "@/lib/fareCalculator";
 import type { BookingData } from "@/types/booking";
 
 const serviceTypes = [
@@ -46,6 +47,7 @@ const serviceTypes = [
 
 export default function BookingForm() {
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successOpen, setSuccessOpen] = useState(false);
 
   const [formData, setFormData] = useState<BookingData>({
@@ -79,19 +81,12 @@ export default function BookingForm() {
     }));
   };
 
-  const calculateAmount = () => {
-    let base = 999;
-    if (formData.vehicle === "Swift Dzire" || formData.vehicle === "Sedan") base = 1499;
-    else if (formData.vehicle === "Ertiga" || formData.vehicle === "SUV") base = 2199;
-    else if (formData.vehicle === "Innova" || formData.vehicle === "Innova Crysta") base = 3299;
-    else if (formData.vehicle === "Tempo Traveller") base = 4999;
-    else if (formData.vehicle === "Mini Bus") base = 7999;
-
-    if (formData.category === "business") base += 600;
-    if (formData.category === "standard") base += 200;
-
-    return base;
-  };
+  const fareResult = calculateFare({
+    vehicle: formData.vehicle,
+    category: formData.category,
+    extras: formData.extras,
+    serviceType: formData.serviceType,
+  });
 
   const resetForm = () => {
     setFormData({
@@ -110,60 +105,97 @@ export default function BookingForm() {
       payment: "PAY_AFTER_TRIP",
       specialNote: "",
     });
+    setErrorMessage(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage(null);
 
-    if (!formData.customerName || !formData.phone) {
-      alert("Please enter your name and 10-digit mobile number.");
+    if (!formData.customerName.trim() || !formData.phone.trim()) {
+      alert("Please enter your full name and 10-digit mobile number.");
       return;
     }
 
     try {
       setLoading(true);
-      const totalFare = calculateAmount();
+      const totalFare = fareResult.total;
 
-      if (formData.payment === "PAY_NOW") {
+      // Handle Online Payment (100% PAY_NOW or 20% ADVANCE)
+      if (formData.payment === "PAY_NOW" || formData.payment === "ADVANCE") {
+        const payableAmount =
+          formData.payment === "ADVANCE"
+            ? fareResult.advanceAmount
+            : fareResult.total;
+
+        const description =
+          formData.payment === "ADVANCE"
+            ? `20% Advance Token (₹${payableAmount}) - Kuldeep Travels`
+            : `Full Fare Payment (₹${payableAmount}) - Kuldeep Travels`;
+
         await openRazorpay({
-          amount: totalFare,
+          amount: payableAmount,
           customerName: formData.customerName,
           email: formData.email,
           phone: formData.phone,
-          onSuccess: async (payment: any) => {
-            const response = await fetch("/api/bookings", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                ...formData,
-                amount: totalFare,
-                paymentStatus: "SUCCESS",
-                razorpayPaymentId: payment.razorpay_payment_id,
-                razorpayOrderId: payment.razorpay_order_id,
-                razorpaySignature: payment.razorpay_signature,
-              }),
-            });
+          description,
+          onSuccess: async (payment) => {
+            try {
+              const response = await fetch("/api/bookings", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  ...formData,
+                  amount: totalFare,
+                  paidAmount: payableAmount,
+                  remainingAmount: totalFare - payableAmount,
+                  paymentStatus:
+                    formData.payment === "ADVANCE"
+                      ? "Advance Paid (20%)"
+                      : "Paid",
+                  razorpayPaymentId: payment.razorpay_payment_id,
+                  razorpayOrderId: payment.razorpay_order_id,
+                  razorpaySignature: payment.razorpay_signature,
+                }),
+              });
 
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message);
+              const data = await response.json();
+              if (!response.ok) throw new Error(data.message || "Failed to save booking.");
 
-            setSuccessOpen(true);
-            resetForm();
+              setSuccessOpen(true);
+              resetForm();
+            } catch (saveError: any) {
+              console.error("Booking save error:", saveError);
+              alert(
+                "Payment was successful, but booking record could not be updated automatically. Please contact our support team with Payment ID: " +
+                  payment.razorpay_payment_id
+              );
+            } finally {
+              setLoading(false);
+            }
           },
-          onFailure: () => {
-            alert("Payment Failed or Cancelled. You can select 'Pay After Trip' to book without advance payment.");
+          onFailure: (err) => {
+            setLoading(false);
+            if (err?.reason !== "dismissed") {
+              setErrorMessage(
+                "Online payment could not be processed. You can switch to 'Pay After Trip' (0% advance) or contact us via WhatsApp."
+              );
+            }
           },
         });
         return;
       }
 
+      // Handle Pay After Trip (0% Advance)
       const response = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
           amount: totalFare,
-          paymentStatus: "PENDING",
+          paidAmount: 0,
+          remainingAmount: totalFare,
+          paymentStatus: "Pending",
         }),
       });
 
@@ -173,14 +205,14 @@ export default function BookingForm() {
       setSuccessOpen(true);
       resetForm();
     } catch (error: any) {
-      console.error(error);
-      alert(error.message || "Booking submission failed. Please try again or reach us via WhatsApp.");
+      console.error("Booking Submission Error:", error);
+      const msg = error.message || "Booking submission failed. Please try again or reach us via WhatsApp.";
+      setErrorMessage(msg);
+      alert(msg);
     } finally {
       setLoading(false);
     }
   };
-
-  const estimatedFare = calculateAmount();
 
   const getWhatsAppBookingUrl = () => {
     const text = `Hello Kuldeep Travels, I want to book a taxi:
@@ -193,7 +225,9 @@ export default function BookingForm() {
 • Date: ${formData.travelDate || "Immediate"}
 • Time: ${formData.travelTime || "Anytime"}
 • Passengers: ${formData.passengers}
-Please confirm availability and instant quote.`;
+• Payment Choice: ${formData.payment}
+• Estimated Fare: ₹${fareResult.total}
+Please confirm vehicle availability.`;
     return `https://wa.me/918801842859?text=${encodeURIComponent(text)}`;
   };
 
@@ -254,7 +288,7 @@ Please confirm availability and instant quote.`;
                                 serviceType: type.id,
                               }))
                             }
-                            className={`flex flex-col items-center justify-center rounded-2xl border p-3.5 text-center transition-all duration-200 ${
+                            className={`flex flex-col items-center justify-center rounded-2xl border p-3.5 text-center transition-all duration-200 cursor-pointer ${
                               isSelected
                                 ? "border-blue-700 bg-blue-700 text-white shadow-md shadow-blue-700/20 font-bold scale-[1.02]"
                                 : "border-slate-300 bg-white text-slate-800 font-semibold hover:border-blue-400 hover:bg-blue-50/50"
@@ -268,6 +302,26 @@ Please confirm availability and instant quote.`;
                     </div>
                   </div>
                 </div>
+
+                {errorMessage && (
+                  <div className="mb-6 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-amber-900 text-sm font-semibold flex items-start gap-3">
+                    <AlertCircle size={20} className="text-amber-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-bold">Payment Notification:</p>
+                      <p className="mt-1 text-xs sm:text-sm">{errorMessage}</p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFormData((prev) => ({ ...prev, payment: "PAY_AFTER_TRIP" }));
+                          setErrorMessage(null);
+                        }}
+                        className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-amber-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-amber-700 transition"
+                      >
+                        Switch to Pay After Trip (0% Advance)
+                      </button>
+                    </div>
+                  </div>
+                )}
 
                 <div className="space-y-10">
                   {/* ===================================================
@@ -492,10 +546,16 @@ Please confirm availability and instant quote.`;
                         className="flex-1 inline-flex h-15 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-500 px-8 font-black text-slate-950 shadow-lg hover:bg-yellow-300 active:scale-98 transition disabled:opacity-50 text-base sm:text-lg cursor-pointer"
                       >
                         {loading ? (
-                          "Submitting..."
+                          "Processing..."
                         ) : (
                           <>
-                            <span>Confirm & Submit Booking</span>
+                            <span>
+                              {formData.payment === "ADVANCE"
+                                ? `Pay ₹${fareResult.advanceAmount.toLocaleString("en-IN")} Advance & Confirm`
+                                : formData.payment === "PAY_NOW"
+                                ? `Pay ₹${fareResult.total.toLocaleString("en-IN")} & Confirm`
+                                : "Confirm & Submit Booking"}
+                            </span>
                             <ChevronRight size={20} />
                           </>
                         )}
@@ -524,7 +584,7 @@ Please confirm availability and instant quote.`;
                 STICKY SIDEBAR (4 Cols)
             ================================================ */}
             <div className="lg:col-span-4 space-y-6">
-              <BookingSummary formData={formData} fare={estimatedFare} />
+              <BookingSummary formData={formData} />
 
               {/* Verified Trust Card */}
               <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -604,10 +664,14 @@ Please confirm availability and instant quote.`;
         <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
           <div>
             <span className="text-xs uppercase font-bold text-slate-500 block">
-              Estimated Fare
+              {formData.payment === "ADVANCE" ? "Advance (20%)" : "Total Fare"}
             </span>
             <span className="text-lg font-black text-slate-900">
-              ₹{estimatedFare.toLocaleString("en-IN")}
+              ₹
+              {(formData.payment === "ADVANCE"
+                ? fareResult.advanceAmount
+                : fareResult.total
+              ).toLocaleString("en-IN")}
             </span>
           </div>
 
@@ -634,7 +698,7 @@ Please confirm availability and instant quote.`;
               href="#booking-form"
               className="flex h-12 items-center gap-1 rounded-xl bg-yellow-400 px-4 text-xs sm:text-sm font-extrabold text-slate-950 shadow"
             >
-              <span>Book</span>
+              <span>{formData.payment === "PAY_AFTER_TRIP" ? "Book" : "Pay"}</span>
               <ChevronRight size={16} />
             </a>
           </div>

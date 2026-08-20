@@ -26,6 +26,15 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
+    let computedPaymentStatus = "Pending";
+    if (data.paymentStatus) {
+      computedPaymentStatus = data.paymentStatus;
+    } else if (data.payment === "PAY_NOW") {
+      computedPaymentStatus = "Paid";
+    } else if (data.payment === "ADVANCE") {
+      computedPaymentStatus = "Advance Paid (20%)";
+    }
+
     const booking = {
       bookingId: generateBookingID(),
 
@@ -34,12 +43,9 @@ export async function POST(req: NextRequest) {
         timeStyle: "short",
       }),
 
-      bookingStatus: "Pending",
+      bookingStatus: "Confirmed",
 
-      paymentStatus:
-        data.payment === "PAY_NOW"
-          ? "Paid"
-          : "Pending",
+      paymentStatus: computedPaymentStatus,
 
       ...data,
     };

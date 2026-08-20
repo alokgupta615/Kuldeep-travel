@@ -51,9 +51,11 @@ export default function AboutSection() {
           <div className="relative">
             <Image
               src="/images/home/about.png"
-              alt="Kuldeep Travels"
+              alt="Kuldeep Travels Lucknow"
               width={650}
               height={650}
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="h-56 w-full rounded-2xl object-cover shadow-xl sm:h-80 lg:h-[620px] text-slate-900"
             />
 

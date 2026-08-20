@@ -62,6 +62,16 @@ const vehicles = [
     tag: "Big Families",
   },
   {
+    id: "Force Urbania",
+    name: "Force Urbania (Luxury 13–17 Seater)",
+    image: "/images/fleet/urbania.png",
+    seats: "13-17 Seats",
+    luggage: "12+ Bags",
+    ac: true,
+    price: "₹30/km",
+    tag: "Ultra Luxury",
+  },
+  {
     id: "Mini Bus",
     name: "Luxury Mini Bus / Coach",
     image: "/images/fleet/bus.png",

@@ -10,29 +10,28 @@ import {
   BadgeCheck,
   IndianRupee,
 } from "lucide-react";
+import type { BookingData } from "@/types/booking";
+import { calculateFare } from "@/lib/fareCalculator";
 
 interface BookingSummaryProps {
-  formData: {
-    customerName: string;
-    pickup: string;
-    drop: string;
-    travelDate: string;
-    travelTime: string;
-    vehicle: string;
-    passengers: number;
-    payment: string;
-  };
-  fare: number;
+  formData: BookingData;
+  fare?: number;
 }
 
 export default function BookingSummary({
   formData,
-  fare,
 }: BookingSummaryProps) {
-  const paymentLabel = {
-    PAY_NOW: "Pay Now Online",
-    PAY_ADVANCE: "20% Advance Token",
-    PAY_AFTER_TRIP: "Pay After Trip",
+  const fareResult = calculateFare({
+    vehicle: formData.vehicle,
+    category: formData.category,
+    extras: formData.extras,
+    serviceType: formData.serviceType,
+  });
+
+  const paymentLabel: Record<string, string> = {
+    PAY_NOW: "Pay 100% Online",
+    ADVANCE: "20% Advance Token",
+    PAY_AFTER_TRIP: "Pay After Trip (Cash/UPI)",
   };
 
   return (
@@ -93,31 +92,48 @@ export default function BookingSummary({
           <SummaryItem
             icon={<CreditCard size={20} />}
             label="Payment Mode"
-            value={
-              paymentLabel[formData.payment as keyof typeof paymentLabel] || "Pay After Trip"
-            }
+            value={paymentLabel[formData.payment] || "Pay After Trip"}
           />
         </div>
 
-        {/* Fare */}
-        <div className="border-t border-slate-200 bg-slate-50 p-6 sm:p-7">
-          <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 border border-emerald-200 p-5">
-            <div className="flex items-center gap-3.5">
-              <div className="rounded-xl bg-emerald-100 p-3 text-emerald-800">
-                <IndianRupee className="h-6 w-6 text-emerald-800" />
-              </div>
+        {/* Fare Breakdown */}
+        <div className="border-t border-slate-200 bg-slate-50 p-6 sm:p-7 space-y-3">
+          <div className="rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 border border-emerald-200 p-5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3.5">
+                <div className="rounded-xl bg-emerald-100 p-3 text-emerald-800">
+                  <IndianRupee className="h-6 w-6 text-emerald-800" />
+                </div>
 
-              <div>
-                <p className="text-xs sm:text-sm font-bold text-slate-600 uppercase">
-                  Estimated Total Fare
-                </p>
+                <div>
+                  <p className="text-xs sm:text-sm font-bold text-slate-600 uppercase">
+                    Estimated Total Fare
+                  </p>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
-                  ₹{fare.toLocaleString("en-IN")}
-                </h3>
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
+                    ₹{fareResult.total.toLocaleString("en-IN")}
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
+
+          {formData.payment === "ADVANCE" && (
+            <div className="rounded-2xl border border-blue-200 bg-blue-50/60 p-4 space-y-2 text-xs sm:text-sm font-semibold">
+              <div className="flex justify-between text-blue-900">
+                <span>Payable Now (20% Token):</span>
+                <span className="font-extrabold text-blue-700">
+                  ₹{fareResult.advanceAmount.toLocaleString("en-IN")}
+                </span>
+              </div>
+              <div className="flex justify-between text-slate-600 border-t border-blue-200/60 pt-2">
+                <span>Balance to Driver After Trip:</span>
+                <span className="font-bold text-slate-800">
+                  ₹{fareResult.remainingAmount.toLocaleString("en-IN")}
+                </span>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Footer */}

@@ -1,45 +1,86 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getRazorpay } from "@/lib/razorpay";
+import Razorpay from "razorpay";
 
 export async function POST(req: NextRequest) {
   try {
-    const { amount } = await req.json();
+    const body = await req.json().catch(() => ({}));
+    const amount = Number(body.amount) || 1000;
 
-    if (!amount || amount <= 0) {
+    if (amount <= 0) {
       return NextResponse.json(
         {
           success: false,
-          message: "Invalid Amount",
+          message: "Invalid booking amount provided.",
         },
         { status: 400 }
       );
     }
 
-    const razorpay = getRazorpay();
+    const keyId =
+      process.env.RAZORPAY_KEY_ID ||
+      process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
+      process.env.NEXT_PUBLIC_RAZORPAY_KEY;
 
-    const options = {
-      amount: amount * 100, // Convert INR to Paise
-      currency: "INR",
-      receipt: `receipt_${Date.now()}`,
-      payment_capture: true,
-    };
+    const keySecret =
+      process.env.RAZORPAY_KEY_SECRET ||
+      process.env.RAZORPAY_SECRET;
 
-    const order = await razorpay.orders.create(options);
+    if (!keyId || !keySecret) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "Razorpay API Keys are missing. Please configure RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your .env.local file.",
+        },
+        { status: 500 }
+      );
+    }
 
-    return NextResponse.json({
-      success: true,
-      order,
+    if (keyId.includes("xxxxxxxx") || keySecret.includes("xxxxxxxx")) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "Razorpay credentials in .env.local are placeholder values (rzp_test_xxx). Please replace them with active Razorpay credentials from https://dashboard.razorpay.com.",
+          isPlaceholder: true,
+        },
+        { status: 400 }
+      );
+    }
+
+    const razorpay = new Razorpay({
+      key_id: keyId,
+      key_secret: keySecret,
     });
-  } catch (error) {
-    console.error("Razorpay Error:", error);
+
+    const order = await razorpay.orders.create({
+      amount: Math.round(amount * 100),
+      currency: "INR",
+      receipt: `kt_${Date.now().toString().slice(-8)}`,
+    });
+
+    return NextResponse.json(
+      {
+        success: true,
+        order: {
+          id: order.id,
+          amount: order.amount,
+          currency: order.currency,
+        },
+        key_id: keyId,
+      },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    console.error("Razorpay API Error:", error);
 
     return NextResponse.json(
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Unable to create Razorpay order",
+          error?.error?.description ||
+          error?.message ||
+          "Unable to create Razorpay order",
       },
       { status: 500 }
     );
