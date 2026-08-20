@@ -134,10 +134,16 @@ export default function Footer() {
                 <span>kuldeeptravelslko@gmail.com</span>
               </a>
 
-              <div className="flex gap-3 text-gray-400">
-                <MapPin size={20} />
-
-                <span>Lucknow, Uttar Pradesh, India</span>
+              <div className="flex items-start gap-3 text-gray-400">
+                <MapPin size={20} className="shrink-0 text-yellow-400 mt-1" />
+                <div className="space-y-2 text-xs leading-relaxed">
+                  <p>
+                    <strong className="text-white">Main Office:</strong> Bagh No. 2, Transport Nagar Metro Station, Kanpur Road, Behsa, Lucknow – 226012
+                  </p>
+                  <p>
+                    <strong className="text-white">Airport Branch:</strong> Near Airport, Transport Nagar, Lucknow – 226008
+                  </p>
+                </div>
               </div>
             </div>
           </div>

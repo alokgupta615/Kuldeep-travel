@@ -101,10 +101,13 @@ export default function ContactMap() {
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                     <MapPin size={17} />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-slate-800">Office Address</h4>
-                    <p className="text-slate-600 mt-0.5">
-                      Kuldeep Travels, Lucknow, Uttar Pradesh, India
+                  <div className="space-y-1.5">
+                    <h4 className="font-bold text-slate-800">Office Addresses</h4>
+                    <p className="text-slate-600 text-xs leading-relaxed">
+                      <strong className="text-slate-800">Main Office:</strong> Bagh No. 2, Transport Nagar Metro Station, Kanpur Road, Behsa, Lucknow – 226012
+                    </p>
+                    <p className="text-slate-600 text-xs leading-relaxed">
+                      <strong className="text-slate-800">Airport Branch:</strong> Near Airport, Transport Nagar, Lucknow – 226008
                     </p>
                   </div>
                 </div>

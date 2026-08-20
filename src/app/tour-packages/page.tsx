@@ -20,6 +20,8 @@ import Reviews from "@/components/tourPackages/Reviews";
 import FAQ from "@/components/tourPackages/FAQ";
 import CTA from "@/components/tourPackages/CTA";
 
+import FeaturedPackageRates from "@/components/tourPackages/FeaturedPackageRates";
+
 export const metadata: Metadata = {
   title: "Tour Packages from Lucknow | Family, Religious & Holiday Tours",
   description:
@@ -41,6 +43,9 @@ export default function TourPackagesPage() {
 
       {/* Trust Metrics */}
       <Stats />
+
+      {/* Verified Packages & Discount Rates */}
+      <FeaturedPackageRates />
 
       {/* Company Introduction */}
       <section>

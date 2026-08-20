@@ -73,15 +73,15 @@ export default function ContactInfo() {
       key: "location",
       icon: MapPin,
       title: "Head Office",
-      subtitle: "Visit our office for customized package planning",
-      value: "Lucknow, Uttar Pradesh",
+      subtitle: "Bagh No. 2, Transport Nagar Metro Station, Kanpur Road, Behsa",
+      value: "Transport Nagar, Lucknow – 226012",
       actionText: "View on Map",
       href: "#map",
       color: "text-amber-700",
       bg: "bg-amber-50 border-amber-100",
       iconBg: "bg-amber-600 text-white",
       badge: "Mon - Sun • 24 Hours",
-      copyable: "Kuldeep Travels, Lucknow, Uttar Pradesh",
+      copyable: "Bagh No. 2, Transport Nagar Metro Station, Kanpur Road, Behsa, Lucknow – 226012",
     },
   ];
 
