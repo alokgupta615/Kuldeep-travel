@@ -69,6 +69,14 @@ const destinations = [
     href: "/book-now",
   },
   {
+    name: "Nepal (Kathmandu & Pokhara)",
+    image: "/images/destinations/nepal.png",
+    distance: "International Tour",
+    description:
+      "Explore Pashupatinath temple, Kathmandu valley, scenic Pokhara lakes, and Himalayan panoramas.",
+    href: "/tour-packages/lucknow-to-nepal",
+  },
+  {
     name: "Delhi",
     image: "/images/destinations/delhi.png",
     distance: "550 km",
