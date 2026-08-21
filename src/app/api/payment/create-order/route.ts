@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Razorpay from "razorpay";
+import { getRazorpayCredentials } from "@/lib/razorpayConfig";
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,37 +17,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const keyId =
-      process.env.RAZORPAY_KEY_ID ||
-      process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
-      process.env.NEXT_PUBLIC_RAZORPAY_KEY;
-
-    const keySecret =
-      process.env.RAZORPAY_KEY_SECRET ||
-      process.env.RAZORPAY_SECRET;
-
-    if (!keyId || !keySecret) {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "Razorpay API Keys are missing. Please configure RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your .env.local file.",
-        },
-        { status: 500 }
-      );
-    }
-
-    if (keyId.includes("xxxxxxxx") || keySecret.includes("xxxxxxxx")) {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "Razorpay credentials in .env.local are placeholder values (rzp_test_xxx). Please replace them with your active Razorpay Key ID and Secret from https://dashboard.razorpay.com. Alternatively, you can book using 'Pay After Trip' (0% advance).",
-          isPlaceholder: true,
-        },
-        { status: 400 }
-      );
-    }
+    const { keyId, keySecret } = getRazorpayCredentials();
 
     const razorpay = new Razorpay({
       key_id: keyId,

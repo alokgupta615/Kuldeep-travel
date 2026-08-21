@@ -1,4 +1,5 @@
 import Razorpay from "razorpay";
+import { getRazorpayCredentials } from "./razorpayConfig";
 
 let razorpay: Razorpay | null = null;
 
@@ -7,12 +8,7 @@ export function getRazorpay() {
     return razorpay;
   }
 
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
-
-  if (!keyId || !keySecret) {
-    throw new Error("Razorpay keys are missing.");
-  }
+  const { keyId, keySecret } = getRazorpayCredentials();
 
   razorpay = new Razorpay({
     key_id: keyId,

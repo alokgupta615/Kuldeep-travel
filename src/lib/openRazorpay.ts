@@ -85,15 +85,10 @@ export async function openRazorpay({
 
   const order = data.order;
   const razorpayKey =
+    data.key_id ||
     process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
     process.env.NEXT_PUBLIC_RAZORPAY_KEY ||
-    data.key_id;
-
-  if (!razorpayKey) {
-    throw new Error(
-      "Razorpay Key ID is not configured. Please set NEXT_PUBLIC_RAZORPAY_KEY_ID in .env.local"
-    );
-  }
+    "rzp_live_TSMNf4d9mKa1bG";
 
   const options = {
     key: razorpayKey,

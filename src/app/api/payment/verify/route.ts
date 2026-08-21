@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
+import { getRazorpayCredentials } from "@/lib/razorpayConfig";
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,20 +22,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const keySecret =
-      process.env.RAZORPAY_KEY_SECRET ||
-      process.env.RAZORPAY_SECRET ||
-      "";
-
-    if (!keySecret) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Server payment secret is not configured.",
-        },
-        { status: 500 }
-      );
-    }
+    const { keySecret } = getRazorpayCredentials();
 
     const expectedSignature = crypto
       .createHmac("sha256", keySecret)
