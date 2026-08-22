@@ -51,7 +51,7 @@ export default function FeaturedPackageRates() {
           </p>
 
           {/* Vehicle Switcher Filter */}
-          <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-1.5 backdrop-blur-md">
+          <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 p-1.5 backdrop-blur-md">
             {vehicleOptions.map((v) => {
               const active = selectedVehicle === v.key;
               return (
@@ -62,12 +62,12 @@ export default function FeaturedPackageRates() {
                   className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 ${
                     active
                       ? "bg-yellow-400 text-slate-950 shadow-md shadow-yellow-400/20 scale-[1.02]"
-                      : "text-slate-300 hover:text-white hover:bg-white/10"
+                      : "text-slate-100 hover:text-white hover:bg-white/15"
                   }`}
                 >
                   <Car size={15} />
                   <span>{v.label}</span>
-                  <span className={`hidden sm:inline text-[11px] font-medium opacity-80 ${active ? "text-slate-900" : "text-slate-400"}`}>
+                  <span className={`hidden sm:inline text-[11px] font-medium ${active ? "text-slate-900" : "text-yellow-300"}`}>
                     ({v.desc})
                   </span>
                 </button>
@@ -87,11 +87,11 @@ export default function FeaturedPackageRates() {
             return (
               <div
                 key={pkg.id}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.02] p-6 sm:p-7 shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-yellow-400/50 hover:shadow-yellow-400/10"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-b from-white/[0.12] to-white/[0.04] p-6 sm:p-7 shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-yellow-400/60 hover:shadow-yellow-400/20"
               >
                 {/* Top Badge */}
                 {pkg.badge && (
-                  <div className="mb-4 inline-flex self-start items-center gap-1.5 rounded-full border border-yellow-400/30 bg-yellow-400/15 px-3 py-1 text-xs font-bold text-yellow-300">
+                  <div className="mb-4 inline-flex self-start items-center gap-1.5 rounded-full border border-yellow-400/40 bg-yellow-400/20 px-3 py-1 text-xs font-bold text-yellow-300">
                     <Tag size={12} />
                     <span>{pkg.badge}</span>
                   </div>
@@ -102,55 +102,55 @@ export default function FeaturedPackageRates() {
                   <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-yellow-300 transition">
                     {pkg.name}
                   </h3>
-                  <p className="mt-1 text-xs sm:text-sm text-slate-400">
+                  <p className="mt-1.5 text-xs sm:text-sm text-slate-200 font-medium">
                     {pkg.subtitle}
                   </p>
 
                   {/* Duration & Distance Chips */}
                   <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-                    <span className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-2.5 py-1 text-slate-200">
+                    <span className="inline-flex items-center gap-1 rounded-lg bg-white/15 px-3 py-1 font-semibold text-white">
                       <Clock size={13} className="text-yellow-400" />
                       {pkg.duration}
                     </span>
-                    <span className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-2.5 py-1 text-slate-200">
+                    <span className="inline-flex items-center gap-1 rounded-lg bg-white/15 px-3 py-1 font-semibold text-white">
                       <MapPin size={13} className="text-yellow-400" />
                       {pkg.distance}
                     </span>
                   </div>
 
                   {/* Price Block */}
-                  <div className="mt-6 rounded-2xl border border-white/10 bg-black/40 p-4">
+                  <div className="mt-6 rounded-2xl border border-white/15 bg-black/60 p-4">
                     <div className="flex items-baseline justify-between gap-2">
                       <div>
-                        <span className="text-xs text-slate-400 block font-medium">
+                        <span className="text-xs text-slate-300 block font-medium">
                           Special Discounted Price:
                         </span>
-                        <div className="flex items-baseline gap-2 mt-0.5">
+                        <div className="flex items-baseline gap-2 mt-1">
                           <span className="text-2xl sm:text-3xl font-black text-yellow-400">
                             ₹{priceInfo.discount.toLocaleString("en-IN")}
                           </span>
-                          <span className="text-sm font-semibold text-slate-500 line-through">
+                          <span className="text-sm font-semibold text-slate-400 line-through">
                             ₹{priceInfo.original.toLocaleString("en-IN")}
                           </span>
                         </div>
                       </div>
 
-                      <span className="rounded-full bg-emerald-500/20 border border-emerald-500/30 px-2.5 py-1 text-xs font-black text-emerald-300">
+                      <span className="rounded-full bg-emerald-500/25 border border-emerald-400/40 px-2.5 py-1 text-xs font-black text-emerald-300">
                         {discountPct}% OFF
                       </span>
                     </div>
 
-                    <p className="mt-2 text-[11px] text-slate-400 font-medium">
-                      *Vehicle: <span className="text-slate-200 font-semibold">{vehicleOptions.find(v => v.key === selectedVehicle)?.label}</span>. 20% advance booking deposit.
+                    <p className="mt-2 text-[11px] text-slate-300 font-medium">
+                      *Vehicle: <span className="text-yellow-300 font-semibold">{vehicleOptions.find(v => v.key === selectedVehicle)?.label}</span>. 20% advance booking deposit.
                     </p>
                   </div>
 
                   {/* Highlights Checklist */}
-                  <div className="mt-5 space-y-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block">
+                  <div className="mt-5 space-y-2.5">
+                    <span className="text-xs font-bold uppercase tracking-wider text-yellow-300 block">
                       Package Inclusions:
                     </span>
-                    <ul className="space-y-2 text-xs sm:text-sm text-slate-300">
+                    <ul className="space-y-2 text-xs sm:text-sm text-slate-100 font-medium">
                       {pkg.highlights.map((item, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-emerald-400" />

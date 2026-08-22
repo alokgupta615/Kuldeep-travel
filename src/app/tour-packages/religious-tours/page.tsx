@@ -1,29 +1,63 @@
 import Image from "next/image";
+import Link from "next/link";
+
+const fallbackTours = [
+  {
+    title: "Ayodhya Shri Ram Janmabhoomi Darshan",
+    featuredImage: { node: { sourceUrl: "/images/destinations/ayodhya.png" } },
+    tourFields: {
+      price: "₹3,499",
+      duration: "1 Day Tour",
+      location: "Ayodhya, Uttar Pradesh",
+    },
+  },
+  {
+    title: "Varanasi Kashi Vishwanath & Ganga Aarti",
+    featuredImage: { node: { sourceUrl: "/images/destinations/varanasi.png" } },
+    tourFields: {
+      price: "₹6,999",
+      duration: "2 Days / 1 Night",
+      location: "Varanasi, Uttar Pradesh",
+    },
+  },
+  {
+    title: "Prayagraj Triveni Sangam Pilgrimage",
+    featuredImage: { node: { sourceUrl: "/images/destinations/prayagraj.png" } },
+    tourFields: {
+      price: "₹4,499",
+      duration: "1 Day Tour",
+      location: "Prayagraj, Uttar Pradesh",
+    },
+  },
+  {
+    title: "Naimisharanya 84 Kosi Dham Yatra",
+    featuredImage: { node: { sourceUrl: "/images/destinations/naimisharanya.png" } },
+    tourFields: {
+      price: "₹2,999",
+      duration: "1 Day Tour",
+      location: "Sitapur, Uttar Pradesh",
+    },
+  },
+];
 
 async function getTours() {
-
-  const res = await fetch(
-    "http://kuldeep-travel.local/graphql",
-    {
+  try {
+    const res = await fetch("http://kuldeep-travel.local/graphql", {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify({
         query: `
           {
             tourPackages {
               nodes {
                 title
-
                 featuredImage {
                   node {
                     sourceUrl
                   }
                 }
-
                 tourFields {
                   price
                   duration
@@ -34,14 +68,15 @@ async function getTours() {
           }
         `,
       }),
-
       cache: "no-store",
-    }
-  );
+    });
 
-  const data = await res.json();
-
-  return data.data.tourPackages.nodes;
+    if (!res.ok) return fallbackTours;
+    const data = await res.json();
+    return data?.data?.tourPackages?.nodes || fallbackTours;
+  } catch {
+    return fallbackTours;
+  }
 }
 
 export default async function ReligiousToursPage() {
@@ -105,9 +140,12 @@ export default async function ReligiousToursPage() {
                     {tour.tourFields.price}
                   </span>
 
-                  <button className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold">
+                  <Link
+                    href="/book-now"
+                    className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-300 transition"
+                  >
                     Book Now
-                  </button>
+                  </Link>
 
                 </div>
 

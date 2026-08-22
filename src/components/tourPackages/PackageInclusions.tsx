@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   Car,
   Hotel,
@@ -172,15 +173,18 @@ export default function PackageInclusions() {
                     key={item}
                     className="flex items-center gap-3"
                   >
-                    <CheckCircle2 className="h-5 w-5 text-yellow-400" />
-                    <span>{item}</span>
+                    <CheckCircle2 className="h-5 w-5 text-yellow-400 shrink-0" />
+                    <span className="font-medium text-white">{item}</span>
                   </div>
                 ))}
               </div>
 
-              <button className="mt-10 rounded-xl bg-yellow-400 px-8 py-4 font-semibold text-blue-950 transition hover:bg-yellow-300">
+              <Link
+                href="/contact"
+                className="mt-10 inline-block rounded-xl bg-yellow-400 px-8 py-4 font-bold text-blue-950 transition hover:bg-yellow-300"
+              >
                 Request Custom Package
-              </button>
+              </Link>
             </div>
           </div>
         </div>

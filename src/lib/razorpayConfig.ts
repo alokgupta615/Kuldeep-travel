@@ -1,27 +1,32 @@
 /**
- * Centralized Razorpay configuration with production credentials
+ * Centralized Razorpay configuration loaded securely from environment variables.
+ * In production (e.g. Render / Vercel), set:
+ *   - RAZORPAY_KEY_ID (or NEXT_PUBLIC_RAZORPAY_KEY_ID)
+ *   - RAZORPAY_KEY_SECRET (or RAZORPAY_SECRET)
  */
 
-const DEFAULT_KEY_ID = "rzp_live_TSMNf4d9mKa1bG";
-const DEFAULT_KEY_SECRET = "Sv9S5p2gHXbVrwFAW2CYJWIS";
-
 export function getRazorpayCredentials() {
-  let keyId =
+  const keyId =
     process.env.RAZORPAY_KEY_ID ||
     process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
-    process.env.NEXT_PUBLIC_RAZORPAY_KEY;
+    process.env.NEXT_PUBLIC_RAZORPAY_KEY ||
+    "";
 
-  let keySecret =
+  const keySecret =
     process.env.RAZORPAY_KEY_SECRET ||
-    process.env.RAZORPAY_SECRET;
+    process.env.RAZORPAY_SECRET ||
+    "";
 
-  if (!keyId || keyId.includes("xxxxxxxx") || keyId.trim().length === 0) {
-    keyId = DEFAULT_KEY_ID;
+  if (!keyId.trim() || !keySecret.trim()) {
+    console.warn(
+      "[Razorpay Config Warning] Razorpay credentials are not fully configured in environment variables. " +
+        "Please set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your Render Environment settings."
+    );
   }
 
-  if (!keySecret || keySecret.includes("xxxxxxxx") || keySecret.trim().length === 0) {
-    keySecret = DEFAULT_KEY_SECRET;
-  }
-
-  return { keyId: keyId.trim(), keySecret: keySecret.trim() };
+  return {
+    keyId: keyId.trim(),
+    keySecret: keySecret.trim(),
+  };
 }
+

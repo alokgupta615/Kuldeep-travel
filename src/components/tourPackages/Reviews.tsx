@@ -209,8 +209,8 @@ export default function Reviews() {
                     key={item}
                     className="flex items-center gap-3 text-white"
                   >
-                    <BadgeCheck className="h-5 w-5 text-yellow-400" />
-                    <span>{item}</span>
+                    <BadgeCheck className="h-5 w-5 text-yellow-400 shrink-0" />
+                    <span className="font-semibold text-white">{item}</span>
                   </div>
 
                 ))}

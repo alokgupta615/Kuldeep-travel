@@ -263,19 +263,14 @@ export default function Hero() {
           {/* ================= RIGHT IMAGE ================= */}
           {/* ================= RIGHT IMAGE ================= */}
           <div className="relative flex items-center justify-center">
-            <div className="w-full max-w-[620px] overflow-hidden rounded-2xl border border-white/10 bg-white/10 p-2 shadow-2xl backdrop-blur-sm sm:rounded-3xl text-slate-900">
+            <div className="w-full max-w-[620px] overflow-hidden rounded-2xl border border-white/10 bg-white/10 p-2 shadow-2xl backdrop-blur-sm sm:rounded-3xl">
               <Image
                 src="/images/tour-package/tour.png"
                 alt="Lucknow Holiday Packages"
                 width={700}
                 height={500}
                 priority
-                className="
-        h-auto
-        w-full
-        rounded-xl
-        object-contain
-       text-slate-900"
+                className="h-auto w-full rounded-xl object-contain"
               />
             </div>
           </div>

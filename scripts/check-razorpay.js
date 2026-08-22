@@ -3,9 +3,18 @@ const path = require('path');
 const Razorpay = require('razorpay');
 
 const envPath = path.join(__dirname, '..', '.env.local');
-const env = fs.readFileSync(envPath, 'utf8');
-const keyId = env.match(/RAZORPAY_KEY_ID=([^\r\n]+)/)?.[1]?.trim();
-const keySecret = env.match(/RAZORPAY_KEY_SECRET=([^\r\n]+)/)?.[1]?.trim();
+let env = '';
+if (fs.existsSync(envPath)) {
+  env = fs.readFileSync(envPath, 'utf8');
+}
+
+const keyId = process.env.RAZORPAY_KEY_ID || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || env.match(/RAZORPAY_KEY_ID=([^\r\n]+)/)?.[1]?.trim();
+const keySecret = process.env.RAZORPAY_KEY_SECRET || env.match(/RAZORPAY_KEY_SECRET=([^\r\n]+)/)?.[1]?.trim();
+
+if (!keyId || !keySecret) {
+  console.log('Error: RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET is not set in environment or .env.local');
+  process.exit(1);
+}
 
 const rzp = new Razorpay({ key_id: keyId, key_secret: keySecret });
 

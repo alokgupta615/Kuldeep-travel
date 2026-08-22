@@ -129,8 +129,8 @@ export default function BestTimeToVisit() {
                       key={place}
                       className="flex items-center gap-3"
                     >
-                      <CheckCircle2 className="h-5 w-5 text-green-600" />
-                      <span>{place}</span>
+                      <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
+                      <span className="font-semibold text-gray-800">{place}</span>
                     </div>
                   ))}
 

@@ -130,8 +130,8 @@ export default function TravelerTypes() {
                   key={benefit}
                   className="flex items-center gap-3 rounded-2xl bg-white/10 p-4 text-white backdrop-blur"
                 >
-                  <ShieldCheck className="h-5 w-5 text-yellow-400" />
-                  <span>{benefit}</span>
+                  <ShieldCheck className="h-5 w-5 text-yellow-400 shrink-0" />
+                  <span className="font-semibold text-white">{benefit}</span>
                 </div>
               ))}
             </div>
