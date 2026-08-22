@@ -11,7 +11,8 @@ const quickLinks = [
   { title: "About Us", href: "/about" },
   { title: "Services", href: "/services" },
   { title: "Tour Packages", href: "/tour-packages" },
-  { title: "Blog", href: "/blog" },
+  { title: "Travel Blog", href: "/blog" },
+  { title: "Write Blog (Admin)", href: "/admin/create-blog" },
   { title: "Contact", href: "/contact" },
 ];
 

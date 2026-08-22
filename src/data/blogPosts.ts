@@ -436,23 +436,75 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+export const STORAGE_KEY_CUSTOM_BLOGS = "kt_custom_blogs_data";
+
 export function getAllBlogPosts(): BlogPost[] {
+  if (typeof window !== "undefined") {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY_CUSTOM_BLOGS);
+      if (stored) {
+        const customPosts: BlogPost[] = JSON.parse(stored);
+        // Avoid duplicate slugs
+        const existingSlugs = new Set(blogPosts.map((p) => p.slug));
+        const uniqueCustom = customPosts.filter((p) => !existingSlugs.has(p.slug));
+        return [...uniqueCustom, ...blogPosts];
+      }
+    } catch (e) {
+      console.error("Error loading custom blogs from storage:", e);
+    }
+  }
   return blogPosts;
 }
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find((p) => p.slug === slug);
+  const all = getAllBlogPosts();
+  return all.find((p) => p.slug === slug);
 }
 
 export function getRelatedBlogPosts(currentSlug: string, category: string, limit = 3): BlogPost[] {
-  const sameCategory = blogPosts.filter(
+  const all = getAllBlogPosts();
+  const sameCategory = all.filter(
     (p) => p.slug !== currentSlug && p.category === category
   );
   if (sameCategory.length >= limit) {
     return sameCategory.slice(0, limit);
   }
-  const otherPosts = blogPosts.filter(
+  const otherPosts = all.filter(
     (p) => p.slug !== currentSlug && p.category !== category
   );
   return [...sameCategory, ...otherPosts].slice(0, limit);
+}
+
+export function saveCustomBlogPost(post: BlogPost): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY_CUSTOM_BLOGS);
+    const list: BlogPost[] = stored ? JSON.parse(stored) : [];
+    const index = list.findIndex((p) => p.slug === post.slug || p.id === post.id);
+    if (index >= 0) {
+      list[index] = post;
+    } else {
+      list.unshift(post);
+    }
+    localStorage.setItem(STORAGE_KEY_CUSTOM_BLOGS, JSON.stringify(list));
+    return true;
+  } catch (err) {
+    console.error("Failed to save custom blog post:", err);
+    return false;
+  }
+}
+
+export function deleteCustomBlogPost(slug: string): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY_CUSTOM_BLOGS);
+    if (!stored) return false;
+    const list: BlogPost[] = JSON.parse(stored);
+    const updated = list.filter((p) => p.slug !== slug);
+    localStorage.setItem(STORAGE_KEY_CUSTOM_BLOGS, JSON.stringify(updated));
+    return true;
+  } catch (err) {
+    console.error("Failed to delete custom blog post:", err);
+    return false;
+  }
 }

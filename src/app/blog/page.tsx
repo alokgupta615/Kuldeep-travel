@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { blogPosts, BlogPost } from "@/data/blogPosts";
+import { getAllBlogPosts, BlogPost } from "@/data/blogPosts";
 import {
   Calendar,
   Clock,
@@ -15,6 +15,7 @@ import {
   MessageCircle,
   Tag,
   Compass,
+  PlusCircle,
 } from "lucide-react";
 
 const CATEGORIES = [
@@ -26,11 +27,16 @@ const CATEGORIES = [
 ] as const;
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  useEffect(() => {
+    setPosts(getAllBlogPosts());
+  }, []);
+
   const filteredPosts = useMemo(() => {
-    return blogPosts.filter((post) => {
+    return posts.filter((post) => {
       const matchesCategory =
         selectedCategory === "All" || post.category === selectedCategory;
       const matchesSearch =
@@ -41,9 +47,9 @@ export default function BlogPage() {
         );
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [posts, selectedCategory, searchQuery]);
 
-  const featuredPost = blogPosts.find((p) => p.featured) || blogPosts[0];
+  const featuredPost = posts.find((p) => p.featured) || posts[0];
 
   return (
     <div className="bg-slate-950 text-slate-100 min-h-screen">
@@ -54,13 +60,23 @@ export default function BlogPage() {
         <div className="absolute top-10 right-10 w-72 h-72 bg-blue-600/10 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-slate-400 mb-6">
-            <Link href="/" className="hover:text-yellow-400 transition-colors">
-              Home
+          {/* Breadcrumb & Admin link */}
+          <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-slate-400 mb-6">
+            <div className="flex items-center gap-2">
+              <Link href="/" className="hover:text-yellow-400 transition-colors">
+                Home
+              </Link>
+              <span>/</span>
+              <span className="text-yellow-400 font-medium">Travel Blog & Road Trip Guides</span>
+            </div>
+
+            <Link
+              href="/admin/create-blog"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-yellow-400 hover:text-yellow-300 text-xs font-bold border border-yellow-400/30 transition-all shadow-sm"
+            >
+              <PlusCircle className="w-3.5 h-3.5" />
+              <span>+ Add New Blog</span>
             </Link>
-            <span>/</span>
-            <span className="text-yellow-400 font-medium">Travel Blog & Road Trip Guides</span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
