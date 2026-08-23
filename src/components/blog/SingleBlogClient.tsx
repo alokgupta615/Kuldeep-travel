@@ -299,7 +299,7 @@ export default function SingleBlogClient({
                 </span>
                 <a
                   href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
-                    `${post.title} - Read more: https://kuldeep-travel.onrender.com/blog/${post.slug}`
+                    `${post.title} - Read more: https://kuldeeptravels.in/blog/${post.slug}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -311,7 +311,7 @@ export default function SingleBlogClient({
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                     post.title
                   )}&url=${encodeURIComponent(
-                    `https://kuldeep-travel.onrender.com/blog/${post.slug}`
+                    `https://kuldeeptravels.in/blog/${post.slug}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

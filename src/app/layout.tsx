@@ -20,7 +20,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kuldeeptravels.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kuldeeptravels.in"),
   title: {
     default: "Kuldeep Travels | Best Taxi & Tour Service in Lucknow",
     template: "%s | Kuldeep Travels",
