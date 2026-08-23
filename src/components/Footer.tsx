@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Phone, Mail, MapPin, CarFront } from "lucide-react";
 
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const quickLinks = [
   { title: "Home", href: "/" },
@@ -163,30 +164,33 @@ export default function Footer() {
 
             <div className="flex items-center gap-4">
               <a
-                href="https://facebook.com/"
+                href="https://www.facebook.com/kuldeep.travels.631870/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Kuldeep Travels Facebook"
                 className="rounded-full bg-white/5 p-3 transition hover:bg-yellow-400 hover:text-black"
               >
                 <FaFacebookF size={20} />
               </a>
 
               <a
-                href="https://instagram.com/"
+                href="https://www.instagram.com/kuldeeptravelslko/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Kuldeep Travels Instagram"
                 className="rounded-full bg-white/5 p-3 transition hover:bg-yellow-400 hover:text-black"
               >
                 <FaInstagram size={20} />
               </a>
 
               <a
-                href="https://linkedin.com/"
+                href="https://x.com/TravelsKuldeep"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Kuldeep Travels Twitter X"
                 className="rounded-full bg-white/5 p-3 transition hover:bg-yellow-400 hover:text-black"
               >
-                <FaLinkedinIn size={20} />
+                <FaXTwitter size={20} />
               </a>
             </div>
           </div>
