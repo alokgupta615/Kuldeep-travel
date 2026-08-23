@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-3">5. Contact Us</h2>
             <p>
-              If you have any questions or concerns about this Privacy Policy, please contact us at <strong>kuldeeptravelslko@gmail.com</strong> or call us at <strong>09936408109</strong>.
+              If you have any questions or concerns about this Privacy Policy, please contact us at <strong>kuldeeptravelslko@gmail.com</strong> or call us at <strong>+91 99364 08109</strong>.
             </p>
           </section>
         </div>

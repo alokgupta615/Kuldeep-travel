@@ -397,16 +397,16 @@ export default function BlogPage() {
                 Instant Online Booking
               </Link>
               <a
-                href="https://wa.me/918801842859?text=Hi%20Kuldeep%20Travels,%20I%20want%20to%20inquire%20about%20an%20outstation%20taxi%20booking"
+                href="https://wa.me/919936408109?text=Hi%20Kuldeep%20Travels,%20I%20want%20to%20inquire%20about%20an%20outstation%20taxi%20booking"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-xl transition-all"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>WhatsApp Quote (8801842859)</span>
+                <span>WhatsApp Quote (+91 99364 08109)</span>
               </a>
               <a
-                href="tel:8801842859"
+                href="tel:+919936408109"
                 className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/30 hover:bg-white/40 text-slate-950 font-bold text-sm backdrop-blur-sm transition-all"
               >
                 <Phone className="w-4 h-4" />

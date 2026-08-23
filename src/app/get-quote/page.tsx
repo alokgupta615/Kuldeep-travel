@@ -20,7 +20,7 @@ export default function GetQuotePage() {
 • Travel Date: ${formData.date || "Flexible"}
 • Journey Details: ${formData.details}`;
 
-    const whatsappUrl = `https://wa.me/918801842859?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/919936408109?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, "_blank");
   };
 
@@ -137,11 +137,11 @@ export default function GetQuotePage() {
                 Zero Hidden Costs
               </span>
               <a
-                href="tel:+918801842859"
+                href="tel:+919936408109"
                 className="flex items-center gap-1.5 font-bold text-slate-900 hover:text-blue-700 transition"
               >
                 <PhoneCall size={14} className="text-blue-600" />
-                <span>Call Admin: +91 88018 42859</span>
+                <span>Call Admin: +91 99364 08109</span>
               </a>
             </div>
           </form>

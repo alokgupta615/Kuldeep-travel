@@ -41,7 +41,7 @@ export default function ServiceHero() {
               </Link>
 
               <a
-                href="tel:+919876543210"
+                href="tel:+919936408109"
                 className="inline-flex items-center gap-2 rounded-lg border border-white px-7 py-4 hover:bg-white hover:text-blue-900 transition"
               >
                 <PhoneCall size={20} />
@@ -112,7 +112,7 @@ export default function ServiceHero() {
               </p>
 
               <a
-                href="tel:+919876543210"
+                href="tel:+919936408109"
                 className="inline-flex mt-5 items-center gap-2 text-blue-700 font-semibold"
               >
                 <PhoneCall size={18} />

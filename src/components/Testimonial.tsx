@@ -95,7 +95,7 @@ export default function Testimonial() {
     const waText = encodeURIComponent(
       `⭐ *New Customer Review for Kuldeep Travels*\n\n*Name:* ${name}\n*Rating:* ${rating}/5 Stars\n*Trip/Route:* ${trip || "N/A"}\n*Review:* "${reviewText}"`
     );
-    window.open(`https://wa.me/918801842859?text=${waText}`, "_blank");
+    window.open(`https://wa.me/919936408109?text=${waText}`, "_blank");
 
     setTimeout(() => {
       setIsModalOpen(false);

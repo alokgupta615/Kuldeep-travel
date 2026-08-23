@@ -20,7 +20,7 @@ export default function GetQuoteForm() {
 • Travel Date: ${formData.date || "Flexible"}
 • Journey Details: ${formData.details}`;
 
-    const whatsappUrl = `https://wa.me/918801842859?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/919936408109?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, "_blank");
   };
 
@@ -133,11 +133,11 @@ export default function GetQuoteForm() {
 
             <div className="text-center pt-2">
               <a
-                href="tel:+918801842859"
+                href="tel:+919936408109"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-blue-700 transition"
               >
                 <PhoneCall size={14} className="text-blue-600" />
-                <span>Or call Admin directly: +91 88018 42859</span>
+                <span>Or call Admin directly: +91 99364 08109</span>
               </a>
             </div>
           </form>

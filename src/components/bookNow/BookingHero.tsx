@@ -82,7 +82,7 @@ export default function BookingHero() {
               </a>
 
               <a
-                href="https://wa.me/918801842859?text=Hello%20Kuldeep%20Travels,%20I%20want%20to%20book%20a%20taxi."
+                href="https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20I%20want%20to%20book%20a%20taxi."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-4 text-sm sm:text-base font-bold text-white shadow-md hover:bg-emerald-700 active:scale-95 transition"
@@ -92,11 +92,11 @@ export default function BookingHero() {
               </a>
 
               <a
-                href="tel:+918801842859"
+                href="tel:+919936408109"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-4 text-sm sm:text-base font-bold text-white backdrop-blur hover:bg-white hover:text-slate-950 active:scale-95 transition"
               >
                 <PhoneCall size={17} className="text-yellow-400" />
-                <span>+91 88018 42859</span>
+                <span>+91 99364 08109</span>
               </a>
             </div>
 

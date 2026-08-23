@@ -228,7 +228,7 @@ export default function BookingForm() {
 • Payment Choice: ${formData.payment}
 • Estimated Fare: ₹${fareResult.total}
 Please confirm vehicle availability.`;
-    return `https://wa.me/918801842859?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/919936408109?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -634,15 +634,15 @@ Please confirm vehicle availability.`;
 
                 <div className="mt-6 flex flex-col gap-3">
                   <a
-                    href="tel:+918801842859"
+                    href="tel:+919936408109"
                     className="flex h-13 items-center justify-center gap-2 rounded-xl bg-yellow-400 text-sm sm:text-base font-extrabold text-slate-950 transition hover:bg-yellow-300 active:scale-95"
                   >
                     <PhoneCall size={18} />
-                    <span>Call +91 88018 42859</span>
+                    <span>Call +91 99364 08109</span>
                   </a>
 
                   <a
-                    href="https://wa.me/918801842859?text=Hello%20Kuldeep%20Travels,%20I%20need%20help%20with%20booking."
+                    href="https://wa.me/919936408109?text=Hello%20Kuldeep%20Travels,%20I%20need%20help%20with%20booking."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex h-13 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 text-sm sm:text-base font-bold text-white backdrop-blur hover:bg-white hover:text-slate-950 active:scale-95 transition"
@@ -677,7 +677,7 @@ Please confirm vehicle availability.`;
 
           <div className="flex items-center gap-2">
             <a
-              href="tel:+918801842859"
+              href="tel:+919936408109"
               className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-800 border border-slate-300"
               title="Call Helpline"
             >

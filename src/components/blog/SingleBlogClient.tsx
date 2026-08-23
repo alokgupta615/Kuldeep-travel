@@ -265,7 +265,7 @@ export default function SingleBlogClient({
                   Book Outstation Cab Now
                 </Link>
                 <a
-                  href={`https://wa.me/918801842859?text=Hi%20Kuldeep%20Travels,%20I%20am%20reading%20your%20blog%20"${encodeURIComponent(
+                  href={`https://wa.me/919936408109?text=Hi%20Kuldeep%20Travels,%20I%20am%20reading%20your%20blog%20"${encodeURIComponent(
                     post.title
                   )}"%20and%20want%20to%20inquire%20about%20a%20taxi`}
                   target="_blank"
@@ -368,15 +368,15 @@ export default function SingleBlogClient({
                   </Link>
 
                   <a
-                    href="tel:8801842859"
+                    href="tel:+919936408109"
                     className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm transition-all"
                   >
                     <Phone className="w-4 h-4 text-yellow-400" />
-                    <span>Call: +91 8801842859</span>
+                    <span>Call: +91 99364 08109</span>
                   </a>
 
                   <a
-                    href={`https://wa.me/918801842859?text=Hi%20Kuldeep%20Travels,%20I%20am%20interested%20in%20booking%20a%20taxi%20for%20${encodeURIComponent(
+                    href={`https://wa.me/919936408109?text=Hi%20Kuldeep%20Travels,%20I%20am%20interested%20in%20booking%20a%20taxi%20for%20${encodeURIComponent(
                       post.title
                     )}`}
                     target="_blank"

@@ -109,7 +109,7 @@ export default function CreateBlogPage() {
   ]);
 
   const [conclusion, setConclusion] = useState(
-    "Book your clean, sanitized AC cab with verified professional chauffeurs from Kuldeep Travels. Call +91 8801842859 for instant booking."
+    "Book your clean, sanitized AC cab with verified professional chauffeurs from Kuldeep Travels. Call +91 99364 08109 for instant booking."
   );
 
   // Copy status
@@ -127,7 +127,7 @@ export default function CreateBlogPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Default passcodes
-    if (passcode === "Kuldeep@3651" || passcode === "admin123" || passcode === "8801842859") {
+    if (passcode === "Kuldeep@3651" || passcode === "admin123" || passcode === "9936408109" || passcode === "8801842859") {
       setIsAuthenticated(true);
       sessionStorage.setItem("kt_admin_auth", "true");
       setAuthError(false);

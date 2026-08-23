@@ -1,6 +1,6 @@
 const TOKEN = process.env.WHATSAPP_TOKEN!;
 const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID!;
-const OWNER_PHONE = process.env.OWNER_PHONE || "918801842859";
+const OWNER_PHONE = process.env.OWNER_PHONE || "919936408109";
 
 async function sendMessage(phone: string, message: string) {
   const response = await fetch(

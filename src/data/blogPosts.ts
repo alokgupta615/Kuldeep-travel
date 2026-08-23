@@ -141,7 +141,7 @@ export const blogPosts: BlogPost[] = [
         },
       ],
       conclusion:
-        "Ready to plan your next road trip? Contact Kuldeep Travels at +91 8801842859 or use our instant online cab booking system for clean, sanitized AC sedans, SUVs, and luxury tempo travellers.",
+        "Ready to plan your next road trip? Contact Kuldeep Travels at +91 99364 08109 or use our instant online cab booking system for clean, sanitized AC sedans, SUVs, and luxury tempo travellers.",
     },
   },
   {
@@ -272,7 +272,7 @@ export const blogPosts: BlogPost[] = [
         },
       ],
       conclusion:
-        "Experience the divine aura of Shri Ram Lalla with Kuldeep Travels Lucknow to Ayodhya round-trip taxi service. Call 8801842859 for instant booking.",
+        "Experience the divine aura of Shri Ram Lalla with Kuldeep Travels Lucknow to Ayodhya round-trip taxi service. Call +91 99364 08109 for instant booking.",
     },
   },
   {
@@ -379,7 +379,7 @@ export const blogPosts: BlogPost[] = [
         },
       ],
       conclusion:
-        "Embark on a majestic Himalayan adventure with verified cross-border commercial tourist cabs from Kuldeep Travels. Call +91 8801842859 to customize your Nepal itinerary.",
+        "Embark on a majestic Himalayan adventure with verified cross-border commercial tourist cabs from Kuldeep Travels. Call +91 99364 08109 to customize your Nepal itinerary.",
     },
   },
   {
@@ -431,7 +431,7 @@ export const blogPosts: BlogPost[] = [
         },
       ],
       conclusion:
-        "Pack your bags and let Kuldeep Travels handle the driving. Book your weekend taxi today at +91 8801842859.",
+        "Pack your bags and let Kuldeep Travels handle the driving. Book your weekend taxi today at +91 99364 08109.",
     },
   },
 ];

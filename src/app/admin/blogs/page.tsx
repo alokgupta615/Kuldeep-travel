@@ -60,7 +60,7 @@ export default function AdminBlogsListPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passcode === "Kuldeep@3651" || passcode === "admin123" || passcode === "8801842859") {
+    if (passcode === "Kuldeep@3651" || passcode === "admin123" || passcode === "9936408109" || passcode === "8801842859") {
       setIsAuthenticated(true);
       sessionStorage.setItem("kt_admin_auth", "true");
       setAuthError(false);
