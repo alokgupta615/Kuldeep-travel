@@ -66,7 +66,7 @@ const fleet: FleetVehicle[] = [
   },
   {
     name: "Toyota Etios",
-    image: "/images/fleet/sedan.png",
+    image: "/images/fleet/etios.jpg",
     passengers: "4 Passengers",
     luggage: "3 Bags",
     ac: "Chilled AC",
@@ -94,7 +94,7 @@ const fleet: FleetVehicle[] = [
   },
   {
     name: "Honda Amaze",
-    image: "/images/fleet/sedan.png",
+    image: "/images/fleet/amaze.jpg",
     passengers: "4 Passengers",
     luggage: "2-3 Bags",
     ac: "Chilled AC",
