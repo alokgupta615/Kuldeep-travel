@@ -23,15 +23,23 @@ export interface FareCalculationResult {
 
 export const vehicleRates: Record<string, number> = {
   "Swift Dzire": 12,
+  "Toyota Etios": 12,
+  "Honda Amaze": 12,
   Sedan: 12,
   Ertiga: 15,
+  "Maruti Ertiga": 15,
+  "Kia Carens": 16,
+  Carens: 16,
   SUV: 15,
   Innova: 18,
+  "Toyota Innova": 18,
   "Innova Crysta": 20,
+  "Toyota Innova Crysta": 20,
   "Tempo Traveller": 26,
   "Force Urbania": 30,
   Urbania: 30,
   "Mini Bus": 35,
+  "Luxury Bus": 35,
 };
 
 export const categoryRates: Record<string, number> = {

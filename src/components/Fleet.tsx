@@ -148,7 +148,7 @@ const fleet: FleetVehicle[] = [
   },
   {
     name: "Kia Carens",
-    image: "/images/fleet/suv.png",
+    image: "/images/fleet/carens.jpg",
     passengers: "6 Passengers",
     luggage: "4 Bags",
     ac: "Multi-Zone AC",
