@@ -234,7 +234,7 @@ Please confirm vehicle availability.`;
     <>
       <section
         id="booking-form"
-        className="relative overflow-hidden bg-slate-100/80 py-12 sm:py-16 lg:py-20"
+        className="relative overflow-hidden bg-slate-100/80 py-12 sm:py-16 lg:py-20 pb-28 sm:pb-32 lg:pb-20"
       >
         {/* Decorative Gradients */}
         <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-yellow-300/15 blur-3xl pointer-events-none" />
@@ -409,13 +409,13 @@ Please confirm vehicle availability.`;
                         2
                       </span>
                       <h3 className="text-lg sm:text-xl font-extrabold text-slate-900">
-                        Vehicle & Comfort Tier
+                        Select Your Vehicle &amp; Comfort Tier
                       </h3>
                     </div>
 
                     <div className="space-y-6">
-                      <RideCategory formData={formData} setFormData={setFormData} />
                       <VehicleSelector formData={formData} setFormData={setFormData} />
+                      <RideCategory formData={formData} setFormData={setFormData} />
                       <RideExtras formData={formData} setFormData={setFormData} />
                     </div>
                   </div>

@@ -7,7 +7,6 @@ import {
   Crown,
   CheckCircle2,
   Sparkles,
-  ArrowRight,
 } from "lucide-react";
 
 import type { BookingData, VehicleCategory } from "@/types/booking";
@@ -27,7 +26,7 @@ const categories = [
     gradient: "from-green-50 to-white",
     iconBg: "bg-green-100",
     iconColor: "text-green-700",
-    features: ["AC Vehicle", "4 Passengers", "2 Bags"],
+    features: ["AC Vehicle", "4 Pax", "2 Bags"],
   },
   {
     id: "standard" as VehicleCategory,
@@ -50,25 +49,26 @@ const categories = [
     gradient: "from-blue-50 to-white",
     iconBg: "bg-blue-100",
     iconColor: "text-blue-700",
-    features: ["Innova Crysta / Luxury", "Chauffeur", "Priority Support"],
+    features: ["Innova Crysta / Luxury", "Chauffeur", "VIP Support"],
   },
 ];
 
 export default function RideCategory({ formData, setFormData }: Props) {
   return (
-    <div className="w-full">
+    <div className="w-full pt-4 border-t border-slate-200">
       {/* Header */}
-      <div className="mb-4">
-        <h4 className="text-base sm:text-lg font-bold text-slate-900">
-          Select Travel Comfort Tier
+      <div className="mb-3">
+        <h4 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+          <Sparkles size={16} className="text-yellow-600" />
+          <span>Travel Comfort Class (Optional Tier Tuning)</span>
         </h4>
-        <p className="text-sm text-slate-700 mt-0.5">
-          Choose standard, economy, or business class for your ride:
+        <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+          Select standard, economy, or business class to adjust service priority:
         </p>
       </div>
 
-      {/* Cards */}
-      <div className="grid gap-4 sm:grid-cols-3">
+      {/* Compact Responsive Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {categories.map((category) => {
           const Icon = category.icon;
           const selected = formData.category === category.id;
@@ -83,64 +83,68 @@ export default function RideCategory({ formData, setFormData }: Props) {
                   category: category.id,
                 }))
               }
-              className={`relative overflow-hidden rounded-2xl border bg-gradient-to-br ${category.gradient} p-4 sm:p-5 text-left transition-all duration-200 ${
+              className={`relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-br ${
+                category.gradient
+              } p-3.5 sm:p-4 text-left transition-all duration-200 cursor-pointer ${
                 selected
-                  ? "border-blue-600 shadow-lg ring-2 ring-blue-600 scale-[1.01]"
-                  : "border-slate-200 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
+                  ? "border-blue-600 shadow-md ring-2 ring-blue-600 bg-blue-50/30 scale-[1.01]"
+                  : "border-slate-200 hover:border-blue-300 hover:shadow-sm"
               }`}
             >
               {category.popular && (
-                <div className="absolute right-3 top-3 rounded-full bg-yellow-400 px-2.5 py-0.5 text-xs font-black text-slate-950 shadow-xs">
+                <div className="absolute right-2.5 top-2.5 rounded-full bg-yellow-400 px-2 py-0.5 text-[10px] font-black text-slate-950 shadow-2xs">
                   POPULAR
                 </div>
               )}
 
-              {/* Icon & Title */}
-              <div className="flex items-center gap-3.5">
-                <div
-                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${category.iconBg}`}
-                >
-                  <Icon className={`h-6 w-6 ${category.iconColor}`} />
-                </div>
-
-                <div>
-                  <h5 className="text-base sm:text-lg font-bold text-slate-900">
-                    {category.title}
-                  </h5>
-                  <span className="text-sm font-extrabold text-blue-800">
-                    {category.price}
-                  </span>
-                </div>
-              </div>
-
-              <p className="mt-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-                {category.description}
-              </p>
-
-              {/* Features */}
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {category.features.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-md bg-white border border-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-800"
+              <div>
+                {/* Icon & Title */}
+                <div className="flex items-center gap-2.5">
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${category.iconBg}`}
                   >
-                    ✓ {item}
-                  </span>
-                ))}
+                    <Icon className={`h-5 w-5 ${category.iconColor}`} />
+                  </div>
+
+                  <div>
+                    <h5 className="text-sm sm:text-base font-bold text-slate-900">
+                      {category.title}
+                    </h5>
+                    <span className="text-xs sm:text-sm font-extrabold text-blue-800">
+                      {category.price}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="mt-2 text-xs text-slate-600 leading-snug font-medium line-clamp-2">
+                  {category.description}
+                </p>
+
+                {/* Features Badges */}
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {category.features.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded bg-white/80 border border-slate-200 px-1.5 py-0.5 text-[10px] font-semibold text-slate-700"
+                    >
+                      ✓ {item}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              {/* Select Status */}
+              {/* Status Bar */}
               <div
-                className={`mt-4 flex items-center justify-center gap-2 rounded-xl py-2 text-xs sm:text-sm font-bold transition ${
+                className={`mt-3 flex items-center justify-center gap-1.5 rounded-lg py-1.5 text-xs font-bold transition ${
                   selected
                     ? "bg-blue-700 text-white"
-                    : "bg-slate-100 text-slate-800 group-hover:bg-blue-50"
+                    : "bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-700"
                 }`}
               >
                 {selected ? (
                   <>
-                    <CheckCircle2 size={16} />
-                    <span>Selected Tier</span>
+                    <CheckCircle2 size={14} />
+                    <span>Selected</span>
                   </>
                 ) : (
                   <span>Select {category.title}</span>
