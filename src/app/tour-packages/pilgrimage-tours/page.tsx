@@ -1,14 +1,3 @@
-// import {
-//   Hero,
-//   FaithJourney,
-//   Destinations,
-//   PackageTypes,
-//   WhyChooseUs,
-//   PackageIncludes,
-//   VehicleSection,
-//   BookingSteps,
-//   FAQ,
-
 import {
   BookingSteps,
   CTA,
@@ -26,23 +15,14 @@ export default function PilgrimageToursPage() {
   return (
     <main className="overflow-hidden">
       <Hero />
-
       <FaithJourney />
-
       <Destinations />
-
       <PackageTypes />
-
       <WhyChooseUs />
-
       <PackageIncludes />
-
-      {/* <VehicleSection /> */}
-
+      <VehicleSection />
       <BookingSteps />
-
       <FAQ />
-
       <CTA />
     </main>
   );
