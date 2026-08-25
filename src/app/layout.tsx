@@ -49,6 +49,9 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://checkout.razorpay.com" />
+        <link rel="preconnect" href="https://api.razorpay.com" />
+        <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
         <link rel="dns-prefetch" href="https://wa.me" />
       </head>
       <body className="bg-white text-gray-900 font-sans antialiased">

@@ -19,6 +19,16 @@ export async function POST(req: NextRequest) {
 
     const { keyId, keySecret } = getRazorpayCredentials();
 
+    if (!keyId || !keySecret) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Razorpay credentials are not configured on the live server.",
+        },
+        { status: 500 }
+      );
+    }
+
     const razorpay = new Razorpay({
       key_id: keyId,
       key_secret: keySecret,

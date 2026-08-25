@@ -48,17 +48,11 @@ export default function RazorpayButton({
         return;
       }
 
-      const order = orderData.order;
       const razorpayKey =
+        orderData.key_id ||
         process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
         process.env.NEXT_PUBLIC_RAZORPAY_KEY ||
-        orderData.key_id;
-
-      if (!razorpayKey) {
-        alert("Razorpay Key ID is not configured in .env.local.");
-        setLoading(false);
-        return;
-      }
+        "rzp_live_TSMNf4d9mKa1bG";
 
       const options = {
         key: razorpayKey,

@@ -24,6 +24,16 @@ export async function POST(req: NextRequest) {
 
     const { keySecret } = getRazorpayCredentials();
 
+    if (!keySecret) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Razorpay Key Secret is missing on the live server.",
+        },
+        { status: 500 }
+      );
+    }
+
     const expectedSignature = crypto
       .createHmac("sha256", keySecret)
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)

@@ -18,6 +18,9 @@ export function loadRazorpay(): Promise<boolean> {
       }
       existingScript.addEventListener("load", () => resolve(true));
       existingScript.addEventListener("error", () => resolve(false));
+      setTimeout(() => {
+        resolve(Boolean((window as any).Razorpay));
+      }, 2500);
       return;
     }
 
@@ -30,6 +33,10 @@ export function loadRazorpay(): Promise<boolean> {
     script.onerror = () => resolve(false);
 
     document.body.appendChild(script);
+
+    setTimeout(() => {
+      resolve(Boolean((window as any).Razorpay));
+    }, 6000);
   });
 }
 
@@ -75,7 +82,7 @@ export async function openRazorpay({
     body: JSON.stringify({ amount }),
   });
 
-  const data = await response.json();
+  const data = await response.json().catch(() => ({}));
 
   if (!response.ok || !data.success || !data.order) {
     throw new Error(
@@ -87,13 +94,8 @@ export async function openRazorpay({
   const razorpayKey =
     data.key_id ||
     process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
-    process.env.NEXT_PUBLIC_RAZORPAY_KEY;
-
-  if (!razorpayKey) {
-    throw new Error(
-      "Razorpay Key ID is not configured. Please set NEXT_PUBLIC_RAZORPAY_KEY_ID in your environment variables."
-    );
-  }
+    process.env.NEXT_PUBLIC_RAZORPAY_KEY ||
+    "rzp_live_TSMNf4d9mKa1bG";
 
   const options = {
     key: razorpayKey,

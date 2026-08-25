@@ -5,7 +5,8 @@ import { getRazorpayCredentials } from "@/lib/razorpayConfig";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}));
-    const amount = Number(body.amount) || 1000;
+    const rawAmount = Number(body.amount);
+    const amount = !isNaN(rawAmount) && rawAmount > 0 ? rawAmount : 1000;
 
     if (amount <= 0) {
       return NextResponse.json(
@@ -18,6 +19,20 @@ export async function POST(req: NextRequest) {
     }
 
     const { keyId, keySecret } = getRazorpayCredentials();
+
+    if (!keyId || !keySecret) {
+      console.error(
+        "[Razorpay Error] RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET is not configured in live hosting environment variables."
+      );
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "Razorpay API credentials are not configured on the live server. Please set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your hosting dashboard (e.g. Vercel/Render Environment Settings).",
+        },
+        { status: 500 }
+      );
+    }
 
     const razorpay = new Razorpay({
       key_id: keyId,
@@ -47,8 +62,9 @@ export async function POST(req: NextRequest) {
 
     const errorMessage =
       error?.error?.description ||
+      error?.error?.reason ||
       error?.message ||
-      "Unable to create Razorpay payment order.";
+      "Unable to create Razorpay payment order. Please verify your Razorpay Live account status.";
 
     return NextResponse.json(
       {

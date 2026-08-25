@@ -208,7 +208,6 @@ export default function BookingForm() {
       console.error("Booking Submission Error:", error);
       const msg = error.message || "Booking submission failed. Please try again or reach us via WhatsApp.";
       setErrorMessage(msg);
-      alert(msg);
     } finally {
       setLoading(false);
     }
