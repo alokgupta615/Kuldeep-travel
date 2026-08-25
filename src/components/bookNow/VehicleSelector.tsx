@@ -54,7 +54,7 @@ const vehicles: VehicleDetail[] = [
     image: "/images/fleet/dzire.png",
     seats: "4 Seats",
     luggage: "2-3 Bags",
-    ac: "Chilled AC",
+    ac: "AC",
     price: "₹12/km",
     tag: "Economical",
     tagColor: "bg-emerald-700",
@@ -92,7 +92,7 @@ const vehicles: VehicleDetail[] = [
     image: "/images/fleet/ertiga.png",
     seats: "6 Seats",
     luggage: "3-4 Bags",
-    ac: "Dual AC",
+    ac: "AC",
     price: "₹15/km",
     tag: "Most Popular",
     tagColor: "bg-blue-700",
@@ -130,7 +130,7 @@ const vehicles: VehicleDetail[] = [
     image: "/images/fleet/innova.png",
     seats: "7 Seats",
     luggage: "4-5 Bags",
-    ac: "Triple AC",
+    ac: "AC",
     price: "₹18/km",
     tag: "Comfortable",
     tagColor: "bg-indigo-700",
@@ -168,7 +168,7 @@ const vehicles: VehicleDetail[] = [
     image: "/images/fleet/innova-crysta.png",
     seats: "6-7 Seats",
     luggage: "5 Bags",
-    ac: "Climate AC",
+    ac: "AC",
     price: "₹20/km",
     tag: "Executive Class",
     tagColor: "bg-slate-900",
@@ -206,7 +206,7 @@ const vehicles: VehicleDetail[] = [
     image: "/images/fleet/tempo.png",
     seats: "12-26 Seats",
     luggage: "15+ Bags",
-    ac: "Chilled AC",
+    ac: "AC",
     price: "₹26/km",
     tag: "Big Families",
     tagColor: "bg-amber-700",
@@ -244,7 +244,7 @@ const vehicles: VehicleDetail[] = [
     image: "/images/fleet/urbania.png",
     seats: "13-17 Seats",
     luggage: "12+ Bags",
-    ac: "Multi-Zone AC",
+    ac: "AC",
     price: "₹30/km",
     tag: "Ultra Luxury",
     tagColor: "bg-purple-900",
@@ -282,7 +282,7 @@ const vehicles: VehicleDetail[] = [
     image: "/images/fleet/bus.png",
     seats: "25-35 Seats",
     luggage: "20+ Bags",
-    ac: "High Capacity AC",
+    ac: "AC",
     price: "Custom Quote",
     tag: "Group Events",
     tagColor: "bg-teal-800",
@@ -410,32 +410,32 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
                   {vehicle.name}
                 </h4>
 
-                {/* Specs Grid - Formatted with clear badges so nothing clips */}
+                {/* Specs Grid - Formatted with clear badges so nothing clips or overflows */}
                 <div className="mt-2.5 grid grid-cols-3 gap-1.5 text-center">
-                  <div className="rounded-lg bg-slate-100/90 p-2 flex flex-col items-center justify-center">
-                    <Users size={15} className="text-blue-700 mb-1" />
-                    <span className="font-bold text-slate-800 text-[11px] sm:text-xs whitespace-nowrap">
+                  <div className="min-w-0 rounded-lg bg-slate-100/90 py-2 px-1 flex flex-col items-center justify-center">
+                    <Users size={15} className="text-blue-700 mb-1 shrink-0" />
+                    <span className="font-bold text-slate-800 text-[11px] sm:text-xs truncate max-w-full block">
                       {vehicle.seats}
                     </span>
                   </div>
 
-                  <div className="rounded-lg bg-slate-100/90 p-2 flex flex-col items-center justify-center">
-                    <Briefcase size={15} className="text-amber-600 mb-1" />
-                    <span className="font-bold text-slate-800 text-[11px] sm:text-xs whitespace-nowrap">
+                  <div className="min-w-0 rounded-lg bg-slate-100/90 py-2 px-1 flex flex-col items-center justify-center">
+                    <Briefcase size={15} className="text-amber-600 mb-1 shrink-0" />
+                    <span className="font-bold text-slate-800 text-[11px] sm:text-xs truncate max-w-full block">
                       {vehicle.luggage}
                     </span>
                   </div>
 
-                  <div className="rounded-lg bg-slate-100/90 p-2 flex flex-col items-center justify-center">
-                    <Snowflake size={15} className="text-cyan-600 mb-1" />
-                    <span className="font-bold text-slate-800 text-[11px] sm:text-xs whitespace-nowrap">
+                  <div className="min-w-0 rounded-lg bg-slate-100/90 py-2 px-1 flex flex-col items-center justify-center">
+                    <Snowflake size={15} className="text-cyan-600 mb-1 shrink-0" />
+                    <span className="font-bold text-slate-800 text-[11px] sm:text-xs truncate max-w-full block">
                       {vehicle.ac}
                     </span>
                   </div>
                 </div>
 
                 {/* Quick Best For Note */}
-                <p className="mt-2.5 text-[11px] text-slate-500 font-medium line-clamp-1">
+                <p className="mt-2.5 text-[11px] text-slate-600 font-medium line-clamp-1">
                   ✨ {vehicle.bestFor}
                 </p>
               </div>
