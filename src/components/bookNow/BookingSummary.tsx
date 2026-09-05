@@ -22,6 +22,8 @@ export default function BookingSummary({
   formData,
 }: BookingSummaryProps) {
   const fareResult = calculateFare({
+    pickup: formData.pickup,
+    drop: formData.drop,
     vehicle: formData.vehicle,
     category: formData.category,
     extras: formData.extras,

@@ -82,6 +82,8 @@ export default function BookingForm() {
   };
 
   const fareResult = calculateFare({
+    pickup: formData.pickup,
+    drop: formData.drop,
     vehicle: formData.vehicle,
     category: formData.category,
     extras: formData.extras,
@@ -114,6 +116,11 @@ export default function BookingForm() {
 
     if (!formData.customerName.trim() || !formData.phone.trim()) {
       alert("Please enter your full name and 10-digit mobile number.");
+      return;
+    }
+
+    if (!formData.pickup.trim() || !formData.drop.trim()) {
+      alert("Please enter both pickup and destination locations.");
       return;
     }
 

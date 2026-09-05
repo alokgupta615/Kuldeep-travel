@@ -26,19 +26,31 @@ export default function FareCalculator({
   serviceType,
 }: Props) {
   const fareResult = calculateFare({
+    pickup,
+    drop,
     vehicle,
     category,
     extras,
     serviceType,
   });
 
+  const hasRoute = Boolean(pickup?.trim() && drop?.trim());
+
   const fareRows = [
     { label: "Base Rate", value: `₹${fareResult.ratePerKm}/km`, color: "bg-blue-500" },
-    { label: "Base Fare (Estimated)", value: `₹${fareResult.baseFare}`, color: "bg-indigo-500" },
-    { label: "Tier Adjustment", value: `₹${fareResult.categoryFare}`, color: "bg-purple-500" },
-    { label: "Service / Inclusions", value: `₹${fareResult.serviceCharge}`, color: "bg-emerald-500" },
-    { label: "Toll & State Permits", value: `₹${fareResult.toll}`, color: "bg-amber-500" },
-    { label: "GST (5%)", value: `₹${fareResult.gst}`, color: "bg-green-600" },
+    {
+      label: "Estimated Distance",
+      value: hasRoute && fareResult.distance > 0 ? `~${fareResult.distance} KM` : "Enter Pickup & Drop",
+      color: "bg-indigo-500",
+    },
+    {
+      label: "Base Fare (Estimated)",
+      value: `₹${fareResult.baseFare.toLocaleString("en-IN")}`,
+      color: "bg-emerald-600",
+    },
+    ...(fareResult.extrasFare > 0
+      ? [{ label: "Selected Add-ons", value: `₹${fareResult.extrasFare.toLocaleString("en-IN")}`, color: "bg-amber-500" }]
+      : []),
   ];
 
   return (
@@ -49,8 +61,14 @@ export default function FareCalculator({
           <span className="text-sm sm:text-base font-extrabold uppercase tracking-wider text-slate-900">
             Route Overview
           </span>
-          <span className="rounded-full bg-blue-100 px-3 py-1 text-xs sm:text-sm font-extrabold text-blue-800">
-            ~{fareResult.distance} KM
+          <span
+            className={`rounded-full px-3 py-1 text-xs sm:text-sm font-extrabold ${
+              hasRoute && fareResult.distance > 0
+                ? "bg-blue-100 text-blue-800"
+                : "bg-amber-100 text-amber-800"
+            }`}
+          >
+            {hasRoute && fareResult.distance > 0 ? `~${fareResult.distance} KM` : "Location Required"}
           </span>
         </div>
 
@@ -59,8 +77,12 @@ export default function FareCalculator({
             <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-emerald-500 shrink-0" />
             <div className="min-w-0">
               <span className="text-xs text-slate-500 block">Pickup Location</span>
-              <p className="font-bold text-slate-900 truncate">
-                {pickup || "Lucknow City / Airport"}
+              <p
+                className={`font-bold truncate ${
+                  pickup ? "text-slate-900" : "text-slate-400 italic"
+                }`}
+              >
+                {pickup || "Enter Pickup Location"}
               </p>
             </div>
           </div>
@@ -71,8 +93,12 @@ export default function FareCalculator({
             <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-rose-500 shrink-0" />
             <div className="min-w-0">
               <span className="text-xs text-slate-500 block">Destination</span>
-              <p className="font-bold text-slate-900 truncate">
-                {drop || "Selected Destination"}
+              <p
+                className={`font-bold truncate ${
+                  drop ? "text-slate-900" : "text-slate-400 italic"
+                }`}
+              >
+                {drop || "Enter Drop Destination"}
               </p>
             </div>
           </div>
@@ -131,15 +157,21 @@ export default function FareCalculator({
             <h3 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-black text-white">
               ₹{fareResult.total.toLocaleString("en-IN")}
             </h3>
-            <p className="text-xs sm:text-sm text-blue-200 mt-1 font-medium">
-              Includes Driver, AC, Tolls, State Taxes & GST.
-            </p>
+            {hasRoute && fareResult.total > 0 ? (
+              <p className="text-xs sm:text-sm text-blue-200 mt-1 font-medium">
+                Includes Dedicated AC Vehicle &amp; Chauffeur.
+              </p>
+            ) : (
+              <p className="text-xs sm:text-sm text-yellow-300 mt-1 font-medium">
+                Please enter pickup and destination to calculate fare.
+              </p>
+            )}
           </div>
 
           <div className="rounded-2xl border border-white/20 bg-white/10 p-3.5 sm:p-4 text-center shrink-0 self-start sm:self-auto">
-            <span className="text-xs uppercase font-bold text-blue-200 block">Avg Rate</span>
+            <span className="text-xs uppercase font-bold text-blue-200 block">Rate</span>
             <span className="text-lg sm:text-xl font-black text-yellow-300">
-              ₹{Math.round(fareResult.total / fareResult.distance)}/km
+              ₹{fareResult.ratePerKm}/km
             </span>
           </div>
         </div>

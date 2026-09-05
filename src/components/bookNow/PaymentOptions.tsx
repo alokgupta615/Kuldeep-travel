@@ -11,6 +11,8 @@ interface Props {
 
 export default function PaymentOptions({ formData, setFormData }: Props) {
   const fareResult = calculateFare({
+    pickup: formData.pickup,
+    drop: formData.drop,
     vehicle: formData.vehicle,
     category: formData.category,
     extras: formData.extras,
