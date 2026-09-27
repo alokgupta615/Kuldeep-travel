@@ -138,22 +138,60 @@ export default function AdminDashboardPage() {
     }
   }, []);
 
+  // Fetch Server Bookings & Sync with Client
+  const fetchServerBookings = async () => {
+    try {
+      const res = await fetch("/api/bookings");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.bookings && Array.isArray(data.bookings) && data.bookings.length > 0) {
+          const localBookings = getStoredBookings();
+          const mergedMap = new Map();
+          for (const b of data.bookings) {
+            const key = b.bookingId || b.id;
+            mergedMap.set(key, {
+              ...b,
+              id: key,
+              createdAt: typeof b.createdAt === "string" ? b.createdAt : new Date(b.createdAt || Date.now()).toISOString(),
+            });
+          }
+          for (const b of localBookings) {
+            const key = b.bookingId || b.id;
+            if (!mergedMap.has(key)) {
+              mergedMap.set(key, b);
+            }
+          }
+          const mergedList = Array.from(mergedMap.values());
+          setBookings(mergedList);
+          saveStoredBookings(mergedList);
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn("Could not fetch server bookings, using local store:", e);
+    }
+    setBookings(getStoredBookings());
+  };
+
   // Load all data when authenticated
   const loadAllData = () => {
     setVehicles(getStoredVehicles());
     setDestinations(getStoredDestinations());
     setPackages(getStoredPackages());
     setPricing(getStoredPricing());
-    setBookings(getStoredBookings());
     setCompanySettings(getStoredCompanySettings());
     setBlogList(getAllBlogPosts());
+    fetchServerBookings();
   };
 
   useEffect(() => {
     if (isAuthenticated) {
       loadAllData();
+      const interval = setInterval(fetchServerBookings, 10000);
+      return () => clearInterval(interval);
     }
   }, [isAuthenticated]);
+
 
   // Auth Handler
   const handleLogin = (e: React.FormEvent) => {
@@ -510,10 +548,17 @@ export default function AdminDashboardPage() {
     showToast(`Manual booking #${newB.bookingId} created!`, "success");
   };
 
-  const handleUpdateBookingStatus = (id: string, newStatus: AdminBooking["bookingStatus"]) => {
+  const handleUpdateBookingStatus = async (id: string, newStatus: AdminBooking["bookingStatus"]) => {
     updateStoredBooking(id, { bookingStatus: newStatus });
     setBookings(getStoredBookings());
     showToast(`Booking #${id} status changed to ${newStatus}`, "success");
+    try {
+      await fetch("/api/bookings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ bookingId: id, bookingStatus: newStatus }),
+      });
+    } catch (e) {}
   };
 
   const openDriverAssignModal = (b: AdminBooking) => {
@@ -526,7 +571,7 @@ export default function AdminDashboardPage() {
     setDriverModalOpen(true);
   };
 
-  const handleSaveDriverAssignment = (e: React.FormEvent) => {
+  const handleSaveDriverAssignment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedBooking) return;
 
@@ -540,6 +585,20 @@ export default function AdminDashboardPage() {
     setBookings(getStoredBookings());
     setDriverModalOpen(false);
     showToast(`Chauffeur & cab assigned for #${selectedBooking.bookingId}`, "success");
+
+    try {
+      await fetch("/api/bookings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookingId: selectedBooking.bookingId || selectedBooking.id,
+          driverName: driverForm.driverName,
+          driverPhone: driverForm.driverPhone,
+          vehicleNumber: driverForm.vehicleNumber,
+          bookingStatus: "ASSIGNED",
+        }),
+      });
+    } catch (e) {}
   };
 
   const openPaymentModal = (b: AdminBooking) => {
@@ -551,7 +610,7 @@ export default function AdminDashboardPage() {
     setPaymentModalOpen(true);
   };
 
-  const handleSavePaymentUpdate = (e: React.FormEvent) => {
+  const handleSavePaymentUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedBooking) return;
 
@@ -566,15 +625,35 @@ export default function AdminDashboardPage() {
     setBookings(getStoredBookings());
     setPaymentModalOpen(false);
     showToast(`Payment updated for #${selectedBooking.bookingId}`, "success");
+
+    try {
+      await fetch("/api/bookings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookingId: selectedBooking.bookingId || selectedBooking.id,
+          paymentStatus: paymentForm.paymentStatus,
+          paidAmount: Number(paymentForm.paidAmount) || 0,
+          remainingAmount: remaining,
+        }),
+      });
+    } catch (e) {}
   };
 
-  const handleDeleteBookingItem = (id: string) => {
+  const handleDeleteBookingItem = async (id: string) => {
     if (confirm(`Are you sure you want to delete booking record #${id}?`)) {
       deleteStoredBooking(id);
       setBookings(getStoredBookings());
       showToast(`Booking #${id} deleted.`, "info");
+
+      try {
+        await fetch(`/api/bookings?bookingId=${encodeURIComponent(id)}`, {
+          method: "DELETE",
+        });
+      } catch (e) {}
     }
   };
+
 
   // Pricing Form State & Save
   const [pricingDraft, setPricingDraft] = useState<AdminPricingSettings | null>(null);
