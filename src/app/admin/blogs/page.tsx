@@ -60,7 +60,16 @@ export default function AdminBlogsListPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passcode === "Kuldeep@3651" || passcode === "admin123" || passcode === "9936408109" || passcode === "8801842859") {
+    let strongPass = "Kuldeep@Travels#3651";
+    try {
+      const storedSettings = localStorage.getItem("kt_admin_settings_v1");
+      if (storedSettings) {
+        const parsed = JSON.parse(storedSettings);
+        if (parsed.adminPasscode) strongPass = parsed.adminPasscode;
+      }
+    } catch (err) {}
+
+    if (passcode.trim() === strongPass.trim()) {
       setIsAuthenticated(true);
       sessionStorage.setItem("kt_admin_auth", "true");
       setAuthError(false);
@@ -68,6 +77,7 @@ export default function AdminBlogsListPage() {
       setAuthError(true);
     }
   };
+
 
   const handleDelete = (slug: string, title: string) => {
     if (confirm(`Are you sure you want to delete "${title}"?`)) {

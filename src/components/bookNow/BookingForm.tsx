@@ -35,7 +35,9 @@ import RideExtras from "./RideExtras";
 
 import { openRazorpay } from "@/lib/openRazorpay";
 import { calculateFare } from "@/lib/fareCalculator";
+import { addStoredBooking } from "@/data/adminStore";
 import type { BookingData } from "@/types/booking";
+
 
 const serviceTypes = [
   { id: "One Way", label: "One Way Drop", icon: Navigation },
@@ -169,6 +171,31 @@ export default function BookingForm() {
               const data = await response.json();
               if (!response.ok) throw new Error(data.message || "Failed to save booking.");
 
+              // Save to Admin CRM store
+              addStoredBooking({
+                bookingId: data?.booking?.bookingId || `KT${Date.now().toString().slice(-8)}`,
+                customerName: formData.customerName,
+                phone: formData.phone,
+                email: formData.email,
+                pickup: formData.pickup,
+                drop: formData.drop,
+                travelDate: formData.travelDate,
+                travelTime: formData.travelTime,
+                passengers: formData.passengers,
+                serviceType: formData.serviceType,
+                vehicle: formData.vehicle,
+                paymentMethod: formData.payment === "ADVANCE" ? "20% Advance Online" : "Online Full Paid",
+                paymentStatus: formData.payment === "ADVANCE" ? "ADVANCE_PAID" : "PAID",
+                bookingStatus: "CONFIRMED",
+                distance: fareResult.distance,
+                rate: fareResult.ratePerKm,
+                baseFare: fareResult.baseFare,
+                totalFare: totalFare,
+                paidAmount: payableAmount,
+                remainingAmount: totalFare - payableAmount,
+                specialNote: formData.specialNote,
+              });
+
               setSuccessOpen(true);
               resetForm();
             } catch (saveError: any) {
@@ -209,8 +236,34 @@ export default function BookingForm() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Booking submission failed");
 
+      // Save to Admin CRM store
+      addStoredBooking({
+        bookingId: data?.booking?.bookingId || `KT${Date.now().toString().slice(-8)}`,
+        customerName: formData.customerName,
+        phone: formData.phone,
+        email: formData.email,
+        pickup: formData.pickup,
+        drop: formData.drop,
+        travelDate: formData.travelDate,
+        travelTime: formData.travelTime,
+        passengers: formData.passengers,
+        serviceType: formData.serviceType,
+        vehicle: formData.vehicle,
+        paymentMethod: "Pay After Trip (Cash/UPI to Driver)",
+        paymentStatus: "PENDING",
+        bookingStatus: "PENDING",
+        distance: fareResult.distance,
+        rate: fareResult.ratePerKm,
+        baseFare: fareResult.baseFare,
+        totalFare: totalFare,
+        paidAmount: 0,
+        remainingAmount: totalFare,
+        specialNote: formData.specialNote,
+      });
+
       setSuccessOpen(true);
       resetForm();
+
     } catch (error: any) {
       console.error("Booking Submission Error:", error);
       const msg = error.message || "Booking submission failed. Please try again or reach us via WhatsApp.";

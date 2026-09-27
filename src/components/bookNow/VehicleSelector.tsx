@@ -18,6 +18,12 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+import {
+  getStoredVehicles,
+  DEFAULT_VEHICLES,
+  AdminVehicle,
+} from "@/data/adminStore";
+
 interface Props {
   formData: {
     vehicle: string;
@@ -45,6 +51,30 @@ export interface VehicleDetail {
   idealFor: string[];
   highlights: string[];
 }
+
+function mapAdminVehicleToSelector(v: AdminVehicle): VehicleDetail {
+  return {
+    id: v.id,
+    name: v.name,
+    categoryName: v.categoryName || "Sedan Class",
+    image: v.image,
+    seats: v.seats || "4 Seats",
+    luggage: v.luggage || "2 Bags",
+    ac: v.ac || "Chilled AC",
+    price: v.price || `₹${v.ratePerKm || 12}/km`,
+    tag: v.tag || "Available",
+    tagColor: v.tagColor || "bg-blue-700",
+    vehicleClass: v.vehicleClass || "Standard Vehicle",
+    fuelType: v.fuelType || "Petrol / CNG",
+    bestFor: v.bestFor || "City & Outstation Travel",
+    seatingDetails: v.seatingDetails || "Comfortable pushback seating layout",
+    luggageDetails: v.luggageDetails || "Boot space for suitcases and bags",
+    amenities: v.amenities || ["Chilled AC", "Clean Interior", "GPS Safety"],
+    idealFor: v.idealFor || ["City Sightseeing", "Outstation Trips"],
+    highlights: v.highlights || ["Verified Chauffeur", "Chilled AC"],
+  };
+}
+
 
 const vehicles: VehicleDetail[] = [
   {
@@ -405,8 +435,27 @@ const vehicles: VehicleDetail[] = [
 ];
 
 export default function VehicleSelector({ formData, setFormData }: Props) {
+  const [vehiclesList, setVehiclesList] = useState<VehicleDetail[]>(() => {
+    return DEFAULT_VEHICLES.filter((v) => v.isActive !== false).map(mapAdminVehicleToSelector);
+  });
   const [detailsModalVehicle, setDetailsModalVehicle] =
     useState<VehicleDetail | null>(null);
+
+  useEffect(() => {
+    const refreshList = () => {
+      const stored = getStoredVehicles();
+      const active = stored.filter((v) => v.isActive !== false).map(mapAdminVehicleToSelector);
+      if (active.length > 0) {
+        setVehiclesList(active);
+      }
+    };
+
+    refreshList();
+    window.addEventListener("kt_admin_vehicles_updated", refreshList);
+    return () => {
+      window.removeEventListener("kt_admin_vehicles_updated", refreshList);
+    };
+  }, []);
 
   // Close modal with ESC key & lock body scroll
   useEffect(() => {
@@ -454,7 +503,8 @@ export default function VehicleSelector({ formData, setFormData }: Props) {
 
       {/* Vehicles Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {vehicles.map((vehicle) => {
+        {vehiclesList.map((vehicle) => {
+
           const isSelected = formData.vehicle === vehicle.id;
 
           return (

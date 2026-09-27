@@ -1,3 +1,11 @@
+import {
+  getStoredPricing,
+  getStoredVehicles,
+  getStoredDestinations,
+  DEFAULT_PRICING,
+  DEFAULT_VEHICLES,
+} from "@/data/adminStore";
+
 export interface FareCalculationInput {
   pickup?: string;
   drop?: string;
@@ -19,30 +27,11 @@ export interface FareCalculationResult {
   toll: number;
   gst: number;
   total: number;
-  advanceAmount: number; // 20%
-  remainingAmount: number; // 80%
+  advanceAmount: number; // e.g. 20%
+  remainingAmount: number; // e.g. 80%
 }
 
-export const vehicleRates: Record<string, number> = {
-  "Swift Dzire": 12,
-  "Toyota Etios": 12,
-  "Honda Amaze": 12,
-  Sedan: 12,
-  Ertiga: 15,
-  "Maruti Ertiga": 15,
-  "Kia Carens": 16,
-  Carens: 16,
-  SUV: 15,
-  Innova: 18,
-  "Toyota Innova": 18,
-  "Innova Crysta": 20,
-  "Toyota Innova Crysta": 20,
-  "Tempo Traveller": 26,
-  "Force Urbania": 30,
-  Urbania: 30,
-  "Mini Bus": 35,
-  "Luxury Bus": 35,
-};
+export const vehicleRates: Record<string, number> = DEFAULT_PRICING.vehicleRates;
 
 export const categoryRates: Record<string, number> = {
   economy: 0,
@@ -50,14 +39,7 @@ export const categoryRates: Record<string, number> = {
   business: 0,
 };
 
-export const extraPrices: Record<string, number> = {
-  "Child Seat": 200,
-  "Extra Luggage": 300,
-  "Meet & Greet": 400,
-  "Pet Friendly": 250,
-  Wheelchair: 0,
-  "Roof Carrier": 350,
-};
+export const extraPrices: Record<string, number> = DEFAULT_PRICING.extraPrices;
 
 const knownDistances: { pattern: RegExp; distance: number }[] = [
   { pattern: /ayodhya/i, distance: 135 },
@@ -86,8 +68,19 @@ export function getEstimatedDistance(
     return 0;
   }
 
-  const combined = `${pickup} ${drop}`;
+  const combined = `${pickup} ${drop}`.toLowerCase();
   let dist = 120; // default for intercity one-way if cities not recognized
+
+  // Check custom destinations added in Admin
+  try {
+    const adminDestinations = getStoredDestinations();
+    for (const dest of adminDestinations) {
+      if (dest.name && combined.includes(dest.name.toLowerCase())) {
+        dist = dest.distanceKm || 120;
+        break;
+      }
+    }
+  } catch (e) {}
 
   for (const item of knownDistances) {
     if (item.pattern.test(combined)) {
@@ -124,13 +117,34 @@ export function calculateFare(input: FareCalculationInput): FareCalculationResul
       ? getEstimatedDistance(pickup, drop, serviceType)
       : 0;
 
-  const ratePerKm = vehicleRates[vehicle] ?? 12;
+  // Retrieve dynamic rates from Admin Store
+  let dynamicVehicleRates = vehicleRates;
+  let dynamicExtraPrices = extraPrices;
+  let advancePct = 0.2;
+
+  try {
+    const pricing = getStoredPricing();
+    if (pricing?.vehicleRates) dynamicVehicleRates = { ...vehicleRates, ...pricing.vehicleRates };
+    if (pricing?.extraPrices) dynamicExtraPrices = { ...extraPrices, ...pricing.extraPrices };
+    if (pricing?.advancePercentage) advancePct = pricing.advancePercentage / 100;
+
+    // Check if vehicle rate is directly in vehicle list
+    const vehiclesList = getStoredVehicles();
+    const matchedVehicle = vehiclesList.find(
+      (v) => v.id === vehicle || v.name === vehicle
+    );
+    if (matchedVehicle && matchedVehicle.ratePerKm) {
+      dynamicVehicleRates[vehicle] = matchedVehicle.ratePerKm;
+    }
+  } catch (e) {}
+
+  const ratePerKm = dynamicVehicleRates[vehicle] ?? 12;
   const baseFare = distance > 0 ? distance * ratePerKm : 0;
   const categoryFare = 0;
 
   const extrasFare =
     distance > 0
-      ? extras.reduce((total, item) => total + (extraPrices[item] || 0), 0)
+      ? extras.reduce((total, item) => total + (dynamicExtraPrices[item] || 0), 0)
       : 0;
 
   const serviceCharge = 0;
@@ -140,7 +154,7 @@ export function calculateFare(input: FareCalculationInput): FareCalculationResul
 
   const total = baseFare + extrasFare;
 
-  const advanceAmount = Math.round(total * 0.2);
+  const advanceAmount = Math.round(total * advancePct);
   const remainingAmount = total - advanceAmount;
 
   return {
@@ -158,3 +172,4 @@ export function calculateFare(input: FareCalculationInput): FareCalculationResul
     remainingAmount,
   };
 }
+

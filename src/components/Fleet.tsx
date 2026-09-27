@@ -18,7 +18,14 @@ import {
   MessageCircle,
 } from "lucide-react";
 
+import {
+  getStoredVehicles,
+  DEFAULT_VEHICLES,
+  AdminVehicle,
+} from "@/data/adminStore";
+
 interface FleetVehicle {
+  id?: string;
   name: string;
   image: string;
   passengers: string;
@@ -33,6 +40,26 @@ interface FleetVehicle {
   luggageDetails: string;
   amenities: string[];
   idealFor: string[];
+}
+
+function mapAdminVehicleToFleet(v: AdminVehicle): FleetVehicle {
+  return {
+    id: v.id,
+    name: v.name,
+    image: v.image,
+    passengers: v.seats || "4 Passengers",
+    luggage: v.luggage || "2 Bags",
+    ac: v.ac || "Chilled AC",
+    price: v.price || `Starting ₹${v.ratePerKm || 12}/km`,
+    tag: v.tag,
+    vehicleClass: v.vehicleClass || "Standard Sedan",
+    fuelType: v.fuelType || "Petrol / CNG",
+    bestFor: v.bestFor || "City & Outstation Travel",
+    seatingDetails: v.seatingDetails || "Spacious seating with pushback comfort",
+    luggageDetails: v.luggageDetails || "Spacious boot luggage space",
+    amenities: v.amenities || ["Chilled AC", "Clean Interior", "GPS Safety"],
+    idealFor: v.idealFor || ["City Sightseeing", "Airport Pick & Drop", "Outstation Trips"],
+  };
 }
 
 const fleet: FleetVehicle[] = [
@@ -284,7 +311,26 @@ const fleet: FleetVehicle[] = [
 ];
 
 export default function Fleet() {
+  const [vehiclesList, setVehiclesList] = useState<FleetVehicle[]>(() => {
+    return DEFAULT_VEHICLES.filter((v) => v.isActive !== false).map(mapAdminVehicleToFleet);
+  });
   const [selectedVehicle, setSelectedVehicle] = useState<FleetVehicle | null>(null);
+
+  useEffect(() => {
+    const refreshList = () => {
+      const stored = getStoredVehicles();
+      const active = stored.filter((v) => v.isActive !== false).map(mapAdminVehicleToFleet);
+      if (active.length > 0) {
+        setVehiclesList(active);
+      }
+    };
+
+    refreshList();
+    window.addEventListener("kt_admin_vehicles_updated", refreshList);
+    return () => {
+      window.removeEventListener("kt_admin_vehicles_updated", refreshList);
+    };
+  }, []);
 
   // Close modal on ESC key
   useEffect(() => {
@@ -327,7 +373,8 @@ export default function Fleet() {
 
         {/* Fleet Grid */}
         <div className="grid gap-5 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
-          {fleet.map((vehicle, index) => (
+          {vehiclesList.map((vehicle, index) => (
+
             <div
               key={index}
               className="flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:rounded-3xl"

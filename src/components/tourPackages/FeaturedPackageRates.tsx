@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Clock,
@@ -15,9 +15,27 @@ import {
   CalendarCheck,
 } from "lucide-react";
 import { packageRates, PackageRate } from "@/data/packageRates";
+import { getStoredPackages, DEFAULT_PACKAGES, AdminTourPackage } from "@/data/adminStore";
 
 export default function FeaturedPackageRates() {
+  const [packagesList, setPackagesList] = useState<AdminTourPackage[]>(() => {
+    return DEFAULT_PACKAGES;
+  });
   const [selectedVehicle, setSelectedVehicle] = useState<"sedan" | "ertiga" | "innovaCrysta">("sedan");
+
+  useEffect(() => {
+    const refresh = () => {
+      const stored = getStoredPackages();
+      if (stored && stored.length > 0) {
+        setPackagesList(stored);
+      }
+    };
+    refresh();
+    window.addEventListener("kt_admin_packages_updated", refresh);
+    return () => {
+      window.removeEventListener("kt_admin_packages_updated", refresh);
+    };
+  }, []);
 
   const vehicleOptions = [
     { key: "sedan" as const, label: "5 Seater Sedan", desc: "Dzire / Etios" },
@@ -78,11 +96,12 @@ export default function FeaturedPackageRates() {
 
         {/* Packages Grid */}
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {packageRates.map((pkg) => {
-            const priceInfo = pkg.prices[selectedVehicle];
+          {packagesList.map((pkg) => {
+            const priceInfo = pkg.prices[selectedVehicle] || { original: 3000, discount: 2500 };
             const discountPct = Math.round(
-              ((priceInfo.original - priceInfo.discount) / priceInfo.original) * 100
+              ((priceInfo.original - priceInfo.discount) / (priceInfo.original || 1)) * 100
             );
+
 
             return (
               <div

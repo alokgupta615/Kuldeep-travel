@@ -126,8 +126,16 @@ export default function CreateBlogPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Default passcodes
-    if (passcode === "Kuldeep@3651" || passcode === "admin123" || passcode === "9936408109" || passcode === "8801842859") {
+    let strongPass = "Kuldeep@Travels#3651";
+    try {
+      const storedSettings = localStorage.getItem("kt_admin_settings_v1");
+      if (storedSettings) {
+        const parsed = JSON.parse(storedSettings);
+        if (parsed.adminPasscode) strongPass = parsed.adminPasscode;
+      }
+    } catch (err) {}
+
+    if (passcode.trim() === strongPass.trim()) {
       setIsAuthenticated(true);
       sessionStorage.setItem("kt_admin_auth", "true");
       setAuthError(false);
@@ -135,6 +143,7 @@ export default function CreateBlogPage() {
       setAuthError(true);
     }
   };
+
 
   // Auto-generate slug when title changes
   const handleTitleChange = (val: string) => {
